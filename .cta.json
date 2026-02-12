@@ -1,0 +1,29 @@
+{
+  "projectName": "rostering-app",
+  "mode": "file-router",
+  "typescript": true,
+  "packageManager": "npm",
+  "tailwind": true,
+  "addOnOptions": {
+    "prisma": {
+      "database": "postgres"
+    }
+  },
+  "git": true,
+  "version": 1,
+  "framework": "react-cra",
+  "chosenAddOns": [
+    "eslint",
+    "nitro",
+    "start",
+    "clerk",
+    "prisma",
+    "db",
+    "form",
+    "mcp",
+    "shadcn",
+    "t3env",
+    "table",
+    "tanstack-query"
+  ]
+}
