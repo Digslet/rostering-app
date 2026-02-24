@@ -17,6 +17,9 @@
     "db:studio": "dotenv -e .env.local -- prisma studio",
     "db:seed": "dotenv -e .env.local -- prisma db seed"
   },
+    "prisma": {
+    "seed": "npx tsx prisma/seed.ts"
+  },
   "dependencies": {
     "@clerk/clerk-react": "^5.49.0",
     "@clerk/tanstack-react-start": "^0.29.1",

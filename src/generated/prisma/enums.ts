@@ -9,7 +9,53 @@
 * 🟢 You can import this file directly.
 */
 
+export const AccessLevel = {
+  EMPLOYEE: 'EMPLOYEE',
+  WARD_MANAGER: 'WARD_MANAGER',
+  DEPT_MANAGER: 'DEPT_MANAGER',
+  ORG_ADMIN: 'ORG_ADMIN'
+} as const
+
+export type AccessLevel = (typeof AccessLevel)[keyof typeof AccessLevel]
 
 
-// This file is empty because there are no enums in the schema.
-export {}
+export const ShiftStatus = {
+  DRAFT: 'DRAFT',
+  PUBLISHED: 'PUBLISHED',
+  OPEN: 'OPEN',
+  VOID: 'VOID',
+  SICK: 'SICK',
+  COMPLETED: 'COMPLETED'
+} as const
+
+export type ShiftStatus = (typeof ShiftStatus)[keyof typeof ShiftStatus]
+
+
+export const LeaveStatus = {
+  PENDING: 'PENDING',
+  APPROVED: 'APPROVED',
+  REJECTED: 'REJECTED'
+} as const
+
+export type LeaveStatus = (typeof LeaveStatus)[keyof typeof LeaveStatus]
+
+
+export const ClaimStatus = {
+  PENDING: 'PENDING',
+  PENDING_HOME_APPROVAL: 'PENDING_HOME_APPROVAL',
+  APPROVED: 'APPROVED',
+  REJECTED: 'REJECTED',
+  WITHDRAWN: 'WITHDRAWN'
+} as const
+
+export type ClaimStatus = (typeof ClaimStatus)[keyof typeof ClaimStatus]
+
+
+export const AdStatus = {
+  ACTIVE: 'ACTIVE',
+  FILLED: 'FILLED',
+  CANCELLED: 'CANCELLED',
+  EXPIRED: 'EXPIRED'
+} as const
+
+export type AdStatus = (typeof AdStatus)[keyof typeof AdStatus]

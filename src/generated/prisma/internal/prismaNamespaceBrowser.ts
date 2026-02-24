@@ -51,7 +51,23 @@ export const AnyNull = runtime.AnyNull
 
 
 export const ModelName = {
-  Todo: 'Todo'
+  Organization: 'Organization',
+  Department: 'Department',
+  Ward: 'Ward',
+  Employee: 'Employee',
+  EmployeeRole: 'EmployeeRole',
+  ShiftDefinition: 'ShiftDefinition',
+  StaffingRequirement: 'StaffingRequirement',
+  LeaveCategory: 'LeaveCategory',
+  RosterPattern: 'RosterPattern',
+  PatternItem: 'PatternItem',
+  AssignedPattern: 'AssignedPattern',
+  ShiftInstance: 'ShiftInstance',
+  LeaveRequest: 'LeaveRequest',
+  ShiftAdvertisement: 'ShiftAdvertisement',
+  ShiftClaim: 'ShiftClaim',
+  EmployeeAvailability: 'EmployeeAvailability',
+  AuditLog: 'AuditLog'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -70,14 +86,210 @@ export const TransactionIsolationLevel = runtime.makeStrictEnum({
 export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof typeof TransactionIsolationLevel]
 
 
-export const TodoScalarFieldEnum = {
+export const OrganizationScalarFieldEnum = {
   id: 'id',
-  title: 'title',
-  completed: 'completed',
-  userId: 'userId'
+  name: 'name',
+  settings: 'settings',
+  archivedAt: 'archivedAt',
+  createdAt: 'createdAt'
 } as const
 
-export type TodoScalarFieldEnum = (typeof TodoScalarFieldEnum)[keyof typeof TodoScalarFieldEnum]
+export type OrganizationScalarFieldEnum = (typeof OrganizationScalarFieldEnum)[keyof typeof OrganizationScalarFieldEnum]
+
+
+export const DepartmentScalarFieldEnum = {
+  id: 'id',
+  organizationId: 'organizationId',
+  name: 'name',
+  archivedAt: 'archivedAt'
+} as const
+
+export type DepartmentScalarFieldEnum = (typeof DepartmentScalarFieldEnum)[keyof typeof DepartmentScalarFieldEnum]
+
+
+export const WardScalarFieldEnum = {
+  id: 'id',
+  departmentId: 'departmentId',
+  name: 'name',
+  archivedAt: 'archivedAt'
+} as const
+
+export type WardScalarFieldEnum = (typeof WardScalarFieldEnum)[keyof typeof WardScalarFieldEnum]
+
+
+export const EmployeeScalarFieldEnum = {
+  id: 'id',
+  organizationId: 'organizationId',
+  userId: 'userId',
+  firstName: 'firstName',
+  lastName: 'lastName',
+  email: 'email',
+  archivedAt: 'archivedAt',
+  accessLevel: 'accessLevel',
+  roleId: 'roleId',
+  homeDepartmentId: 'homeDepartmentId',
+  homeWardId: 'homeWardId'
+} as const
+
+export type EmployeeScalarFieldEnum = (typeof EmployeeScalarFieldEnum)[keyof typeof EmployeeScalarFieldEnum]
+
+
+export const EmployeeRoleScalarFieldEnum = {
+  id: 'id',
+  organizationId: 'organizationId',
+  name: 'name'
+} as const
+
+export type EmployeeRoleScalarFieldEnum = (typeof EmployeeRoleScalarFieldEnum)[keyof typeof EmployeeRoleScalarFieldEnum]
+
+
+export const ShiftDefinitionScalarFieldEnum = {
+  id: 'id',
+  archivedAt: 'archivedAt',
+  departmentId: 'departmentId',
+  wardId: 'wardId',
+  name: 'name',
+  startTime: 'startTime',
+  endTime: 'endTime',
+  colorCode: 'colorCode'
+} as const
+
+export type ShiftDefinitionScalarFieldEnum = (typeof ShiftDefinitionScalarFieldEnum)[keyof typeof ShiftDefinitionScalarFieldEnum]
+
+
+export const StaffingRequirementScalarFieldEnum = {
+  id: 'id',
+  wardId: 'wardId',
+  shiftDefinitionId: 'shiftDefinitionId',
+  roleId: 'roleId',
+  minCount: 'minCount',
+  targetCount: 'targetCount'
+} as const
+
+export type StaffingRequirementScalarFieldEnum = (typeof StaffingRequirementScalarFieldEnum)[keyof typeof StaffingRequirementScalarFieldEnum]
+
+
+export const LeaveCategoryScalarFieldEnum = {
+  id: 'id',
+  organizationId: 'organizationId',
+  name: 'name',
+  isPaid: 'isPaid'
+} as const
+
+export type LeaveCategoryScalarFieldEnum = (typeof LeaveCategoryScalarFieldEnum)[keyof typeof LeaveCategoryScalarFieldEnum]
+
+
+export const RosterPatternScalarFieldEnum = {
+  id: 'id',
+  wardId: 'wardId',
+  name: 'name',
+  cycleLength: 'cycleLength'
+} as const
+
+export type RosterPatternScalarFieldEnum = (typeof RosterPatternScalarFieldEnum)[keyof typeof RosterPatternScalarFieldEnum]
+
+
+export const PatternItemScalarFieldEnum = {
+  id: 'id',
+  patternId: 'patternId',
+  dayOffset: 'dayOffset',
+  shiftDefinitionId: 'shiftDefinitionId'
+} as const
+
+export type PatternItemScalarFieldEnum = (typeof PatternItemScalarFieldEnum)[keyof typeof PatternItemScalarFieldEnum]
+
+
+export const AssignedPatternScalarFieldEnum = {
+  id: 'id',
+  employeeId: 'employeeId',
+  patternId: 'patternId',
+  anchorDate: 'anchorDate',
+  startDate: 'startDate',
+  endDate: 'endDate'
+} as const
+
+export type AssignedPatternScalarFieldEnum = (typeof AssignedPatternScalarFieldEnum)[keyof typeof AssignedPatternScalarFieldEnum]
+
+
+export const ShiftInstanceScalarFieldEnum = {
+  id: 'id',
+  organizationId: 'organizationId',
+  wardId: 'wardId',
+  employeeId: 'employeeId',
+  date: 'date',
+  shiftDefinitionId: 'shiftDefinitionId',
+  startTime: 'startTime',
+  endTime: 'endTime',
+  status: 'status',
+  isManual: 'isManual',
+  leaveCategoryId: 'leaveCategoryId'
+} as const
+
+export type ShiftInstanceScalarFieldEnum = (typeof ShiftInstanceScalarFieldEnum)[keyof typeof ShiftInstanceScalarFieldEnum]
+
+
+export const LeaveRequestScalarFieldEnum = {
+  id: 'id',
+  employeeId: 'employeeId',
+  categoryId: 'categoryId',
+  startDate: 'startDate',
+  endDate: 'endDate',
+  status: 'status'
+} as const
+
+export type LeaveRequestScalarFieldEnum = (typeof LeaveRequestScalarFieldEnum)[keyof typeof LeaveRequestScalarFieldEnum]
+
+
+export const ShiftAdvertisementScalarFieldEnum = {
+  id: 'id',
+  organizationId: 'organizationId',
+  wardId: 'wardId',
+  shiftInstanceId: 'shiftInstanceId',
+  date: 'date',
+  shiftDefinitionId: 'shiftDefinitionId',
+  status: 'status',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type ShiftAdvertisementScalarFieldEnum = (typeof ShiftAdvertisementScalarFieldEnum)[keyof typeof ShiftAdvertisementScalarFieldEnum]
+
+
+export const ShiftClaimScalarFieldEnum = {
+  id: 'id',
+  shiftAdvertisementId: 'shiftAdvertisementId',
+  employeeId: 'employeeId',
+  targetManagerId: 'targetManagerId',
+  homeManagerId: 'homeManagerId',
+  status: 'status',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type ShiftClaimScalarFieldEnum = (typeof ShiftClaimScalarFieldEnum)[keyof typeof ShiftClaimScalarFieldEnum]
+
+
+export const EmployeeAvailabilityScalarFieldEnum = {
+  id: 'id',
+  employeeId: 'employeeId',
+  date: 'date',
+  preference: 'preference'
+} as const
+
+export type EmployeeAvailabilityScalarFieldEnum = (typeof EmployeeAvailabilityScalarFieldEnum)[keyof typeof EmployeeAvailabilityScalarFieldEnum]
+
+
+export const AuditLogScalarFieldEnum = {
+  id: 'id',
+  timestamp: 'timestamp',
+  organizationId: 'organizationId',
+  actorId: 'actorId',
+  action: 'action',
+  targetId: 'targetId',
+  details: 'details'
+} as const
+
+export type AuditLogScalarFieldEnum = (typeof AuditLogScalarFieldEnum)[keyof typeof AuditLogScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -88,10 +300,34 @@ export const SortOrder = {
 export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
 
 
+export const JsonNullValueInput = {
+  JsonNull: JsonNull
+} as const
+
+export type JsonNullValueInput = (typeof JsonNullValueInput)[keyof typeof JsonNullValueInput]
+
+
 export const QueryMode = {
   default: 'default',
   insensitive: 'insensitive'
 } as const
 
 export type QueryMode = (typeof QueryMode)[keyof typeof QueryMode]
+
+
+export const JsonNullValueFilter = {
+  DbNull: DbNull,
+  JsonNull: JsonNull,
+  AnyNull: AnyNull
+} as const
+
+export type JsonNullValueFilter = (typeof JsonNullValueFilter)[keyof typeof JsonNullValueFilter]
+
+
+export const NullsOrder = {
+  first: 'first',
+  last: 'last'
+} as const
+
+export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
 

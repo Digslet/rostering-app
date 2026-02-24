@@ -29,8 +29,8 @@ export * from "./enums.ts"
  * @example
  * ```
  * const prisma = new PrismaClient()
- * // Fetch zero or more Todos
- * const todos = await prisma.todo.findMany()
+ * // Fetch zero or more Organizations
+ * const organizations = await prisma.organization.findMany()
  * ```
  * 
  * Read more in our [docs](https://pris.ly/d/client).
@@ -40,7 +40,87 @@ export type PrismaClient<LogOpts extends Prisma.LogLevel = never, OmitOpts exten
 export { Prisma }
 
 /**
- * Model Todo
+ * Model Organization
  * 
  */
-export type Todo = Prisma.TodoModel
+export type Organization = Prisma.OrganizationModel
+/**
+ * Model Department
+ * 
+ */
+export type Department = Prisma.DepartmentModel
+/**
+ * Model Ward
+ * 
+ */
+export type Ward = Prisma.WardModel
+/**
+ * Model Employee
+ * 
+ */
+export type Employee = Prisma.EmployeeModel
+/**
+ * Model EmployeeRole
+ * 
+ */
+export type EmployeeRole = Prisma.EmployeeRoleModel
+/**
+ * Model ShiftDefinition
+ * 
+ */
+export type ShiftDefinition = Prisma.ShiftDefinitionModel
+/**
+ * Model StaffingRequirement
+ * 
+ */
+export type StaffingRequirement = Prisma.StaffingRequirementModel
+/**
+ * Model LeaveCategory
+ * 
+ */
+export type LeaveCategory = Prisma.LeaveCategoryModel
+/**
+ * Model RosterPattern
+ * 
+ */
+export type RosterPattern = Prisma.RosterPatternModel
+/**
+ * Model PatternItem
+ * 
+ */
+export type PatternItem = Prisma.PatternItemModel
+/**
+ * Model AssignedPattern
+ * 
+ */
+export type AssignedPattern = Prisma.AssignedPatternModel
+/**
+ * Model ShiftInstance
+ * 
+ */
+export type ShiftInstance = Prisma.ShiftInstanceModel
+/**
+ * Model LeaveRequest
+ * 
+ */
+export type LeaveRequest = Prisma.LeaveRequestModel
+/**
+ * Model ShiftAdvertisement
+ * 
+ */
+export type ShiftAdvertisement = Prisma.ShiftAdvertisementModel
+/**
+ * Model ShiftClaim
+ * 
+ */
+export type ShiftClaim = Prisma.ShiftClaimModel
+/**
+ * Model EmployeeAvailability
+ * 
+ */
+export type EmployeeAvailability = Prisma.EmployeeAvailabilityModel
+/**
+ * Model AuditLog
+ * 
+ */
+export type AuditLog = Prisma.AuditLogModel

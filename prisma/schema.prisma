@@ -1,5 +1,6 @@
 generator client {
   provider = "prisma-client"
+  output   = "../src/generated/prisma"
 }
 
 datasource db {
@@ -7,13 +8,14 @@ datasource db {
 }
 
 // ==========================================
-// 🏢 LAYER 1: HIERARCHY & TENANCY
+// 🏥 LAYER 1: HIERARCHY & TENANCY
 // ==========================================
 
 model Organization {
-  id       String @id @default(uuid())
-  name     String
-  settings Json   @default("{}") // Global rules (e.g. "Overtime starts at 40h")
+  id         String    @id @default(uuid())
+  name       String
+  settings   Json      @default("{}")
+  archivedAt DateTime? // SOFT DELETE
 
   departments Department[]
   roles       EmployeeRole[]
@@ -21,43 +23,46 @@ model Organization {
   employees   Employee[]
   audits      AuditLog[]
 
+  // SCOPED ACCESS
+  admins Employee[] @relation("OrgAdmins")
+
   createdAt DateTime @default(now())
 }
 
 model Department {
-  id             String @id @default(uuid())
+  id             String    @id @default(uuid())
   organizationId String
-  name           String // e.g. "Surgery", "Emergency"
+  name           String    // e.g. "Surgery", "Emergency"
+  archivedAt     DateTime? // SOFT DELETE
 
   organization Organization @relation(fields: [organizationId], references: [id])
   wards        Ward[]
 
-  // DEPARTMENT LEVEL SETTINGS
-  // Managers can define shift types that apply to ALL wards in this dept
+  // SCOPED ACCESS & PEOPLE
+  managers  Employee[] @relation("DeptManagers") 
+  homeStaff Employee[] @relation("HomeDepartment") // For Dept-Level Locums
+
   sharedShiftTypes ShiftDefinition[]
 }
 
 model Ward {
-  id           String @id @default(uuid())
+  id           String    @id @default(uuid())
   departmentId String
-  name         String // e.g. "Ward 3B"
+  name         String    // e.g. "Ward 3B"
+  archivedAt   DateTime? // SOFT DELETE
 
   department Department @relation(fields: [departmentId], references: [id])
 
-  // SETTINGS: WARD LEVEL
-  // Specific shift definitions (e.g. "Ward 3B Morning" might be 06:00-14:00)
-  shiftDefinitions ShiftDefinition[]
-
-  // STAFFING MATRIX (The "Base")
-  // "For a Morning Shift, we need 5 Nurses and 2 Juniors"
+  shiftDefinitions     ShiftDefinition[]
   staffingRequirements StaffingRequirement[]
 
-  // PEOPLE
-  homeStaff Employee[] @relation("HomeWard")
-  managers  Employee[] @relation("WardManagers") // SCOPED ACCESS
+  // SCOPED ACCESS & PEOPLE
+  managers  Employee[] @relation("WardManagers") 
+  homeStaff Employee[] @relation("HomeWard")     
 
-  rosters  ShiftInstance[]
-  patterns RosterPattern[] // Reusable patterns belonging to this ward
+  rosters      ShiftInstance[]
+  patterns     RosterPattern[] 
+  availability EmployeeAvailability[] @relation("PreferredAvailabilityWards")
 }
 
 // ==========================================
@@ -65,20 +70,21 @@ model Ward {
 // ==========================================
 
 enum AccessLevel {
-  EMPLOYEE // Read Only (Own Data + Peer View)
-  WARD_MANAGER // Read/Write (Own Wards)
-  DEPT_MANAGER // Read/Write (Own Dept)
-  ORG_ADMIN // God Mode
+  EMPLOYEE 
+  WARD_MANAGER 
+  DEPT_MANAGER 
+  ORG_ADMIN 
 }
 
 model Employee {
-  id             String  @id @default(uuid())
+  id             String    @id @default(uuid())
   organizationId String
-  userId         String? @unique // Clerk ID
+  userId         String?   @unique // Clerk ID
 
-  firstName String
-  lastName  String
-  email     String
+  firstName  String
+  lastName   String
+  email      String
+  archivedAt DateTime? // SOFT DELETE
 
   // SECURITY SCOPE
   accessLevel AccessLevel @default(EMPLOYEE)
@@ -87,17 +93,28 @@ model Employee {
   roleId String
   role   EmployeeRole @relation(fields: [roleId], references: [id])
 
-  // LOCATION
-  homeWardId String?
-  homeWard   Ward?   @relation("HomeWard", fields: [homeWardId], references: [id])
+  // THE LOCUM SOLUTION (Optional Homes)
+  // Standard = Both populated. Dept Locum = Ward is null. Global Locum = Both null.
+  homeDepartmentId String?
+  homeDepartment   Department? @relation("HomeDepartment", fields: [homeDepartmentId], references: [id])
+  homeWardId       String?
+  homeWard         Ward?       @relation("HomeWard", fields: [homeWardId], references: [id])
 
-  // PERMISSIONS (Manager of...)
-  managedWards Ward[] @relation("WardManagers")
+  // PERMISSIONS (Manager Scopes)
+  managedOrganizations Organization[] @relation("OrgAdmins")
+  managedDepartments   Department[]   @relation("DeptManagers")
+  managedWards         Ward[]         @relation("WardManagers")
 
-  // ROSTERING
-  shifts          ShiftInstance[]
-  assignedPattern AssignedPattern[]
-  leaveRequests   LeaveRequest[]
+  // ROSTERING & MARKETPLACE
+  shifts              ShiftInstance[]
+  assignedPattern     AssignedPattern[]
+  leaveRequests       LeaveRequest[]
+  shiftClaims         ShiftClaim[] 
+  availability        EmployeeAvailability[]
+  
+  // CLAIM APPROVALS (Strict Relational Ties)
+  targetManagerClaims ShiftClaim[] @relation("TargetManager")
+  homeManagerClaims   ShiftClaim[] @relation("HomeManager")
 
   organization Organization @relation(fields: [organizationId], references: [id])
   actions      AuditLog[]
@@ -108,48 +125,46 @@ model EmployeeRole {
   organizationId String
   name           String // "Registered Nurse", "HCA"
 
-  organization Organization          @relation(fields: [organizationId], references: [id])
-  employees    Employee[]
-  requirements StaffingRequirement[] // Linked to Matrix
+  organization   Organization          @relation(fields: [organizationId], references: [id])
+  employees      Employee[]
+  requirements   StaffingRequirement[] 
+  advertisements ShiftAdvertisement[]  @relation("AdAllowedRoles")
 }
 
 // ==========================================
 // ⚙️ LAYER 3: CONFIGURATION (The Controls)
 // ==========================================
 
-// CUSTOM SHIFT TYPES (Morning 7-3 vs Morning 6-2)
 model ShiftDefinition {
-  id String @id @default(uuid())
+  id         String    @id @default(uuid())
+  archivedAt DateTime? // SOFT DELETE
 
-  // Scoping: Can be defined at Dept OR Ward level
   departmentId String?
   wardId       String?
 
-  name      String // "Early Morning", "Late Shift"
-  startTime String // "07:00"
-  endTime   String // "15:00"
+  name      String 
+  startTime String 
+  endTime   String 
   colorCode String?
 
   department Department? @relation(fields: [departmentId], references: [id])
   ward       Ward?       @relation(fields: [wardId], references: [id])
 
-  // Linked to the Matrix (Requirements)
-  requirements StaffingRequirement[]
-  shifts       ShiftInstance[] // Live shifts use this definition
-  patternItems PatternItem[]
+  requirements   StaffingRequirement[]
+  shifts         ShiftInstance[] 
+  patternItems   PatternItem[]
+  advertisements ShiftAdvertisement[]
 }
 
-// THE WARD MATRIX ("Base")
-// "For Shift X, we need Y amount of Role Z"
 model StaffingRequirement {
   id String @id @default(uuid())
 
-  wardId            String // The location
-  shiftDefinitionId String // The shift (e.g. "Morning")
-  roleId            String // The job (e.g. "Nurse")
+  wardId            String 
+  shiftDefinitionId String 
+  roleId            String 
 
-  minCount    Int // "Must have at least 3"
-  targetCount Int // "Ideally 5"
+  minCount    Int
+  targetCount Int 
 
   ward            Ward            @relation(fields: [wardId], references: [id])
   shiftDefinition ShiftDefinition @relation(fields: [shiftDefinitionId], references: [id])
@@ -159,98 +174,113 @@ model StaffingRequirement {
 model LeaveCategory {
   id             String  @id @default(uuid())
   organizationId String
-  name           String // "Annual", "Sick", "Study"
+  name           String  // "Annual", "Sick", "Study"
   isPaid         Boolean @default(true)
 
-  organization Organization    @relation(fields: [organizationId], references: [id])
+  organization Organization   @relation(fields: [organizationId], references: [id])
   requests     LeaveRequest[]
-  shifts       ShiftInstance[] // For shifts marked as leave
+  shifts       ShiftInstance[] 
 }
 
 // ==========================================
-// 🤖 LAYER 4: AUTOMATION (Patterns)
+// 🔄 LAYER 4: AUTOMATION (Patterns)
 // ==========================================
 
-// 1. THE BLUEPRINT (Reusable)
-// e.g. "Standard 4-on-2-off" or "Weekdays Only"
 model RosterPattern {
   id          String @id @default(uuid())
   wardId      String
-  name        String // "4-2 Rotation"
-  cycleLength Int // 6 for "4-2", 14 for "Fortnightly"
+  name        String 
+  cycleLength Int 
 
   items PatternItem[]
 
   ward      Ward              @relation(fields: [wardId], references: [id])
-  assignees AssignedPattern[] // Many users can use this 1 pattern
+  assignees AssignedPattern[] 
 }
 
-// 2. THE ITEMS
-// "Day 1 = Morning", "Day 2 = Morning"...
 model PatternItem {
   id        String @id @default(uuid())
   patternId String
 
-  dayOffset Int // 0 to (cycleLength - 1)
-
-  // We link to the Definition, not hardcoded times
-  // If Manager changes "Morning" to 6am, the pattern updates automatically.
+  dayOffset         Int 
   shiftDefinitionId String
-  shiftDefinition   ShiftDefinition @relation(fields: [shiftDefinitionId], references: [id])
 
-  pattern RosterPattern @relation(fields: [patternId], references: [id])
+  shiftDefinition ShiftDefinition @relation(fields: [shiftDefinitionId], references: [id])
+  pattern         RosterPattern   @relation(fields: [patternId], references: [id])
 }
 
-// 3. THE ASSIGNMENT (User + Blueprint + Anchor)
 model AssignedPattern {
   id         String @id @default(uuid())
   employeeId String
   patternId  String
 
-  // THE ANCHOR: The reference point for the cycle
   anchorDate DateTime
-
-  // THE TIMELINE: When is this pattern active?
-  startDate DateTime // e.g. "2024-01-01"
-  endDate   DateTime? // Null = Active indefinitely. Set this when they change.
+  startDate  DateTime
+  endDate    DateTime?
 
   employee Employee      @relation(fields: [employeeId], references: [id])
   pattern  RosterPattern @relation(fields: [patternId], references: [id])
 
-  // Safety: Ensure dates don't overlap for the same user
   @@index([employeeId, startDate])
 }
 
 // ==========================================
-// 📅 LAYER 5: LIVE ROSTER & LEAVE
+// 📅 LAYER 5: LIVE ROSTER, LEAVE & MARKETPLACE
 // ==========================================
+
+enum ShiftStatus {
+  DRAFT
+  PUBLISHED
+  OPEN      // The placeholder state
+  VOID
+  SICK
+  COMPLETED
+}
+
+enum LeaveStatus {
+  PENDING
+  APPROVED
+  REJECTED
+}
+
+enum ClaimStatus {
+  PENDING
+  PENDING_HOME_APPROVAL
+  APPROVED
+  REJECTED
+  WITHDRAWN
+}
+
+enum AdStatus {
+  ACTIVE
+  FILLED
+  CANCELLED
+  EXPIRED
+}
 
 model ShiftInstance {
   id             String  @id @default(uuid())
   organizationId String
   wardId         String
-  employeeId     String? // Nullable (Open Shift)
+  employeeId     String? // Nullable (Open Shift placeholder)
 
   date DateTime
 
-  // DEFINITION (The "Expected" Times)
   shiftDefinitionId String?
   shiftDefinition   ShiftDefinition? @relation(fields: [shiftDefinitionId], references: [id])
 
-  // ACTUAL TIMES (Can be overridden per shift)
   startTime DateTime
   endTime   DateTime
 
-  // STATUS
-  status   String  @default("PUBLISHED") // PUBLISHED, VOID, SICK
-  isManual Boolean @default(false)
+  status   ShiftStatus @default(PUBLISHED)
+  isManual Boolean     @default(false)
 
-  // LEAVE OVERRIDE
-  leaveCategoryId String? // If set, this is a Leave Shift
+  leaveCategoryId String?
   leaveCategory   LeaveCategory? @relation(fields: [leaveCategoryId], references: [id])
 
-  ward     Ward      @relation(fields: [wardId], references: [id])
-  employee Employee? @relation(fields: [employeeId], references: [id])
+  ward          Ward                @relation(fields: [wardId], references: [id])
+  employee      Employee?           @relation(fields: [employeeId], references: [id])
+  advertisement ShiftAdvertisement? // 1-to-1 link for Open Shifts
 
   @@index([wardId, date])
 }
@@ -262,10 +292,77 @@ model LeaveRequest {
 
   startDate DateTime
   endDate   DateTime
-  status    String   @default("PENDING") // PENDING, APPROVED, REJECTED
+  status    LeaveStatus @default(PENDING)
 
   employee Employee      @relation(fields: [employeeId], references: [id])
   category LeaveCategory @relation(fields: [categoryId], references: [id])
+}
+
+// THE BULLETIN BOARD
+model ShiftAdvertisement {
+  id                String   @id @default(uuid())
+  organizationId    String
+  wardId            String
+  
+  // Ties the Ad to the physical roster placeholder
+  shiftInstanceId   String   @unique 
+  shiftInstance     ShiftInstance @relation(fields: [shiftInstanceId], references: [id])
+
+  date              DateTime
+  shiftDefinitionId String
+  shiftDefinition   ShiftDefinition @relation(fields: [shiftDefinitionId], references: [id])
+
+  // Supports multiple required roles (e.g. "RN" or "HCA")
+  allowedRoles      EmployeeRole[]  @relation("AdAllowedRoles")
+
+  status            AdStatus @default(ACTIVE)
+
+  claims            ShiftClaim[] 
+
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+}
+
+// THE BUFFER
+model ShiftClaim {
+  id                   String @id @default(uuid())
+  
+  shiftAdvertisementId String 
+  advertisement        ShiftAdvertisement @relation(fields: [shiftAdvertisementId], references: [id])
+  
+  employeeId           String
+  employee             Employee @relation(fields: [employeeId], references: [id])
+
+  // Strict Referential Integrity for Approvals
+  targetManagerId      String?
+  targetManager        Employee? @relation("TargetManager", fields: [targetManagerId], references: [id])
+  
+  homeManagerId        String?
+  homeManager          Employee? @relation("HomeManager", fields: [homeManagerId], references: [id])
+
+  status               ClaimStatus @default(PENDING)
+
+  createdAt            DateTime @default(now())
+  updatedAt            DateTime @updatedAt
+
+  @@unique([shiftAdvertisementId, employeeId])
+}
+
+// FUTURE-PROOFING: AVAILABILITY
+model EmployeeAvailability {
+  id           String   @id @default(uuid())
+  employeeId   String
+  employee     Employee @relation(fields: [employeeId], references: [id])
+  
+  date         DateTime
+  
+  // "AVAILABLE" or "UNAVAILABLE"
+  preference   String   @default("UNAVAILABLE") 
+  
+  // Optional: Specific wards they are willing to float to
+  preferredWards Ward[] @relation("PreferredAvailabilityWards")
+
+  @@index([employeeId, date])
 }
 
 // ==========================================
@@ -280,8 +377,8 @@ model AuditLog {
   actorId String
   actor   Employee @relation(fields: [actorId], references: [id])
 
-  action       String // "CREATE_PATTERN", "UPDATE_MATRIX"
+  action       String 
   targetId     String
-  details      Json // Full diff
+  details      Json 
   organization Organization @relation(fields: [organizationId], references: [id])
 }

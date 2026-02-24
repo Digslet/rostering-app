@@ -1,0 +1,2 @@
+-- CreateEnum
+CREATE TYPE "ShiftStatus" AS ENUM ('DRAFT', 'PUBLISHED', 'VOID', 'SICK', 'COMPLETED');

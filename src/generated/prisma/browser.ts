@@ -18,7 +18,87 @@ export { Prisma }
 export * as $Enums from './enums.ts'
 export * from './enums.ts';
 /**
- * Model Todo
+ * Model Organization
  * 
  */
-export type Todo = Prisma.TodoModel
+export type Organization = Prisma.OrganizationModel
+/**
+ * Model Department
+ * 
+ */
+export type Department = Prisma.DepartmentModel
+/**
+ * Model Ward
+ * 
+ */
+export type Ward = Prisma.WardModel
+/**
+ * Model Employee
+ * 
+ */
+export type Employee = Prisma.EmployeeModel
+/**
+ * Model EmployeeRole
+ * 
+ */
+export type EmployeeRole = Prisma.EmployeeRoleModel
+/**
+ * Model ShiftDefinition
+ * 
+ */
+export type ShiftDefinition = Prisma.ShiftDefinitionModel
+/**
+ * Model StaffingRequirement
+ * 
+ */
+export type StaffingRequirement = Prisma.StaffingRequirementModel
+/**
+ * Model LeaveCategory
+ * 
+ */
+export type LeaveCategory = Prisma.LeaveCategoryModel
+/**
+ * Model RosterPattern
+ * 
+ */
+export type RosterPattern = Prisma.RosterPatternModel
+/**
+ * Model PatternItem
+ * 
+ */
+export type PatternItem = Prisma.PatternItemModel
+/**
+ * Model AssignedPattern
+ * 
+ */
+export type AssignedPattern = Prisma.AssignedPatternModel
+/**
+ * Model ShiftInstance
+ * 
+ */
+export type ShiftInstance = Prisma.ShiftInstanceModel
+/**
+ * Model LeaveRequest
+ * 
+ */
+export type LeaveRequest = Prisma.LeaveRequestModel
+/**
+ * Model ShiftAdvertisement
+ * 
+ */
+export type ShiftAdvertisement = Prisma.ShiftAdvertisementModel
+/**
+ * Model ShiftClaim
+ * 
+ */
+export type ShiftClaim = Prisma.ShiftClaimModel
+/**
+ * Model EmployeeAvailability
+ * 
+ */
+export type EmployeeAvailability = Prisma.EmployeeAvailabilityModel
+/**
+ * Model AuditLog
+ * 
+ */
+export type AuditLog = Prisma.AuditLogModel
