@@ -20,75 +20,103 @@ export type ShiftDefinitionModel = runtime.Types.Result.DefaultSelection<Prisma.
 
 export type AggregateShiftDefinition = {
   _count: ShiftDefinitionCountAggregateOutputType | null
+  _avg: ShiftDefinitionAvgAggregateOutputType | null
+  _sum: ShiftDefinitionSumAggregateOutputType | null
   _min: ShiftDefinitionMinAggregateOutputType | null
   _max: ShiftDefinitionMaxAggregateOutputType | null
 }
 
+export type ShiftDefinitionAvgAggregateOutputType = {
+  startTimeMinutes: number | null
+  durationMinutes: number | null
+}
+
+export type ShiftDefinitionSumAggregateOutputType = {
+  startTimeMinutes: number | null
+  durationMinutes: number | null
+}
+
 export type ShiftDefinitionMinAggregateOutputType = {
   id: string | null
-  archivedAt: Date | null
+  organizationId: string | null
   departmentId: string | null
-  wardId: string | null
+  locationId: string | null
+  archivedAt: Date | null
   name: string | null
-  startTime: string | null
-  endTime: string | null
+  startTimeMinutes: number | null
+  durationMinutes: number | null
   colorCode: string | null
 }
 
 export type ShiftDefinitionMaxAggregateOutputType = {
   id: string | null
-  archivedAt: Date | null
+  organizationId: string | null
   departmentId: string | null
-  wardId: string | null
+  locationId: string | null
+  archivedAt: Date | null
   name: string | null
-  startTime: string | null
-  endTime: string | null
+  startTimeMinutes: number | null
+  durationMinutes: number | null
   colorCode: string | null
 }
 
 export type ShiftDefinitionCountAggregateOutputType = {
   id: number
-  archivedAt: number
+  organizationId: number
   departmentId: number
-  wardId: number
+  locationId: number
+  archivedAt: number
   name: number
-  startTime: number
-  endTime: number
+  startTimeMinutes: number
+  durationMinutes: number
   colorCode: number
   _all: number
 }
 
 
+export type ShiftDefinitionAvgAggregateInputType = {
+  startTimeMinutes?: true
+  durationMinutes?: true
+}
+
+export type ShiftDefinitionSumAggregateInputType = {
+  startTimeMinutes?: true
+  durationMinutes?: true
+}
+
 export type ShiftDefinitionMinAggregateInputType = {
   id?: true
-  archivedAt?: true
+  organizationId?: true
   departmentId?: true
-  wardId?: true
+  locationId?: true
+  archivedAt?: true
   name?: true
-  startTime?: true
-  endTime?: true
+  startTimeMinutes?: true
+  durationMinutes?: true
   colorCode?: true
 }
 
 export type ShiftDefinitionMaxAggregateInputType = {
   id?: true
-  archivedAt?: true
+  organizationId?: true
   departmentId?: true
-  wardId?: true
+  locationId?: true
+  archivedAt?: true
   name?: true
-  startTime?: true
-  endTime?: true
+  startTimeMinutes?: true
+  durationMinutes?: true
   colorCode?: true
 }
 
 export type ShiftDefinitionCountAggregateInputType = {
   id?: true
-  archivedAt?: true
+  organizationId?: true
   departmentId?: true
-  wardId?: true
+  locationId?: true
+  archivedAt?: true
   name?: true
-  startTime?: true
-  endTime?: true
+  startTimeMinutes?: true
+  durationMinutes?: true
   colorCode?: true
   _all?: true
 }
@@ -131,6 +159,18 @@ export type ShiftDefinitionAggregateArgs<ExtArgs extends runtime.Types.Extension
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
    * 
+   * Select which fields to average
+  **/
+  _avg?: ShiftDefinitionAvgAggregateInputType
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+   * 
+   * Select which fields to sum
+  **/
+  _sum?: ShiftDefinitionSumAggregateInputType
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+   * 
    * Select which fields to find the minimum value
   **/
   _min?: ShiftDefinitionMinAggregateInputType
@@ -161,20 +201,25 @@ export type ShiftDefinitionGroupByArgs<ExtArgs extends runtime.Types.Extensions.
   take?: number
   skip?: number
   _count?: ShiftDefinitionCountAggregateInputType | true
+  _avg?: ShiftDefinitionAvgAggregateInputType
+  _sum?: ShiftDefinitionSumAggregateInputType
   _min?: ShiftDefinitionMinAggregateInputType
   _max?: ShiftDefinitionMaxAggregateInputType
 }
 
 export type ShiftDefinitionGroupByOutputType = {
   id: string
-  archivedAt: Date | null
+  organizationId: string
   departmentId: string | null
-  wardId: string | null
+  locationId: string | null
+  archivedAt: Date | null
   name: string
-  startTime: string
-  endTime: string
+  startTimeMinutes: number
+  durationMinutes: number
   colorCode: string | null
   _count: ShiftDefinitionCountAggregateOutputType | null
+  _avg: ShiftDefinitionAvgAggregateOutputType | null
+  _sum: ShiftDefinitionSumAggregateOutputType | null
   _min: ShiftDefinitionMinAggregateOutputType | null
   _max: ShiftDefinitionMaxAggregateOutputType | null
 }
@@ -199,36 +244,38 @@ export type ShiftDefinitionWhereInput = {
   OR?: Prisma.ShiftDefinitionWhereInput[]
   NOT?: Prisma.ShiftDefinitionWhereInput | Prisma.ShiftDefinitionWhereInput[]
   id?: Prisma.StringFilter<"ShiftDefinition"> | string
-  archivedAt?: Prisma.DateTimeNullableFilter<"ShiftDefinition"> | Date | string | null
+  organizationId?: Prisma.StringFilter<"ShiftDefinition"> | string
   departmentId?: Prisma.StringNullableFilter<"ShiftDefinition"> | string | null
-  wardId?: Prisma.StringNullableFilter<"ShiftDefinition"> | string | null
+  locationId?: Prisma.StringNullableFilter<"ShiftDefinition"> | string | null
+  archivedAt?: Prisma.DateTimeNullableFilter<"ShiftDefinition"> | Date | string | null
   name?: Prisma.StringFilter<"ShiftDefinition"> | string
-  startTime?: Prisma.StringFilter<"ShiftDefinition"> | string
-  endTime?: Prisma.StringFilter<"ShiftDefinition"> | string
+  startTimeMinutes?: Prisma.IntFilter<"ShiftDefinition"> | number
+  durationMinutes?: Prisma.IntFilter<"ShiftDefinition"> | number
   colorCode?: Prisma.StringNullableFilter<"ShiftDefinition"> | string | null
+  organization?: Prisma.XOR<Prisma.OrganizationScalarRelationFilter, Prisma.OrganizationWhereInput>
   department?: Prisma.XOR<Prisma.DepartmentNullableScalarRelationFilter, Prisma.DepartmentWhereInput> | null
-  ward?: Prisma.XOR<Prisma.WardNullableScalarRelationFilter, Prisma.WardWhereInput> | null
+  location?: Prisma.XOR<Prisma.LocationNullableScalarRelationFilter, Prisma.LocationWhereInput> | null
   requirements?: Prisma.StaffingRequirementListRelationFilter
   shifts?: Prisma.ShiftInstanceListRelationFilter
   patternItems?: Prisma.PatternItemListRelationFilter
-  advertisements?: Prisma.ShiftAdvertisementListRelationFilter
 }
 
 export type ShiftDefinitionOrderByWithRelationInput = {
   id?: Prisma.SortOrder
-  archivedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  organizationId?: Prisma.SortOrder
   departmentId?: Prisma.SortOrderInput | Prisma.SortOrder
-  wardId?: Prisma.SortOrderInput | Prisma.SortOrder
+  locationId?: Prisma.SortOrderInput | Prisma.SortOrder
+  archivedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   name?: Prisma.SortOrder
-  startTime?: Prisma.SortOrder
-  endTime?: Prisma.SortOrder
+  startTimeMinutes?: Prisma.SortOrder
+  durationMinutes?: Prisma.SortOrder
   colorCode?: Prisma.SortOrderInput | Prisma.SortOrder
+  organization?: Prisma.OrganizationOrderByWithRelationInput
   department?: Prisma.DepartmentOrderByWithRelationInput
-  ward?: Prisma.WardOrderByWithRelationInput
+  location?: Prisma.LocationOrderByWithRelationInput
   requirements?: Prisma.StaffingRequirementOrderByRelationAggregateInput
   shifts?: Prisma.ShiftInstanceOrderByRelationAggregateInput
   patternItems?: Prisma.PatternItemOrderByRelationAggregateInput
-  advertisements?: Prisma.ShiftAdvertisementOrderByRelationAggregateInput
 }
 
 export type ShiftDefinitionWhereUniqueInput = Prisma.AtLeast<{
@@ -236,33 +283,37 @@ export type ShiftDefinitionWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.ShiftDefinitionWhereInput | Prisma.ShiftDefinitionWhereInput[]
   OR?: Prisma.ShiftDefinitionWhereInput[]
   NOT?: Prisma.ShiftDefinitionWhereInput | Prisma.ShiftDefinitionWhereInput[]
-  archivedAt?: Prisma.DateTimeNullableFilter<"ShiftDefinition"> | Date | string | null
+  organizationId?: Prisma.StringFilter<"ShiftDefinition"> | string
   departmentId?: Prisma.StringNullableFilter<"ShiftDefinition"> | string | null
-  wardId?: Prisma.StringNullableFilter<"ShiftDefinition"> | string | null
+  locationId?: Prisma.StringNullableFilter<"ShiftDefinition"> | string | null
+  archivedAt?: Prisma.DateTimeNullableFilter<"ShiftDefinition"> | Date | string | null
   name?: Prisma.StringFilter<"ShiftDefinition"> | string
-  startTime?: Prisma.StringFilter<"ShiftDefinition"> | string
-  endTime?: Prisma.StringFilter<"ShiftDefinition"> | string
+  startTimeMinutes?: Prisma.IntFilter<"ShiftDefinition"> | number
+  durationMinutes?: Prisma.IntFilter<"ShiftDefinition"> | number
   colorCode?: Prisma.StringNullableFilter<"ShiftDefinition"> | string | null
+  organization?: Prisma.XOR<Prisma.OrganizationScalarRelationFilter, Prisma.OrganizationWhereInput>
   department?: Prisma.XOR<Prisma.DepartmentNullableScalarRelationFilter, Prisma.DepartmentWhereInput> | null
-  ward?: Prisma.XOR<Prisma.WardNullableScalarRelationFilter, Prisma.WardWhereInput> | null
+  location?: Prisma.XOR<Prisma.LocationNullableScalarRelationFilter, Prisma.LocationWhereInput> | null
   requirements?: Prisma.StaffingRequirementListRelationFilter
   shifts?: Prisma.ShiftInstanceListRelationFilter
   patternItems?: Prisma.PatternItemListRelationFilter
-  advertisements?: Prisma.ShiftAdvertisementListRelationFilter
 }, "id">
 
 export type ShiftDefinitionOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
-  archivedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  organizationId?: Prisma.SortOrder
   departmentId?: Prisma.SortOrderInput | Prisma.SortOrder
-  wardId?: Prisma.SortOrderInput | Prisma.SortOrder
+  locationId?: Prisma.SortOrderInput | Prisma.SortOrder
+  archivedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   name?: Prisma.SortOrder
-  startTime?: Prisma.SortOrder
-  endTime?: Prisma.SortOrder
+  startTimeMinutes?: Prisma.SortOrder
+  durationMinutes?: Prisma.SortOrder
   colorCode?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.ShiftDefinitionCountOrderByAggregateInput
+  _avg?: Prisma.ShiftDefinitionAvgOrderByAggregateInput
   _max?: Prisma.ShiftDefinitionMaxOrderByAggregateInput
   _min?: Prisma.ShiftDefinitionMinOrderByAggregateInput
+  _sum?: Prisma.ShiftDefinitionSumOrderByAggregateInput
 }
 
 export type ShiftDefinitionScalarWhereWithAggregatesInput = {
@@ -270,12 +321,13 @@ export type ShiftDefinitionScalarWhereWithAggregatesInput = {
   OR?: Prisma.ShiftDefinitionScalarWhereWithAggregatesInput[]
   NOT?: Prisma.ShiftDefinitionScalarWhereWithAggregatesInput | Prisma.ShiftDefinitionScalarWhereWithAggregatesInput[]
   id?: Prisma.StringWithAggregatesFilter<"ShiftDefinition"> | string
-  archivedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"ShiftDefinition"> | Date | string | null
+  organizationId?: Prisma.StringWithAggregatesFilter<"ShiftDefinition"> | string
   departmentId?: Prisma.StringNullableWithAggregatesFilter<"ShiftDefinition"> | string | null
-  wardId?: Prisma.StringNullableWithAggregatesFilter<"ShiftDefinition"> | string | null
+  locationId?: Prisma.StringNullableWithAggregatesFilter<"ShiftDefinition"> | string | null
+  archivedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"ShiftDefinition"> | Date | string | null
   name?: Prisma.StringWithAggregatesFilter<"ShiftDefinition"> | string
-  startTime?: Prisma.StringWithAggregatesFilter<"ShiftDefinition"> | string
-  endTime?: Prisma.StringWithAggregatesFilter<"ShiftDefinition"> | string
+  startTimeMinutes?: Prisma.IntWithAggregatesFilter<"ShiftDefinition"> | number
+  durationMinutes?: Prisma.IntWithAggregatesFilter<"ShiftDefinition"> | number
   colorCode?: Prisma.StringNullableWithAggregatesFilter<"ShiftDefinition"> | string | null
 }
 
@@ -283,70 +335,71 @@ export type ShiftDefinitionCreateInput = {
   id?: string
   archivedAt?: Date | string | null
   name: string
-  startTime: string
-  endTime: string
+  startTimeMinutes: number
+  durationMinutes: number
   colorCode?: string | null
+  organization: Prisma.OrganizationCreateNestedOneWithoutShiftDefinitionsInput
   department?: Prisma.DepartmentCreateNestedOneWithoutSharedShiftTypesInput
-  ward?: Prisma.WardCreateNestedOneWithoutShiftDefinitionsInput
+  location?: Prisma.LocationCreateNestedOneWithoutShiftDefinitionsInput
   requirements?: Prisma.StaffingRequirementCreateNestedManyWithoutShiftDefinitionInput
   shifts?: Prisma.ShiftInstanceCreateNestedManyWithoutShiftDefinitionInput
   patternItems?: Prisma.PatternItemCreateNestedManyWithoutShiftDefinitionInput
-  advertisements?: Prisma.ShiftAdvertisementCreateNestedManyWithoutShiftDefinitionInput
 }
 
 export type ShiftDefinitionUncheckedCreateInput = {
   id?: string
-  archivedAt?: Date | string | null
+  organizationId: string
   departmentId?: string | null
-  wardId?: string | null
+  locationId?: string | null
+  archivedAt?: Date | string | null
   name: string
-  startTime: string
-  endTime: string
+  startTimeMinutes: number
+  durationMinutes: number
   colorCode?: string | null
   requirements?: Prisma.StaffingRequirementUncheckedCreateNestedManyWithoutShiftDefinitionInput
   shifts?: Prisma.ShiftInstanceUncheckedCreateNestedManyWithoutShiftDefinitionInput
   patternItems?: Prisma.PatternItemUncheckedCreateNestedManyWithoutShiftDefinitionInput
-  advertisements?: Prisma.ShiftAdvertisementUncheckedCreateNestedManyWithoutShiftDefinitionInput
 }
 
 export type ShiftDefinitionUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  startTime?: Prisma.StringFieldUpdateOperationsInput | string
-  endTime?: Prisma.StringFieldUpdateOperationsInput | string
+  startTimeMinutes?: Prisma.IntFieldUpdateOperationsInput | number
+  durationMinutes?: Prisma.IntFieldUpdateOperationsInput | number
   colorCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  organization?: Prisma.OrganizationUpdateOneRequiredWithoutShiftDefinitionsNestedInput
   department?: Prisma.DepartmentUpdateOneWithoutSharedShiftTypesNestedInput
-  ward?: Prisma.WardUpdateOneWithoutShiftDefinitionsNestedInput
+  location?: Prisma.LocationUpdateOneWithoutShiftDefinitionsNestedInput
   requirements?: Prisma.StaffingRequirementUpdateManyWithoutShiftDefinitionNestedInput
   shifts?: Prisma.ShiftInstanceUpdateManyWithoutShiftDefinitionNestedInput
   patternItems?: Prisma.PatternItemUpdateManyWithoutShiftDefinitionNestedInput
-  advertisements?: Prisma.ShiftAdvertisementUpdateManyWithoutShiftDefinitionNestedInput
 }
 
 export type ShiftDefinitionUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  organizationId?: Prisma.StringFieldUpdateOperationsInput | string
   departmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  wardId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  locationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  startTime?: Prisma.StringFieldUpdateOperationsInput | string
-  endTime?: Prisma.StringFieldUpdateOperationsInput | string
+  startTimeMinutes?: Prisma.IntFieldUpdateOperationsInput | number
+  durationMinutes?: Prisma.IntFieldUpdateOperationsInput | number
   colorCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   requirements?: Prisma.StaffingRequirementUncheckedUpdateManyWithoutShiftDefinitionNestedInput
   shifts?: Prisma.ShiftInstanceUncheckedUpdateManyWithoutShiftDefinitionNestedInput
   patternItems?: Prisma.PatternItemUncheckedUpdateManyWithoutShiftDefinitionNestedInput
-  advertisements?: Prisma.ShiftAdvertisementUncheckedUpdateManyWithoutShiftDefinitionNestedInput
 }
 
 export type ShiftDefinitionCreateManyInput = {
   id?: string
-  archivedAt?: Date | string | null
+  organizationId: string
   departmentId?: string | null
-  wardId?: string | null
+  locationId?: string | null
+  archivedAt?: Date | string | null
   name: string
-  startTime: string
-  endTime: string
+  startTimeMinutes: number
+  durationMinutes: number
   colorCode?: string | null
 }
 
@@ -354,19 +407,20 @@ export type ShiftDefinitionUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  startTime?: Prisma.StringFieldUpdateOperationsInput | string
-  endTime?: Prisma.StringFieldUpdateOperationsInput | string
+  startTimeMinutes?: Prisma.IntFieldUpdateOperationsInput | number
+  durationMinutes?: Prisma.IntFieldUpdateOperationsInput | number
   colorCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type ShiftDefinitionUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  organizationId?: Prisma.StringFieldUpdateOperationsInput | string
   departmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  wardId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  locationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  startTime?: Prisma.StringFieldUpdateOperationsInput | string
-  endTime?: Prisma.StringFieldUpdateOperationsInput | string
+  startTimeMinutes?: Prisma.IntFieldUpdateOperationsInput | number
+  durationMinutes?: Prisma.IntFieldUpdateOperationsInput | number
   colorCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
@@ -382,35 +436,48 @@ export type ShiftDefinitionOrderByRelationAggregateInput = {
 
 export type ShiftDefinitionCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  archivedAt?: Prisma.SortOrder
+  organizationId?: Prisma.SortOrder
   departmentId?: Prisma.SortOrder
-  wardId?: Prisma.SortOrder
+  locationId?: Prisma.SortOrder
+  archivedAt?: Prisma.SortOrder
   name?: Prisma.SortOrder
-  startTime?: Prisma.SortOrder
-  endTime?: Prisma.SortOrder
+  startTimeMinutes?: Prisma.SortOrder
+  durationMinutes?: Prisma.SortOrder
   colorCode?: Prisma.SortOrder
+}
+
+export type ShiftDefinitionAvgOrderByAggregateInput = {
+  startTimeMinutes?: Prisma.SortOrder
+  durationMinutes?: Prisma.SortOrder
 }
 
 export type ShiftDefinitionMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  archivedAt?: Prisma.SortOrder
+  organizationId?: Prisma.SortOrder
   departmentId?: Prisma.SortOrder
-  wardId?: Prisma.SortOrder
+  locationId?: Prisma.SortOrder
+  archivedAt?: Prisma.SortOrder
   name?: Prisma.SortOrder
-  startTime?: Prisma.SortOrder
-  endTime?: Prisma.SortOrder
+  startTimeMinutes?: Prisma.SortOrder
+  durationMinutes?: Prisma.SortOrder
   colorCode?: Prisma.SortOrder
 }
 
 export type ShiftDefinitionMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  archivedAt?: Prisma.SortOrder
+  organizationId?: Prisma.SortOrder
   departmentId?: Prisma.SortOrder
-  wardId?: Prisma.SortOrder
+  locationId?: Prisma.SortOrder
+  archivedAt?: Prisma.SortOrder
   name?: Prisma.SortOrder
-  startTime?: Prisma.SortOrder
-  endTime?: Prisma.SortOrder
+  startTimeMinutes?: Prisma.SortOrder
+  durationMinutes?: Prisma.SortOrder
   colorCode?: Prisma.SortOrder
+}
+
+export type ShiftDefinitionSumOrderByAggregateInput = {
+  startTimeMinutes?: Prisma.SortOrder
+  durationMinutes?: Prisma.SortOrder
 }
 
 export type ShiftDefinitionScalarRelationFilter = {
@@ -421,6 +488,48 @@ export type ShiftDefinitionScalarRelationFilter = {
 export type ShiftDefinitionNullableScalarRelationFilter = {
   is?: Prisma.ShiftDefinitionWhereInput | null
   isNot?: Prisma.ShiftDefinitionWhereInput | null
+}
+
+export type ShiftDefinitionCreateNestedManyWithoutOrganizationInput = {
+  create?: Prisma.XOR<Prisma.ShiftDefinitionCreateWithoutOrganizationInput, Prisma.ShiftDefinitionUncheckedCreateWithoutOrganizationInput> | Prisma.ShiftDefinitionCreateWithoutOrganizationInput[] | Prisma.ShiftDefinitionUncheckedCreateWithoutOrganizationInput[]
+  connectOrCreate?: Prisma.ShiftDefinitionCreateOrConnectWithoutOrganizationInput | Prisma.ShiftDefinitionCreateOrConnectWithoutOrganizationInput[]
+  createMany?: Prisma.ShiftDefinitionCreateManyOrganizationInputEnvelope
+  connect?: Prisma.ShiftDefinitionWhereUniqueInput | Prisma.ShiftDefinitionWhereUniqueInput[]
+}
+
+export type ShiftDefinitionUncheckedCreateNestedManyWithoutOrganizationInput = {
+  create?: Prisma.XOR<Prisma.ShiftDefinitionCreateWithoutOrganizationInput, Prisma.ShiftDefinitionUncheckedCreateWithoutOrganizationInput> | Prisma.ShiftDefinitionCreateWithoutOrganizationInput[] | Prisma.ShiftDefinitionUncheckedCreateWithoutOrganizationInput[]
+  connectOrCreate?: Prisma.ShiftDefinitionCreateOrConnectWithoutOrganizationInput | Prisma.ShiftDefinitionCreateOrConnectWithoutOrganizationInput[]
+  createMany?: Prisma.ShiftDefinitionCreateManyOrganizationInputEnvelope
+  connect?: Prisma.ShiftDefinitionWhereUniqueInput | Prisma.ShiftDefinitionWhereUniqueInput[]
+}
+
+export type ShiftDefinitionUpdateManyWithoutOrganizationNestedInput = {
+  create?: Prisma.XOR<Prisma.ShiftDefinitionCreateWithoutOrganizationInput, Prisma.ShiftDefinitionUncheckedCreateWithoutOrganizationInput> | Prisma.ShiftDefinitionCreateWithoutOrganizationInput[] | Prisma.ShiftDefinitionUncheckedCreateWithoutOrganizationInput[]
+  connectOrCreate?: Prisma.ShiftDefinitionCreateOrConnectWithoutOrganizationInput | Prisma.ShiftDefinitionCreateOrConnectWithoutOrganizationInput[]
+  upsert?: Prisma.ShiftDefinitionUpsertWithWhereUniqueWithoutOrganizationInput | Prisma.ShiftDefinitionUpsertWithWhereUniqueWithoutOrganizationInput[]
+  createMany?: Prisma.ShiftDefinitionCreateManyOrganizationInputEnvelope
+  set?: Prisma.ShiftDefinitionWhereUniqueInput | Prisma.ShiftDefinitionWhereUniqueInput[]
+  disconnect?: Prisma.ShiftDefinitionWhereUniqueInput | Prisma.ShiftDefinitionWhereUniqueInput[]
+  delete?: Prisma.ShiftDefinitionWhereUniqueInput | Prisma.ShiftDefinitionWhereUniqueInput[]
+  connect?: Prisma.ShiftDefinitionWhereUniqueInput | Prisma.ShiftDefinitionWhereUniqueInput[]
+  update?: Prisma.ShiftDefinitionUpdateWithWhereUniqueWithoutOrganizationInput | Prisma.ShiftDefinitionUpdateWithWhereUniqueWithoutOrganizationInput[]
+  updateMany?: Prisma.ShiftDefinitionUpdateManyWithWhereWithoutOrganizationInput | Prisma.ShiftDefinitionUpdateManyWithWhereWithoutOrganizationInput[]
+  deleteMany?: Prisma.ShiftDefinitionScalarWhereInput | Prisma.ShiftDefinitionScalarWhereInput[]
+}
+
+export type ShiftDefinitionUncheckedUpdateManyWithoutOrganizationNestedInput = {
+  create?: Prisma.XOR<Prisma.ShiftDefinitionCreateWithoutOrganizationInput, Prisma.ShiftDefinitionUncheckedCreateWithoutOrganizationInput> | Prisma.ShiftDefinitionCreateWithoutOrganizationInput[] | Prisma.ShiftDefinitionUncheckedCreateWithoutOrganizationInput[]
+  connectOrCreate?: Prisma.ShiftDefinitionCreateOrConnectWithoutOrganizationInput | Prisma.ShiftDefinitionCreateOrConnectWithoutOrganizationInput[]
+  upsert?: Prisma.ShiftDefinitionUpsertWithWhereUniqueWithoutOrganizationInput | Prisma.ShiftDefinitionUpsertWithWhereUniqueWithoutOrganizationInput[]
+  createMany?: Prisma.ShiftDefinitionCreateManyOrganizationInputEnvelope
+  set?: Prisma.ShiftDefinitionWhereUniqueInput | Prisma.ShiftDefinitionWhereUniqueInput[]
+  disconnect?: Prisma.ShiftDefinitionWhereUniqueInput | Prisma.ShiftDefinitionWhereUniqueInput[]
+  delete?: Prisma.ShiftDefinitionWhereUniqueInput | Prisma.ShiftDefinitionWhereUniqueInput[]
+  connect?: Prisma.ShiftDefinitionWhereUniqueInput | Prisma.ShiftDefinitionWhereUniqueInput[]
+  update?: Prisma.ShiftDefinitionUpdateWithWhereUniqueWithoutOrganizationInput | Prisma.ShiftDefinitionUpdateWithWhereUniqueWithoutOrganizationInput[]
+  updateMany?: Prisma.ShiftDefinitionUpdateManyWithWhereWithoutOrganizationInput | Prisma.ShiftDefinitionUpdateManyWithWhereWithoutOrganizationInput[]
+  deleteMany?: Prisma.ShiftDefinitionScalarWhereInput | Prisma.ShiftDefinitionScalarWhereInput[]
 }
 
 export type ShiftDefinitionCreateNestedManyWithoutDepartmentInput = {
@@ -465,46 +574,54 @@ export type ShiftDefinitionUncheckedUpdateManyWithoutDepartmentNestedInput = {
   deleteMany?: Prisma.ShiftDefinitionScalarWhereInput | Prisma.ShiftDefinitionScalarWhereInput[]
 }
 
-export type ShiftDefinitionCreateNestedManyWithoutWardInput = {
-  create?: Prisma.XOR<Prisma.ShiftDefinitionCreateWithoutWardInput, Prisma.ShiftDefinitionUncheckedCreateWithoutWardInput> | Prisma.ShiftDefinitionCreateWithoutWardInput[] | Prisma.ShiftDefinitionUncheckedCreateWithoutWardInput[]
-  connectOrCreate?: Prisma.ShiftDefinitionCreateOrConnectWithoutWardInput | Prisma.ShiftDefinitionCreateOrConnectWithoutWardInput[]
-  createMany?: Prisma.ShiftDefinitionCreateManyWardInputEnvelope
+export type ShiftDefinitionCreateNestedManyWithoutLocationInput = {
+  create?: Prisma.XOR<Prisma.ShiftDefinitionCreateWithoutLocationInput, Prisma.ShiftDefinitionUncheckedCreateWithoutLocationInput> | Prisma.ShiftDefinitionCreateWithoutLocationInput[] | Prisma.ShiftDefinitionUncheckedCreateWithoutLocationInput[]
+  connectOrCreate?: Prisma.ShiftDefinitionCreateOrConnectWithoutLocationInput | Prisma.ShiftDefinitionCreateOrConnectWithoutLocationInput[]
+  createMany?: Prisma.ShiftDefinitionCreateManyLocationInputEnvelope
   connect?: Prisma.ShiftDefinitionWhereUniqueInput | Prisma.ShiftDefinitionWhereUniqueInput[]
 }
 
-export type ShiftDefinitionUncheckedCreateNestedManyWithoutWardInput = {
-  create?: Prisma.XOR<Prisma.ShiftDefinitionCreateWithoutWardInput, Prisma.ShiftDefinitionUncheckedCreateWithoutWardInput> | Prisma.ShiftDefinitionCreateWithoutWardInput[] | Prisma.ShiftDefinitionUncheckedCreateWithoutWardInput[]
-  connectOrCreate?: Prisma.ShiftDefinitionCreateOrConnectWithoutWardInput | Prisma.ShiftDefinitionCreateOrConnectWithoutWardInput[]
-  createMany?: Prisma.ShiftDefinitionCreateManyWardInputEnvelope
+export type ShiftDefinitionUncheckedCreateNestedManyWithoutLocationInput = {
+  create?: Prisma.XOR<Prisma.ShiftDefinitionCreateWithoutLocationInput, Prisma.ShiftDefinitionUncheckedCreateWithoutLocationInput> | Prisma.ShiftDefinitionCreateWithoutLocationInput[] | Prisma.ShiftDefinitionUncheckedCreateWithoutLocationInput[]
+  connectOrCreate?: Prisma.ShiftDefinitionCreateOrConnectWithoutLocationInput | Prisma.ShiftDefinitionCreateOrConnectWithoutLocationInput[]
+  createMany?: Prisma.ShiftDefinitionCreateManyLocationInputEnvelope
   connect?: Prisma.ShiftDefinitionWhereUniqueInput | Prisma.ShiftDefinitionWhereUniqueInput[]
 }
 
-export type ShiftDefinitionUpdateManyWithoutWardNestedInput = {
-  create?: Prisma.XOR<Prisma.ShiftDefinitionCreateWithoutWardInput, Prisma.ShiftDefinitionUncheckedCreateWithoutWardInput> | Prisma.ShiftDefinitionCreateWithoutWardInput[] | Prisma.ShiftDefinitionUncheckedCreateWithoutWardInput[]
-  connectOrCreate?: Prisma.ShiftDefinitionCreateOrConnectWithoutWardInput | Prisma.ShiftDefinitionCreateOrConnectWithoutWardInput[]
-  upsert?: Prisma.ShiftDefinitionUpsertWithWhereUniqueWithoutWardInput | Prisma.ShiftDefinitionUpsertWithWhereUniqueWithoutWardInput[]
-  createMany?: Prisma.ShiftDefinitionCreateManyWardInputEnvelope
+export type ShiftDefinitionUpdateManyWithoutLocationNestedInput = {
+  create?: Prisma.XOR<Prisma.ShiftDefinitionCreateWithoutLocationInput, Prisma.ShiftDefinitionUncheckedCreateWithoutLocationInput> | Prisma.ShiftDefinitionCreateWithoutLocationInput[] | Prisma.ShiftDefinitionUncheckedCreateWithoutLocationInput[]
+  connectOrCreate?: Prisma.ShiftDefinitionCreateOrConnectWithoutLocationInput | Prisma.ShiftDefinitionCreateOrConnectWithoutLocationInput[]
+  upsert?: Prisma.ShiftDefinitionUpsertWithWhereUniqueWithoutLocationInput | Prisma.ShiftDefinitionUpsertWithWhereUniqueWithoutLocationInput[]
+  createMany?: Prisma.ShiftDefinitionCreateManyLocationInputEnvelope
   set?: Prisma.ShiftDefinitionWhereUniqueInput | Prisma.ShiftDefinitionWhereUniqueInput[]
   disconnect?: Prisma.ShiftDefinitionWhereUniqueInput | Prisma.ShiftDefinitionWhereUniqueInput[]
   delete?: Prisma.ShiftDefinitionWhereUniqueInput | Prisma.ShiftDefinitionWhereUniqueInput[]
   connect?: Prisma.ShiftDefinitionWhereUniqueInput | Prisma.ShiftDefinitionWhereUniqueInput[]
-  update?: Prisma.ShiftDefinitionUpdateWithWhereUniqueWithoutWardInput | Prisma.ShiftDefinitionUpdateWithWhereUniqueWithoutWardInput[]
-  updateMany?: Prisma.ShiftDefinitionUpdateManyWithWhereWithoutWardInput | Prisma.ShiftDefinitionUpdateManyWithWhereWithoutWardInput[]
+  update?: Prisma.ShiftDefinitionUpdateWithWhereUniqueWithoutLocationInput | Prisma.ShiftDefinitionUpdateWithWhereUniqueWithoutLocationInput[]
+  updateMany?: Prisma.ShiftDefinitionUpdateManyWithWhereWithoutLocationInput | Prisma.ShiftDefinitionUpdateManyWithWhereWithoutLocationInput[]
   deleteMany?: Prisma.ShiftDefinitionScalarWhereInput | Prisma.ShiftDefinitionScalarWhereInput[]
 }
 
-export type ShiftDefinitionUncheckedUpdateManyWithoutWardNestedInput = {
-  create?: Prisma.XOR<Prisma.ShiftDefinitionCreateWithoutWardInput, Prisma.ShiftDefinitionUncheckedCreateWithoutWardInput> | Prisma.ShiftDefinitionCreateWithoutWardInput[] | Prisma.ShiftDefinitionUncheckedCreateWithoutWardInput[]
-  connectOrCreate?: Prisma.ShiftDefinitionCreateOrConnectWithoutWardInput | Prisma.ShiftDefinitionCreateOrConnectWithoutWardInput[]
-  upsert?: Prisma.ShiftDefinitionUpsertWithWhereUniqueWithoutWardInput | Prisma.ShiftDefinitionUpsertWithWhereUniqueWithoutWardInput[]
-  createMany?: Prisma.ShiftDefinitionCreateManyWardInputEnvelope
+export type ShiftDefinitionUncheckedUpdateManyWithoutLocationNestedInput = {
+  create?: Prisma.XOR<Prisma.ShiftDefinitionCreateWithoutLocationInput, Prisma.ShiftDefinitionUncheckedCreateWithoutLocationInput> | Prisma.ShiftDefinitionCreateWithoutLocationInput[] | Prisma.ShiftDefinitionUncheckedCreateWithoutLocationInput[]
+  connectOrCreate?: Prisma.ShiftDefinitionCreateOrConnectWithoutLocationInput | Prisma.ShiftDefinitionCreateOrConnectWithoutLocationInput[]
+  upsert?: Prisma.ShiftDefinitionUpsertWithWhereUniqueWithoutLocationInput | Prisma.ShiftDefinitionUpsertWithWhereUniqueWithoutLocationInput[]
+  createMany?: Prisma.ShiftDefinitionCreateManyLocationInputEnvelope
   set?: Prisma.ShiftDefinitionWhereUniqueInput | Prisma.ShiftDefinitionWhereUniqueInput[]
   disconnect?: Prisma.ShiftDefinitionWhereUniqueInput | Prisma.ShiftDefinitionWhereUniqueInput[]
   delete?: Prisma.ShiftDefinitionWhereUniqueInput | Prisma.ShiftDefinitionWhereUniqueInput[]
   connect?: Prisma.ShiftDefinitionWhereUniqueInput | Prisma.ShiftDefinitionWhereUniqueInput[]
-  update?: Prisma.ShiftDefinitionUpdateWithWhereUniqueWithoutWardInput | Prisma.ShiftDefinitionUpdateWithWhereUniqueWithoutWardInput[]
-  updateMany?: Prisma.ShiftDefinitionUpdateManyWithWhereWithoutWardInput | Prisma.ShiftDefinitionUpdateManyWithWhereWithoutWardInput[]
+  update?: Prisma.ShiftDefinitionUpdateWithWhereUniqueWithoutLocationInput | Prisma.ShiftDefinitionUpdateWithWhereUniqueWithoutLocationInput[]
+  updateMany?: Prisma.ShiftDefinitionUpdateManyWithWhereWithoutLocationInput | Prisma.ShiftDefinitionUpdateManyWithWhereWithoutLocationInput[]
   deleteMany?: Prisma.ShiftDefinitionScalarWhereInput | Prisma.ShiftDefinitionScalarWhereInput[]
+}
+
+export type IntFieldUpdateOperationsInput = {
+  set?: number
+  increment?: number
+  decrement?: number
+  multiply?: number
+  divide?: number
 }
 
 export type ShiftDefinitionCreateNestedOneWithoutRequirementsInput = {
@@ -551,46 +668,101 @@ export type ShiftDefinitionUpdateOneWithoutShiftsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.ShiftDefinitionUpdateToOneWithWhereWithoutShiftsInput, Prisma.ShiftDefinitionUpdateWithoutShiftsInput>, Prisma.ShiftDefinitionUncheckedUpdateWithoutShiftsInput>
 }
 
-export type ShiftDefinitionCreateNestedOneWithoutAdvertisementsInput = {
-  create?: Prisma.XOR<Prisma.ShiftDefinitionCreateWithoutAdvertisementsInput, Prisma.ShiftDefinitionUncheckedCreateWithoutAdvertisementsInput>
-  connectOrCreate?: Prisma.ShiftDefinitionCreateOrConnectWithoutAdvertisementsInput
-  connect?: Prisma.ShiftDefinitionWhereUniqueInput
+export type ShiftDefinitionCreateWithoutOrganizationInput = {
+  id?: string
+  archivedAt?: Date | string | null
+  name: string
+  startTimeMinutes: number
+  durationMinutes: number
+  colorCode?: string | null
+  department?: Prisma.DepartmentCreateNestedOneWithoutSharedShiftTypesInput
+  location?: Prisma.LocationCreateNestedOneWithoutShiftDefinitionsInput
+  requirements?: Prisma.StaffingRequirementCreateNestedManyWithoutShiftDefinitionInput
+  shifts?: Prisma.ShiftInstanceCreateNestedManyWithoutShiftDefinitionInput
+  patternItems?: Prisma.PatternItemCreateNestedManyWithoutShiftDefinitionInput
 }
 
-export type ShiftDefinitionUpdateOneRequiredWithoutAdvertisementsNestedInput = {
-  create?: Prisma.XOR<Prisma.ShiftDefinitionCreateWithoutAdvertisementsInput, Prisma.ShiftDefinitionUncheckedCreateWithoutAdvertisementsInput>
-  connectOrCreate?: Prisma.ShiftDefinitionCreateOrConnectWithoutAdvertisementsInput
-  upsert?: Prisma.ShiftDefinitionUpsertWithoutAdvertisementsInput
-  connect?: Prisma.ShiftDefinitionWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.ShiftDefinitionUpdateToOneWithWhereWithoutAdvertisementsInput, Prisma.ShiftDefinitionUpdateWithoutAdvertisementsInput>, Prisma.ShiftDefinitionUncheckedUpdateWithoutAdvertisementsInput>
+export type ShiftDefinitionUncheckedCreateWithoutOrganizationInput = {
+  id?: string
+  departmentId?: string | null
+  locationId?: string | null
+  archivedAt?: Date | string | null
+  name: string
+  startTimeMinutes: number
+  durationMinutes: number
+  colorCode?: string | null
+  requirements?: Prisma.StaffingRequirementUncheckedCreateNestedManyWithoutShiftDefinitionInput
+  shifts?: Prisma.ShiftInstanceUncheckedCreateNestedManyWithoutShiftDefinitionInput
+  patternItems?: Prisma.PatternItemUncheckedCreateNestedManyWithoutShiftDefinitionInput
+}
+
+export type ShiftDefinitionCreateOrConnectWithoutOrganizationInput = {
+  where: Prisma.ShiftDefinitionWhereUniqueInput
+  create: Prisma.XOR<Prisma.ShiftDefinitionCreateWithoutOrganizationInput, Prisma.ShiftDefinitionUncheckedCreateWithoutOrganizationInput>
+}
+
+export type ShiftDefinitionCreateManyOrganizationInputEnvelope = {
+  data: Prisma.ShiftDefinitionCreateManyOrganizationInput | Prisma.ShiftDefinitionCreateManyOrganizationInput[]
+  skipDuplicates?: boolean
+}
+
+export type ShiftDefinitionUpsertWithWhereUniqueWithoutOrganizationInput = {
+  where: Prisma.ShiftDefinitionWhereUniqueInput
+  update: Prisma.XOR<Prisma.ShiftDefinitionUpdateWithoutOrganizationInput, Prisma.ShiftDefinitionUncheckedUpdateWithoutOrganizationInput>
+  create: Prisma.XOR<Prisma.ShiftDefinitionCreateWithoutOrganizationInput, Prisma.ShiftDefinitionUncheckedCreateWithoutOrganizationInput>
+}
+
+export type ShiftDefinitionUpdateWithWhereUniqueWithoutOrganizationInput = {
+  where: Prisma.ShiftDefinitionWhereUniqueInput
+  data: Prisma.XOR<Prisma.ShiftDefinitionUpdateWithoutOrganizationInput, Prisma.ShiftDefinitionUncheckedUpdateWithoutOrganizationInput>
+}
+
+export type ShiftDefinitionUpdateManyWithWhereWithoutOrganizationInput = {
+  where: Prisma.ShiftDefinitionScalarWhereInput
+  data: Prisma.XOR<Prisma.ShiftDefinitionUpdateManyMutationInput, Prisma.ShiftDefinitionUncheckedUpdateManyWithoutOrganizationInput>
+}
+
+export type ShiftDefinitionScalarWhereInput = {
+  AND?: Prisma.ShiftDefinitionScalarWhereInput | Prisma.ShiftDefinitionScalarWhereInput[]
+  OR?: Prisma.ShiftDefinitionScalarWhereInput[]
+  NOT?: Prisma.ShiftDefinitionScalarWhereInput | Prisma.ShiftDefinitionScalarWhereInput[]
+  id?: Prisma.StringFilter<"ShiftDefinition"> | string
+  organizationId?: Prisma.StringFilter<"ShiftDefinition"> | string
+  departmentId?: Prisma.StringNullableFilter<"ShiftDefinition"> | string | null
+  locationId?: Prisma.StringNullableFilter<"ShiftDefinition"> | string | null
+  archivedAt?: Prisma.DateTimeNullableFilter<"ShiftDefinition"> | Date | string | null
+  name?: Prisma.StringFilter<"ShiftDefinition"> | string
+  startTimeMinutes?: Prisma.IntFilter<"ShiftDefinition"> | number
+  durationMinutes?: Prisma.IntFilter<"ShiftDefinition"> | number
+  colorCode?: Prisma.StringNullableFilter<"ShiftDefinition"> | string | null
 }
 
 export type ShiftDefinitionCreateWithoutDepartmentInput = {
   id?: string
   archivedAt?: Date | string | null
   name: string
-  startTime: string
-  endTime: string
+  startTimeMinutes: number
+  durationMinutes: number
   colorCode?: string | null
-  ward?: Prisma.WardCreateNestedOneWithoutShiftDefinitionsInput
+  organization: Prisma.OrganizationCreateNestedOneWithoutShiftDefinitionsInput
+  location?: Prisma.LocationCreateNestedOneWithoutShiftDefinitionsInput
   requirements?: Prisma.StaffingRequirementCreateNestedManyWithoutShiftDefinitionInput
   shifts?: Prisma.ShiftInstanceCreateNestedManyWithoutShiftDefinitionInput
   patternItems?: Prisma.PatternItemCreateNestedManyWithoutShiftDefinitionInput
-  advertisements?: Prisma.ShiftAdvertisementCreateNestedManyWithoutShiftDefinitionInput
 }
 
 export type ShiftDefinitionUncheckedCreateWithoutDepartmentInput = {
   id?: string
+  organizationId: string
+  locationId?: string | null
   archivedAt?: Date | string | null
-  wardId?: string | null
   name: string
-  startTime: string
-  endTime: string
+  startTimeMinutes: number
+  durationMinutes: number
   colorCode?: string | null
   requirements?: Prisma.StaffingRequirementUncheckedCreateNestedManyWithoutShiftDefinitionInput
   shifts?: Prisma.ShiftInstanceUncheckedCreateNestedManyWithoutShiftDefinitionInput
   patternItems?: Prisma.PatternItemUncheckedCreateNestedManyWithoutShiftDefinitionInput
-  advertisements?: Prisma.ShiftAdvertisementUncheckedCreateNestedManyWithoutShiftDefinitionInput
 }
 
 export type ShiftDefinitionCreateOrConnectWithoutDepartmentInput = {
@@ -619,100 +791,86 @@ export type ShiftDefinitionUpdateManyWithWhereWithoutDepartmentInput = {
   data: Prisma.XOR<Prisma.ShiftDefinitionUpdateManyMutationInput, Prisma.ShiftDefinitionUncheckedUpdateManyWithoutDepartmentInput>
 }
 
-export type ShiftDefinitionScalarWhereInput = {
-  AND?: Prisma.ShiftDefinitionScalarWhereInput | Prisma.ShiftDefinitionScalarWhereInput[]
-  OR?: Prisma.ShiftDefinitionScalarWhereInput[]
-  NOT?: Prisma.ShiftDefinitionScalarWhereInput | Prisma.ShiftDefinitionScalarWhereInput[]
-  id?: Prisma.StringFilter<"ShiftDefinition"> | string
-  archivedAt?: Prisma.DateTimeNullableFilter<"ShiftDefinition"> | Date | string | null
-  departmentId?: Prisma.StringNullableFilter<"ShiftDefinition"> | string | null
-  wardId?: Prisma.StringNullableFilter<"ShiftDefinition"> | string | null
-  name?: Prisma.StringFilter<"ShiftDefinition"> | string
-  startTime?: Prisma.StringFilter<"ShiftDefinition"> | string
-  endTime?: Prisma.StringFilter<"ShiftDefinition"> | string
-  colorCode?: Prisma.StringNullableFilter<"ShiftDefinition"> | string | null
-}
-
-export type ShiftDefinitionCreateWithoutWardInput = {
+export type ShiftDefinitionCreateWithoutLocationInput = {
   id?: string
   archivedAt?: Date | string | null
   name: string
-  startTime: string
-  endTime: string
+  startTimeMinutes: number
+  durationMinutes: number
   colorCode?: string | null
+  organization: Prisma.OrganizationCreateNestedOneWithoutShiftDefinitionsInput
   department?: Prisma.DepartmentCreateNestedOneWithoutSharedShiftTypesInput
   requirements?: Prisma.StaffingRequirementCreateNestedManyWithoutShiftDefinitionInput
   shifts?: Prisma.ShiftInstanceCreateNestedManyWithoutShiftDefinitionInput
   patternItems?: Prisma.PatternItemCreateNestedManyWithoutShiftDefinitionInput
-  advertisements?: Prisma.ShiftAdvertisementCreateNestedManyWithoutShiftDefinitionInput
 }
 
-export type ShiftDefinitionUncheckedCreateWithoutWardInput = {
+export type ShiftDefinitionUncheckedCreateWithoutLocationInput = {
   id?: string
-  archivedAt?: Date | string | null
+  organizationId: string
   departmentId?: string | null
+  archivedAt?: Date | string | null
   name: string
-  startTime: string
-  endTime: string
+  startTimeMinutes: number
+  durationMinutes: number
   colorCode?: string | null
   requirements?: Prisma.StaffingRequirementUncheckedCreateNestedManyWithoutShiftDefinitionInput
   shifts?: Prisma.ShiftInstanceUncheckedCreateNestedManyWithoutShiftDefinitionInput
   patternItems?: Prisma.PatternItemUncheckedCreateNestedManyWithoutShiftDefinitionInput
-  advertisements?: Prisma.ShiftAdvertisementUncheckedCreateNestedManyWithoutShiftDefinitionInput
 }
 
-export type ShiftDefinitionCreateOrConnectWithoutWardInput = {
+export type ShiftDefinitionCreateOrConnectWithoutLocationInput = {
   where: Prisma.ShiftDefinitionWhereUniqueInput
-  create: Prisma.XOR<Prisma.ShiftDefinitionCreateWithoutWardInput, Prisma.ShiftDefinitionUncheckedCreateWithoutWardInput>
+  create: Prisma.XOR<Prisma.ShiftDefinitionCreateWithoutLocationInput, Prisma.ShiftDefinitionUncheckedCreateWithoutLocationInput>
 }
 
-export type ShiftDefinitionCreateManyWardInputEnvelope = {
-  data: Prisma.ShiftDefinitionCreateManyWardInput | Prisma.ShiftDefinitionCreateManyWardInput[]
+export type ShiftDefinitionCreateManyLocationInputEnvelope = {
+  data: Prisma.ShiftDefinitionCreateManyLocationInput | Prisma.ShiftDefinitionCreateManyLocationInput[]
   skipDuplicates?: boolean
 }
 
-export type ShiftDefinitionUpsertWithWhereUniqueWithoutWardInput = {
+export type ShiftDefinitionUpsertWithWhereUniqueWithoutLocationInput = {
   where: Prisma.ShiftDefinitionWhereUniqueInput
-  update: Prisma.XOR<Prisma.ShiftDefinitionUpdateWithoutWardInput, Prisma.ShiftDefinitionUncheckedUpdateWithoutWardInput>
-  create: Prisma.XOR<Prisma.ShiftDefinitionCreateWithoutWardInput, Prisma.ShiftDefinitionUncheckedCreateWithoutWardInput>
+  update: Prisma.XOR<Prisma.ShiftDefinitionUpdateWithoutLocationInput, Prisma.ShiftDefinitionUncheckedUpdateWithoutLocationInput>
+  create: Prisma.XOR<Prisma.ShiftDefinitionCreateWithoutLocationInput, Prisma.ShiftDefinitionUncheckedCreateWithoutLocationInput>
 }
 
-export type ShiftDefinitionUpdateWithWhereUniqueWithoutWardInput = {
+export type ShiftDefinitionUpdateWithWhereUniqueWithoutLocationInput = {
   where: Prisma.ShiftDefinitionWhereUniqueInput
-  data: Prisma.XOR<Prisma.ShiftDefinitionUpdateWithoutWardInput, Prisma.ShiftDefinitionUncheckedUpdateWithoutWardInput>
+  data: Prisma.XOR<Prisma.ShiftDefinitionUpdateWithoutLocationInput, Prisma.ShiftDefinitionUncheckedUpdateWithoutLocationInput>
 }
 
-export type ShiftDefinitionUpdateManyWithWhereWithoutWardInput = {
+export type ShiftDefinitionUpdateManyWithWhereWithoutLocationInput = {
   where: Prisma.ShiftDefinitionScalarWhereInput
-  data: Prisma.XOR<Prisma.ShiftDefinitionUpdateManyMutationInput, Prisma.ShiftDefinitionUncheckedUpdateManyWithoutWardInput>
+  data: Prisma.XOR<Prisma.ShiftDefinitionUpdateManyMutationInput, Prisma.ShiftDefinitionUncheckedUpdateManyWithoutLocationInput>
 }
 
 export type ShiftDefinitionCreateWithoutRequirementsInput = {
   id?: string
   archivedAt?: Date | string | null
   name: string
-  startTime: string
-  endTime: string
+  startTimeMinutes: number
+  durationMinutes: number
   colorCode?: string | null
+  organization: Prisma.OrganizationCreateNestedOneWithoutShiftDefinitionsInput
   department?: Prisma.DepartmentCreateNestedOneWithoutSharedShiftTypesInput
-  ward?: Prisma.WardCreateNestedOneWithoutShiftDefinitionsInput
+  location?: Prisma.LocationCreateNestedOneWithoutShiftDefinitionsInput
   shifts?: Prisma.ShiftInstanceCreateNestedManyWithoutShiftDefinitionInput
   patternItems?: Prisma.PatternItemCreateNestedManyWithoutShiftDefinitionInput
-  advertisements?: Prisma.ShiftAdvertisementCreateNestedManyWithoutShiftDefinitionInput
 }
 
 export type ShiftDefinitionUncheckedCreateWithoutRequirementsInput = {
   id?: string
-  archivedAt?: Date | string | null
+  organizationId: string
   departmentId?: string | null
-  wardId?: string | null
+  locationId?: string | null
+  archivedAt?: Date | string | null
   name: string
-  startTime: string
-  endTime: string
+  startTimeMinutes: number
+  durationMinutes: number
   colorCode?: string | null
   shifts?: Prisma.ShiftInstanceUncheckedCreateNestedManyWithoutShiftDefinitionInput
   patternItems?: Prisma.PatternItemUncheckedCreateNestedManyWithoutShiftDefinitionInput
-  advertisements?: Prisma.ShiftAdvertisementUncheckedCreateNestedManyWithoutShiftDefinitionInput
 }
 
 export type ShiftDefinitionCreateOrConnectWithoutRequirementsInput = {
@@ -735,56 +893,56 @@ export type ShiftDefinitionUpdateWithoutRequirementsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  startTime?: Prisma.StringFieldUpdateOperationsInput | string
-  endTime?: Prisma.StringFieldUpdateOperationsInput | string
+  startTimeMinutes?: Prisma.IntFieldUpdateOperationsInput | number
+  durationMinutes?: Prisma.IntFieldUpdateOperationsInput | number
   colorCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  organization?: Prisma.OrganizationUpdateOneRequiredWithoutShiftDefinitionsNestedInput
   department?: Prisma.DepartmentUpdateOneWithoutSharedShiftTypesNestedInput
-  ward?: Prisma.WardUpdateOneWithoutShiftDefinitionsNestedInput
+  location?: Prisma.LocationUpdateOneWithoutShiftDefinitionsNestedInput
   shifts?: Prisma.ShiftInstanceUpdateManyWithoutShiftDefinitionNestedInput
   patternItems?: Prisma.PatternItemUpdateManyWithoutShiftDefinitionNestedInput
-  advertisements?: Prisma.ShiftAdvertisementUpdateManyWithoutShiftDefinitionNestedInput
 }
 
 export type ShiftDefinitionUncheckedUpdateWithoutRequirementsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  organizationId?: Prisma.StringFieldUpdateOperationsInput | string
   departmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  wardId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  locationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  startTime?: Prisma.StringFieldUpdateOperationsInput | string
-  endTime?: Prisma.StringFieldUpdateOperationsInput | string
+  startTimeMinutes?: Prisma.IntFieldUpdateOperationsInput | number
+  durationMinutes?: Prisma.IntFieldUpdateOperationsInput | number
   colorCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   shifts?: Prisma.ShiftInstanceUncheckedUpdateManyWithoutShiftDefinitionNestedInput
   patternItems?: Prisma.PatternItemUncheckedUpdateManyWithoutShiftDefinitionNestedInput
-  advertisements?: Prisma.ShiftAdvertisementUncheckedUpdateManyWithoutShiftDefinitionNestedInput
 }
 
 export type ShiftDefinitionCreateWithoutPatternItemsInput = {
   id?: string
   archivedAt?: Date | string | null
   name: string
-  startTime: string
-  endTime: string
+  startTimeMinutes: number
+  durationMinutes: number
   colorCode?: string | null
+  organization: Prisma.OrganizationCreateNestedOneWithoutShiftDefinitionsInput
   department?: Prisma.DepartmentCreateNestedOneWithoutSharedShiftTypesInput
-  ward?: Prisma.WardCreateNestedOneWithoutShiftDefinitionsInput
+  location?: Prisma.LocationCreateNestedOneWithoutShiftDefinitionsInput
   requirements?: Prisma.StaffingRequirementCreateNestedManyWithoutShiftDefinitionInput
   shifts?: Prisma.ShiftInstanceCreateNestedManyWithoutShiftDefinitionInput
-  advertisements?: Prisma.ShiftAdvertisementCreateNestedManyWithoutShiftDefinitionInput
 }
 
 export type ShiftDefinitionUncheckedCreateWithoutPatternItemsInput = {
   id?: string
-  archivedAt?: Date | string | null
+  organizationId: string
   departmentId?: string | null
-  wardId?: string | null
+  locationId?: string | null
+  archivedAt?: Date | string | null
   name: string
-  startTime: string
-  endTime: string
+  startTimeMinutes: number
+  durationMinutes: number
   colorCode?: string | null
   requirements?: Prisma.StaffingRequirementUncheckedCreateNestedManyWithoutShiftDefinitionInput
   shifts?: Prisma.ShiftInstanceUncheckedCreateNestedManyWithoutShiftDefinitionInput
-  advertisements?: Prisma.ShiftAdvertisementUncheckedCreateNestedManyWithoutShiftDefinitionInput
 }
 
 export type ShiftDefinitionCreateOrConnectWithoutPatternItemsInput = {
@@ -807,56 +965,56 @@ export type ShiftDefinitionUpdateWithoutPatternItemsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  startTime?: Prisma.StringFieldUpdateOperationsInput | string
-  endTime?: Prisma.StringFieldUpdateOperationsInput | string
+  startTimeMinutes?: Prisma.IntFieldUpdateOperationsInput | number
+  durationMinutes?: Prisma.IntFieldUpdateOperationsInput | number
   colorCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  organization?: Prisma.OrganizationUpdateOneRequiredWithoutShiftDefinitionsNestedInput
   department?: Prisma.DepartmentUpdateOneWithoutSharedShiftTypesNestedInput
-  ward?: Prisma.WardUpdateOneWithoutShiftDefinitionsNestedInput
+  location?: Prisma.LocationUpdateOneWithoutShiftDefinitionsNestedInput
   requirements?: Prisma.StaffingRequirementUpdateManyWithoutShiftDefinitionNestedInput
   shifts?: Prisma.ShiftInstanceUpdateManyWithoutShiftDefinitionNestedInput
-  advertisements?: Prisma.ShiftAdvertisementUpdateManyWithoutShiftDefinitionNestedInput
 }
 
 export type ShiftDefinitionUncheckedUpdateWithoutPatternItemsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  organizationId?: Prisma.StringFieldUpdateOperationsInput | string
   departmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  wardId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  locationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  startTime?: Prisma.StringFieldUpdateOperationsInput | string
-  endTime?: Prisma.StringFieldUpdateOperationsInput | string
+  startTimeMinutes?: Prisma.IntFieldUpdateOperationsInput | number
+  durationMinutes?: Prisma.IntFieldUpdateOperationsInput | number
   colorCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   requirements?: Prisma.StaffingRequirementUncheckedUpdateManyWithoutShiftDefinitionNestedInput
   shifts?: Prisma.ShiftInstanceUncheckedUpdateManyWithoutShiftDefinitionNestedInput
-  advertisements?: Prisma.ShiftAdvertisementUncheckedUpdateManyWithoutShiftDefinitionNestedInput
 }
 
 export type ShiftDefinitionCreateWithoutShiftsInput = {
   id?: string
   archivedAt?: Date | string | null
   name: string
-  startTime: string
-  endTime: string
+  startTimeMinutes: number
+  durationMinutes: number
   colorCode?: string | null
+  organization: Prisma.OrganizationCreateNestedOneWithoutShiftDefinitionsInput
   department?: Prisma.DepartmentCreateNestedOneWithoutSharedShiftTypesInput
-  ward?: Prisma.WardCreateNestedOneWithoutShiftDefinitionsInput
+  location?: Prisma.LocationCreateNestedOneWithoutShiftDefinitionsInput
   requirements?: Prisma.StaffingRequirementCreateNestedManyWithoutShiftDefinitionInput
   patternItems?: Prisma.PatternItemCreateNestedManyWithoutShiftDefinitionInput
-  advertisements?: Prisma.ShiftAdvertisementCreateNestedManyWithoutShiftDefinitionInput
 }
 
 export type ShiftDefinitionUncheckedCreateWithoutShiftsInput = {
   id?: string
-  archivedAt?: Date | string | null
+  organizationId: string
   departmentId?: string | null
-  wardId?: string | null
+  locationId?: string | null
+  archivedAt?: Date | string | null
   name: string
-  startTime: string
-  endTime: string
+  startTimeMinutes: number
+  durationMinutes: number
   colorCode?: string | null
   requirements?: Prisma.StaffingRequirementUncheckedCreateNestedManyWithoutShiftDefinitionInput
   patternItems?: Prisma.PatternItemUncheckedCreateNestedManyWithoutShiftDefinitionInput
-  advertisements?: Prisma.ShiftAdvertisementUncheckedCreateNestedManyWithoutShiftDefinitionInput
 }
 
 export type ShiftDefinitionCreateOrConnectWithoutShiftsInput = {
@@ -879,109 +1037,88 @@ export type ShiftDefinitionUpdateWithoutShiftsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  startTime?: Prisma.StringFieldUpdateOperationsInput | string
-  endTime?: Prisma.StringFieldUpdateOperationsInput | string
+  startTimeMinutes?: Prisma.IntFieldUpdateOperationsInput | number
+  durationMinutes?: Prisma.IntFieldUpdateOperationsInput | number
   colorCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  organization?: Prisma.OrganizationUpdateOneRequiredWithoutShiftDefinitionsNestedInput
   department?: Prisma.DepartmentUpdateOneWithoutSharedShiftTypesNestedInput
-  ward?: Prisma.WardUpdateOneWithoutShiftDefinitionsNestedInput
+  location?: Prisma.LocationUpdateOneWithoutShiftDefinitionsNestedInput
   requirements?: Prisma.StaffingRequirementUpdateManyWithoutShiftDefinitionNestedInput
   patternItems?: Prisma.PatternItemUpdateManyWithoutShiftDefinitionNestedInput
-  advertisements?: Prisma.ShiftAdvertisementUpdateManyWithoutShiftDefinitionNestedInput
 }
 
 export type ShiftDefinitionUncheckedUpdateWithoutShiftsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  organizationId?: Prisma.StringFieldUpdateOperationsInput | string
   departmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  wardId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  locationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  startTime?: Prisma.StringFieldUpdateOperationsInput | string
-  endTime?: Prisma.StringFieldUpdateOperationsInput | string
+  startTimeMinutes?: Prisma.IntFieldUpdateOperationsInput | number
+  durationMinutes?: Prisma.IntFieldUpdateOperationsInput | number
   colorCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   requirements?: Prisma.StaffingRequirementUncheckedUpdateManyWithoutShiftDefinitionNestedInput
   patternItems?: Prisma.PatternItemUncheckedUpdateManyWithoutShiftDefinitionNestedInput
-  advertisements?: Prisma.ShiftAdvertisementUncheckedUpdateManyWithoutShiftDefinitionNestedInput
 }
 
-export type ShiftDefinitionCreateWithoutAdvertisementsInput = {
+export type ShiftDefinitionCreateManyOrganizationInput = {
   id?: string
-  archivedAt?: Date | string | null
-  name: string
-  startTime: string
-  endTime: string
-  colorCode?: string | null
-  department?: Prisma.DepartmentCreateNestedOneWithoutSharedShiftTypesInput
-  ward?: Prisma.WardCreateNestedOneWithoutShiftDefinitionsInput
-  requirements?: Prisma.StaffingRequirementCreateNestedManyWithoutShiftDefinitionInput
-  shifts?: Prisma.ShiftInstanceCreateNestedManyWithoutShiftDefinitionInput
-  patternItems?: Prisma.PatternItemCreateNestedManyWithoutShiftDefinitionInput
-}
-
-export type ShiftDefinitionUncheckedCreateWithoutAdvertisementsInput = {
-  id?: string
-  archivedAt?: Date | string | null
   departmentId?: string | null
-  wardId?: string | null
+  locationId?: string | null
+  archivedAt?: Date | string | null
   name: string
-  startTime: string
-  endTime: string
+  startTimeMinutes: number
+  durationMinutes: number
   colorCode?: string | null
-  requirements?: Prisma.StaffingRequirementUncheckedCreateNestedManyWithoutShiftDefinitionInput
-  shifts?: Prisma.ShiftInstanceUncheckedCreateNestedManyWithoutShiftDefinitionInput
-  patternItems?: Prisma.PatternItemUncheckedCreateNestedManyWithoutShiftDefinitionInput
 }
 
-export type ShiftDefinitionCreateOrConnectWithoutAdvertisementsInput = {
-  where: Prisma.ShiftDefinitionWhereUniqueInput
-  create: Prisma.XOR<Prisma.ShiftDefinitionCreateWithoutAdvertisementsInput, Prisma.ShiftDefinitionUncheckedCreateWithoutAdvertisementsInput>
-}
-
-export type ShiftDefinitionUpsertWithoutAdvertisementsInput = {
-  update: Prisma.XOR<Prisma.ShiftDefinitionUpdateWithoutAdvertisementsInput, Prisma.ShiftDefinitionUncheckedUpdateWithoutAdvertisementsInput>
-  create: Prisma.XOR<Prisma.ShiftDefinitionCreateWithoutAdvertisementsInput, Prisma.ShiftDefinitionUncheckedCreateWithoutAdvertisementsInput>
-  where?: Prisma.ShiftDefinitionWhereInput
-}
-
-export type ShiftDefinitionUpdateToOneWithWhereWithoutAdvertisementsInput = {
-  where?: Prisma.ShiftDefinitionWhereInput
-  data: Prisma.XOR<Prisma.ShiftDefinitionUpdateWithoutAdvertisementsInput, Prisma.ShiftDefinitionUncheckedUpdateWithoutAdvertisementsInput>
-}
-
-export type ShiftDefinitionUpdateWithoutAdvertisementsInput = {
+export type ShiftDefinitionUpdateWithoutOrganizationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  startTime?: Prisma.StringFieldUpdateOperationsInput | string
-  endTime?: Prisma.StringFieldUpdateOperationsInput | string
+  startTimeMinutes?: Prisma.IntFieldUpdateOperationsInput | number
+  durationMinutes?: Prisma.IntFieldUpdateOperationsInput | number
   colorCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   department?: Prisma.DepartmentUpdateOneWithoutSharedShiftTypesNestedInput
-  ward?: Prisma.WardUpdateOneWithoutShiftDefinitionsNestedInput
+  location?: Prisma.LocationUpdateOneWithoutShiftDefinitionsNestedInput
   requirements?: Prisma.StaffingRequirementUpdateManyWithoutShiftDefinitionNestedInput
   shifts?: Prisma.ShiftInstanceUpdateManyWithoutShiftDefinitionNestedInput
   patternItems?: Prisma.PatternItemUpdateManyWithoutShiftDefinitionNestedInput
 }
 
-export type ShiftDefinitionUncheckedUpdateWithoutAdvertisementsInput = {
+export type ShiftDefinitionUncheckedUpdateWithoutOrganizationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   departmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  wardId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  locationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  startTime?: Prisma.StringFieldUpdateOperationsInput | string
-  endTime?: Prisma.StringFieldUpdateOperationsInput | string
+  startTimeMinutes?: Prisma.IntFieldUpdateOperationsInput | number
+  durationMinutes?: Prisma.IntFieldUpdateOperationsInput | number
   colorCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   requirements?: Prisma.StaffingRequirementUncheckedUpdateManyWithoutShiftDefinitionNestedInput
   shifts?: Prisma.ShiftInstanceUncheckedUpdateManyWithoutShiftDefinitionNestedInput
   patternItems?: Prisma.PatternItemUncheckedUpdateManyWithoutShiftDefinitionNestedInput
 }
 
+export type ShiftDefinitionUncheckedUpdateManyWithoutOrganizationInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  departmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  locationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  startTimeMinutes?: Prisma.IntFieldUpdateOperationsInput | number
+  durationMinutes?: Prisma.IntFieldUpdateOperationsInput | number
+  colorCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+}
+
 export type ShiftDefinitionCreateManyDepartmentInput = {
   id?: string
+  organizationId: string
+  locationId?: string | null
   archivedAt?: Date | string | null
-  wardId?: string | null
   name: string
-  startTime: string
-  endTime: string
+  startTimeMinutes: number
+  durationMinutes: number
   colorCode?: string | null
 }
 
@@ -989,85 +1126,88 @@ export type ShiftDefinitionUpdateWithoutDepartmentInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  startTime?: Prisma.StringFieldUpdateOperationsInput | string
-  endTime?: Prisma.StringFieldUpdateOperationsInput | string
+  startTimeMinutes?: Prisma.IntFieldUpdateOperationsInput | number
+  durationMinutes?: Prisma.IntFieldUpdateOperationsInput | number
   colorCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  ward?: Prisma.WardUpdateOneWithoutShiftDefinitionsNestedInput
+  organization?: Prisma.OrganizationUpdateOneRequiredWithoutShiftDefinitionsNestedInput
+  location?: Prisma.LocationUpdateOneWithoutShiftDefinitionsNestedInput
   requirements?: Prisma.StaffingRequirementUpdateManyWithoutShiftDefinitionNestedInput
   shifts?: Prisma.ShiftInstanceUpdateManyWithoutShiftDefinitionNestedInput
   patternItems?: Prisma.PatternItemUpdateManyWithoutShiftDefinitionNestedInput
-  advertisements?: Prisma.ShiftAdvertisementUpdateManyWithoutShiftDefinitionNestedInput
 }
 
 export type ShiftDefinitionUncheckedUpdateWithoutDepartmentInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  organizationId?: Prisma.StringFieldUpdateOperationsInput | string
+  locationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  wardId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  startTime?: Prisma.StringFieldUpdateOperationsInput | string
-  endTime?: Prisma.StringFieldUpdateOperationsInput | string
+  startTimeMinutes?: Prisma.IntFieldUpdateOperationsInput | number
+  durationMinutes?: Prisma.IntFieldUpdateOperationsInput | number
   colorCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   requirements?: Prisma.StaffingRequirementUncheckedUpdateManyWithoutShiftDefinitionNestedInput
   shifts?: Prisma.ShiftInstanceUncheckedUpdateManyWithoutShiftDefinitionNestedInput
   patternItems?: Prisma.PatternItemUncheckedUpdateManyWithoutShiftDefinitionNestedInput
-  advertisements?: Prisma.ShiftAdvertisementUncheckedUpdateManyWithoutShiftDefinitionNestedInput
 }
 
 export type ShiftDefinitionUncheckedUpdateManyWithoutDepartmentInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  organizationId?: Prisma.StringFieldUpdateOperationsInput | string
+  locationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  wardId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  startTime?: Prisma.StringFieldUpdateOperationsInput | string
-  endTime?: Prisma.StringFieldUpdateOperationsInput | string
+  startTimeMinutes?: Prisma.IntFieldUpdateOperationsInput | number
+  durationMinutes?: Prisma.IntFieldUpdateOperationsInput | number
   colorCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
-export type ShiftDefinitionCreateManyWardInput = {
+export type ShiftDefinitionCreateManyLocationInput = {
   id?: string
-  archivedAt?: Date | string | null
+  organizationId: string
   departmentId?: string | null
+  archivedAt?: Date | string | null
   name: string
-  startTime: string
-  endTime: string
+  startTimeMinutes: number
+  durationMinutes: number
   colorCode?: string | null
 }
 
-export type ShiftDefinitionUpdateWithoutWardInput = {
+export type ShiftDefinitionUpdateWithoutLocationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  startTime?: Prisma.StringFieldUpdateOperationsInput | string
-  endTime?: Prisma.StringFieldUpdateOperationsInput | string
+  startTimeMinutes?: Prisma.IntFieldUpdateOperationsInput | number
+  durationMinutes?: Prisma.IntFieldUpdateOperationsInput | number
   colorCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  organization?: Prisma.OrganizationUpdateOneRequiredWithoutShiftDefinitionsNestedInput
   department?: Prisma.DepartmentUpdateOneWithoutSharedShiftTypesNestedInput
   requirements?: Prisma.StaffingRequirementUpdateManyWithoutShiftDefinitionNestedInput
   shifts?: Prisma.ShiftInstanceUpdateManyWithoutShiftDefinitionNestedInput
   patternItems?: Prisma.PatternItemUpdateManyWithoutShiftDefinitionNestedInput
-  advertisements?: Prisma.ShiftAdvertisementUpdateManyWithoutShiftDefinitionNestedInput
 }
 
-export type ShiftDefinitionUncheckedUpdateWithoutWardInput = {
+export type ShiftDefinitionUncheckedUpdateWithoutLocationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  organizationId?: Prisma.StringFieldUpdateOperationsInput | string
   departmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  startTime?: Prisma.StringFieldUpdateOperationsInput | string
-  endTime?: Prisma.StringFieldUpdateOperationsInput | string
+  startTimeMinutes?: Prisma.IntFieldUpdateOperationsInput | number
+  durationMinutes?: Prisma.IntFieldUpdateOperationsInput | number
   colorCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   requirements?: Prisma.StaffingRequirementUncheckedUpdateManyWithoutShiftDefinitionNestedInput
   shifts?: Prisma.ShiftInstanceUncheckedUpdateManyWithoutShiftDefinitionNestedInput
   patternItems?: Prisma.PatternItemUncheckedUpdateManyWithoutShiftDefinitionNestedInput
-  advertisements?: Prisma.ShiftAdvertisementUncheckedUpdateManyWithoutShiftDefinitionNestedInput
 }
 
-export type ShiftDefinitionUncheckedUpdateManyWithoutWardInput = {
+export type ShiftDefinitionUncheckedUpdateManyWithoutLocationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  organizationId?: Prisma.StringFieldUpdateOperationsInput | string
   departmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  startTime?: Prisma.StringFieldUpdateOperationsInput | string
-  endTime?: Prisma.StringFieldUpdateOperationsInput | string
+  startTimeMinutes?: Prisma.IntFieldUpdateOperationsInput | number
+  durationMinutes?: Prisma.IntFieldUpdateOperationsInput | number
   colorCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
@@ -1080,14 +1220,12 @@ export type ShiftDefinitionCountOutputType = {
   requirements: number
   shifts: number
   patternItems: number
-  advertisements: number
 }
 
 export type ShiftDefinitionCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   requirements?: boolean | ShiftDefinitionCountOutputTypeCountRequirementsArgs
   shifts?: boolean | ShiftDefinitionCountOutputTypeCountShiftsArgs
   patternItems?: boolean | ShiftDefinitionCountOutputTypeCountPatternItemsArgs
-  advertisements?: boolean | ShiftDefinitionCountOutputTypeCountAdvertisementsArgs
 }
 
 /**
@@ -1121,106 +1259,108 @@ export type ShiftDefinitionCountOutputTypeCountPatternItemsArgs<ExtArgs extends 
   where?: Prisma.PatternItemWhereInput
 }
 
-/**
- * ShiftDefinitionCountOutputType without action
- */
-export type ShiftDefinitionCountOutputTypeCountAdvertisementsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.ShiftAdvertisementWhereInput
-}
-
 
 export type ShiftDefinitionSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  archivedAt?: boolean
+  organizationId?: boolean
   departmentId?: boolean
-  wardId?: boolean
+  locationId?: boolean
+  archivedAt?: boolean
   name?: boolean
-  startTime?: boolean
-  endTime?: boolean
+  startTimeMinutes?: boolean
+  durationMinutes?: boolean
   colorCode?: boolean
+  organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
   department?: boolean | Prisma.ShiftDefinition$departmentArgs<ExtArgs>
-  ward?: boolean | Prisma.ShiftDefinition$wardArgs<ExtArgs>
+  location?: boolean | Prisma.ShiftDefinition$locationArgs<ExtArgs>
   requirements?: boolean | Prisma.ShiftDefinition$requirementsArgs<ExtArgs>
   shifts?: boolean | Prisma.ShiftDefinition$shiftsArgs<ExtArgs>
   patternItems?: boolean | Prisma.ShiftDefinition$patternItemsArgs<ExtArgs>
-  advertisements?: boolean | Prisma.ShiftDefinition$advertisementsArgs<ExtArgs>
   _count?: boolean | Prisma.ShiftDefinitionCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["shiftDefinition"]>
 
 export type ShiftDefinitionSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  archivedAt?: boolean
+  organizationId?: boolean
   departmentId?: boolean
-  wardId?: boolean
+  locationId?: boolean
+  archivedAt?: boolean
   name?: boolean
-  startTime?: boolean
-  endTime?: boolean
+  startTimeMinutes?: boolean
+  durationMinutes?: boolean
   colorCode?: boolean
+  organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
   department?: boolean | Prisma.ShiftDefinition$departmentArgs<ExtArgs>
-  ward?: boolean | Prisma.ShiftDefinition$wardArgs<ExtArgs>
+  location?: boolean | Prisma.ShiftDefinition$locationArgs<ExtArgs>
 }, ExtArgs["result"]["shiftDefinition"]>
 
 export type ShiftDefinitionSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  archivedAt?: boolean
+  organizationId?: boolean
   departmentId?: boolean
-  wardId?: boolean
+  locationId?: boolean
+  archivedAt?: boolean
   name?: boolean
-  startTime?: boolean
-  endTime?: boolean
+  startTimeMinutes?: boolean
+  durationMinutes?: boolean
   colorCode?: boolean
+  organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
   department?: boolean | Prisma.ShiftDefinition$departmentArgs<ExtArgs>
-  ward?: boolean | Prisma.ShiftDefinition$wardArgs<ExtArgs>
+  location?: boolean | Prisma.ShiftDefinition$locationArgs<ExtArgs>
 }, ExtArgs["result"]["shiftDefinition"]>
 
 export type ShiftDefinitionSelectScalar = {
   id?: boolean
-  archivedAt?: boolean
+  organizationId?: boolean
   departmentId?: boolean
-  wardId?: boolean
+  locationId?: boolean
+  archivedAt?: boolean
   name?: boolean
-  startTime?: boolean
-  endTime?: boolean
+  startTimeMinutes?: boolean
+  durationMinutes?: boolean
   colorCode?: boolean
 }
 
-export type ShiftDefinitionOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "archivedAt" | "departmentId" | "wardId" | "name" | "startTime" | "endTime" | "colorCode", ExtArgs["result"]["shiftDefinition"]>
+export type ShiftDefinitionOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "organizationId" | "departmentId" | "locationId" | "archivedAt" | "name" | "startTimeMinutes" | "durationMinutes" | "colorCode", ExtArgs["result"]["shiftDefinition"]>
 export type ShiftDefinitionInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
   department?: boolean | Prisma.ShiftDefinition$departmentArgs<ExtArgs>
-  ward?: boolean | Prisma.ShiftDefinition$wardArgs<ExtArgs>
+  location?: boolean | Prisma.ShiftDefinition$locationArgs<ExtArgs>
   requirements?: boolean | Prisma.ShiftDefinition$requirementsArgs<ExtArgs>
   shifts?: boolean | Prisma.ShiftDefinition$shiftsArgs<ExtArgs>
   patternItems?: boolean | Prisma.ShiftDefinition$patternItemsArgs<ExtArgs>
-  advertisements?: boolean | Prisma.ShiftDefinition$advertisementsArgs<ExtArgs>
   _count?: boolean | Prisma.ShiftDefinitionCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type ShiftDefinitionIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
   department?: boolean | Prisma.ShiftDefinition$departmentArgs<ExtArgs>
-  ward?: boolean | Prisma.ShiftDefinition$wardArgs<ExtArgs>
+  location?: boolean | Prisma.ShiftDefinition$locationArgs<ExtArgs>
 }
 export type ShiftDefinitionIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
   department?: boolean | Prisma.ShiftDefinition$departmentArgs<ExtArgs>
-  ward?: boolean | Prisma.ShiftDefinition$wardArgs<ExtArgs>
+  location?: boolean | Prisma.ShiftDefinition$locationArgs<ExtArgs>
 }
 
 export type $ShiftDefinitionPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "ShiftDefinition"
   objects: {
+    organization: Prisma.$OrganizationPayload<ExtArgs>
     department: Prisma.$DepartmentPayload<ExtArgs> | null
-    ward: Prisma.$WardPayload<ExtArgs> | null
+    location: Prisma.$LocationPayload<ExtArgs> | null
     requirements: Prisma.$StaffingRequirementPayload<ExtArgs>[]
     shifts: Prisma.$ShiftInstancePayload<ExtArgs>[]
     patternItems: Prisma.$PatternItemPayload<ExtArgs>[]
-    advertisements: Prisma.$ShiftAdvertisementPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
-    archivedAt: Date | null
+    organizationId: string
     departmentId: string | null
-    wardId: string | null
+    locationId: string | null
+    archivedAt: Date | null
     name: string
-    startTime: string
-    endTime: string
+    startTimeMinutes: number
+    durationMinutes: number
     colorCode: string | null
   }, ExtArgs["result"]["shiftDefinition"]>
   composites: {}
@@ -1616,12 +1756,12 @@ readonly fields: ShiftDefinitionFieldRefs;
  */
 export interface Prisma__ShiftDefinitionClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
+  organization<T extends Prisma.OrganizationDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.OrganizationDefaultArgs<ExtArgs>>): Prisma.Prisma__OrganizationClient<runtime.Types.Result.GetResult<Prisma.$OrganizationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   department<T extends Prisma.ShiftDefinition$departmentArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ShiftDefinition$departmentArgs<ExtArgs>>): Prisma.Prisma__DepartmentClient<runtime.Types.Result.GetResult<Prisma.$DepartmentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-  ward<T extends Prisma.ShiftDefinition$wardArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ShiftDefinition$wardArgs<ExtArgs>>): Prisma.Prisma__WardClient<runtime.Types.Result.GetResult<Prisma.$WardPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  location<T extends Prisma.ShiftDefinition$locationArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ShiftDefinition$locationArgs<ExtArgs>>): Prisma.Prisma__LocationClient<runtime.Types.Result.GetResult<Prisma.$LocationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   requirements<T extends Prisma.ShiftDefinition$requirementsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ShiftDefinition$requirementsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$StaffingRequirementPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   shifts<T extends Prisma.ShiftDefinition$shiftsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ShiftDefinition$shiftsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ShiftInstancePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   patternItems<T extends Prisma.ShiftDefinition$patternItemsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ShiftDefinition$patternItemsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PatternItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  advertisements<T extends Prisma.ShiftDefinition$advertisementsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ShiftDefinition$advertisementsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ShiftAdvertisementPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1652,12 +1792,13 @@ export interface Prisma__ShiftDefinitionClient<T, Null = never, ExtArgs extends 
  */
 export interface ShiftDefinitionFieldRefs {
   readonly id: Prisma.FieldRef<"ShiftDefinition", 'String'>
-  readonly archivedAt: Prisma.FieldRef<"ShiftDefinition", 'DateTime'>
+  readonly organizationId: Prisma.FieldRef<"ShiftDefinition", 'String'>
   readonly departmentId: Prisma.FieldRef<"ShiftDefinition", 'String'>
-  readonly wardId: Prisma.FieldRef<"ShiftDefinition", 'String'>
+  readonly locationId: Prisma.FieldRef<"ShiftDefinition", 'String'>
+  readonly archivedAt: Prisma.FieldRef<"ShiftDefinition", 'DateTime'>
   readonly name: Prisma.FieldRef<"ShiftDefinition", 'String'>
-  readonly startTime: Prisma.FieldRef<"ShiftDefinition", 'String'>
-  readonly endTime: Prisma.FieldRef<"ShiftDefinition", 'String'>
+  readonly startTimeMinutes: Prisma.FieldRef<"ShiftDefinition", 'Int'>
+  readonly durationMinutes: Prisma.FieldRef<"ShiftDefinition", 'Int'>
   readonly colorCode: Prisma.FieldRef<"ShiftDefinition", 'String'>
 }
     
@@ -2074,22 +2215,22 @@ export type ShiftDefinition$departmentArgs<ExtArgs extends runtime.Types.Extensi
 }
 
 /**
- * ShiftDefinition.ward
+ * ShiftDefinition.location
  */
-export type ShiftDefinition$wardArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type ShiftDefinition$locationArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the Ward
+   * Select specific fields to fetch from the Location
    */
-  select?: Prisma.WardSelect<ExtArgs> | null
+  select?: Prisma.LocationSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the Ward
+   * Omit specific fields from the Location
    */
-  omit?: Prisma.WardOmit<ExtArgs> | null
+  omit?: Prisma.LocationOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.WardInclude<ExtArgs> | null
-  where?: Prisma.WardWhereInput
+  include?: Prisma.LocationInclude<ExtArgs> | null
+  where?: Prisma.LocationWhereInput
 }
 
 /**
@@ -2162,30 +2303,6 @@ export type ShiftDefinition$patternItemsArgs<ExtArgs extends runtime.Types.Exten
   take?: number
   skip?: number
   distinct?: Prisma.PatternItemScalarFieldEnum | Prisma.PatternItemScalarFieldEnum[]
-}
-
-/**
- * ShiftDefinition.advertisements
- */
-export type ShiftDefinition$advertisementsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the ShiftAdvertisement
-   */
-  select?: Prisma.ShiftAdvertisementSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the ShiftAdvertisement
-   */
-  omit?: Prisma.ShiftAdvertisementOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.ShiftAdvertisementInclude<ExtArgs> | null
-  where?: Prisma.ShiftAdvertisementWhereInput
-  orderBy?: Prisma.ShiftAdvertisementOrderByWithRelationInput | Prisma.ShiftAdvertisementOrderByWithRelationInput[]
-  cursor?: Prisma.ShiftAdvertisementWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.ShiftAdvertisementScalarFieldEnum | Prisma.ShiftAdvertisementScalarFieldEnum[]
 }
 
 /**

@@ -38,7 +38,8 @@ export type StaffingRequirementSumAggregateOutputType = {
 
 export type StaffingRequirementMinAggregateOutputType = {
   id: string | null
-  wardId: string | null
+  organizationId: string | null
+  locationId: string | null
   shiftDefinitionId: string | null
   roleId: string | null
   minCount: number | null
@@ -47,7 +48,8 @@ export type StaffingRequirementMinAggregateOutputType = {
 
 export type StaffingRequirementMaxAggregateOutputType = {
   id: string | null
-  wardId: string | null
+  organizationId: string | null
+  locationId: string | null
   shiftDefinitionId: string | null
   roleId: string | null
   minCount: number | null
@@ -56,7 +58,8 @@ export type StaffingRequirementMaxAggregateOutputType = {
 
 export type StaffingRequirementCountAggregateOutputType = {
   id: number
-  wardId: number
+  organizationId: number
+  locationId: number
   shiftDefinitionId: number
   roleId: number
   minCount: number
@@ -77,7 +80,8 @@ export type StaffingRequirementSumAggregateInputType = {
 
 export type StaffingRequirementMinAggregateInputType = {
   id?: true
-  wardId?: true
+  organizationId?: true
+  locationId?: true
   shiftDefinitionId?: true
   roleId?: true
   minCount?: true
@@ -86,7 +90,8 @@ export type StaffingRequirementMinAggregateInputType = {
 
 export type StaffingRequirementMaxAggregateInputType = {
   id?: true
-  wardId?: true
+  organizationId?: true
+  locationId?: true
   shiftDefinitionId?: true
   roleId?: true
   minCount?: true
@@ -95,7 +100,8 @@ export type StaffingRequirementMaxAggregateInputType = {
 
 export type StaffingRequirementCountAggregateInputType = {
   id?: true
-  wardId?: true
+  organizationId?: true
+  locationId?: true
   shiftDefinitionId?: true
   roleId?: true
   minCount?: true
@@ -191,7 +197,8 @@ export type StaffingRequirementGroupByArgs<ExtArgs extends runtime.Types.Extensi
 
 export type StaffingRequirementGroupByOutputType = {
   id: string
-  wardId: string
+  organizationId: string
+  locationId: string
   shiftDefinitionId: string
   roleId: string
   minCount: number
@@ -223,24 +230,28 @@ export type StaffingRequirementWhereInput = {
   OR?: Prisma.StaffingRequirementWhereInput[]
   NOT?: Prisma.StaffingRequirementWhereInput | Prisma.StaffingRequirementWhereInput[]
   id?: Prisma.StringFilter<"StaffingRequirement"> | string
-  wardId?: Prisma.StringFilter<"StaffingRequirement"> | string
+  organizationId?: Prisma.StringFilter<"StaffingRequirement"> | string
+  locationId?: Prisma.StringFilter<"StaffingRequirement"> | string
   shiftDefinitionId?: Prisma.StringFilter<"StaffingRequirement"> | string
   roleId?: Prisma.StringFilter<"StaffingRequirement"> | string
   minCount?: Prisma.IntFilter<"StaffingRequirement"> | number
   targetCount?: Prisma.IntFilter<"StaffingRequirement"> | number
-  ward?: Prisma.XOR<Prisma.WardScalarRelationFilter, Prisma.WardWhereInput>
+  organization?: Prisma.XOR<Prisma.OrganizationScalarRelationFilter, Prisma.OrganizationWhereInput>
+  location?: Prisma.XOR<Prisma.LocationScalarRelationFilter, Prisma.LocationWhereInput>
   shiftDefinition?: Prisma.XOR<Prisma.ShiftDefinitionScalarRelationFilter, Prisma.ShiftDefinitionWhereInput>
   role?: Prisma.XOR<Prisma.EmployeeRoleScalarRelationFilter, Prisma.EmployeeRoleWhereInput>
 }
 
 export type StaffingRequirementOrderByWithRelationInput = {
   id?: Prisma.SortOrder
-  wardId?: Prisma.SortOrder
+  organizationId?: Prisma.SortOrder
+  locationId?: Prisma.SortOrder
   shiftDefinitionId?: Prisma.SortOrder
   roleId?: Prisma.SortOrder
   minCount?: Prisma.SortOrder
   targetCount?: Prisma.SortOrder
-  ward?: Prisma.WardOrderByWithRelationInput
+  organization?: Prisma.OrganizationOrderByWithRelationInput
+  location?: Prisma.LocationOrderByWithRelationInput
   shiftDefinition?: Prisma.ShiftDefinitionOrderByWithRelationInput
   role?: Prisma.EmployeeRoleOrderByWithRelationInput
 }
@@ -250,19 +261,22 @@ export type StaffingRequirementWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.StaffingRequirementWhereInput | Prisma.StaffingRequirementWhereInput[]
   OR?: Prisma.StaffingRequirementWhereInput[]
   NOT?: Prisma.StaffingRequirementWhereInput | Prisma.StaffingRequirementWhereInput[]
-  wardId?: Prisma.StringFilter<"StaffingRequirement"> | string
+  organizationId?: Prisma.StringFilter<"StaffingRequirement"> | string
+  locationId?: Prisma.StringFilter<"StaffingRequirement"> | string
   shiftDefinitionId?: Prisma.StringFilter<"StaffingRequirement"> | string
   roleId?: Prisma.StringFilter<"StaffingRequirement"> | string
   minCount?: Prisma.IntFilter<"StaffingRequirement"> | number
   targetCount?: Prisma.IntFilter<"StaffingRequirement"> | number
-  ward?: Prisma.XOR<Prisma.WardScalarRelationFilter, Prisma.WardWhereInput>
+  organization?: Prisma.XOR<Prisma.OrganizationScalarRelationFilter, Prisma.OrganizationWhereInput>
+  location?: Prisma.XOR<Prisma.LocationScalarRelationFilter, Prisma.LocationWhereInput>
   shiftDefinition?: Prisma.XOR<Prisma.ShiftDefinitionScalarRelationFilter, Prisma.ShiftDefinitionWhereInput>
   role?: Prisma.XOR<Prisma.EmployeeRoleScalarRelationFilter, Prisma.EmployeeRoleWhereInput>
 }, "id">
 
 export type StaffingRequirementOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
-  wardId?: Prisma.SortOrder
+  organizationId?: Prisma.SortOrder
+  locationId?: Prisma.SortOrder
   shiftDefinitionId?: Prisma.SortOrder
   roleId?: Prisma.SortOrder
   minCount?: Prisma.SortOrder
@@ -279,7 +293,8 @@ export type StaffingRequirementScalarWhereWithAggregatesInput = {
   OR?: Prisma.StaffingRequirementScalarWhereWithAggregatesInput[]
   NOT?: Prisma.StaffingRequirementScalarWhereWithAggregatesInput | Prisma.StaffingRequirementScalarWhereWithAggregatesInput[]
   id?: Prisma.StringWithAggregatesFilter<"StaffingRequirement"> | string
-  wardId?: Prisma.StringWithAggregatesFilter<"StaffingRequirement"> | string
+  organizationId?: Prisma.StringWithAggregatesFilter<"StaffingRequirement"> | string
+  locationId?: Prisma.StringWithAggregatesFilter<"StaffingRequirement"> | string
   shiftDefinitionId?: Prisma.StringWithAggregatesFilter<"StaffingRequirement"> | string
   roleId?: Prisma.StringWithAggregatesFilter<"StaffingRequirement"> | string
   minCount?: Prisma.IntWithAggregatesFilter<"StaffingRequirement"> | number
@@ -290,14 +305,16 @@ export type StaffingRequirementCreateInput = {
   id?: string
   minCount: number
   targetCount: number
-  ward: Prisma.WardCreateNestedOneWithoutStaffingRequirementsInput
+  organization: Prisma.OrganizationCreateNestedOneWithoutStaffingRequirementsInput
+  location: Prisma.LocationCreateNestedOneWithoutStaffingRequirementsInput
   shiftDefinition: Prisma.ShiftDefinitionCreateNestedOneWithoutRequirementsInput
   role: Prisma.EmployeeRoleCreateNestedOneWithoutRequirementsInput
 }
 
 export type StaffingRequirementUncheckedCreateInput = {
   id?: string
-  wardId: string
+  organizationId: string
+  locationId: string
   shiftDefinitionId: string
   roleId: string
   minCount: number
@@ -308,14 +325,16 @@ export type StaffingRequirementUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   minCount?: Prisma.IntFieldUpdateOperationsInput | number
   targetCount?: Prisma.IntFieldUpdateOperationsInput | number
-  ward?: Prisma.WardUpdateOneRequiredWithoutStaffingRequirementsNestedInput
+  organization?: Prisma.OrganizationUpdateOneRequiredWithoutStaffingRequirementsNestedInput
+  location?: Prisma.LocationUpdateOneRequiredWithoutStaffingRequirementsNestedInput
   shiftDefinition?: Prisma.ShiftDefinitionUpdateOneRequiredWithoutRequirementsNestedInput
   role?: Prisma.EmployeeRoleUpdateOneRequiredWithoutRequirementsNestedInput
 }
 
 export type StaffingRequirementUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  wardId?: Prisma.StringFieldUpdateOperationsInput | string
+  organizationId?: Prisma.StringFieldUpdateOperationsInput | string
+  locationId?: Prisma.StringFieldUpdateOperationsInput | string
   shiftDefinitionId?: Prisma.StringFieldUpdateOperationsInput | string
   roleId?: Prisma.StringFieldUpdateOperationsInput | string
   minCount?: Prisma.IntFieldUpdateOperationsInput | number
@@ -324,7 +343,8 @@ export type StaffingRequirementUncheckedUpdateInput = {
 
 export type StaffingRequirementCreateManyInput = {
   id?: string
-  wardId: string
+  organizationId: string
+  locationId: string
   shiftDefinitionId: string
   roleId: string
   minCount: number
@@ -339,7 +359,8 @@ export type StaffingRequirementUpdateManyMutationInput = {
 
 export type StaffingRequirementUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  wardId?: Prisma.StringFieldUpdateOperationsInput | string
+  organizationId?: Prisma.StringFieldUpdateOperationsInput | string
+  locationId?: Prisma.StringFieldUpdateOperationsInput | string
   shiftDefinitionId?: Prisma.StringFieldUpdateOperationsInput | string
   roleId?: Prisma.StringFieldUpdateOperationsInput | string
   minCount?: Prisma.IntFieldUpdateOperationsInput | number
@@ -358,7 +379,8 @@ export type StaffingRequirementOrderByRelationAggregateInput = {
 
 export type StaffingRequirementCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  wardId?: Prisma.SortOrder
+  organizationId?: Prisma.SortOrder
+  locationId?: Prisma.SortOrder
   shiftDefinitionId?: Prisma.SortOrder
   roleId?: Prisma.SortOrder
   minCount?: Prisma.SortOrder
@@ -372,7 +394,8 @@ export type StaffingRequirementAvgOrderByAggregateInput = {
 
 export type StaffingRequirementMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  wardId?: Prisma.SortOrder
+  organizationId?: Prisma.SortOrder
+  locationId?: Prisma.SortOrder
   shiftDefinitionId?: Prisma.SortOrder
   roleId?: Prisma.SortOrder
   minCount?: Prisma.SortOrder
@@ -381,7 +404,8 @@ export type StaffingRequirementMaxOrderByAggregateInput = {
 
 export type StaffingRequirementMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  wardId?: Prisma.SortOrder
+  organizationId?: Prisma.SortOrder
+  locationId?: Prisma.SortOrder
   shiftDefinitionId?: Prisma.SortOrder
   roleId?: Prisma.SortOrder
   minCount?: Prisma.SortOrder
@@ -393,45 +417,87 @@ export type StaffingRequirementSumOrderByAggregateInput = {
   targetCount?: Prisma.SortOrder
 }
 
-export type StaffingRequirementCreateNestedManyWithoutWardInput = {
-  create?: Prisma.XOR<Prisma.StaffingRequirementCreateWithoutWardInput, Prisma.StaffingRequirementUncheckedCreateWithoutWardInput> | Prisma.StaffingRequirementCreateWithoutWardInput[] | Prisma.StaffingRequirementUncheckedCreateWithoutWardInput[]
-  connectOrCreate?: Prisma.StaffingRequirementCreateOrConnectWithoutWardInput | Prisma.StaffingRequirementCreateOrConnectWithoutWardInput[]
-  createMany?: Prisma.StaffingRequirementCreateManyWardInputEnvelope
+export type StaffingRequirementCreateNestedManyWithoutOrganizationInput = {
+  create?: Prisma.XOR<Prisma.StaffingRequirementCreateWithoutOrganizationInput, Prisma.StaffingRequirementUncheckedCreateWithoutOrganizationInput> | Prisma.StaffingRequirementCreateWithoutOrganizationInput[] | Prisma.StaffingRequirementUncheckedCreateWithoutOrganizationInput[]
+  connectOrCreate?: Prisma.StaffingRequirementCreateOrConnectWithoutOrganizationInput | Prisma.StaffingRequirementCreateOrConnectWithoutOrganizationInput[]
+  createMany?: Prisma.StaffingRequirementCreateManyOrganizationInputEnvelope
   connect?: Prisma.StaffingRequirementWhereUniqueInput | Prisma.StaffingRequirementWhereUniqueInput[]
 }
 
-export type StaffingRequirementUncheckedCreateNestedManyWithoutWardInput = {
-  create?: Prisma.XOR<Prisma.StaffingRequirementCreateWithoutWardInput, Prisma.StaffingRequirementUncheckedCreateWithoutWardInput> | Prisma.StaffingRequirementCreateWithoutWardInput[] | Prisma.StaffingRequirementUncheckedCreateWithoutWardInput[]
-  connectOrCreate?: Prisma.StaffingRequirementCreateOrConnectWithoutWardInput | Prisma.StaffingRequirementCreateOrConnectWithoutWardInput[]
-  createMany?: Prisma.StaffingRequirementCreateManyWardInputEnvelope
+export type StaffingRequirementUncheckedCreateNestedManyWithoutOrganizationInput = {
+  create?: Prisma.XOR<Prisma.StaffingRequirementCreateWithoutOrganizationInput, Prisma.StaffingRequirementUncheckedCreateWithoutOrganizationInput> | Prisma.StaffingRequirementCreateWithoutOrganizationInput[] | Prisma.StaffingRequirementUncheckedCreateWithoutOrganizationInput[]
+  connectOrCreate?: Prisma.StaffingRequirementCreateOrConnectWithoutOrganizationInput | Prisma.StaffingRequirementCreateOrConnectWithoutOrganizationInput[]
+  createMany?: Prisma.StaffingRequirementCreateManyOrganizationInputEnvelope
   connect?: Prisma.StaffingRequirementWhereUniqueInput | Prisma.StaffingRequirementWhereUniqueInput[]
 }
 
-export type StaffingRequirementUpdateManyWithoutWardNestedInput = {
-  create?: Prisma.XOR<Prisma.StaffingRequirementCreateWithoutWardInput, Prisma.StaffingRequirementUncheckedCreateWithoutWardInput> | Prisma.StaffingRequirementCreateWithoutWardInput[] | Prisma.StaffingRequirementUncheckedCreateWithoutWardInput[]
-  connectOrCreate?: Prisma.StaffingRequirementCreateOrConnectWithoutWardInput | Prisma.StaffingRequirementCreateOrConnectWithoutWardInput[]
-  upsert?: Prisma.StaffingRequirementUpsertWithWhereUniqueWithoutWardInput | Prisma.StaffingRequirementUpsertWithWhereUniqueWithoutWardInput[]
-  createMany?: Prisma.StaffingRequirementCreateManyWardInputEnvelope
+export type StaffingRequirementUpdateManyWithoutOrganizationNestedInput = {
+  create?: Prisma.XOR<Prisma.StaffingRequirementCreateWithoutOrganizationInput, Prisma.StaffingRequirementUncheckedCreateWithoutOrganizationInput> | Prisma.StaffingRequirementCreateWithoutOrganizationInput[] | Prisma.StaffingRequirementUncheckedCreateWithoutOrganizationInput[]
+  connectOrCreate?: Prisma.StaffingRequirementCreateOrConnectWithoutOrganizationInput | Prisma.StaffingRequirementCreateOrConnectWithoutOrganizationInput[]
+  upsert?: Prisma.StaffingRequirementUpsertWithWhereUniqueWithoutOrganizationInput | Prisma.StaffingRequirementUpsertWithWhereUniqueWithoutOrganizationInput[]
+  createMany?: Prisma.StaffingRequirementCreateManyOrganizationInputEnvelope
   set?: Prisma.StaffingRequirementWhereUniqueInput | Prisma.StaffingRequirementWhereUniqueInput[]
   disconnect?: Prisma.StaffingRequirementWhereUniqueInput | Prisma.StaffingRequirementWhereUniqueInput[]
   delete?: Prisma.StaffingRequirementWhereUniqueInput | Prisma.StaffingRequirementWhereUniqueInput[]
   connect?: Prisma.StaffingRequirementWhereUniqueInput | Prisma.StaffingRequirementWhereUniqueInput[]
-  update?: Prisma.StaffingRequirementUpdateWithWhereUniqueWithoutWardInput | Prisma.StaffingRequirementUpdateWithWhereUniqueWithoutWardInput[]
-  updateMany?: Prisma.StaffingRequirementUpdateManyWithWhereWithoutWardInput | Prisma.StaffingRequirementUpdateManyWithWhereWithoutWardInput[]
+  update?: Prisma.StaffingRequirementUpdateWithWhereUniqueWithoutOrganizationInput | Prisma.StaffingRequirementUpdateWithWhereUniqueWithoutOrganizationInput[]
+  updateMany?: Prisma.StaffingRequirementUpdateManyWithWhereWithoutOrganizationInput | Prisma.StaffingRequirementUpdateManyWithWhereWithoutOrganizationInput[]
   deleteMany?: Prisma.StaffingRequirementScalarWhereInput | Prisma.StaffingRequirementScalarWhereInput[]
 }
 
-export type StaffingRequirementUncheckedUpdateManyWithoutWardNestedInput = {
-  create?: Prisma.XOR<Prisma.StaffingRequirementCreateWithoutWardInput, Prisma.StaffingRequirementUncheckedCreateWithoutWardInput> | Prisma.StaffingRequirementCreateWithoutWardInput[] | Prisma.StaffingRequirementUncheckedCreateWithoutWardInput[]
-  connectOrCreate?: Prisma.StaffingRequirementCreateOrConnectWithoutWardInput | Prisma.StaffingRequirementCreateOrConnectWithoutWardInput[]
-  upsert?: Prisma.StaffingRequirementUpsertWithWhereUniqueWithoutWardInput | Prisma.StaffingRequirementUpsertWithWhereUniqueWithoutWardInput[]
-  createMany?: Prisma.StaffingRequirementCreateManyWardInputEnvelope
+export type StaffingRequirementUncheckedUpdateManyWithoutOrganizationNestedInput = {
+  create?: Prisma.XOR<Prisma.StaffingRequirementCreateWithoutOrganizationInput, Prisma.StaffingRequirementUncheckedCreateWithoutOrganizationInput> | Prisma.StaffingRequirementCreateWithoutOrganizationInput[] | Prisma.StaffingRequirementUncheckedCreateWithoutOrganizationInput[]
+  connectOrCreate?: Prisma.StaffingRequirementCreateOrConnectWithoutOrganizationInput | Prisma.StaffingRequirementCreateOrConnectWithoutOrganizationInput[]
+  upsert?: Prisma.StaffingRequirementUpsertWithWhereUniqueWithoutOrganizationInput | Prisma.StaffingRequirementUpsertWithWhereUniqueWithoutOrganizationInput[]
+  createMany?: Prisma.StaffingRequirementCreateManyOrganizationInputEnvelope
   set?: Prisma.StaffingRequirementWhereUniqueInput | Prisma.StaffingRequirementWhereUniqueInput[]
   disconnect?: Prisma.StaffingRequirementWhereUniqueInput | Prisma.StaffingRequirementWhereUniqueInput[]
   delete?: Prisma.StaffingRequirementWhereUniqueInput | Prisma.StaffingRequirementWhereUniqueInput[]
   connect?: Prisma.StaffingRequirementWhereUniqueInput | Prisma.StaffingRequirementWhereUniqueInput[]
-  update?: Prisma.StaffingRequirementUpdateWithWhereUniqueWithoutWardInput | Prisma.StaffingRequirementUpdateWithWhereUniqueWithoutWardInput[]
-  updateMany?: Prisma.StaffingRequirementUpdateManyWithWhereWithoutWardInput | Prisma.StaffingRequirementUpdateManyWithWhereWithoutWardInput[]
+  update?: Prisma.StaffingRequirementUpdateWithWhereUniqueWithoutOrganizationInput | Prisma.StaffingRequirementUpdateWithWhereUniqueWithoutOrganizationInput[]
+  updateMany?: Prisma.StaffingRequirementUpdateManyWithWhereWithoutOrganizationInput | Prisma.StaffingRequirementUpdateManyWithWhereWithoutOrganizationInput[]
+  deleteMany?: Prisma.StaffingRequirementScalarWhereInput | Prisma.StaffingRequirementScalarWhereInput[]
+}
+
+export type StaffingRequirementCreateNestedManyWithoutLocationInput = {
+  create?: Prisma.XOR<Prisma.StaffingRequirementCreateWithoutLocationInput, Prisma.StaffingRequirementUncheckedCreateWithoutLocationInput> | Prisma.StaffingRequirementCreateWithoutLocationInput[] | Prisma.StaffingRequirementUncheckedCreateWithoutLocationInput[]
+  connectOrCreate?: Prisma.StaffingRequirementCreateOrConnectWithoutLocationInput | Prisma.StaffingRequirementCreateOrConnectWithoutLocationInput[]
+  createMany?: Prisma.StaffingRequirementCreateManyLocationInputEnvelope
+  connect?: Prisma.StaffingRequirementWhereUniqueInput | Prisma.StaffingRequirementWhereUniqueInput[]
+}
+
+export type StaffingRequirementUncheckedCreateNestedManyWithoutLocationInput = {
+  create?: Prisma.XOR<Prisma.StaffingRequirementCreateWithoutLocationInput, Prisma.StaffingRequirementUncheckedCreateWithoutLocationInput> | Prisma.StaffingRequirementCreateWithoutLocationInput[] | Prisma.StaffingRequirementUncheckedCreateWithoutLocationInput[]
+  connectOrCreate?: Prisma.StaffingRequirementCreateOrConnectWithoutLocationInput | Prisma.StaffingRequirementCreateOrConnectWithoutLocationInput[]
+  createMany?: Prisma.StaffingRequirementCreateManyLocationInputEnvelope
+  connect?: Prisma.StaffingRequirementWhereUniqueInput | Prisma.StaffingRequirementWhereUniqueInput[]
+}
+
+export type StaffingRequirementUpdateManyWithoutLocationNestedInput = {
+  create?: Prisma.XOR<Prisma.StaffingRequirementCreateWithoutLocationInput, Prisma.StaffingRequirementUncheckedCreateWithoutLocationInput> | Prisma.StaffingRequirementCreateWithoutLocationInput[] | Prisma.StaffingRequirementUncheckedCreateWithoutLocationInput[]
+  connectOrCreate?: Prisma.StaffingRequirementCreateOrConnectWithoutLocationInput | Prisma.StaffingRequirementCreateOrConnectWithoutLocationInput[]
+  upsert?: Prisma.StaffingRequirementUpsertWithWhereUniqueWithoutLocationInput | Prisma.StaffingRequirementUpsertWithWhereUniqueWithoutLocationInput[]
+  createMany?: Prisma.StaffingRequirementCreateManyLocationInputEnvelope
+  set?: Prisma.StaffingRequirementWhereUniqueInput | Prisma.StaffingRequirementWhereUniqueInput[]
+  disconnect?: Prisma.StaffingRequirementWhereUniqueInput | Prisma.StaffingRequirementWhereUniqueInput[]
+  delete?: Prisma.StaffingRequirementWhereUniqueInput | Prisma.StaffingRequirementWhereUniqueInput[]
+  connect?: Prisma.StaffingRequirementWhereUniqueInput | Prisma.StaffingRequirementWhereUniqueInput[]
+  update?: Prisma.StaffingRequirementUpdateWithWhereUniqueWithoutLocationInput | Prisma.StaffingRequirementUpdateWithWhereUniqueWithoutLocationInput[]
+  updateMany?: Prisma.StaffingRequirementUpdateManyWithWhereWithoutLocationInput | Prisma.StaffingRequirementUpdateManyWithWhereWithoutLocationInput[]
+  deleteMany?: Prisma.StaffingRequirementScalarWhereInput | Prisma.StaffingRequirementScalarWhereInput[]
+}
+
+export type StaffingRequirementUncheckedUpdateManyWithoutLocationNestedInput = {
+  create?: Prisma.XOR<Prisma.StaffingRequirementCreateWithoutLocationInput, Prisma.StaffingRequirementUncheckedCreateWithoutLocationInput> | Prisma.StaffingRequirementCreateWithoutLocationInput[] | Prisma.StaffingRequirementUncheckedCreateWithoutLocationInput[]
+  connectOrCreate?: Prisma.StaffingRequirementCreateOrConnectWithoutLocationInput | Prisma.StaffingRequirementCreateOrConnectWithoutLocationInput[]
+  upsert?: Prisma.StaffingRequirementUpsertWithWhereUniqueWithoutLocationInput | Prisma.StaffingRequirementUpsertWithWhereUniqueWithoutLocationInput[]
+  createMany?: Prisma.StaffingRequirementCreateManyLocationInputEnvelope
+  set?: Prisma.StaffingRequirementWhereUniqueInput | Prisma.StaffingRequirementWhereUniqueInput[]
+  disconnect?: Prisma.StaffingRequirementWhereUniqueInput | Prisma.StaffingRequirementWhereUniqueInput[]
+  delete?: Prisma.StaffingRequirementWhereUniqueInput | Prisma.StaffingRequirementWhereUniqueInput[]
+  connect?: Prisma.StaffingRequirementWhereUniqueInput | Prisma.StaffingRequirementWhereUniqueInput[]
+  update?: Prisma.StaffingRequirementUpdateWithWhereUniqueWithoutLocationInput | Prisma.StaffingRequirementUpdateWithWhereUniqueWithoutLocationInput[]
+  updateMany?: Prisma.StaffingRequirementUpdateManyWithWhereWithoutLocationInput | Prisma.StaffingRequirementUpdateManyWithWhereWithoutLocationInput[]
   deleteMany?: Prisma.StaffingRequirementScalarWhereInput | Prisma.StaffingRequirementScalarWhereInput[]
 }
 
@@ -519,54 +585,48 @@ export type StaffingRequirementUncheckedUpdateManyWithoutShiftDefinitionNestedIn
   deleteMany?: Prisma.StaffingRequirementScalarWhereInput | Prisma.StaffingRequirementScalarWhereInput[]
 }
 
-export type IntFieldUpdateOperationsInput = {
-  set?: number
-  increment?: number
-  decrement?: number
-  multiply?: number
-  divide?: number
-}
-
-export type StaffingRequirementCreateWithoutWardInput = {
+export type StaffingRequirementCreateWithoutOrganizationInput = {
   id?: string
   minCount: number
   targetCount: number
+  location: Prisma.LocationCreateNestedOneWithoutStaffingRequirementsInput
   shiftDefinition: Prisma.ShiftDefinitionCreateNestedOneWithoutRequirementsInput
   role: Prisma.EmployeeRoleCreateNestedOneWithoutRequirementsInput
 }
 
-export type StaffingRequirementUncheckedCreateWithoutWardInput = {
+export type StaffingRequirementUncheckedCreateWithoutOrganizationInput = {
   id?: string
+  locationId: string
   shiftDefinitionId: string
   roleId: string
   minCount: number
   targetCount: number
 }
 
-export type StaffingRequirementCreateOrConnectWithoutWardInput = {
+export type StaffingRequirementCreateOrConnectWithoutOrganizationInput = {
   where: Prisma.StaffingRequirementWhereUniqueInput
-  create: Prisma.XOR<Prisma.StaffingRequirementCreateWithoutWardInput, Prisma.StaffingRequirementUncheckedCreateWithoutWardInput>
+  create: Prisma.XOR<Prisma.StaffingRequirementCreateWithoutOrganizationInput, Prisma.StaffingRequirementUncheckedCreateWithoutOrganizationInput>
 }
 
-export type StaffingRequirementCreateManyWardInputEnvelope = {
-  data: Prisma.StaffingRequirementCreateManyWardInput | Prisma.StaffingRequirementCreateManyWardInput[]
+export type StaffingRequirementCreateManyOrganizationInputEnvelope = {
+  data: Prisma.StaffingRequirementCreateManyOrganizationInput | Prisma.StaffingRequirementCreateManyOrganizationInput[]
   skipDuplicates?: boolean
 }
 
-export type StaffingRequirementUpsertWithWhereUniqueWithoutWardInput = {
+export type StaffingRequirementUpsertWithWhereUniqueWithoutOrganizationInput = {
   where: Prisma.StaffingRequirementWhereUniqueInput
-  update: Prisma.XOR<Prisma.StaffingRequirementUpdateWithoutWardInput, Prisma.StaffingRequirementUncheckedUpdateWithoutWardInput>
-  create: Prisma.XOR<Prisma.StaffingRequirementCreateWithoutWardInput, Prisma.StaffingRequirementUncheckedCreateWithoutWardInput>
+  update: Prisma.XOR<Prisma.StaffingRequirementUpdateWithoutOrganizationInput, Prisma.StaffingRequirementUncheckedUpdateWithoutOrganizationInput>
+  create: Prisma.XOR<Prisma.StaffingRequirementCreateWithoutOrganizationInput, Prisma.StaffingRequirementUncheckedCreateWithoutOrganizationInput>
 }
 
-export type StaffingRequirementUpdateWithWhereUniqueWithoutWardInput = {
+export type StaffingRequirementUpdateWithWhereUniqueWithoutOrganizationInput = {
   where: Prisma.StaffingRequirementWhereUniqueInput
-  data: Prisma.XOR<Prisma.StaffingRequirementUpdateWithoutWardInput, Prisma.StaffingRequirementUncheckedUpdateWithoutWardInput>
+  data: Prisma.XOR<Prisma.StaffingRequirementUpdateWithoutOrganizationInput, Prisma.StaffingRequirementUncheckedUpdateWithoutOrganizationInput>
 }
 
-export type StaffingRequirementUpdateManyWithWhereWithoutWardInput = {
+export type StaffingRequirementUpdateManyWithWhereWithoutOrganizationInput = {
   where: Prisma.StaffingRequirementScalarWhereInput
-  data: Prisma.XOR<Prisma.StaffingRequirementUpdateManyMutationInput, Prisma.StaffingRequirementUncheckedUpdateManyWithoutWardInput>
+  data: Prisma.XOR<Prisma.StaffingRequirementUpdateManyMutationInput, Prisma.StaffingRequirementUncheckedUpdateManyWithoutOrganizationInput>
 }
 
 export type StaffingRequirementScalarWhereInput = {
@@ -574,24 +634,71 @@ export type StaffingRequirementScalarWhereInput = {
   OR?: Prisma.StaffingRequirementScalarWhereInput[]
   NOT?: Prisma.StaffingRequirementScalarWhereInput | Prisma.StaffingRequirementScalarWhereInput[]
   id?: Prisma.StringFilter<"StaffingRequirement"> | string
-  wardId?: Prisma.StringFilter<"StaffingRequirement"> | string
+  organizationId?: Prisma.StringFilter<"StaffingRequirement"> | string
+  locationId?: Prisma.StringFilter<"StaffingRequirement"> | string
   shiftDefinitionId?: Prisma.StringFilter<"StaffingRequirement"> | string
   roleId?: Prisma.StringFilter<"StaffingRequirement"> | string
   minCount?: Prisma.IntFilter<"StaffingRequirement"> | number
   targetCount?: Prisma.IntFilter<"StaffingRequirement"> | number
 }
 
+export type StaffingRequirementCreateWithoutLocationInput = {
+  id?: string
+  minCount: number
+  targetCount: number
+  organization: Prisma.OrganizationCreateNestedOneWithoutStaffingRequirementsInput
+  shiftDefinition: Prisma.ShiftDefinitionCreateNestedOneWithoutRequirementsInput
+  role: Prisma.EmployeeRoleCreateNestedOneWithoutRequirementsInput
+}
+
+export type StaffingRequirementUncheckedCreateWithoutLocationInput = {
+  id?: string
+  organizationId: string
+  shiftDefinitionId: string
+  roleId: string
+  minCount: number
+  targetCount: number
+}
+
+export type StaffingRequirementCreateOrConnectWithoutLocationInput = {
+  where: Prisma.StaffingRequirementWhereUniqueInput
+  create: Prisma.XOR<Prisma.StaffingRequirementCreateWithoutLocationInput, Prisma.StaffingRequirementUncheckedCreateWithoutLocationInput>
+}
+
+export type StaffingRequirementCreateManyLocationInputEnvelope = {
+  data: Prisma.StaffingRequirementCreateManyLocationInput | Prisma.StaffingRequirementCreateManyLocationInput[]
+  skipDuplicates?: boolean
+}
+
+export type StaffingRequirementUpsertWithWhereUniqueWithoutLocationInput = {
+  where: Prisma.StaffingRequirementWhereUniqueInput
+  update: Prisma.XOR<Prisma.StaffingRequirementUpdateWithoutLocationInput, Prisma.StaffingRequirementUncheckedUpdateWithoutLocationInput>
+  create: Prisma.XOR<Prisma.StaffingRequirementCreateWithoutLocationInput, Prisma.StaffingRequirementUncheckedCreateWithoutLocationInput>
+}
+
+export type StaffingRequirementUpdateWithWhereUniqueWithoutLocationInput = {
+  where: Prisma.StaffingRequirementWhereUniqueInput
+  data: Prisma.XOR<Prisma.StaffingRequirementUpdateWithoutLocationInput, Prisma.StaffingRequirementUncheckedUpdateWithoutLocationInput>
+}
+
+export type StaffingRequirementUpdateManyWithWhereWithoutLocationInput = {
+  where: Prisma.StaffingRequirementScalarWhereInput
+  data: Prisma.XOR<Prisma.StaffingRequirementUpdateManyMutationInput, Prisma.StaffingRequirementUncheckedUpdateManyWithoutLocationInput>
+}
+
 export type StaffingRequirementCreateWithoutRoleInput = {
   id?: string
   minCount: number
   targetCount: number
-  ward: Prisma.WardCreateNestedOneWithoutStaffingRequirementsInput
+  organization: Prisma.OrganizationCreateNestedOneWithoutStaffingRequirementsInput
+  location: Prisma.LocationCreateNestedOneWithoutStaffingRequirementsInput
   shiftDefinition: Prisma.ShiftDefinitionCreateNestedOneWithoutRequirementsInput
 }
 
 export type StaffingRequirementUncheckedCreateWithoutRoleInput = {
   id?: string
-  wardId: string
+  organizationId: string
+  locationId: string
   shiftDefinitionId: string
   minCount: number
   targetCount: number
@@ -627,13 +734,15 @@ export type StaffingRequirementCreateWithoutShiftDefinitionInput = {
   id?: string
   minCount: number
   targetCount: number
-  ward: Prisma.WardCreateNestedOneWithoutStaffingRequirementsInput
+  organization: Prisma.OrganizationCreateNestedOneWithoutStaffingRequirementsInput
+  location: Prisma.LocationCreateNestedOneWithoutStaffingRequirementsInput
   role: Prisma.EmployeeRoleCreateNestedOneWithoutRequirementsInput
 }
 
 export type StaffingRequirementUncheckedCreateWithoutShiftDefinitionInput = {
   id?: string
-  wardId: string
+  organizationId: string
+  locationId: string
   roleId: string
   minCount: number
   targetCount: number
@@ -665,32 +774,72 @@ export type StaffingRequirementUpdateManyWithWhereWithoutShiftDefinitionInput = 
   data: Prisma.XOR<Prisma.StaffingRequirementUpdateManyMutationInput, Prisma.StaffingRequirementUncheckedUpdateManyWithoutShiftDefinitionInput>
 }
 
-export type StaffingRequirementCreateManyWardInput = {
+export type StaffingRequirementCreateManyOrganizationInput = {
   id?: string
+  locationId: string
   shiftDefinitionId: string
   roleId: string
   minCount: number
   targetCount: number
 }
 
-export type StaffingRequirementUpdateWithoutWardInput = {
+export type StaffingRequirementUpdateWithoutOrganizationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   minCount?: Prisma.IntFieldUpdateOperationsInput | number
   targetCount?: Prisma.IntFieldUpdateOperationsInput | number
+  location?: Prisma.LocationUpdateOneRequiredWithoutStaffingRequirementsNestedInput
   shiftDefinition?: Prisma.ShiftDefinitionUpdateOneRequiredWithoutRequirementsNestedInput
   role?: Prisma.EmployeeRoleUpdateOneRequiredWithoutRequirementsNestedInput
 }
 
-export type StaffingRequirementUncheckedUpdateWithoutWardInput = {
+export type StaffingRequirementUncheckedUpdateWithoutOrganizationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  locationId?: Prisma.StringFieldUpdateOperationsInput | string
   shiftDefinitionId?: Prisma.StringFieldUpdateOperationsInput | string
   roleId?: Prisma.StringFieldUpdateOperationsInput | string
   minCount?: Prisma.IntFieldUpdateOperationsInput | number
   targetCount?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
-export type StaffingRequirementUncheckedUpdateManyWithoutWardInput = {
+export type StaffingRequirementUncheckedUpdateManyWithoutOrganizationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  locationId?: Prisma.StringFieldUpdateOperationsInput | string
+  shiftDefinitionId?: Prisma.StringFieldUpdateOperationsInput | string
+  roleId?: Prisma.StringFieldUpdateOperationsInput | string
+  minCount?: Prisma.IntFieldUpdateOperationsInput | number
+  targetCount?: Prisma.IntFieldUpdateOperationsInput | number
+}
+
+export type StaffingRequirementCreateManyLocationInput = {
+  id?: string
+  organizationId: string
+  shiftDefinitionId: string
+  roleId: string
+  minCount: number
+  targetCount: number
+}
+
+export type StaffingRequirementUpdateWithoutLocationInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  minCount?: Prisma.IntFieldUpdateOperationsInput | number
+  targetCount?: Prisma.IntFieldUpdateOperationsInput | number
+  organization?: Prisma.OrganizationUpdateOneRequiredWithoutStaffingRequirementsNestedInput
+  shiftDefinition?: Prisma.ShiftDefinitionUpdateOneRequiredWithoutRequirementsNestedInput
+  role?: Prisma.EmployeeRoleUpdateOneRequiredWithoutRequirementsNestedInput
+}
+
+export type StaffingRequirementUncheckedUpdateWithoutLocationInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  organizationId?: Prisma.StringFieldUpdateOperationsInput | string
+  shiftDefinitionId?: Prisma.StringFieldUpdateOperationsInput | string
+  roleId?: Prisma.StringFieldUpdateOperationsInput | string
+  minCount?: Prisma.IntFieldUpdateOperationsInput | number
+  targetCount?: Prisma.IntFieldUpdateOperationsInput | number
+}
+
+export type StaffingRequirementUncheckedUpdateManyWithoutLocationInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  organizationId?: Prisma.StringFieldUpdateOperationsInput | string
   shiftDefinitionId?: Prisma.StringFieldUpdateOperationsInput | string
   roleId?: Prisma.StringFieldUpdateOperationsInput | string
   minCount?: Prisma.IntFieldUpdateOperationsInput | number
@@ -699,7 +848,8 @@ export type StaffingRequirementUncheckedUpdateManyWithoutWardInput = {
 
 export type StaffingRequirementCreateManyRoleInput = {
   id?: string
-  wardId: string
+  organizationId: string
+  locationId: string
   shiftDefinitionId: string
   minCount: number
   targetCount: number
@@ -709,13 +859,15 @@ export type StaffingRequirementUpdateWithoutRoleInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   minCount?: Prisma.IntFieldUpdateOperationsInput | number
   targetCount?: Prisma.IntFieldUpdateOperationsInput | number
-  ward?: Prisma.WardUpdateOneRequiredWithoutStaffingRequirementsNestedInput
+  organization?: Prisma.OrganizationUpdateOneRequiredWithoutStaffingRequirementsNestedInput
+  location?: Prisma.LocationUpdateOneRequiredWithoutStaffingRequirementsNestedInput
   shiftDefinition?: Prisma.ShiftDefinitionUpdateOneRequiredWithoutRequirementsNestedInput
 }
 
 export type StaffingRequirementUncheckedUpdateWithoutRoleInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  wardId?: Prisma.StringFieldUpdateOperationsInput | string
+  organizationId?: Prisma.StringFieldUpdateOperationsInput | string
+  locationId?: Prisma.StringFieldUpdateOperationsInput | string
   shiftDefinitionId?: Prisma.StringFieldUpdateOperationsInput | string
   minCount?: Prisma.IntFieldUpdateOperationsInput | number
   targetCount?: Prisma.IntFieldUpdateOperationsInput | number
@@ -723,7 +875,8 @@ export type StaffingRequirementUncheckedUpdateWithoutRoleInput = {
 
 export type StaffingRequirementUncheckedUpdateManyWithoutRoleInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  wardId?: Prisma.StringFieldUpdateOperationsInput | string
+  organizationId?: Prisma.StringFieldUpdateOperationsInput | string
+  locationId?: Prisma.StringFieldUpdateOperationsInput | string
   shiftDefinitionId?: Prisma.StringFieldUpdateOperationsInput | string
   minCount?: Prisma.IntFieldUpdateOperationsInput | number
   targetCount?: Prisma.IntFieldUpdateOperationsInput | number
@@ -731,7 +884,8 @@ export type StaffingRequirementUncheckedUpdateManyWithoutRoleInput = {
 
 export type StaffingRequirementCreateManyShiftDefinitionInput = {
   id?: string
-  wardId: string
+  organizationId: string
+  locationId: string
   roleId: string
   minCount: number
   targetCount: number
@@ -741,13 +895,15 @@ export type StaffingRequirementUpdateWithoutShiftDefinitionInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   minCount?: Prisma.IntFieldUpdateOperationsInput | number
   targetCount?: Prisma.IntFieldUpdateOperationsInput | number
-  ward?: Prisma.WardUpdateOneRequiredWithoutStaffingRequirementsNestedInput
+  organization?: Prisma.OrganizationUpdateOneRequiredWithoutStaffingRequirementsNestedInput
+  location?: Prisma.LocationUpdateOneRequiredWithoutStaffingRequirementsNestedInput
   role?: Prisma.EmployeeRoleUpdateOneRequiredWithoutRequirementsNestedInput
 }
 
 export type StaffingRequirementUncheckedUpdateWithoutShiftDefinitionInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  wardId?: Prisma.StringFieldUpdateOperationsInput | string
+  organizationId?: Prisma.StringFieldUpdateOperationsInput | string
+  locationId?: Prisma.StringFieldUpdateOperationsInput | string
   roleId?: Prisma.StringFieldUpdateOperationsInput | string
   minCount?: Prisma.IntFieldUpdateOperationsInput | number
   targetCount?: Prisma.IntFieldUpdateOperationsInput | number
@@ -755,7 +911,8 @@ export type StaffingRequirementUncheckedUpdateWithoutShiftDefinitionInput = {
 
 export type StaffingRequirementUncheckedUpdateManyWithoutShiftDefinitionInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  wardId?: Prisma.StringFieldUpdateOperationsInput | string
+  organizationId?: Prisma.StringFieldUpdateOperationsInput | string
+  locationId?: Prisma.StringFieldUpdateOperationsInput | string
   roleId?: Prisma.StringFieldUpdateOperationsInput | string
   minCount?: Prisma.IntFieldUpdateOperationsInput | number
   targetCount?: Prisma.IntFieldUpdateOperationsInput | number
@@ -765,62 +922,72 @@ export type StaffingRequirementUncheckedUpdateManyWithoutShiftDefinitionInput = 
 
 export type StaffingRequirementSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  wardId?: boolean
+  organizationId?: boolean
+  locationId?: boolean
   shiftDefinitionId?: boolean
   roleId?: boolean
   minCount?: boolean
   targetCount?: boolean
-  ward?: boolean | Prisma.WardDefaultArgs<ExtArgs>
+  organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
+  location?: boolean | Prisma.LocationDefaultArgs<ExtArgs>
   shiftDefinition?: boolean | Prisma.ShiftDefinitionDefaultArgs<ExtArgs>
   role?: boolean | Prisma.EmployeeRoleDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["staffingRequirement"]>
 
 export type StaffingRequirementSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  wardId?: boolean
+  organizationId?: boolean
+  locationId?: boolean
   shiftDefinitionId?: boolean
   roleId?: boolean
   minCount?: boolean
   targetCount?: boolean
-  ward?: boolean | Prisma.WardDefaultArgs<ExtArgs>
+  organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
+  location?: boolean | Prisma.LocationDefaultArgs<ExtArgs>
   shiftDefinition?: boolean | Prisma.ShiftDefinitionDefaultArgs<ExtArgs>
   role?: boolean | Prisma.EmployeeRoleDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["staffingRequirement"]>
 
 export type StaffingRequirementSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  wardId?: boolean
+  organizationId?: boolean
+  locationId?: boolean
   shiftDefinitionId?: boolean
   roleId?: boolean
   minCount?: boolean
   targetCount?: boolean
-  ward?: boolean | Prisma.WardDefaultArgs<ExtArgs>
+  organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
+  location?: boolean | Prisma.LocationDefaultArgs<ExtArgs>
   shiftDefinition?: boolean | Prisma.ShiftDefinitionDefaultArgs<ExtArgs>
   role?: boolean | Prisma.EmployeeRoleDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["staffingRequirement"]>
 
 export type StaffingRequirementSelectScalar = {
   id?: boolean
-  wardId?: boolean
+  organizationId?: boolean
+  locationId?: boolean
   shiftDefinitionId?: boolean
   roleId?: boolean
   minCount?: boolean
   targetCount?: boolean
 }
 
-export type StaffingRequirementOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "wardId" | "shiftDefinitionId" | "roleId" | "minCount" | "targetCount", ExtArgs["result"]["staffingRequirement"]>
+export type StaffingRequirementOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "organizationId" | "locationId" | "shiftDefinitionId" | "roleId" | "minCount" | "targetCount", ExtArgs["result"]["staffingRequirement"]>
 export type StaffingRequirementInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  ward?: boolean | Prisma.WardDefaultArgs<ExtArgs>
+  organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
+  location?: boolean | Prisma.LocationDefaultArgs<ExtArgs>
   shiftDefinition?: boolean | Prisma.ShiftDefinitionDefaultArgs<ExtArgs>
   role?: boolean | Prisma.EmployeeRoleDefaultArgs<ExtArgs>
 }
 export type StaffingRequirementIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  ward?: boolean | Prisma.WardDefaultArgs<ExtArgs>
+  organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
+  location?: boolean | Prisma.LocationDefaultArgs<ExtArgs>
   shiftDefinition?: boolean | Prisma.ShiftDefinitionDefaultArgs<ExtArgs>
   role?: boolean | Prisma.EmployeeRoleDefaultArgs<ExtArgs>
 }
 export type StaffingRequirementIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  ward?: boolean | Prisma.WardDefaultArgs<ExtArgs>
+  organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
+  location?: boolean | Prisma.LocationDefaultArgs<ExtArgs>
   shiftDefinition?: boolean | Prisma.ShiftDefinitionDefaultArgs<ExtArgs>
   role?: boolean | Prisma.EmployeeRoleDefaultArgs<ExtArgs>
 }
@@ -828,13 +995,15 @@ export type StaffingRequirementIncludeUpdateManyAndReturn<ExtArgs extends runtim
 export type $StaffingRequirementPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "StaffingRequirement"
   objects: {
-    ward: Prisma.$WardPayload<ExtArgs>
+    organization: Prisma.$OrganizationPayload<ExtArgs>
+    location: Prisma.$LocationPayload<ExtArgs>
     shiftDefinition: Prisma.$ShiftDefinitionPayload<ExtArgs>
     role: Prisma.$EmployeeRolePayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
-    wardId: string
+    organizationId: string
+    locationId: string
     shiftDefinitionId: string
     roleId: string
     minCount: number
@@ -1233,7 +1402,8 @@ readonly fields: StaffingRequirementFieldRefs;
  */
 export interface Prisma__StaffingRequirementClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  ward<T extends Prisma.WardDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.WardDefaultArgs<ExtArgs>>): Prisma.Prisma__WardClient<runtime.Types.Result.GetResult<Prisma.$WardPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  organization<T extends Prisma.OrganizationDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.OrganizationDefaultArgs<ExtArgs>>): Prisma.Prisma__OrganizationClient<runtime.Types.Result.GetResult<Prisma.$OrganizationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  location<T extends Prisma.LocationDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.LocationDefaultArgs<ExtArgs>>): Prisma.Prisma__LocationClient<runtime.Types.Result.GetResult<Prisma.$LocationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   shiftDefinition<T extends Prisma.ShiftDefinitionDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ShiftDefinitionDefaultArgs<ExtArgs>>): Prisma.Prisma__ShiftDefinitionClient<runtime.Types.Result.GetResult<Prisma.$ShiftDefinitionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   role<T extends Prisma.EmployeeRoleDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.EmployeeRoleDefaultArgs<ExtArgs>>): Prisma.Prisma__EmployeeRoleClient<runtime.Types.Result.GetResult<Prisma.$EmployeeRolePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
@@ -1266,7 +1436,8 @@ export interface Prisma__StaffingRequirementClient<T, Null = never, ExtArgs exte
  */
 export interface StaffingRequirementFieldRefs {
   readonly id: Prisma.FieldRef<"StaffingRequirement", 'String'>
-  readonly wardId: Prisma.FieldRef<"StaffingRequirement", 'String'>
+  readonly organizationId: Prisma.FieldRef<"StaffingRequirement", 'String'>
+  readonly locationId: Prisma.FieldRef<"StaffingRequirement", 'String'>
   readonly shiftDefinitionId: Prisma.FieldRef<"StaffingRequirement", 'String'>
   readonly roleId: Prisma.FieldRef<"StaffingRequirement", 'String'>
   readonly minCount: Prisma.FieldRef<"StaffingRequirement", 'Int'>

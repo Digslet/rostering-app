@@ -32,10 +32,7 @@ export type EmployeeMinAggregateOutputType = {
   lastName: string | null
   email: string | null
   archivedAt: Date | null
-  accessLevel: $Enums.AccessLevel | null
   roleId: string | null
-  homeDepartmentId: string | null
-  homeWardId: string | null
 }
 
 export type EmployeeMaxAggregateOutputType = {
@@ -46,10 +43,7 @@ export type EmployeeMaxAggregateOutputType = {
   lastName: string | null
   email: string | null
   archivedAt: Date | null
-  accessLevel: $Enums.AccessLevel | null
   roleId: string | null
-  homeDepartmentId: string | null
-  homeWardId: string | null
 }
 
 export type EmployeeCountAggregateOutputType = {
@@ -60,10 +54,7 @@ export type EmployeeCountAggregateOutputType = {
   lastName: number
   email: number
   archivedAt: number
-  accessLevel: number
   roleId: number
-  homeDepartmentId: number
-  homeWardId: number
   _all: number
 }
 
@@ -76,10 +67,7 @@ export type EmployeeMinAggregateInputType = {
   lastName?: true
   email?: true
   archivedAt?: true
-  accessLevel?: true
   roleId?: true
-  homeDepartmentId?: true
-  homeWardId?: true
 }
 
 export type EmployeeMaxAggregateInputType = {
@@ -90,10 +78,7 @@ export type EmployeeMaxAggregateInputType = {
   lastName?: true
   email?: true
   archivedAt?: true
-  accessLevel?: true
   roleId?: true
-  homeDepartmentId?: true
-  homeWardId?: true
 }
 
 export type EmployeeCountAggregateInputType = {
@@ -104,10 +89,7 @@ export type EmployeeCountAggregateInputType = {
   lastName?: true
   email?: true
   archivedAt?: true
-  accessLevel?: true
   roleId?: true
-  homeDepartmentId?: true
-  homeWardId?: true
   _all?: true
 }
 
@@ -186,15 +168,12 @@ export type EmployeeGroupByArgs<ExtArgs extends runtime.Types.Extensions.Interna
 export type EmployeeGroupByOutputType = {
   id: string
   organizationId: string
-  userId: string | null
+  userId: string
   firstName: string
   lastName: string
   email: string
   archivedAt: Date | null
-  accessLevel: $Enums.AccessLevel
   roleId: string
-  homeDepartmentId: string | null
-  homeWardId: string | null
   _count: EmployeeCountAggregateOutputType | null
   _min: EmployeeMinAggregateOutputType | null
   _max: EmployeeMaxAggregateOutputType | null
@@ -221,21 +200,17 @@ export type EmployeeWhereInput = {
   NOT?: Prisma.EmployeeWhereInput | Prisma.EmployeeWhereInput[]
   id?: Prisma.StringFilter<"Employee"> | string
   organizationId?: Prisma.StringFilter<"Employee"> | string
-  userId?: Prisma.StringNullableFilter<"Employee"> | string | null
+  userId?: Prisma.StringFilter<"Employee"> | string
   firstName?: Prisma.StringFilter<"Employee"> | string
   lastName?: Prisma.StringFilter<"Employee"> | string
   email?: Prisma.StringFilter<"Employee"> | string
   archivedAt?: Prisma.DateTimeNullableFilter<"Employee"> | Date | string | null
-  accessLevel?: Prisma.EnumAccessLevelFilter<"Employee"> | $Enums.AccessLevel
   roleId?: Prisma.StringFilter<"Employee"> | string
-  homeDepartmentId?: Prisma.StringNullableFilter<"Employee"> | string | null
-  homeWardId?: Prisma.StringNullableFilter<"Employee"> | string | null
+  user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
+  organization?: Prisma.XOR<Prisma.OrganizationScalarRelationFilter, Prisma.OrganizationWhereInput>
   role?: Prisma.XOR<Prisma.EmployeeRoleScalarRelationFilter, Prisma.EmployeeRoleWhereInput>
-  homeDepartment?: Prisma.XOR<Prisma.DepartmentNullableScalarRelationFilter, Prisma.DepartmentWhereInput> | null
-  homeWard?: Prisma.XOR<Prisma.WardNullableScalarRelationFilter, Prisma.WardWhereInput> | null
-  managedOrganizations?: Prisma.OrganizationListRelationFilter
-  managedDepartments?: Prisma.DepartmentListRelationFilter
-  managedWards?: Prisma.WardListRelationFilter
+  affiliations?: Prisma.EmployeeLocationAffiliationListRelationFilter
+  managementRoles?: Prisma.ManagementRoleListRelationFilter
   shifts?: Prisma.ShiftInstanceListRelationFilter
   assignedPattern?: Prisma.AssignedPatternListRelationFilter
   leaveRequests?: Prisma.LeaveRequestListRelationFilter
@@ -243,28 +218,22 @@ export type EmployeeWhereInput = {
   availability?: Prisma.EmployeeAvailabilityListRelationFilter
   targetManagerClaims?: Prisma.ShiftClaimListRelationFilter
   homeManagerClaims?: Prisma.ShiftClaimListRelationFilter
-  organization?: Prisma.XOR<Prisma.OrganizationScalarRelationFilter, Prisma.OrganizationWhereInput>
-  actions?: Prisma.AuditLogListRelationFilter
 }
 
 export type EmployeeOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   organizationId?: Prisma.SortOrder
-  userId?: Prisma.SortOrderInput | Prisma.SortOrder
+  userId?: Prisma.SortOrder
   firstName?: Prisma.SortOrder
   lastName?: Prisma.SortOrder
   email?: Prisma.SortOrder
   archivedAt?: Prisma.SortOrderInput | Prisma.SortOrder
-  accessLevel?: Prisma.SortOrder
   roleId?: Prisma.SortOrder
-  homeDepartmentId?: Prisma.SortOrderInput | Prisma.SortOrder
-  homeWardId?: Prisma.SortOrderInput | Prisma.SortOrder
+  user?: Prisma.UserOrderByWithRelationInput
+  organization?: Prisma.OrganizationOrderByWithRelationInput
   role?: Prisma.EmployeeRoleOrderByWithRelationInput
-  homeDepartment?: Prisma.DepartmentOrderByWithRelationInput
-  homeWard?: Prisma.WardOrderByWithRelationInput
-  managedOrganizations?: Prisma.OrganizationOrderByRelationAggregateInput
-  managedDepartments?: Prisma.DepartmentOrderByRelationAggregateInput
-  managedWards?: Prisma.WardOrderByRelationAggregateInput
+  affiliations?: Prisma.EmployeeLocationAffiliationOrderByRelationAggregateInput
+  managementRoles?: Prisma.ManagementRoleOrderByRelationAggregateInput
   shifts?: Prisma.ShiftInstanceOrderByRelationAggregateInput
   assignedPattern?: Prisma.AssignedPatternOrderByRelationAggregateInput
   leaveRequests?: Prisma.LeaveRequestOrderByRelationAggregateInput
@@ -272,31 +241,25 @@ export type EmployeeOrderByWithRelationInput = {
   availability?: Prisma.EmployeeAvailabilityOrderByRelationAggregateInput
   targetManagerClaims?: Prisma.ShiftClaimOrderByRelationAggregateInput
   homeManagerClaims?: Prisma.ShiftClaimOrderByRelationAggregateInput
-  organization?: Prisma.OrganizationOrderByWithRelationInput
-  actions?: Prisma.AuditLogOrderByRelationAggregateInput
 }
 
 export type EmployeeWhereUniqueInput = Prisma.AtLeast<{
   id?: string
-  userId?: string
   AND?: Prisma.EmployeeWhereInput | Prisma.EmployeeWhereInput[]
   OR?: Prisma.EmployeeWhereInput[]
   NOT?: Prisma.EmployeeWhereInput | Prisma.EmployeeWhereInput[]
   organizationId?: Prisma.StringFilter<"Employee"> | string
+  userId?: Prisma.StringFilter<"Employee"> | string
   firstName?: Prisma.StringFilter<"Employee"> | string
   lastName?: Prisma.StringFilter<"Employee"> | string
   email?: Prisma.StringFilter<"Employee"> | string
   archivedAt?: Prisma.DateTimeNullableFilter<"Employee"> | Date | string | null
-  accessLevel?: Prisma.EnumAccessLevelFilter<"Employee"> | $Enums.AccessLevel
   roleId?: Prisma.StringFilter<"Employee"> | string
-  homeDepartmentId?: Prisma.StringNullableFilter<"Employee"> | string | null
-  homeWardId?: Prisma.StringNullableFilter<"Employee"> | string | null
+  user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
+  organization?: Prisma.XOR<Prisma.OrganizationScalarRelationFilter, Prisma.OrganizationWhereInput>
   role?: Prisma.XOR<Prisma.EmployeeRoleScalarRelationFilter, Prisma.EmployeeRoleWhereInput>
-  homeDepartment?: Prisma.XOR<Prisma.DepartmentNullableScalarRelationFilter, Prisma.DepartmentWhereInput> | null
-  homeWard?: Prisma.XOR<Prisma.WardNullableScalarRelationFilter, Prisma.WardWhereInput> | null
-  managedOrganizations?: Prisma.OrganizationListRelationFilter
-  managedDepartments?: Prisma.DepartmentListRelationFilter
-  managedWards?: Prisma.WardListRelationFilter
+  affiliations?: Prisma.EmployeeLocationAffiliationListRelationFilter
+  managementRoles?: Prisma.ManagementRoleListRelationFilter
   shifts?: Prisma.ShiftInstanceListRelationFilter
   assignedPattern?: Prisma.AssignedPatternListRelationFilter
   leaveRequests?: Prisma.LeaveRequestListRelationFilter
@@ -304,22 +267,17 @@ export type EmployeeWhereUniqueInput = Prisma.AtLeast<{
   availability?: Prisma.EmployeeAvailabilityListRelationFilter
   targetManagerClaims?: Prisma.ShiftClaimListRelationFilter
   homeManagerClaims?: Prisma.ShiftClaimListRelationFilter
-  organization?: Prisma.XOR<Prisma.OrganizationScalarRelationFilter, Prisma.OrganizationWhereInput>
-  actions?: Prisma.AuditLogListRelationFilter
-}, "id" | "userId">
+}, "id">
 
 export type EmployeeOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   organizationId?: Prisma.SortOrder
-  userId?: Prisma.SortOrderInput | Prisma.SortOrder
+  userId?: Prisma.SortOrder
   firstName?: Prisma.SortOrder
   lastName?: Prisma.SortOrder
   email?: Prisma.SortOrder
   archivedAt?: Prisma.SortOrderInput | Prisma.SortOrder
-  accessLevel?: Prisma.SortOrder
   roleId?: Prisma.SortOrder
-  homeDepartmentId?: Prisma.SortOrderInput | Prisma.SortOrder
-  homeWardId?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.EmployeeCountOrderByAggregateInput
   _max?: Prisma.EmployeeMaxOrderByAggregateInput
   _min?: Prisma.EmployeeMinOrderByAggregateInput
@@ -331,31 +289,25 @@ export type EmployeeScalarWhereWithAggregatesInput = {
   NOT?: Prisma.EmployeeScalarWhereWithAggregatesInput | Prisma.EmployeeScalarWhereWithAggregatesInput[]
   id?: Prisma.StringWithAggregatesFilter<"Employee"> | string
   organizationId?: Prisma.StringWithAggregatesFilter<"Employee"> | string
-  userId?: Prisma.StringNullableWithAggregatesFilter<"Employee"> | string | null
+  userId?: Prisma.StringWithAggregatesFilter<"Employee"> | string
   firstName?: Prisma.StringWithAggregatesFilter<"Employee"> | string
   lastName?: Prisma.StringWithAggregatesFilter<"Employee"> | string
   email?: Prisma.StringWithAggregatesFilter<"Employee"> | string
   archivedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"Employee"> | Date | string | null
-  accessLevel?: Prisma.EnumAccessLevelWithAggregatesFilter<"Employee"> | $Enums.AccessLevel
   roleId?: Prisma.StringWithAggregatesFilter<"Employee"> | string
-  homeDepartmentId?: Prisma.StringNullableWithAggregatesFilter<"Employee"> | string | null
-  homeWardId?: Prisma.StringNullableWithAggregatesFilter<"Employee"> | string | null
 }
 
 export type EmployeeCreateInput = {
   id?: string
-  userId?: string | null
   firstName: string
   lastName: string
   email: string
   archivedAt?: Date | string | null
-  accessLevel?: $Enums.AccessLevel
+  user: Prisma.UserCreateNestedOneWithoutEmploymentsInput
+  organization: Prisma.OrganizationCreateNestedOneWithoutEmployeesInput
   role: Prisma.EmployeeRoleCreateNestedOneWithoutEmployeesInput
-  homeDepartment?: Prisma.DepartmentCreateNestedOneWithoutHomeStaffInput
-  homeWard?: Prisma.WardCreateNestedOneWithoutHomeStaffInput
-  managedOrganizations?: Prisma.OrganizationCreateNestedManyWithoutAdminsInput
-  managedDepartments?: Prisma.DepartmentCreateNestedManyWithoutManagersInput
-  managedWards?: Prisma.WardCreateNestedManyWithoutManagersInput
+  affiliations?: Prisma.EmployeeLocationAffiliationCreateNestedManyWithoutEmployeeInput
+  managementRoles?: Prisma.ManagementRoleCreateNestedManyWithoutEmployeeInput
   shifts?: Prisma.ShiftInstanceCreateNestedManyWithoutEmployeeInput
   assignedPattern?: Prisma.AssignedPatternCreateNestedManyWithoutEmployeeInput
   leaveRequests?: Prisma.LeaveRequestCreateNestedManyWithoutEmployeeInput
@@ -363,25 +315,19 @@ export type EmployeeCreateInput = {
   availability?: Prisma.EmployeeAvailabilityCreateNestedManyWithoutEmployeeInput
   targetManagerClaims?: Prisma.ShiftClaimCreateNestedManyWithoutTargetManagerInput
   homeManagerClaims?: Prisma.ShiftClaimCreateNestedManyWithoutHomeManagerInput
-  organization: Prisma.OrganizationCreateNestedOneWithoutEmployeesInput
-  actions?: Prisma.AuditLogCreateNestedManyWithoutActorInput
 }
 
 export type EmployeeUncheckedCreateInput = {
   id?: string
   organizationId: string
-  userId?: string | null
+  userId: string
   firstName: string
   lastName: string
   email: string
   archivedAt?: Date | string | null
-  accessLevel?: $Enums.AccessLevel
   roleId: string
-  homeDepartmentId?: string | null
-  homeWardId?: string | null
-  managedOrganizations?: Prisma.OrganizationUncheckedCreateNestedManyWithoutAdminsInput
-  managedDepartments?: Prisma.DepartmentUncheckedCreateNestedManyWithoutManagersInput
-  managedWards?: Prisma.WardUncheckedCreateNestedManyWithoutManagersInput
+  affiliations?: Prisma.EmployeeLocationAffiliationUncheckedCreateNestedManyWithoutEmployeeInput
+  managementRoles?: Prisma.ManagementRoleUncheckedCreateNestedManyWithoutEmployeeInput
   shifts?: Prisma.ShiftInstanceUncheckedCreateNestedManyWithoutEmployeeInput
   assignedPattern?: Prisma.AssignedPatternUncheckedCreateNestedManyWithoutEmployeeInput
   leaveRequests?: Prisma.LeaveRequestUncheckedCreateNestedManyWithoutEmployeeInput
@@ -389,23 +335,19 @@ export type EmployeeUncheckedCreateInput = {
   availability?: Prisma.EmployeeAvailabilityUncheckedCreateNestedManyWithoutEmployeeInput
   targetManagerClaims?: Prisma.ShiftClaimUncheckedCreateNestedManyWithoutTargetManagerInput
   homeManagerClaims?: Prisma.ShiftClaimUncheckedCreateNestedManyWithoutHomeManagerInput
-  actions?: Prisma.AuditLogUncheckedCreateNestedManyWithoutActorInput
 }
 
 export type EmployeeUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   firstName?: Prisma.StringFieldUpdateOperationsInput | string
   lastName?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  accessLevel?: Prisma.EnumAccessLevelFieldUpdateOperationsInput | $Enums.AccessLevel
+  user?: Prisma.UserUpdateOneRequiredWithoutEmploymentsNestedInput
+  organization?: Prisma.OrganizationUpdateOneRequiredWithoutEmployeesNestedInput
   role?: Prisma.EmployeeRoleUpdateOneRequiredWithoutEmployeesNestedInput
-  homeDepartment?: Prisma.DepartmentUpdateOneWithoutHomeStaffNestedInput
-  homeWard?: Prisma.WardUpdateOneWithoutHomeStaffNestedInput
-  managedOrganizations?: Prisma.OrganizationUpdateManyWithoutAdminsNestedInput
-  managedDepartments?: Prisma.DepartmentUpdateManyWithoutManagersNestedInput
-  managedWards?: Prisma.WardUpdateManyWithoutManagersNestedInput
+  affiliations?: Prisma.EmployeeLocationAffiliationUpdateManyWithoutEmployeeNestedInput
+  managementRoles?: Prisma.ManagementRoleUpdateManyWithoutEmployeeNestedInput
   shifts?: Prisma.ShiftInstanceUpdateManyWithoutEmployeeNestedInput
   assignedPattern?: Prisma.AssignedPatternUpdateManyWithoutEmployeeNestedInput
   leaveRequests?: Prisma.LeaveRequestUpdateManyWithoutEmployeeNestedInput
@@ -413,25 +355,19 @@ export type EmployeeUpdateInput = {
   availability?: Prisma.EmployeeAvailabilityUpdateManyWithoutEmployeeNestedInput
   targetManagerClaims?: Prisma.ShiftClaimUpdateManyWithoutTargetManagerNestedInput
   homeManagerClaims?: Prisma.ShiftClaimUpdateManyWithoutHomeManagerNestedInput
-  organization?: Prisma.OrganizationUpdateOneRequiredWithoutEmployeesNestedInput
-  actions?: Prisma.AuditLogUpdateManyWithoutActorNestedInput
 }
 
 export type EmployeeUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   organizationId?: Prisma.StringFieldUpdateOperationsInput | string
-  userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
   firstName?: Prisma.StringFieldUpdateOperationsInput | string
   lastName?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  accessLevel?: Prisma.EnumAccessLevelFieldUpdateOperationsInput | $Enums.AccessLevel
   roleId?: Prisma.StringFieldUpdateOperationsInput | string
-  homeDepartmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  homeWardId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  managedOrganizations?: Prisma.OrganizationUncheckedUpdateManyWithoutAdminsNestedInput
-  managedDepartments?: Prisma.DepartmentUncheckedUpdateManyWithoutManagersNestedInput
-  managedWards?: Prisma.WardUncheckedUpdateManyWithoutManagersNestedInput
+  affiliations?: Prisma.EmployeeLocationAffiliationUncheckedUpdateManyWithoutEmployeeNestedInput
+  managementRoles?: Prisma.ManagementRoleUncheckedUpdateManyWithoutEmployeeNestedInput
   shifts?: Prisma.ShiftInstanceUncheckedUpdateManyWithoutEmployeeNestedInput
   assignedPattern?: Prisma.AssignedPatternUncheckedUpdateManyWithoutEmployeeNestedInput
   leaveRequests?: Prisma.LeaveRequestUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -439,45 +375,36 @@ export type EmployeeUncheckedUpdateInput = {
   availability?: Prisma.EmployeeAvailabilityUncheckedUpdateManyWithoutEmployeeNestedInput
   targetManagerClaims?: Prisma.ShiftClaimUncheckedUpdateManyWithoutTargetManagerNestedInput
   homeManagerClaims?: Prisma.ShiftClaimUncheckedUpdateManyWithoutHomeManagerNestedInput
-  actions?: Prisma.AuditLogUncheckedUpdateManyWithoutActorNestedInput
 }
 
 export type EmployeeCreateManyInput = {
   id?: string
   organizationId: string
-  userId?: string | null
+  userId: string
   firstName: string
   lastName: string
   email: string
   archivedAt?: Date | string | null
-  accessLevel?: $Enums.AccessLevel
   roleId: string
-  homeDepartmentId?: string | null
-  homeWardId?: string | null
 }
 
 export type EmployeeUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   firstName?: Prisma.StringFieldUpdateOperationsInput | string
   lastName?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  accessLevel?: Prisma.EnumAccessLevelFieldUpdateOperationsInput | $Enums.AccessLevel
 }
 
 export type EmployeeUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   organizationId?: Prisma.StringFieldUpdateOperationsInput | string
-  userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
   firstName?: Prisma.StringFieldUpdateOperationsInput | string
   lastName?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  accessLevel?: Prisma.EnumAccessLevelFieldUpdateOperationsInput | $Enums.AccessLevel
   roleId?: Prisma.StringFieldUpdateOperationsInput | string
-  homeDepartmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  homeWardId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type EmployeeListRelationFilter = {
@@ -498,10 +425,7 @@ export type EmployeeCountOrderByAggregateInput = {
   lastName?: Prisma.SortOrder
   email?: Prisma.SortOrder
   archivedAt?: Prisma.SortOrder
-  accessLevel?: Prisma.SortOrder
   roleId?: Prisma.SortOrder
-  homeDepartmentId?: Prisma.SortOrder
-  homeWardId?: Prisma.SortOrder
 }
 
 export type EmployeeMaxOrderByAggregateInput = {
@@ -512,10 +436,7 @@ export type EmployeeMaxOrderByAggregateInput = {
   lastName?: Prisma.SortOrder
   email?: Prisma.SortOrder
   archivedAt?: Prisma.SortOrder
-  accessLevel?: Prisma.SortOrder
   roleId?: Prisma.SortOrder
-  homeDepartmentId?: Prisma.SortOrder
-  homeWardId?: Prisma.SortOrder
 }
 
 export type EmployeeMinOrderByAggregateInput = {
@@ -526,10 +447,7 @@ export type EmployeeMinOrderByAggregateInput = {
   lastName?: Prisma.SortOrder
   email?: Prisma.SortOrder
   archivedAt?: Prisma.SortOrder
-  accessLevel?: Prisma.SortOrder
   roleId?: Prisma.SortOrder
-  homeDepartmentId?: Prisma.SortOrder
-  homeWardId?: Prisma.SortOrder
 }
 
 export type EmployeeScalarRelationFilter = {
@@ -542,6 +460,48 @@ export type EmployeeNullableScalarRelationFilter = {
   isNot?: Prisma.EmployeeWhereInput | null
 }
 
+export type EmployeeCreateNestedManyWithoutUserInput = {
+  create?: Prisma.XOR<Prisma.EmployeeCreateWithoutUserInput, Prisma.EmployeeUncheckedCreateWithoutUserInput> | Prisma.EmployeeCreateWithoutUserInput[] | Prisma.EmployeeUncheckedCreateWithoutUserInput[]
+  connectOrCreate?: Prisma.EmployeeCreateOrConnectWithoutUserInput | Prisma.EmployeeCreateOrConnectWithoutUserInput[]
+  createMany?: Prisma.EmployeeCreateManyUserInputEnvelope
+  connect?: Prisma.EmployeeWhereUniqueInput | Prisma.EmployeeWhereUniqueInput[]
+}
+
+export type EmployeeUncheckedCreateNestedManyWithoutUserInput = {
+  create?: Prisma.XOR<Prisma.EmployeeCreateWithoutUserInput, Prisma.EmployeeUncheckedCreateWithoutUserInput> | Prisma.EmployeeCreateWithoutUserInput[] | Prisma.EmployeeUncheckedCreateWithoutUserInput[]
+  connectOrCreate?: Prisma.EmployeeCreateOrConnectWithoutUserInput | Prisma.EmployeeCreateOrConnectWithoutUserInput[]
+  createMany?: Prisma.EmployeeCreateManyUserInputEnvelope
+  connect?: Prisma.EmployeeWhereUniqueInput | Prisma.EmployeeWhereUniqueInput[]
+}
+
+export type EmployeeUpdateManyWithoutUserNestedInput = {
+  create?: Prisma.XOR<Prisma.EmployeeCreateWithoutUserInput, Prisma.EmployeeUncheckedCreateWithoutUserInput> | Prisma.EmployeeCreateWithoutUserInput[] | Prisma.EmployeeUncheckedCreateWithoutUserInput[]
+  connectOrCreate?: Prisma.EmployeeCreateOrConnectWithoutUserInput | Prisma.EmployeeCreateOrConnectWithoutUserInput[]
+  upsert?: Prisma.EmployeeUpsertWithWhereUniqueWithoutUserInput | Prisma.EmployeeUpsertWithWhereUniqueWithoutUserInput[]
+  createMany?: Prisma.EmployeeCreateManyUserInputEnvelope
+  set?: Prisma.EmployeeWhereUniqueInput | Prisma.EmployeeWhereUniqueInput[]
+  disconnect?: Prisma.EmployeeWhereUniqueInput | Prisma.EmployeeWhereUniqueInput[]
+  delete?: Prisma.EmployeeWhereUniqueInput | Prisma.EmployeeWhereUniqueInput[]
+  connect?: Prisma.EmployeeWhereUniqueInput | Prisma.EmployeeWhereUniqueInput[]
+  update?: Prisma.EmployeeUpdateWithWhereUniqueWithoutUserInput | Prisma.EmployeeUpdateWithWhereUniqueWithoutUserInput[]
+  updateMany?: Prisma.EmployeeUpdateManyWithWhereWithoutUserInput | Prisma.EmployeeUpdateManyWithWhereWithoutUserInput[]
+  deleteMany?: Prisma.EmployeeScalarWhereInput | Prisma.EmployeeScalarWhereInput[]
+}
+
+export type EmployeeUncheckedUpdateManyWithoutUserNestedInput = {
+  create?: Prisma.XOR<Prisma.EmployeeCreateWithoutUserInput, Prisma.EmployeeUncheckedCreateWithoutUserInput> | Prisma.EmployeeCreateWithoutUserInput[] | Prisma.EmployeeUncheckedCreateWithoutUserInput[]
+  connectOrCreate?: Prisma.EmployeeCreateOrConnectWithoutUserInput | Prisma.EmployeeCreateOrConnectWithoutUserInput[]
+  upsert?: Prisma.EmployeeUpsertWithWhereUniqueWithoutUserInput | Prisma.EmployeeUpsertWithWhereUniqueWithoutUserInput[]
+  createMany?: Prisma.EmployeeCreateManyUserInputEnvelope
+  set?: Prisma.EmployeeWhereUniqueInput | Prisma.EmployeeWhereUniqueInput[]
+  disconnect?: Prisma.EmployeeWhereUniqueInput | Prisma.EmployeeWhereUniqueInput[]
+  delete?: Prisma.EmployeeWhereUniqueInput | Prisma.EmployeeWhereUniqueInput[]
+  connect?: Prisma.EmployeeWhereUniqueInput | Prisma.EmployeeWhereUniqueInput[]
+  update?: Prisma.EmployeeUpdateWithWhereUniqueWithoutUserInput | Prisma.EmployeeUpdateWithWhereUniqueWithoutUserInput[]
+  updateMany?: Prisma.EmployeeUpdateManyWithWhereWithoutUserInput | Prisma.EmployeeUpdateManyWithWhereWithoutUserInput[]
+  deleteMany?: Prisma.EmployeeScalarWhereInput | Prisma.EmployeeScalarWhereInput[]
+}
+
 export type EmployeeCreateNestedManyWithoutOrganizationInput = {
   create?: Prisma.XOR<Prisma.EmployeeCreateWithoutOrganizationInput, Prisma.EmployeeUncheckedCreateWithoutOrganizationInput> | Prisma.EmployeeCreateWithoutOrganizationInput[] | Prisma.EmployeeUncheckedCreateWithoutOrganizationInput[]
   connectOrCreate?: Prisma.EmployeeCreateOrConnectWithoutOrganizationInput | Prisma.EmployeeCreateOrConnectWithoutOrganizationInput[]
@@ -549,22 +509,10 @@ export type EmployeeCreateNestedManyWithoutOrganizationInput = {
   connect?: Prisma.EmployeeWhereUniqueInput | Prisma.EmployeeWhereUniqueInput[]
 }
 
-export type EmployeeCreateNestedManyWithoutManagedOrganizationsInput = {
-  create?: Prisma.XOR<Prisma.EmployeeCreateWithoutManagedOrganizationsInput, Prisma.EmployeeUncheckedCreateWithoutManagedOrganizationsInput> | Prisma.EmployeeCreateWithoutManagedOrganizationsInput[] | Prisma.EmployeeUncheckedCreateWithoutManagedOrganizationsInput[]
-  connectOrCreate?: Prisma.EmployeeCreateOrConnectWithoutManagedOrganizationsInput | Prisma.EmployeeCreateOrConnectWithoutManagedOrganizationsInput[]
-  connect?: Prisma.EmployeeWhereUniqueInput | Prisma.EmployeeWhereUniqueInput[]
-}
-
 export type EmployeeUncheckedCreateNestedManyWithoutOrganizationInput = {
   create?: Prisma.XOR<Prisma.EmployeeCreateWithoutOrganizationInput, Prisma.EmployeeUncheckedCreateWithoutOrganizationInput> | Prisma.EmployeeCreateWithoutOrganizationInput[] | Prisma.EmployeeUncheckedCreateWithoutOrganizationInput[]
   connectOrCreate?: Prisma.EmployeeCreateOrConnectWithoutOrganizationInput | Prisma.EmployeeCreateOrConnectWithoutOrganizationInput[]
   createMany?: Prisma.EmployeeCreateManyOrganizationInputEnvelope
-  connect?: Prisma.EmployeeWhereUniqueInput | Prisma.EmployeeWhereUniqueInput[]
-}
-
-export type EmployeeUncheckedCreateNestedManyWithoutManagedOrganizationsInput = {
-  create?: Prisma.XOR<Prisma.EmployeeCreateWithoutManagedOrganizationsInput, Prisma.EmployeeUncheckedCreateWithoutManagedOrganizationsInput> | Prisma.EmployeeCreateWithoutManagedOrganizationsInput[] | Prisma.EmployeeUncheckedCreateWithoutManagedOrganizationsInput[]
-  connectOrCreate?: Prisma.EmployeeCreateOrConnectWithoutManagedOrganizationsInput | Prisma.EmployeeCreateOrConnectWithoutManagedOrganizationsInput[]
   connect?: Prisma.EmployeeWhereUniqueInput | Prisma.EmployeeWhereUniqueInput[]
 }
 
@@ -582,19 +530,6 @@ export type EmployeeUpdateManyWithoutOrganizationNestedInput = {
   deleteMany?: Prisma.EmployeeScalarWhereInput | Prisma.EmployeeScalarWhereInput[]
 }
 
-export type EmployeeUpdateManyWithoutManagedOrganizationsNestedInput = {
-  create?: Prisma.XOR<Prisma.EmployeeCreateWithoutManagedOrganizationsInput, Prisma.EmployeeUncheckedCreateWithoutManagedOrganizationsInput> | Prisma.EmployeeCreateWithoutManagedOrganizationsInput[] | Prisma.EmployeeUncheckedCreateWithoutManagedOrganizationsInput[]
-  connectOrCreate?: Prisma.EmployeeCreateOrConnectWithoutManagedOrganizationsInput | Prisma.EmployeeCreateOrConnectWithoutManagedOrganizationsInput[]
-  upsert?: Prisma.EmployeeUpsertWithWhereUniqueWithoutManagedOrganizationsInput | Prisma.EmployeeUpsertWithWhereUniqueWithoutManagedOrganizationsInput[]
-  set?: Prisma.EmployeeWhereUniqueInput | Prisma.EmployeeWhereUniqueInput[]
-  disconnect?: Prisma.EmployeeWhereUniqueInput | Prisma.EmployeeWhereUniqueInput[]
-  delete?: Prisma.EmployeeWhereUniqueInput | Prisma.EmployeeWhereUniqueInput[]
-  connect?: Prisma.EmployeeWhereUniqueInput | Prisma.EmployeeWhereUniqueInput[]
-  update?: Prisma.EmployeeUpdateWithWhereUniqueWithoutManagedOrganizationsInput | Prisma.EmployeeUpdateWithWhereUniqueWithoutManagedOrganizationsInput[]
-  updateMany?: Prisma.EmployeeUpdateManyWithWhereWithoutManagedOrganizationsInput | Prisma.EmployeeUpdateManyWithWhereWithoutManagedOrganizationsInput[]
-  deleteMany?: Prisma.EmployeeScalarWhereInput | Prisma.EmployeeScalarWhereInput[]
-}
-
 export type EmployeeUncheckedUpdateManyWithoutOrganizationNestedInput = {
   create?: Prisma.XOR<Prisma.EmployeeCreateWithoutOrganizationInput, Prisma.EmployeeUncheckedCreateWithoutOrganizationInput> | Prisma.EmployeeCreateWithoutOrganizationInput[] | Prisma.EmployeeUncheckedCreateWithoutOrganizationInput[]
   connectOrCreate?: Prisma.EmployeeCreateOrConnectWithoutOrganizationInput | Prisma.EmployeeCreateOrConnectWithoutOrganizationInput[]
@@ -609,185 +544,32 @@ export type EmployeeUncheckedUpdateManyWithoutOrganizationNestedInput = {
   deleteMany?: Prisma.EmployeeScalarWhereInput | Prisma.EmployeeScalarWhereInput[]
 }
 
-export type EmployeeUncheckedUpdateManyWithoutManagedOrganizationsNestedInput = {
-  create?: Prisma.XOR<Prisma.EmployeeCreateWithoutManagedOrganizationsInput, Prisma.EmployeeUncheckedCreateWithoutManagedOrganizationsInput> | Prisma.EmployeeCreateWithoutManagedOrganizationsInput[] | Prisma.EmployeeUncheckedCreateWithoutManagedOrganizationsInput[]
-  connectOrCreate?: Prisma.EmployeeCreateOrConnectWithoutManagedOrganizationsInput | Prisma.EmployeeCreateOrConnectWithoutManagedOrganizationsInput[]
-  upsert?: Prisma.EmployeeUpsertWithWhereUniqueWithoutManagedOrganizationsInput | Prisma.EmployeeUpsertWithWhereUniqueWithoutManagedOrganizationsInput[]
-  set?: Prisma.EmployeeWhereUniqueInput | Prisma.EmployeeWhereUniqueInput[]
-  disconnect?: Prisma.EmployeeWhereUniqueInput | Prisma.EmployeeWhereUniqueInput[]
-  delete?: Prisma.EmployeeWhereUniqueInput | Prisma.EmployeeWhereUniqueInput[]
-  connect?: Prisma.EmployeeWhereUniqueInput | Prisma.EmployeeWhereUniqueInput[]
-  update?: Prisma.EmployeeUpdateWithWhereUniqueWithoutManagedOrganizationsInput | Prisma.EmployeeUpdateWithWhereUniqueWithoutManagedOrganizationsInput[]
-  updateMany?: Prisma.EmployeeUpdateManyWithWhereWithoutManagedOrganizationsInput | Prisma.EmployeeUpdateManyWithWhereWithoutManagedOrganizationsInput[]
-  deleteMany?: Prisma.EmployeeScalarWhereInput | Prisma.EmployeeScalarWhereInput[]
+export type EmployeeCreateNestedOneWithoutAffiliationsInput = {
+  create?: Prisma.XOR<Prisma.EmployeeCreateWithoutAffiliationsInput, Prisma.EmployeeUncheckedCreateWithoutAffiliationsInput>
+  connectOrCreate?: Prisma.EmployeeCreateOrConnectWithoutAffiliationsInput
+  connect?: Prisma.EmployeeWhereUniqueInput
 }
 
-export type EmployeeCreateNestedManyWithoutManagedDepartmentsInput = {
-  create?: Prisma.XOR<Prisma.EmployeeCreateWithoutManagedDepartmentsInput, Prisma.EmployeeUncheckedCreateWithoutManagedDepartmentsInput> | Prisma.EmployeeCreateWithoutManagedDepartmentsInput[] | Prisma.EmployeeUncheckedCreateWithoutManagedDepartmentsInput[]
-  connectOrCreate?: Prisma.EmployeeCreateOrConnectWithoutManagedDepartmentsInput | Prisma.EmployeeCreateOrConnectWithoutManagedDepartmentsInput[]
-  connect?: Prisma.EmployeeWhereUniqueInput | Prisma.EmployeeWhereUniqueInput[]
+export type EmployeeUpdateOneRequiredWithoutAffiliationsNestedInput = {
+  create?: Prisma.XOR<Prisma.EmployeeCreateWithoutAffiliationsInput, Prisma.EmployeeUncheckedCreateWithoutAffiliationsInput>
+  connectOrCreate?: Prisma.EmployeeCreateOrConnectWithoutAffiliationsInput
+  upsert?: Prisma.EmployeeUpsertWithoutAffiliationsInput
+  connect?: Prisma.EmployeeWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.EmployeeUpdateToOneWithWhereWithoutAffiliationsInput, Prisma.EmployeeUpdateWithoutAffiliationsInput>, Prisma.EmployeeUncheckedUpdateWithoutAffiliationsInput>
 }
 
-export type EmployeeCreateNestedManyWithoutHomeDepartmentInput = {
-  create?: Prisma.XOR<Prisma.EmployeeCreateWithoutHomeDepartmentInput, Prisma.EmployeeUncheckedCreateWithoutHomeDepartmentInput> | Prisma.EmployeeCreateWithoutHomeDepartmentInput[] | Prisma.EmployeeUncheckedCreateWithoutHomeDepartmentInput[]
-  connectOrCreate?: Prisma.EmployeeCreateOrConnectWithoutHomeDepartmentInput | Prisma.EmployeeCreateOrConnectWithoutHomeDepartmentInput[]
-  createMany?: Prisma.EmployeeCreateManyHomeDepartmentInputEnvelope
-  connect?: Prisma.EmployeeWhereUniqueInput | Prisma.EmployeeWhereUniqueInput[]
+export type EmployeeCreateNestedOneWithoutManagementRolesInput = {
+  create?: Prisma.XOR<Prisma.EmployeeCreateWithoutManagementRolesInput, Prisma.EmployeeUncheckedCreateWithoutManagementRolesInput>
+  connectOrCreate?: Prisma.EmployeeCreateOrConnectWithoutManagementRolesInput
+  connect?: Prisma.EmployeeWhereUniqueInput
 }
 
-export type EmployeeUncheckedCreateNestedManyWithoutManagedDepartmentsInput = {
-  create?: Prisma.XOR<Prisma.EmployeeCreateWithoutManagedDepartmentsInput, Prisma.EmployeeUncheckedCreateWithoutManagedDepartmentsInput> | Prisma.EmployeeCreateWithoutManagedDepartmentsInput[] | Prisma.EmployeeUncheckedCreateWithoutManagedDepartmentsInput[]
-  connectOrCreate?: Prisma.EmployeeCreateOrConnectWithoutManagedDepartmentsInput | Prisma.EmployeeCreateOrConnectWithoutManagedDepartmentsInput[]
-  connect?: Prisma.EmployeeWhereUniqueInput | Prisma.EmployeeWhereUniqueInput[]
-}
-
-export type EmployeeUncheckedCreateNestedManyWithoutHomeDepartmentInput = {
-  create?: Prisma.XOR<Prisma.EmployeeCreateWithoutHomeDepartmentInput, Prisma.EmployeeUncheckedCreateWithoutHomeDepartmentInput> | Prisma.EmployeeCreateWithoutHomeDepartmentInput[] | Prisma.EmployeeUncheckedCreateWithoutHomeDepartmentInput[]
-  connectOrCreate?: Prisma.EmployeeCreateOrConnectWithoutHomeDepartmentInput | Prisma.EmployeeCreateOrConnectWithoutHomeDepartmentInput[]
-  createMany?: Prisma.EmployeeCreateManyHomeDepartmentInputEnvelope
-  connect?: Prisma.EmployeeWhereUniqueInput | Prisma.EmployeeWhereUniqueInput[]
-}
-
-export type EmployeeUpdateManyWithoutManagedDepartmentsNestedInput = {
-  create?: Prisma.XOR<Prisma.EmployeeCreateWithoutManagedDepartmentsInput, Prisma.EmployeeUncheckedCreateWithoutManagedDepartmentsInput> | Prisma.EmployeeCreateWithoutManagedDepartmentsInput[] | Prisma.EmployeeUncheckedCreateWithoutManagedDepartmentsInput[]
-  connectOrCreate?: Prisma.EmployeeCreateOrConnectWithoutManagedDepartmentsInput | Prisma.EmployeeCreateOrConnectWithoutManagedDepartmentsInput[]
-  upsert?: Prisma.EmployeeUpsertWithWhereUniqueWithoutManagedDepartmentsInput | Prisma.EmployeeUpsertWithWhereUniqueWithoutManagedDepartmentsInput[]
-  set?: Prisma.EmployeeWhereUniqueInput | Prisma.EmployeeWhereUniqueInput[]
-  disconnect?: Prisma.EmployeeWhereUniqueInput | Prisma.EmployeeWhereUniqueInput[]
-  delete?: Prisma.EmployeeWhereUniqueInput | Prisma.EmployeeWhereUniqueInput[]
-  connect?: Prisma.EmployeeWhereUniqueInput | Prisma.EmployeeWhereUniqueInput[]
-  update?: Prisma.EmployeeUpdateWithWhereUniqueWithoutManagedDepartmentsInput | Prisma.EmployeeUpdateWithWhereUniqueWithoutManagedDepartmentsInput[]
-  updateMany?: Prisma.EmployeeUpdateManyWithWhereWithoutManagedDepartmentsInput | Prisma.EmployeeUpdateManyWithWhereWithoutManagedDepartmentsInput[]
-  deleteMany?: Prisma.EmployeeScalarWhereInput | Prisma.EmployeeScalarWhereInput[]
-}
-
-export type EmployeeUpdateManyWithoutHomeDepartmentNestedInput = {
-  create?: Prisma.XOR<Prisma.EmployeeCreateWithoutHomeDepartmentInput, Prisma.EmployeeUncheckedCreateWithoutHomeDepartmentInput> | Prisma.EmployeeCreateWithoutHomeDepartmentInput[] | Prisma.EmployeeUncheckedCreateWithoutHomeDepartmentInput[]
-  connectOrCreate?: Prisma.EmployeeCreateOrConnectWithoutHomeDepartmentInput | Prisma.EmployeeCreateOrConnectWithoutHomeDepartmentInput[]
-  upsert?: Prisma.EmployeeUpsertWithWhereUniqueWithoutHomeDepartmentInput | Prisma.EmployeeUpsertWithWhereUniqueWithoutHomeDepartmentInput[]
-  createMany?: Prisma.EmployeeCreateManyHomeDepartmentInputEnvelope
-  set?: Prisma.EmployeeWhereUniqueInput | Prisma.EmployeeWhereUniqueInput[]
-  disconnect?: Prisma.EmployeeWhereUniqueInput | Prisma.EmployeeWhereUniqueInput[]
-  delete?: Prisma.EmployeeWhereUniqueInput | Prisma.EmployeeWhereUniqueInput[]
-  connect?: Prisma.EmployeeWhereUniqueInput | Prisma.EmployeeWhereUniqueInput[]
-  update?: Prisma.EmployeeUpdateWithWhereUniqueWithoutHomeDepartmentInput | Prisma.EmployeeUpdateWithWhereUniqueWithoutHomeDepartmentInput[]
-  updateMany?: Prisma.EmployeeUpdateManyWithWhereWithoutHomeDepartmentInput | Prisma.EmployeeUpdateManyWithWhereWithoutHomeDepartmentInput[]
-  deleteMany?: Prisma.EmployeeScalarWhereInput | Prisma.EmployeeScalarWhereInput[]
-}
-
-export type EmployeeUncheckedUpdateManyWithoutManagedDepartmentsNestedInput = {
-  create?: Prisma.XOR<Prisma.EmployeeCreateWithoutManagedDepartmentsInput, Prisma.EmployeeUncheckedCreateWithoutManagedDepartmentsInput> | Prisma.EmployeeCreateWithoutManagedDepartmentsInput[] | Prisma.EmployeeUncheckedCreateWithoutManagedDepartmentsInput[]
-  connectOrCreate?: Prisma.EmployeeCreateOrConnectWithoutManagedDepartmentsInput | Prisma.EmployeeCreateOrConnectWithoutManagedDepartmentsInput[]
-  upsert?: Prisma.EmployeeUpsertWithWhereUniqueWithoutManagedDepartmentsInput | Prisma.EmployeeUpsertWithWhereUniqueWithoutManagedDepartmentsInput[]
-  set?: Prisma.EmployeeWhereUniqueInput | Prisma.EmployeeWhereUniqueInput[]
-  disconnect?: Prisma.EmployeeWhereUniqueInput | Prisma.EmployeeWhereUniqueInput[]
-  delete?: Prisma.EmployeeWhereUniqueInput | Prisma.EmployeeWhereUniqueInput[]
-  connect?: Prisma.EmployeeWhereUniqueInput | Prisma.EmployeeWhereUniqueInput[]
-  update?: Prisma.EmployeeUpdateWithWhereUniqueWithoutManagedDepartmentsInput | Prisma.EmployeeUpdateWithWhereUniqueWithoutManagedDepartmentsInput[]
-  updateMany?: Prisma.EmployeeUpdateManyWithWhereWithoutManagedDepartmentsInput | Prisma.EmployeeUpdateManyWithWhereWithoutManagedDepartmentsInput[]
-  deleteMany?: Prisma.EmployeeScalarWhereInput | Prisma.EmployeeScalarWhereInput[]
-}
-
-export type EmployeeUncheckedUpdateManyWithoutHomeDepartmentNestedInput = {
-  create?: Prisma.XOR<Prisma.EmployeeCreateWithoutHomeDepartmentInput, Prisma.EmployeeUncheckedCreateWithoutHomeDepartmentInput> | Prisma.EmployeeCreateWithoutHomeDepartmentInput[] | Prisma.EmployeeUncheckedCreateWithoutHomeDepartmentInput[]
-  connectOrCreate?: Prisma.EmployeeCreateOrConnectWithoutHomeDepartmentInput | Prisma.EmployeeCreateOrConnectWithoutHomeDepartmentInput[]
-  upsert?: Prisma.EmployeeUpsertWithWhereUniqueWithoutHomeDepartmentInput | Prisma.EmployeeUpsertWithWhereUniqueWithoutHomeDepartmentInput[]
-  createMany?: Prisma.EmployeeCreateManyHomeDepartmentInputEnvelope
-  set?: Prisma.EmployeeWhereUniqueInput | Prisma.EmployeeWhereUniqueInput[]
-  disconnect?: Prisma.EmployeeWhereUniqueInput | Prisma.EmployeeWhereUniqueInput[]
-  delete?: Prisma.EmployeeWhereUniqueInput | Prisma.EmployeeWhereUniqueInput[]
-  connect?: Prisma.EmployeeWhereUniqueInput | Prisma.EmployeeWhereUniqueInput[]
-  update?: Prisma.EmployeeUpdateWithWhereUniqueWithoutHomeDepartmentInput | Prisma.EmployeeUpdateWithWhereUniqueWithoutHomeDepartmentInput[]
-  updateMany?: Prisma.EmployeeUpdateManyWithWhereWithoutHomeDepartmentInput | Prisma.EmployeeUpdateManyWithWhereWithoutHomeDepartmentInput[]
-  deleteMany?: Prisma.EmployeeScalarWhereInput | Prisma.EmployeeScalarWhereInput[]
-}
-
-export type EmployeeCreateNestedManyWithoutManagedWardsInput = {
-  create?: Prisma.XOR<Prisma.EmployeeCreateWithoutManagedWardsInput, Prisma.EmployeeUncheckedCreateWithoutManagedWardsInput> | Prisma.EmployeeCreateWithoutManagedWardsInput[] | Prisma.EmployeeUncheckedCreateWithoutManagedWardsInput[]
-  connectOrCreate?: Prisma.EmployeeCreateOrConnectWithoutManagedWardsInput | Prisma.EmployeeCreateOrConnectWithoutManagedWardsInput[]
-  connect?: Prisma.EmployeeWhereUniqueInput | Prisma.EmployeeWhereUniqueInput[]
-}
-
-export type EmployeeCreateNestedManyWithoutHomeWardInput = {
-  create?: Prisma.XOR<Prisma.EmployeeCreateWithoutHomeWardInput, Prisma.EmployeeUncheckedCreateWithoutHomeWardInput> | Prisma.EmployeeCreateWithoutHomeWardInput[] | Prisma.EmployeeUncheckedCreateWithoutHomeWardInput[]
-  connectOrCreate?: Prisma.EmployeeCreateOrConnectWithoutHomeWardInput | Prisma.EmployeeCreateOrConnectWithoutHomeWardInput[]
-  createMany?: Prisma.EmployeeCreateManyHomeWardInputEnvelope
-  connect?: Prisma.EmployeeWhereUniqueInput | Prisma.EmployeeWhereUniqueInput[]
-}
-
-export type EmployeeUncheckedCreateNestedManyWithoutManagedWardsInput = {
-  create?: Prisma.XOR<Prisma.EmployeeCreateWithoutManagedWardsInput, Prisma.EmployeeUncheckedCreateWithoutManagedWardsInput> | Prisma.EmployeeCreateWithoutManagedWardsInput[] | Prisma.EmployeeUncheckedCreateWithoutManagedWardsInput[]
-  connectOrCreate?: Prisma.EmployeeCreateOrConnectWithoutManagedWardsInput | Prisma.EmployeeCreateOrConnectWithoutManagedWardsInput[]
-  connect?: Prisma.EmployeeWhereUniqueInput | Prisma.EmployeeWhereUniqueInput[]
-}
-
-export type EmployeeUncheckedCreateNestedManyWithoutHomeWardInput = {
-  create?: Prisma.XOR<Prisma.EmployeeCreateWithoutHomeWardInput, Prisma.EmployeeUncheckedCreateWithoutHomeWardInput> | Prisma.EmployeeCreateWithoutHomeWardInput[] | Prisma.EmployeeUncheckedCreateWithoutHomeWardInput[]
-  connectOrCreate?: Prisma.EmployeeCreateOrConnectWithoutHomeWardInput | Prisma.EmployeeCreateOrConnectWithoutHomeWardInput[]
-  createMany?: Prisma.EmployeeCreateManyHomeWardInputEnvelope
-  connect?: Prisma.EmployeeWhereUniqueInput | Prisma.EmployeeWhereUniqueInput[]
-}
-
-export type EmployeeUpdateManyWithoutManagedWardsNestedInput = {
-  create?: Prisma.XOR<Prisma.EmployeeCreateWithoutManagedWardsInput, Prisma.EmployeeUncheckedCreateWithoutManagedWardsInput> | Prisma.EmployeeCreateWithoutManagedWardsInput[] | Prisma.EmployeeUncheckedCreateWithoutManagedWardsInput[]
-  connectOrCreate?: Prisma.EmployeeCreateOrConnectWithoutManagedWardsInput | Prisma.EmployeeCreateOrConnectWithoutManagedWardsInput[]
-  upsert?: Prisma.EmployeeUpsertWithWhereUniqueWithoutManagedWardsInput | Prisma.EmployeeUpsertWithWhereUniqueWithoutManagedWardsInput[]
-  set?: Prisma.EmployeeWhereUniqueInput | Prisma.EmployeeWhereUniqueInput[]
-  disconnect?: Prisma.EmployeeWhereUniqueInput | Prisma.EmployeeWhereUniqueInput[]
-  delete?: Prisma.EmployeeWhereUniqueInput | Prisma.EmployeeWhereUniqueInput[]
-  connect?: Prisma.EmployeeWhereUniqueInput | Prisma.EmployeeWhereUniqueInput[]
-  update?: Prisma.EmployeeUpdateWithWhereUniqueWithoutManagedWardsInput | Prisma.EmployeeUpdateWithWhereUniqueWithoutManagedWardsInput[]
-  updateMany?: Prisma.EmployeeUpdateManyWithWhereWithoutManagedWardsInput | Prisma.EmployeeUpdateManyWithWhereWithoutManagedWardsInput[]
-  deleteMany?: Prisma.EmployeeScalarWhereInput | Prisma.EmployeeScalarWhereInput[]
-}
-
-export type EmployeeUpdateManyWithoutHomeWardNestedInput = {
-  create?: Prisma.XOR<Prisma.EmployeeCreateWithoutHomeWardInput, Prisma.EmployeeUncheckedCreateWithoutHomeWardInput> | Prisma.EmployeeCreateWithoutHomeWardInput[] | Prisma.EmployeeUncheckedCreateWithoutHomeWardInput[]
-  connectOrCreate?: Prisma.EmployeeCreateOrConnectWithoutHomeWardInput | Prisma.EmployeeCreateOrConnectWithoutHomeWardInput[]
-  upsert?: Prisma.EmployeeUpsertWithWhereUniqueWithoutHomeWardInput | Prisma.EmployeeUpsertWithWhereUniqueWithoutHomeWardInput[]
-  createMany?: Prisma.EmployeeCreateManyHomeWardInputEnvelope
-  set?: Prisma.EmployeeWhereUniqueInput | Prisma.EmployeeWhereUniqueInput[]
-  disconnect?: Prisma.EmployeeWhereUniqueInput | Prisma.EmployeeWhereUniqueInput[]
-  delete?: Prisma.EmployeeWhereUniqueInput | Prisma.EmployeeWhereUniqueInput[]
-  connect?: Prisma.EmployeeWhereUniqueInput | Prisma.EmployeeWhereUniqueInput[]
-  update?: Prisma.EmployeeUpdateWithWhereUniqueWithoutHomeWardInput | Prisma.EmployeeUpdateWithWhereUniqueWithoutHomeWardInput[]
-  updateMany?: Prisma.EmployeeUpdateManyWithWhereWithoutHomeWardInput | Prisma.EmployeeUpdateManyWithWhereWithoutHomeWardInput[]
-  deleteMany?: Prisma.EmployeeScalarWhereInput | Prisma.EmployeeScalarWhereInput[]
-}
-
-export type EmployeeUncheckedUpdateManyWithoutManagedWardsNestedInput = {
-  create?: Prisma.XOR<Prisma.EmployeeCreateWithoutManagedWardsInput, Prisma.EmployeeUncheckedCreateWithoutManagedWardsInput> | Prisma.EmployeeCreateWithoutManagedWardsInput[] | Prisma.EmployeeUncheckedCreateWithoutManagedWardsInput[]
-  connectOrCreate?: Prisma.EmployeeCreateOrConnectWithoutManagedWardsInput | Prisma.EmployeeCreateOrConnectWithoutManagedWardsInput[]
-  upsert?: Prisma.EmployeeUpsertWithWhereUniqueWithoutManagedWardsInput | Prisma.EmployeeUpsertWithWhereUniqueWithoutManagedWardsInput[]
-  set?: Prisma.EmployeeWhereUniqueInput | Prisma.EmployeeWhereUniqueInput[]
-  disconnect?: Prisma.EmployeeWhereUniqueInput | Prisma.EmployeeWhereUniqueInput[]
-  delete?: Prisma.EmployeeWhereUniqueInput | Prisma.EmployeeWhereUniqueInput[]
-  connect?: Prisma.EmployeeWhereUniqueInput | Prisma.EmployeeWhereUniqueInput[]
-  update?: Prisma.EmployeeUpdateWithWhereUniqueWithoutManagedWardsInput | Prisma.EmployeeUpdateWithWhereUniqueWithoutManagedWardsInput[]
-  updateMany?: Prisma.EmployeeUpdateManyWithWhereWithoutManagedWardsInput | Prisma.EmployeeUpdateManyWithWhereWithoutManagedWardsInput[]
-  deleteMany?: Prisma.EmployeeScalarWhereInput | Prisma.EmployeeScalarWhereInput[]
-}
-
-export type EmployeeUncheckedUpdateManyWithoutHomeWardNestedInput = {
-  create?: Prisma.XOR<Prisma.EmployeeCreateWithoutHomeWardInput, Prisma.EmployeeUncheckedCreateWithoutHomeWardInput> | Prisma.EmployeeCreateWithoutHomeWardInput[] | Prisma.EmployeeUncheckedCreateWithoutHomeWardInput[]
-  connectOrCreate?: Prisma.EmployeeCreateOrConnectWithoutHomeWardInput | Prisma.EmployeeCreateOrConnectWithoutHomeWardInput[]
-  upsert?: Prisma.EmployeeUpsertWithWhereUniqueWithoutHomeWardInput | Prisma.EmployeeUpsertWithWhereUniqueWithoutHomeWardInput[]
-  createMany?: Prisma.EmployeeCreateManyHomeWardInputEnvelope
-  set?: Prisma.EmployeeWhereUniqueInput | Prisma.EmployeeWhereUniqueInput[]
-  disconnect?: Prisma.EmployeeWhereUniqueInput | Prisma.EmployeeWhereUniqueInput[]
-  delete?: Prisma.EmployeeWhereUniqueInput | Prisma.EmployeeWhereUniqueInput[]
-  connect?: Prisma.EmployeeWhereUniqueInput | Prisma.EmployeeWhereUniqueInput[]
-  update?: Prisma.EmployeeUpdateWithWhereUniqueWithoutHomeWardInput | Prisma.EmployeeUpdateWithWhereUniqueWithoutHomeWardInput[]
-  updateMany?: Prisma.EmployeeUpdateManyWithWhereWithoutHomeWardInput | Prisma.EmployeeUpdateManyWithWhereWithoutHomeWardInput[]
-  deleteMany?: Prisma.EmployeeScalarWhereInput | Prisma.EmployeeScalarWhereInput[]
-}
-
-export type NullableStringFieldUpdateOperationsInput = {
-  set?: string | null
-}
-
-export type EnumAccessLevelFieldUpdateOperationsInput = {
-  set?: $Enums.AccessLevel
+export type EmployeeUpdateOneRequiredWithoutManagementRolesNestedInput = {
+  create?: Prisma.XOR<Prisma.EmployeeCreateWithoutManagementRolesInput, Prisma.EmployeeUncheckedCreateWithoutManagementRolesInput>
+  connectOrCreate?: Prisma.EmployeeCreateOrConnectWithoutManagementRolesInput
+  upsert?: Prisma.EmployeeUpsertWithoutManagementRolesInput
+  connect?: Prisma.EmployeeWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.EmployeeUpdateToOneWithWhereWithoutManagementRolesInput, Prisma.EmployeeUpdateWithoutManagementRolesInput>, Prisma.EmployeeUncheckedUpdateWithoutManagementRolesInput>
 }
 
 export type EmployeeCreateNestedManyWithoutRoleInput = {
@@ -936,34 +718,16 @@ export type EmployeeUpdateOneRequiredWithoutAvailabilityNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.EmployeeUpdateToOneWithWhereWithoutAvailabilityInput, Prisma.EmployeeUpdateWithoutAvailabilityInput>, Prisma.EmployeeUncheckedUpdateWithoutAvailabilityInput>
 }
 
-export type EmployeeCreateNestedOneWithoutActionsInput = {
-  create?: Prisma.XOR<Prisma.EmployeeCreateWithoutActionsInput, Prisma.EmployeeUncheckedCreateWithoutActionsInput>
-  connectOrCreate?: Prisma.EmployeeCreateOrConnectWithoutActionsInput
-  connect?: Prisma.EmployeeWhereUniqueInput
-}
-
-export type EmployeeUpdateOneRequiredWithoutActionsNestedInput = {
-  create?: Prisma.XOR<Prisma.EmployeeCreateWithoutActionsInput, Prisma.EmployeeUncheckedCreateWithoutActionsInput>
-  connectOrCreate?: Prisma.EmployeeCreateOrConnectWithoutActionsInput
-  upsert?: Prisma.EmployeeUpsertWithoutActionsInput
-  connect?: Prisma.EmployeeWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.EmployeeUpdateToOneWithWhereWithoutActionsInput, Prisma.EmployeeUpdateWithoutActionsInput>, Prisma.EmployeeUncheckedUpdateWithoutActionsInput>
-}
-
-export type EmployeeCreateWithoutOrganizationInput = {
+export type EmployeeCreateWithoutUserInput = {
   id?: string
-  userId?: string | null
   firstName: string
   lastName: string
   email: string
   archivedAt?: Date | string | null
-  accessLevel?: $Enums.AccessLevel
+  organization: Prisma.OrganizationCreateNestedOneWithoutEmployeesInput
   role: Prisma.EmployeeRoleCreateNestedOneWithoutEmployeesInput
-  homeDepartment?: Prisma.DepartmentCreateNestedOneWithoutHomeStaffInput
-  homeWard?: Prisma.WardCreateNestedOneWithoutHomeStaffInput
-  managedOrganizations?: Prisma.OrganizationCreateNestedManyWithoutAdminsInput
-  managedDepartments?: Prisma.DepartmentCreateNestedManyWithoutManagersInput
-  managedWards?: Prisma.WardCreateNestedManyWithoutManagersInput
+  affiliations?: Prisma.EmployeeLocationAffiliationCreateNestedManyWithoutEmployeeInput
+  managementRoles?: Prisma.ManagementRoleCreateNestedManyWithoutEmployeeInput
   shifts?: Prisma.ShiftInstanceCreateNestedManyWithoutEmployeeInput
   assignedPattern?: Prisma.AssignedPatternCreateNestedManyWithoutEmployeeInput
   leaveRequests?: Prisma.LeaveRequestCreateNestedManyWithoutEmployeeInput
@@ -971,23 +735,18 @@ export type EmployeeCreateWithoutOrganizationInput = {
   availability?: Prisma.EmployeeAvailabilityCreateNestedManyWithoutEmployeeInput
   targetManagerClaims?: Prisma.ShiftClaimCreateNestedManyWithoutTargetManagerInput
   homeManagerClaims?: Prisma.ShiftClaimCreateNestedManyWithoutHomeManagerInput
-  actions?: Prisma.AuditLogCreateNestedManyWithoutActorInput
 }
 
-export type EmployeeUncheckedCreateWithoutOrganizationInput = {
+export type EmployeeUncheckedCreateWithoutUserInput = {
   id?: string
-  userId?: string | null
+  organizationId: string
   firstName: string
   lastName: string
   email: string
   archivedAt?: Date | string | null
-  accessLevel?: $Enums.AccessLevel
   roleId: string
-  homeDepartmentId?: string | null
-  homeWardId?: string | null
-  managedOrganizations?: Prisma.OrganizationUncheckedCreateNestedManyWithoutAdminsInput
-  managedDepartments?: Prisma.DepartmentUncheckedCreateNestedManyWithoutManagersInput
-  managedWards?: Prisma.WardUncheckedCreateNestedManyWithoutManagersInput
+  affiliations?: Prisma.EmployeeLocationAffiliationUncheckedCreateNestedManyWithoutEmployeeInput
+  managementRoles?: Prisma.ManagementRoleUncheckedCreateNestedManyWithoutEmployeeInput
   shifts?: Prisma.ShiftInstanceUncheckedCreateNestedManyWithoutEmployeeInput
   assignedPattern?: Prisma.AssignedPatternUncheckedCreateNestedManyWithoutEmployeeInput
   leaveRequests?: Prisma.LeaveRequestUncheckedCreateNestedManyWithoutEmployeeInput
@@ -995,7 +754,84 @@ export type EmployeeUncheckedCreateWithoutOrganizationInput = {
   availability?: Prisma.EmployeeAvailabilityUncheckedCreateNestedManyWithoutEmployeeInput
   targetManagerClaims?: Prisma.ShiftClaimUncheckedCreateNestedManyWithoutTargetManagerInput
   homeManagerClaims?: Prisma.ShiftClaimUncheckedCreateNestedManyWithoutHomeManagerInput
-  actions?: Prisma.AuditLogUncheckedCreateNestedManyWithoutActorInput
+}
+
+export type EmployeeCreateOrConnectWithoutUserInput = {
+  where: Prisma.EmployeeWhereUniqueInput
+  create: Prisma.XOR<Prisma.EmployeeCreateWithoutUserInput, Prisma.EmployeeUncheckedCreateWithoutUserInput>
+}
+
+export type EmployeeCreateManyUserInputEnvelope = {
+  data: Prisma.EmployeeCreateManyUserInput | Prisma.EmployeeCreateManyUserInput[]
+  skipDuplicates?: boolean
+}
+
+export type EmployeeUpsertWithWhereUniqueWithoutUserInput = {
+  where: Prisma.EmployeeWhereUniqueInput
+  update: Prisma.XOR<Prisma.EmployeeUpdateWithoutUserInput, Prisma.EmployeeUncheckedUpdateWithoutUserInput>
+  create: Prisma.XOR<Prisma.EmployeeCreateWithoutUserInput, Prisma.EmployeeUncheckedCreateWithoutUserInput>
+}
+
+export type EmployeeUpdateWithWhereUniqueWithoutUserInput = {
+  where: Prisma.EmployeeWhereUniqueInput
+  data: Prisma.XOR<Prisma.EmployeeUpdateWithoutUserInput, Prisma.EmployeeUncheckedUpdateWithoutUserInput>
+}
+
+export type EmployeeUpdateManyWithWhereWithoutUserInput = {
+  where: Prisma.EmployeeScalarWhereInput
+  data: Prisma.XOR<Prisma.EmployeeUpdateManyMutationInput, Prisma.EmployeeUncheckedUpdateManyWithoutUserInput>
+}
+
+export type EmployeeScalarWhereInput = {
+  AND?: Prisma.EmployeeScalarWhereInput | Prisma.EmployeeScalarWhereInput[]
+  OR?: Prisma.EmployeeScalarWhereInput[]
+  NOT?: Prisma.EmployeeScalarWhereInput | Prisma.EmployeeScalarWhereInput[]
+  id?: Prisma.StringFilter<"Employee"> | string
+  organizationId?: Prisma.StringFilter<"Employee"> | string
+  userId?: Prisma.StringFilter<"Employee"> | string
+  firstName?: Prisma.StringFilter<"Employee"> | string
+  lastName?: Prisma.StringFilter<"Employee"> | string
+  email?: Prisma.StringFilter<"Employee"> | string
+  archivedAt?: Prisma.DateTimeNullableFilter<"Employee"> | Date | string | null
+  roleId?: Prisma.StringFilter<"Employee"> | string
+}
+
+export type EmployeeCreateWithoutOrganizationInput = {
+  id?: string
+  firstName: string
+  lastName: string
+  email: string
+  archivedAt?: Date | string | null
+  user: Prisma.UserCreateNestedOneWithoutEmploymentsInput
+  role: Prisma.EmployeeRoleCreateNestedOneWithoutEmployeesInput
+  affiliations?: Prisma.EmployeeLocationAffiliationCreateNestedManyWithoutEmployeeInput
+  managementRoles?: Prisma.ManagementRoleCreateNestedManyWithoutEmployeeInput
+  shifts?: Prisma.ShiftInstanceCreateNestedManyWithoutEmployeeInput
+  assignedPattern?: Prisma.AssignedPatternCreateNestedManyWithoutEmployeeInput
+  leaveRequests?: Prisma.LeaveRequestCreateNestedManyWithoutEmployeeInput
+  shiftClaims?: Prisma.ShiftClaimCreateNestedManyWithoutEmployeeInput
+  availability?: Prisma.EmployeeAvailabilityCreateNestedManyWithoutEmployeeInput
+  targetManagerClaims?: Prisma.ShiftClaimCreateNestedManyWithoutTargetManagerInput
+  homeManagerClaims?: Prisma.ShiftClaimCreateNestedManyWithoutHomeManagerInput
+}
+
+export type EmployeeUncheckedCreateWithoutOrganizationInput = {
+  id?: string
+  userId: string
+  firstName: string
+  lastName: string
+  email: string
+  archivedAt?: Date | string | null
+  roleId: string
+  affiliations?: Prisma.EmployeeLocationAffiliationUncheckedCreateNestedManyWithoutEmployeeInput
+  managementRoles?: Prisma.ManagementRoleUncheckedCreateNestedManyWithoutEmployeeInput
+  shifts?: Prisma.ShiftInstanceUncheckedCreateNestedManyWithoutEmployeeInput
+  assignedPattern?: Prisma.AssignedPatternUncheckedCreateNestedManyWithoutEmployeeInput
+  leaveRequests?: Prisma.LeaveRequestUncheckedCreateNestedManyWithoutEmployeeInput
+  shiftClaims?: Prisma.ShiftClaimUncheckedCreateNestedManyWithoutEmployeeInput
+  availability?: Prisma.EmployeeAvailabilityUncheckedCreateNestedManyWithoutEmployeeInput
+  targetManagerClaims?: Prisma.ShiftClaimUncheckedCreateNestedManyWithoutTargetManagerInput
+  homeManagerClaims?: Prisma.ShiftClaimUncheckedCreateNestedManyWithoutHomeManagerInput
 }
 
 export type EmployeeCreateOrConnectWithoutOrganizationInput = {
@@ -1006,59 +842,6 @@ export type EmployeeCreateOrConnectWithoutOrganizationInput = {
 export type EmployeeCreateManyOrganizationInputEnvelope = {
   data: Prisma.EmployeeCreateManyOrganizationInput | Prisma.EmployeeCreateManyOrganizationInput[]
   skipDuplicates?: boolean
-}
-
-export type EmployeeCreateWithoutManagedOrganizationsInput = {
-  id?: string
-  userId?: string | null
-  firstName: string
-  lastName: string
-  email: string
-  archivedAt?: Date | string | null
-  accessLevel?: $Enums.AccessLevel
-  role: Prisma.EmployeeRoleCreateNestedOneWithoutEmployeesInput
-  homeDepartment?: Prisma.DepartmentCreateNestedOneWithoutHomeStaffInput
-  homeWard?: Prisma.WardCreateNestedOneWithoutHomeStaffInput
-  managedDepartments?: Prisma.DepartmentCreateNestedManyWithoutManagersInput
-  managedWards?: Prisma.WardCreateNestedManyWithoutManagersInput
-  shifts?: Prisma.ShiftInstanceCreateNestedManyWithoutEmployeeInput
-  assignedPattern?: Prisma.AssignedPatternCreateNestedManyWithoutEmployeeInput
-  leaveRequests?: Prisma.LeaveRequestCreateNestedManyWithoutEmployeeInput
-  shiftClaims?: Prisma.ShiftClaimCreateNestedManyWithoutEmployeeInput
-  availability?: Prisma.EmployeeAvailabilityCreateNestedManyWithoutEmployeeInput
-  targetManagerClaims?: Prisma.ShiftClaimCreateNestedManyWithoutTargetManagerInput
-  homeManagerClaims?: Prisma.ShiftClaimCreateNestedManyWithoutHomeManagerInput
-  organization: Prisma.OrganizationCreateNestedOneWithoutEmployeesInput
-  actions?: Prisma.AuditLogCreateNestedManyWithoutActorInput
-}
-
-export type EmployeeUncheckedCreateWithoutManagedOrganizationsInput = {
-  id?: string
-  organizationId: string
-  userId?: string | null
-  firstName: string
-  lastName: string
-  email: string
-  archivedAt?: Date | string | null
-  accessLevel?: $Enums.AccessLevel
-  roleId: string
-  homeDepartmentId?: string | null
-  homeWardId?: string | null
-  managedDepartments?: Prisma.DepartmentUncheckedCreateNestedManyWithoutManagersInput
-  managedWards?: Prisma.WardUncheckedCreateNestedManyWithoutManagersInput
-  shifts?: Prisma.ShiftInstanceUncheckedCreateNestedManyWithoutEmployeeInput
-  assignedPattern?: Prisma.AssignedPatternUncheckedCreateNestedManyWithoutEmployeeInput
-  leaveRequests?: Prisma.LeaveRequestUncheckedCreateNestedManyWithoutEmployeeInput
-  shiftClaims?: Prisma.ShiftClaimUncheckedCreateNestedManyWithoutEmployeeInput
-  availability?: Prisma.EmployeeAvailabilityUncheckedCreateNestedManyWithoutEmployeeInput
-  targetManagerClaims?: Prisma.ShiftClaimUncheckedCreateNestedManyWithoutTargetManagerInput
-  homeManagerClaims?: Prisma.ShiftClaimUncheckedCreateNestedManyWithoutHomeManagerInput
-  actions?: Prisma.AuditLogUncheckedCreateNestedManyWithoutActorInput
-}
-
-export type EmployeeCreateOrConnectWithoutManagedOrganizationsInput = {
-  where: Prisma.EmployeeWhereUniqueInput
-  create: Prisma.XOR<Prisma.EmployeeCreateWithoutManagedOrganizationsInput, Prisma.EmployeeUncheckedCreateWithoutManagedOrganizationsInput>
 }
 
 export type EmployeeUpsertWithWhereUniqueWithoutOrganizationInput = {
@@ -1077,52 +860,16 @@ export type EmployeeUpdateManyWithWhereWithoutOrganizationInput = {
   data: Prisma.XOR<Prisma.EmployeeUpdateManyMutationInput, Prisma.EmployeeUncheckedUpdateManyWithoutOrganizationInput>
 }
 
-export type EmployeeScalarWhereInput = {
-  AND?: Prisma.EmployeeScalarWhereInput | Prisma.EmployeeScalarWhereInput[]
-  OR?: Prisma.EmployeeScalarWhereInput[]
-  NOT?: Prisma.EmployeeScalarWhereInput | Prisma.EmployeeScalarWhereInput[]
-  id?: Prisma.StringFilter<"Employee"> | string
-  organizationId?: Prisma.StringFilter<"Employee"> | string
-  userId?: Prisma.StringNullableFilter<"Employee"> | string | null
-  firstName?: Prisma.StringFilter<"Employee"> | string
-  lastName?: Prisma.StringFilter<"Employee"> | string
-  email?: Prisma.StringFilter<"Employee"> | string
-  archivedAt?: Prisma.DateTimeNullableFilter<"Employee"> | Date | string | null
-  accessLevel?: Prisma.EnumAccessLevelFilter<"Employee"> | $Enums.AccessLevel
-  roleId?: Prisma.StringFilter<"Employee"> | string
-  homeDepartmentId?: Prisma.StringNullableFilter<"Employee"> | string | null
-  homeWardId?: Prisma.StringNullableFilter<"Employee"> | string | null
-}
-
-export type EmployeeUpsertWithWhereUniqueWithoutManagedOrganizationsInput = {
-  where: Prisma.EmployeeWhereUniqueInput
-  update: Prisma.XOR<Prisma.EmployeeUpdateWithoutManagedOrganizationsInput, Prisma.EmployeeUncheckedUpdateWithoutManagedOrganizationsInput>
-  create: Prisma.XOR<Prisma.EmployeeCreateWithoutManagedOrganizationsInput, Prisma.EmployeeUncheckedCreateWithoutManagedOrganizationsInput>
-}
-
-export type EmployeeUpdateWithWhereUniqueWithoutManagedOrganizationsInput = {
-  where: Prisma.EmployeeWhereUniqueInput
-  data: Prisma.XOR<Prisma.EmployeeUpdateWithoutManagedOrganizationsInput, Prisma.EmployeeUncheckedUpdateWithoutManagedOrganizationsInput>
-}
-
-export type EmployeeUpdateManyWithWhereWithoutManagedOrganizationsInput = {
-  where: Prisma.EmployeeScalarWhereInput
-  data: Prisma.XOR<Prisma.EmployeeUpdateManyMutationInput, Prisma.EmployeeUncheckedUpdateManyWithoutManagedOrganizationsInput>
-}
-
-export type EmployeeCreateWithoutManagedDepartmentsInput = {
+export type EmployeeCreateWithoutAffiliationsInput = {
   id?: string
-  userId?: string | null
   firstName: string
   lastName: string
   email: string
   archivedAt?: Date | string | null
-  accessLevel?: $Enums.AccessLevel
+  user: Prisma.UserCreateNestedOneWithoutEmploymentsInput
+  organization: Prisma.OrganizationCreateNestedOneWithoutEmployeesInput
   role: Prisma.EmployeeRoleCreateNestedOneWithoutEmployeesInput
-  homeDepartment?: Prisma.DepartmentCreateNestedOneWithoutHomeStaffInput
-  homeWard?: Prisma.WardCreateNestedOneWithoutHomeStaffInput
-  managedOrganizations?: Prisma.OrganizationCreateNestedManyWithoutAdminsInput
-  managedWards?: Prisma.WardCreateNestedManyWithoutManagersInput
+  managementRoles?: Prisma.ManagementRoleCreateNestedManyWithoutEmployeeInput
   shifts?: Prisma.ShiftInstanceCreateNestedManyWithoutEmployeeInput
   assignedPattern?: Prisma.AssignedPatternCreateNestedManyWithoutEmployeeInput
   leaveRequests?: Prisma.LeaveRequestCreateNestedManyWithoutEmployeeInput
@@ -1130,24 +877,18 @@ export type EmployeeCreateWithoutManagedDepartmentsInput = {
   availability?: Prisma.EmployeeAvailabilityCreateNestedManyWithoutEmployeeInput
   targetManagerClaims?: Prisma.ShiftClaimCreateNestedManyWithoutTargetManagerInput
   homeManagerClaims?: Prisma.ShiftClaimCreateNestedManyWithoutHomeManagerInput
-  organization: Prisma.OrganizationCreateNestedOneWithoutEmployeesInput
-  actions?: Prisma.AuditLogCreateNestedManyWithoutActorInput
 }
 
-export type EmployeeUncheckedCreateWithoutManagedDepartmentsInput = {
+export type EmployeeUncheckedCreateWithoutAffiliationsInput = {
   id?: string
   organizationId: string
-  userId?: string | null
+  userId: string
   firstName: string
   lastName: string
   email: string
   archivedAt?: Date | string | null
-  accessLevel?: $Enums.AccessLevel
   roleId: string
-  homeDepartmentId?: string | null
-  homeWardId?: string | null
-  managedOrganizations?: Prisma.OrganizationUncheckedCreateNestedManyWithoutAdminsInput
-  managedWards?: Prisma.WardUncheckedCreateNestedManyWithoutManagersInput
+  managementRoles?: Prisma.ManagementRoleUncheckedCreateNestedManyWithoutEmployeeInput
   shifts?: Prisma.ShiftInstanceUncheckedCreateNestedManyWithoutEmployeeInput
   assignedPattern?: Prisma.AssignedPatternUncheckedCreateNestedManyWithoutEmployeeInput
   leaveRequests?: Prisma.LeaveRequestUncheckedCreateNestedManyWithoutEmployeeInput
@@ -1155,27 +896,72 @@ export type EmployeeUncheckedCreateWithoutManagedDepartmentsInput = {
   availability?: Prisma.EmployeeAvailabilityUncheckedCreateNestedManyWithoutEmployeeInput
   targetManagerClaims?: Prisma.ShiftClaimUncheckedCreateNestedManyWithoutTargetManagerInput
   homeManagerClaims?: Prisma.ShiftClaimUncheckedCreateNestedManyWithoutHomeManagerInput
-  actions?: Prisma.AuditLogUncheckedCreateNestedManyWithoutActorInput
 }
 
-export type EmployeeCreateOrConnectWithoutManagedDepartmentsInput = {
+export type EmployeeCreateOrConnectWithoutAffiliationsInput = {
   where: Prisma.EmployeeWhereUniqueInput
-  create: Prisma.XOR<Prisma.EmployeeCreateWithoutManagedDepartmentsInput, Prisma.EmployeeUncheckedCreateWithoutManagedDepartmentsInput>
+  create: Prisma.XOR<Prisma.EmployeeCreateWithoutAffiliationsInput, Prisma.EmployeeUncheckedCreateWithoutAffiliationsInput>
 }
 
-export type EmployeeCreateWithoutHomeDepartmentInput = {
+export type EmployeeUpsertWithoutAffiliationsInput = {
+  update: Prisma.XOR<Prisma.EmployeeUpdateWithoutAffiliationsInput, Prisma.EmployeeUncheckedUpdateWithoutAffiliationsInput>
+  create: Prisma.XOR<Prisma.EmployeeCreateWithoutAffiliationsInput, Prisma.EmployeeUncheckedCreateWithoutAffiliationsInput>
+  where?: Prisma.EmployeeWhereInput
+}
+
+export type EmployeeUpdateToOneWithWhereWithoutAffiliationsInput = {
+  where?: Prisma.EmployeeWhereInput
+  data: Prisma.XOR<Prisma.EmployeeUpdateWithoutAffiliationsInput, Prisma.EmployeeUncheckedUpdateWithoutAffiliationsInput>
+}
+
+export type EmployeeUpdateWithoutAffiliationsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  firstName?: Prisma.StringFieldUpdateOperationsInput | string
+  lastName?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  user?: Prisma.UserUpdateOneRequiredWithoutEmploymentsNestedInput
+  organization?: Prisma.OrganizationUpdateOneRequiredWithoutEmployeesNestedInput
+  role?: Prisma.EmployeeRoleUpdateOneRequiredWithoutEmployeesNestedInput
+  managementRoles?: Prisma.ManagementRoleUpdateManyWithoutEmployeeNestedInput
+  shifts?: Prisma.ShiftInstanceUpdateManyWithoutEmployeeNestedInput
+  assignedPattern?: Prisma.AssignedPatternUpdateManyWithoutEmployeeNestedInput
+  leaveRequests?: Prisma.LeaveRequestUpdateManyWithoutEmployeeNestedInput
+  shiftClaims?: Prisma.ShiftClaimUpdateManyWithoutEmployeeNestedInput
+  availability?: Prisma.EmployeeAvailabilityUpdateManyWithoutEmployeeNestedInput
+  targetManagerClaims?: Prisma.ShiftClaimUpdateManyWithoutTargetManagerNestedInput
+  homeManagerClaims?: Prisma.ShiftClaimUpdateManyWithoutHomeManagerNestedInput
+}
+
+export type EmployeeUncheckedUpdateWithoutAffiliationsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  organizationId?: Prisma.StringFieldUpdateOperationsInput | string
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
+  firstName?: Prisma.StringFieldUpdateOperationsInput | string
+  lastName?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  roleId?: Prisma.StringFieldUpdateOperationsInput | string
+  managementRoles?: Prisma.ManagementRoleUncheckedUpdateManyWithoutEmployeeNestedInput
+  shifts?: Prisma.ShiftInstanceUncheckedUpdateManyWithoutEmployeeNestedInput
+  assignedPattern?: Prisma.AssignedPatternUncheckedUpdateManyWithoutEmployeeNestedInput
+  leaveRequests?: Prisma.LeaveRequestUncheckedUpdateManyWithoutEmployeeNestedInput
+  shiftClaims?: Prisma.ShiftClaimUncheckedUpdateManyWithoutEmployeeNestedInput
+  availability?: Prisma.EmployeeAvailabilityUncheckedUpdateManyWithoutEmployeeNestedInput
+  targetManagerClaims?: Prisma.ShiftClaimUncheckedUpdateManyWithoutTargetManagerNestedInput
+  homeManagerClaims?: Prisma.ShiftClaimUncheckedUpdateManyWithoutHomeManagerNestedInput
+}
+
+export type EmployeeCreateWithoutManagementRolesInput = {
   id?: string
-  userId?: string | null
   firstName: string
   lastName: string
   email: string
   archivedAt?: Date | string | null
-  accessLevel?: $Enums.AccessLevel
+  user: Prisma.UserCreateNestedOneWithoutEmploymentsInput
+  organization: Prisma.OrganizationCreateNestedOneWithoutEmployeesInput
   role: Prisma.EmployeeRoleCreateNestedOneWithoutEmployeesInput
-  homeWard?: Prisma.WardCreateNestedOneWithoutHomeStaffInput
-  managedOrganizations?: Prisma.OrganizationCreateNestedManyWithoutAdminsInput
-  managedDepartments?: Prisma.DepartmentCreateNestedManyWithoutManagersInput
-  managedWards?: Prisma.WardCreateNestedManyWithoutManagersInput
+  affiliations?: Prisma.EmployeeLocationAffiliationCreateNestedManyWithoutEmployeeInput
   shifts?: Prisma.ShiftInstanceCreateNestedManyWithoutEmployeeInput
   assignedPattern?: Prisma.AssignedPatternCreateNestedManyWithoutEmployeeInput
   leaveRequests?: Prisma.LeaveRequestCreateNestedManyWithoutEmployeeInput
@@ -1183,24 +969,18 @@ export type EmployeeCreateWithoutHomeDepartmentInput = {
   availability?: Prisma.EmployeeAvailabilityCreateNestedManyWithoutEmployeeInput
   targetManagerClaims?: Prisma.ShiftClaimCreateNestedManyWithoutTargetManagerInput
   homeManagerClaims?: Prisma.ShiftClaimCreateNestedManyWithoutHomeManagerInput
-  organization: Prisma.OrganizationCreateNestedOneWithoutEmployeesInput
-  actions?: Prisma.AuditLogCreateNestedManyWithoutActorInput
 }
 
-export type EmployeeUncheckedCreateWithoutHomeDepartmentInput = {
+export type EmployeeUncheckedCreateWithoutManagementRolesInput = {
   id?: string
   organizationId: string
-  userId?: string | null
+  userId: string
   firstName: string
   lastName: string
   email: string
   archivedAt?: Date | string | null
-  accessLevel?: $Enums.AccessLevel
   roleId: string
-  homeWardId?: string | null
-  managedOrganizations?: Prisma.OrganizationUncheckedCreateNestedManyWithoutAdminsInput
-  managedDepartments?: Prisma.DepartmentUncheckedCreateNestedManyWithoutManagersInput
-  managedWards?: Prisma.WardUncheckedCreateNestedManyWithoutManagersInput
+  affiliations?: Prisma.EmployeeLocationAffiliationUncheckedCreateNestedManyWithoutEmployeeInput
   shifts?: Prisma.ShiftInstanceUncheckedCreateNestedManyWithoutEmployeeInput
   assignedPattern?: Prisma.AssignedPatternUncheckedCreateNestedManyWithoutEmployeeInput
   leaveRequests?: Prisma.LeaveRequestUncheckedCreateNestedManyWithoutEmployeeInput
@@ -1208,207 +988,72 @@ export type EmployeeUncheckedCreateWithoutHomeDepartmentInput = {
   availability?: Prisma.EmployeeAvailabilityUncheckedCreateNestedManyWithoutEmployeeInput
   targetManagerClaims?: Prisma.ShiftClaimUncheckedCreateNestedManyWithoutTargetManagerInput
   homeManagerClaims?: Prisma.ShiftClaimUncheckedCreateNestedManyWithoutHomeManagerInput
-  actions?: Prisma.AuditLogUncheckedCreateNestedManyWithoutActorInput
 }
 
-export type EmployeeCreateOrConnectWithoutHomeDepartmentInput = {
+export type EmployeeCreateOrConnectWithoutManagementRolesInput = {
   where: Prisma.EmployeeWhereUniqueInput
-  create: Prisma.XOR<Prisma.EmployeeCreateWithoutHomeDepartmentInput, Prisma.EmployeeUncheckedCreateWithoutHomeDepartmentInput>
+  create: Prisma.XOR<Prisma.EmployeeCreateWithoutManagementRolesInput, Prisma.EmployeeUncheckedCreateWithoutManagementRolesInput>
 }
 
-export type EmployeeCreateManyHomeDepartmentInputEnvelope = {
-  data: Prisma.EmployeeCreateManyHomeDepartmentInput | Prisma.EmployeeCreateManyHomeDepartmentInput[]
-  skipDuplicates?: boolean
+export type EmployeeUpsertWithoutManagementRolesInput = {
+  update: Prisma.XOR<Prisma.EmployeeUpdateWithoutManagementRolesInput, Prisma.EmployeeUncheckedUpdateWithoutManagementRolesInput>
+  create: Prisma.XOR<Prisma.EmployeeCreateWithoutManagementRolesInput, Prisma.EmployeeUncheckedCreateWithoutManagementRolesInput>
+  where?: Prisma.EmployeeWhereInput
 }
 
-export type EmployeeUpsertWithWhereUniqueWithoutManagedDepartmentsInput = {
-  where: Prisma.EmployeeWhereUniqueInput
-  update: Prisma.XOR<Prisma.EmployeeUpdateWithoutManagedDepartmentsInput, Prisma.EmployeeUncheckedUpdateWithoutManagedDepartmentsInput>
-  create: Prisma.XOR<Prisma.EmployeeCreateWithoutManagedDepartmentsInput, Prisma.EmployeeUncheckedCreateWithoutManagedDepartmentsInput>
+export type EmployeeUpdateToOneWithWhereWithoutManagementRolesInput = {
+  where?: Prisma.EmployeeWhereInput
+  data: Prisma.XOR<Prisma.EmployeeUpdateWithoutManagementRolesInput, Prisma.EmployeeUncheckedUpdateWithoutManagementRolesInput>
 }
 
-export type EmployeeUpdateWithWhereUniqueWithoutManagedDepartmentsInput = {
-  where: Prisma.EmployeeWhereUniqueInput
-  data: Prisma.XOR<Prisma.EmployeeUpdateWithoutManagedDepartmentsInput, Prisma.EmployeeUncheckedUpdateWithoutManagedDepartmentsInput>
+export type EmployeeUpdateWithoutManagementRolesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  firstName?: Prisma.StringFieldUpdateOperationsInput | string
+  lastName?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  user?: Prisma.UserUpdateOneRequiredWithoutEmploymentsNestedInput
+  organization?: Prisma.OrganizationUpdateOneRequiredWithoutEmployeesNestedInput
+  role?: Prisma.EmployeeRoleUpdateOneRequiredWithoutEmployeesNestedInput
+  affiliations?: Prisma.EmployeeLocationAffiliationUpdateManyWithoutEmployeeNestedInput
+  shifts?: Prisma.ShiftInstanceUpdateManyWithoutEmployeeNestedInput
+  assignedPattern?: Prisma.AssignedPatternUpdateManyWithoutEmployeeNestedInput
+  leaveRequests?: Prisma.LeaveRequestUpdateManyWithoutEmployeeNestedInput
+  shiftClaims?: Prisma.ShiftClaimUpdateManyWithoutEmployeeNestedInput
+  availability?: Prisma.EmployeeAvailabilityUpdateManyWithoutEmployeeNestedInput
+  targetManagerClaims?: Prisma.ShiftClaimUpdateManyWithoutTargetManagerNestedInput
+  homeManagerClaims?: Prisma.ShiftClaimUpdateManyWithoutHomeManagerNestedInput
 }
 
-export type EmployeeUpdateManyWithWhereWithoutManagedDepartmentsInput = {
-  where: Prisma.EmployeeScalarWhereInput
-  data: Prisma.XOR<Prisma.EmployeeUpdateManyMutationInput, Prisma.EmployeeUncheckedUpdateManyWithoutManagedDepartmentsInput>
-}
-
-export type EmployeeUpsertWithWhereUniqueWithoutHomeDepartmentInput = {
-  where: Prisma.EmployeeWhereUniqueInput
-  update: Prisma.XOR<Prisma.EmployeeUpdateWithoutHomeDepartmentInput, Prisma.EmployeeUncheckedUpdateWithoutHomeDepartmentInput>
-  create: Prisma.XOR<Prisma.EmployeeCreateWithoutHomeDepartmentInput, Prisma.EmployeeUncheckedCreateWithoutHomeDepartmentInput>
-}
-
-export type EmployeeUpdateWithWhereUniqueWithoutHomeDepartmentInput = {
-  where: Prisma.EmployeeWhereUniqueInput
-  data: Prisma.XOR<Prisma.EmployeeUpdateWithoutHomeDepartmentInput, Prisma.EmployeeUncheckedUpdateWithoutHomeDepartmentInput>
-}
-
-export type EmployeeUpdateManyWithWhereWithoutHomeDepartmentInput = {
-  where: Prisma.EmployeeScalarWhereInput
-  data: Prisma.XOR<Prisma.EmployeeUpdateManyMutationInput, Prisma.EmployeeUncheckedUpdateManyWithoutHomeDepartmentInput>
-}
-
-export type EmployeeCreateWithoutManagedWardsInput = {
-  id?: string
-  userId?: string | null
-  firstName: string
-  lastName: string
-  email: string
-  archivedAt?: Date | string | null
-  accessLevel?: $Enums.AccessLevel
-  role: Prisma.EmployeeRoleCreateNestedOneWithoutEmployeesInput
-  homeDepartment?: Prisma.DepartmentCreateNestedOneWithoutHomeStaffInput
-  homeWard?: Prisma.WardCreateNestedOneWithoutHomeStaffInput
-  managedOrganizations?: Prisma.OrganizationCreateNestedManyWithoutAdminsInput
-  managedDepartments?: Prisma.DepartmentCreateNestedManyWithoutManagersInput
-  shifts?: Prisma.ShiftInstanceCreateNestedManyWithoutEmployeeInput
-  assignedPattern?: Prisma.AssignedPatternCreateNestedManyWithoutEmployeeInput
-  leaveRequests?: Prisma.LeaveRequestCreateNestedManyWithoutEmployeeInput
-  shiftClaims?: Prisma.ShiftClaimCreateNestedManyWithoutEmployeeInput
-  availability?: Prisma.EmployeeAvailabilityCreateNestedManyWithoutEmployeeInput
-  targetManagerClaims?: Prisma.ShiftClaimCreateNestedManyWithoutTargetManagerInput
-  homeManagerClaims?: Prisma.ShiftClaimCreateNestedManyWithoutHomeManagerInput
-  organization: Prisma.OrganizationCreateNestedOneWithoutEmployeesInput
-  actions?: Prisma.AuditLogCreateNestedManyWithoutActorInput
-}
-
-export type EmployeeUncheckedCreateWithoutManagedWardsInput = {
-  id?: string
-  organizationId: string
-  userId?: string | null
-  firstName: string
-  lastName: string
-  email: string
-  archivedAt?: Date | string | null
-  accessLevel?: $Enums.AccessLevel
-  roleId: string
-  homeDepartmentId?: string | null
-  homeWardId?: string | null
-  managedOrganizations?: Prisma.OrganizationUncheckedCreateNestedManyWithoutAdminsInput
-  managedDepartments?: Prisma.DepartmentUncheckedCreateNestedManyWithoutManagersInput
-  shifts?: Prisma.ShiftInstanceUncheckedCreateNestedManyWithoutEmployeeInput
-  assignedPattern?: Prisma.AssignedPatternUncheckedCreateNestedManyWithoutEmployeeInput
-  leaveRequests?: Prisma.LeaveRequestUncheckedCreateNestedManyWithoutEmployeeInput
-  shiftClaims?: Prisma.ShiftClaimUncheckedCreateNestedManyWithoutEmployeeInput
-  availability?: Prisma.EmployeeAvailabilityUncheckedCreateNestedManyWithoutEmployeeInput
-  targetManagerClaims?: Prisma.ShiftClaimUncheckedCreateNestedManyWithoutTargetManagerInput
-  homeManagerClaims?: Prisma.ShiftClaimUncheckedCreateNestedManyWithoutHomeManagerInput
-  actions?: Prisma.AuditLogUncheckedCreateNestedManyWithoutActorInput
-}
-
-export type EmployeeCreateOrConnectWithoutManagedWardsInput = {
-  where: Prisma.EmployeeWhereUniqueInput
-  create: Prisma.XOR<Prisma.EmployeeCreateWithoutManagedWardsInput, Prisma.EmployeeUncheckedCreateWithoutManagedWardsInput>
-}
-
-export type EmployeeCreateWithoutHomeWardInput = {
-  id?: string
-  userId?: string | null
-  firstName: string
-  lastName: string
-  email: string
-  archivedAt?: Date | string | null
-  accessLevel?: $Enums.AccessLevel
-  role: Prisma.EmployeeRoleCreateNestedOneWithoutEmployeesInput
-  homeDepartment?: Prisma.DepartmentCreateNestedOneWithoutHomeStaffInput
-  managedOrganizations?: Prisma.OrganizationCreateNestedManyWithoutAdminsInput
-  managedDepartments?: Prisma.DepartmentCreateNestedManyWithoutManagersInput
-  managedWards?: Prisma.WardCreateNestedManyWithoutManagersInput
-  shifts?: Prisma.ShiftInstanceCreateNestedManyWithoutEmployeeInput
-  assignedPattern?: Prisma.AssignedPatternCreateNestedManyWithoutEmployeeInput
-  leaveRequests?: Prisma.LeaveRequestCreateNestedManyWithoutEmployeeInput
-  shiftClaims?: Prisma.ShiftClaimCreateNestedManyWithoutEmployeeInput
-  availability?: Prisma.EmployeeAvailabilityCreateNestedManyWithoutEmployeeInput
-  targetManagerClaims?: Prisma.ShiftClaimCreateNestedManyWithoutTargetManagerInput
-  homeManagerClaims?: Prisma.ShiftClaimCreateNestedManyWithoutHomeManagerInput
-  organization: Prisma.OrganizationCreateNestedOneWithoutEmployeesInput
-  actions?: Prisma.AuditLogCreateNestedManyWithoutActorInput
-}
-
-export type EmployeeUncheckedCreateWithoutHomeWardInput = {
-  id?: string
-  organizationId: string
-  userId?: string | null
-  firstName: string
-  lastName: string
-  email: string
-  archivedAt?: Date | string | null
-  accessLevel?: $Enums.AccessLevel
-  roleId: string
-  homeDepartmentId?: string | null
-  managedOrganizations?: Prisma.OrganizationUncheckedCreateNestedManyWithoutAdminsInput
-  managedDepartments?: Prisma.DepartmentUncheckedCreateNestedManyWithoutManagersInput
-  managedWards?: Prisma.WardUncheckedCreateNestedManyWithoutManagersInput
-  shifts?: Prisma.ShiftInstanceUncheckedCreateNestedManyWithoutEmployeeInput
-  assignedPattern?: Prisma.AssignedPatternUncheckedCreateNestedManyWithoutEmployeeInput
-  leaveRequests?: Prisma.LeaveRequestUncheckedCreateNestedManyWithoutEmployeeInput
-  shiftClaims?: Prisma.ShiftClaimUncheckedCreateNestedManyWithoutEmployeeInput
-  availability?: Prisma.EmployeeAvailabilityUncheckedCreateNestedManyWithoutEmployeeInput
-  targetManagerClaims?: Prisma.ShiftClaimUncheckedCreateNestedManyWithoutTargetManagerInput
-  homeManagerClaims?: Prisma.ShiftClaimUncheckedCreateNestedManyWithoutHomeManagerInput
-  actions?: Prisma.AuditLogUncheckedCreateNestedManyWithoutActorInput
-}
-
-export type EmployeeCreateOrConnectWithoutHomeWardInput = {
-  where: Prisma.EmployeeWhereUniqueInput
-  create: Prisma.XOR<Prisma.EmployeeCreateWithoutHomeWardInput, Prisma.EmployeeUncheckedCreateWithoutHomeWardInput>
-}
-
-export type EmployeeCreateManyHomeWardInputEnvelope = {
-  data: Prisma.EmployeeCreateManyHomeWardInput | Prisma.EmployeeCreateManyHomeWardInput[]
-  skipDuplicates?: boolean
-}
-
-export type EmployeeUpsertWithWhereUniqueWithoutManagedWardsInput = {
-  where: Prisma.EmployeeWhereUniqueInput
-  update: Prisma.XOR<Prisma.EmployeeUpdateWithoutManagedWardsInput, Prisma.EmployeeUncheckedUpdateWithoutManagedWardsInput>
-  create: Prisma.XOR<Prisma.EmployeeCreateWithoutManagedWardsInput, Prisma.EmployeeUncheckedCreateWithoutManagedWardsInput>
-}
-
-export type EmployeeUpdateWithWhereUniqueWithoutManagedWardsInput = {
-  where: Prisma.EmployeeWhereUniqueInput
-  data: Prisma.XOR<Prisma.EmployeeUpdateWithoutManagedWardsInput, Prisma.EmployeeUncheckedUpdateWithoutManagedWardsInput>
-}
-
-export type EmployeeUpdateManyWithWhereWithoutManagedWardsInput = {
-  where: Prisma.EmployeeScalarWhereInput
-  data: Prisma.XOR<Prisma.EmployeeUpdateManyMutationInput, Prisma.EmployeeUncheckedUpdateManyWithoutManagedWardsInput>
-}
-
-export type EmployeeUpsertWithWhereUniqueWithoutHomeWardInput = {
-  where: Prisma.EmployeeWhereUniqueInput
-  update: Prisma.XOR<Prisma.EmployeeUpdateWithoutHomeWardInput, Prisma.EmployeeUncheckedUpdateWithoutHomeWardInput>
-  create: Prisma.XOR<Prisma.EmployeeCreateWithoutHomeWardInput, Prisma.EmployeeUncheckedCreateWithoutHomeWardInput>
-}
-
-export type EmployeeUpdateWithWhereUniqueWithoutHomeWardInput = {
-  where: Prisma.EmployeeWhereUniqueInput
-  data: Prisma.XOR<Prisma.EmployeeUpdateWithoutHomeWardInput, Prisma.EmployeeUncheckedUpdateWithoutHomeWardInput>
-}
-
-export type EmployeeUpdateManyWithWhereWithoutHomeWardInput = {
-  where: Prisma.EmployeeScalarWhereInput
-  data: Prisma.XOR<Prisma.EmployeeUpdateManyMutationInput, Prisma.EmployeeUncheckedUpdateManyWithoutHomeWardInput>
+export type EmployeeUncheckedUpdateWithoutManagementRolesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  organizationId?: Prisma.StringFieldUpdateOperationsInput | string
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
+  firstName?: Prisma.StringFieldUpdateOperationsInput | string
+  lastName?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  roleId?: Prisma.StringFieldUpdateOperationsInput | string
+  affiliations?: Prisma.EmployeeLocationAffiliationUncheckedUpdateManyWithoutEmployeeNestedInput
+  shifts?: Prisma.ShiftInstanceUncheckedUpdateManyWithoutEmployeeNestedInput
+  assignedPattern?: Prisma.AssignedPatternUncheckedUpdateManyWithoutEmployeeNestedInput
+  leaveRequests?: Prisma.LeaveRequestUncheckedUpdateManyWithoutEmployeeNestedInput
+  shiftClaims?: Prisma.ShiftClaimUncheckedUpdateManyWithoutEmployeeNestedInput
+  availability?: Prisma.EmployeeAvailabilityUncheckedUpdateManyWithoutEmployeeNestedInput
+  targetManagerClaims?: Prisma.ShiftClaimUncheckedUpdateManyWithoutTargetManagerNestedInput
+  homeManagerClaims?: Prisma.ShiftClaimUncheckedUpdateManyWithoutHomeManagerNestedInput
 }
 
 export type EmployeeCreateWithoutRoleInput = {
   id?: string
-  userId?: string | null
   firstName: string
   lastName: string
   email: string
   archivedAt?: Date | string | null
-  accessLevel?: $Enums.AccessLevel
-  homeDepartment?: Prisma.DepartmentCreateNestedOneWithoutHomeStaffInput
-  homeWard?: Prisma.WardCreateNestedOneWithoutHomeStaffInput
-  managedOrganizations?: Prisma.OrganizationCreateNestedManyWithoutAdminsInput
-  managedDepartments?: Prisma.DepartmentCreateNestedManyWithoutManagersInput
-  managedWards?: Prisma.WardCreateNestedManyWithoutManagersInput
+  user: Prisma.UserCreateNestedOneWithoutEmploymentsInput
+  organization: Prisma.OrganizationCreateNestedOneWithoutEmployeesInput
+  affiliations?: Prisma.EmployeeLocationAffiliationCreateNestedManyWithoutEmployeeInput
+  managementRoles?: Prisma.ManagementRoleCreateNestedManyWithoutEmployeeInput
   shifts?: Prisma.ShiftInstanceCreateNestedManyWithoutEmployeeInput
   assignedPattern?: Prisma.AssignedPatternCreateNestedManyWithoutEmployeeInput
   leaveRequests?: Prisma.LeaveRequestCreateNestedManyWithoutEmployeeInput
@@ -1416,24 +1061,18 @@ export type EmployeeCreateWithoutRoleInput = {
   availability?: Prisma.EmployeeAvailabilityCreateNestedManyWithoutEmployeeInput
   targetManagerClaims?: Prisma.ShiftClaimCreateNestedManyWithoutTargetManagerInput
   homeManagerClaims?: Prisma.ShiftClaimCreateNestedManyWithoutHomeManagerInput
-  organization: Prisma.OrganizationCreateNestedOneWithoutEmployeesInput
-  actions?: Prisma.AuditLogCreateNestedManyWithoutActorInput
 }
 
 export type EmployeeUncheckedCreateWithoutRoleInput = {
   id?: string
   organizationId: string
-  userId?: string | null
+  userId: string
   firstName: string
   lastName: string
   email: string
   archivedAt?: Date | string | null
-  accessLevel?: $Enums.AccessLevel
-  homeDepartmentId?: string | null
-  homeWardId?: string | null
-  managedOrganizations?: Prisma.OrganizationUncheckedCreateNestedManyWithoutAdminsInput
-  managedDepartments?: Prisma.DepartmentUncheckedCreateNestedManyWithoutManagersInput
-  managedWards?: Prisma.WardUncheckedCreateNestedManyWithoutManagersInput
+  affiliations?: Prisma.EmployeeLocationAffiliationUncheckedCreateNestedManyWithoutEmployeeInput
+  managementRoles?: Prisma.ManagementRoleUncheckedCreateNestedManyWithoutEmployeeInput
   shifts?: Prisma.ShiftInstanceUncheckedCreateNestedManyWithoutEmployeeInput
   assignedPattern?: Prisma.AssignedPatternUncheckedCreateNestedManyWithoutEmployeeInput
   leaveRequests?: Prisma.LeaveRequestUncheckedCreateNestedManyWithoutEmployeeInput
@@ -1441,7 +1080,6 @@ export type EmployeeUncheckedCreateWithoutRoleInput = {
   availability?: Prisma.EmployeeAvailabilityUncheckedCreateNestedManyWithoutEmployeeInput
   targetManagerClaims?: Prisma.ShiftClaimUncheckedCreateNestedManyWithoutTargetManagerInput
   homeManagerClaims?: Prisma.ShiftClaimUncheckedCreateNestedManyWithoutHomeManagerInput
-  actions?: Prisma.AuditLogUncheckedCreateNestedManyWithoutActorInput
 }
 
 export type EmployeeCreateOrConnectWithoutRoleInput = {
@@ -1472,50 +1110,40 @@ export type EmployeeUpdateManyWithWhereWithoutRoleInput = {
 
 export type EmployeeCreateWithoutAssignedPatternInput = {
   id?: string
-  userId?: string | null
   firstName: string
   lastName: string
   email: string
   archivedAt?: Date | string | null
-  accessLevel?: $Enums.AccessLevel
+  user: Prisma.UserCreateNestedOneWithoutEmploymentsInput
+  organization: Prisma.OrganizationCreateNestedOneWithoutEmployeesInput
   role: Prisma.EmployeeRoleCreateNestedOneWithoutEmployeesInput
-  homeDepartment?: Prisma.DepartmentCreateNestedOneWithoutHomeStaffInput
-  homeWard?: Prisma.WardCreateNestedOneWithoutHomeStaffInput
-  managedOrganizations?: Prisma.OrganizationCreateNestedManyWithoutAdminsInput
-  managedDepartments?: Prisma.DepartmentCreateNestedManyWithoutManagersInput
-  managedWards?: Prisma.WardCreateNestedManyWithoutManagersInput
+  affiliations?: Prisma.EmployeeLocationAffiliationCreateNestedManyWithoutEmployeeInput
+  managementRoles?: Prisma.ManagementRoleCreateNestedManyWithoutEmployeeInput
   shifts?: Prisma.ShiftInstanceCreateNestedManyWithoutEmployeeInput
   leaveRequests?: Prisma.LeaveRequestCreateNestedManyWithoutEmployeeInput
   shiftClaims?: Prisma.ShiftClaimCreateNestedManyWithoutEmployeeInput
   availability?: Prisma.EmployeeAvailabilityCreateNestedManyWithoutEmployeeInput
   targetManagerClaims?: Prisma.ShiftClaimCreateNestedManyWithoutTargetManagerInput
   homeManagerClaims?: Prisma.ShiftClaimCreateNestedManyWithoutHomeManagerInput
-  organization: Prisma.OrganizationCreateNestedOneWithoutEmployeesInput
-  actions?: Prisma.AuditLogCreateNestedManyWithoutActorInput
 }
 
 export type EmployeeUncheckedCreateWithoutAssignedPatternInput = {
   id?: string
   organizationId: string
-  userId?: string | null
+  userId: string
   firstName: string
   lastName: string
   email: string
   archivedAt?: Date | string | null
-  accessLevel?: $Enums.AccessLevel
   roleId: string
-  homeDepartmentId?: string | null
-  homeWardId?: string | null
-  managedOrganizations?: Prisma.OrganizationUncheckedCreateNestedManyWithoutAdminsInput
-  managedDepartments?: Prisma.DepartmentUncheckedCreateNestedManyWithoutManagersInput
-  managedWards?: Prisma.WardUncheckedCreateNestedManyWithoutManagersInput
+  affiliations?: Prisma.EmployeeLocationAffiliationUncheckedCreateNestedManyWithoutEmployeeInput
+  managementRoles?: Prisma.ManagementRoleUncheckedCreateNestedManyWithoutEmployeeInput
   shifts?: Prisma.ShiftInstanceUncheckedCreateNestedManyWithoutEmployeeInput
   leaveRequests?: Prisma.LeaveRequestUncheckedCreateNestedManyWithoutEmployeeInput
   shiftClaims?: Prisma.ShiftClaimUncheckedCreateNestedManyWithoutEmployeeInput
   availability?: Prisma.EmployeeAvailabilityUncheckedCreateNestedManyWithoutEmployeeInput
   targetManagerClaims?: Prisma.ShiftClaimUncheckedCreateNestedManyWithoutTargetManagerInput
   homeManagerClaims?: Prisma.ShiftClaimUncheckedCreateNestedManyWithoutHomeManagerInput
-  actions?: Prisma.AuditLogUncheckedCreateNestedManyWithoutActorInput
 }
 
 export type EmployeeCreateOrConnectWithoutAssignedPatternInput = {
@@ -1536,98 +1164,78 @@ export type EmployeeUpdateToOneWithWhereWithoutAssignedPatternInput = {
 
 export type EmployeeUpdateWithoutAssignedPatternInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   firstName?: Prisma.StringFieldUpdateOperationsInput | string
   lastName?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  accessLevel?: Prisma.EnumAccessLevelFieldUpdateOperationsInput | $Enums.AccessLevel
+  user?: Prisma.UserUpdateOneRequiredWithoutEmploymentsNestedInput
+  organization?: Prisma.OrganizationUpdateOneRequiredWithoutEmployeesNestedInput
   role?: Prisma.EmployeeRoleUpdateOneRequiredWithoutEmployeesNestedInput
-  homeDepartment?: Prisma.DepartmentUpdateOneWithoutHomeStaffNestedInput
-  homeWard?: Prisma.WardUpdateOneWithoutHomeStaffNestedInput
-  managedOrganizations?: Prisma.OrganizationUpdateManyWithoutAdminsNestedInput
-  managedDepartments?: Prisma.DepartmentUpdateManyWithoutManagersNestedInput
-  managedWards?: Prisma.WardUpdateManyWithoutManagersNestedInput
+  affiliations?: Prisma.EmployeeLocationAffiliationUpdateManyWithoutEmployeeNestedInput
+  managementRoles?: Prisma.ManagementRoleUpdateManyWithoutEmployeeNestedInput
   shifts?: Prisma.ShiftInstanceUpdateManyWithoutEmployeeNestedInput
   leaveRequests?: Prisma.LeaveRequestUpdateManyWithoutEmployeeNestedInput
   shiftClaims?: Prisma.ShiftClaimUpdateManyWithoutEmployeeNestedInput
   availability?: Prisma.EmployeeAvailabilityUpdateManyWithoutEmployeeNestedInput
   targetManagerClaims?: Prisma.ShiftClaimUpdateManyWithoutTargetManagerNestedInput
   homeManagerClaims?: Prisma.ShiftClaimUpdateManyWithoutHomeManagerNestedInput
-  organization?: Prisma.OrganizationUpdateOneRequiredWithoutEmployeesNestedInput
-  actions?: Prisma.AuditLogUpdateManyWithoutActorNestedInput
 }
 
 export type EmployeeUncheckedUpdateWithoutAssignedPatternInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   organizationId?: Prisma.StringFieldUpdateOperationsInput | string
-  userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
   firstName?: Prisma.StringFieldUpdateOperationsInput | string
   lastName?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  accessLevel?: Prisma.EnumAccessLevelFieldUpdateOperationsInput | $Enums.AccessLevel
   roleId?: Prisma.StringFieldUpdateOperationsInput | string
-  homeDepartmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  homeWardId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  managedOrganizations?: Prisma.OrganizationUncheckedUpdateManyWithoutAdminsNestedInput
-  managedDepartments?: Prisma.DepartmentUncheckedUpdateManyWithoutManagersNestedInput
-  managedWards?: Prisma.WardUncheckedUpdateManyWithoutManagersNestedInput
+  affiliations?: Prisma.EmployeeLocationAffiliationUncheckedUpdateManyWithoutEmployeeNestedInput
+  managementRoles?: Prisma.ManagementRoleUncheckedUpdateManyWithoutEmployeeNestedInput
   shifts?: Prisma.ShiftInstanceUncheckedUpdateManyWithoutEmployeeNestedInput
   leaveRequests?: Prisma.LeaveRequestUncheckedUpdateManyWithoutEmployeeNestedInput
   shiftClaims?: Prisma.ShiftClaimUncheckedUpdateManyWithoutEmployeeNestedInput
   availability?: Prisma.EmployeeAvailabilityUncheckedUpdateManyWithoutEmployeeNestedInput
   targetManagerClaims?: Prisma.ShiftClaimUncheckedUpdateManyWithoutTargetManagerNestedInput
   homeManagerClaims?: Prisma.ShiftClaimUncheckedUpdateManyWithoutHomeManagerNestedInput
-  actions?: Prisma.AuditLogUncheckedUpdateManyWithoutActorNestedInput
 }
 
 export type EmployeeCreateWithoutShiftsInput = {
   id?: string
-  userId?: string | null
   firstName: string
   lastName: string
   email: string
   archivedAt?: Date | string | null
-  accessLevel?: $Enums.AccessLevel
+  user: Prisma.UserCreateNestedOneWithoutEmploymentsInput
+  organization: Prisma.OrganizationCreateNestedOneWithoutEmployeesInput
   role: Prisma.EmployeeRoleCreateNestedOneWithoutEmployeesInput
-  homeDepartment?: Prisma.DepartmentCreateNestedOneWithoutHomeStaffInput
-  homeWard?: Prisma.WardCreateNestedOneWithoutHomeStaffInput
-  managedOrganizations?: Prisma.OrganizationCreateNestedManyWithoutAdminsInput
-  managedDepartments?: Prisma.DepartmentCreateNestedManyWithoutManagersInput
-  managedWards?: Prisma.WardCreateNestedManyWithoutManagersInput
+  affiliations?: Prisma.EmployeeLocationAffiliationCreateNestedManyWithoutEmployeeInput
+  managementRoles?: Prisma.ManagementRoleCreateNestedManyWithoutEmployeeInput
   assignedPattern?: Prisma.AssignedPatternCreateNestedManyWithoutEmployeeInput
   leaveRequests?: Prisma.LeaveRequestCreateNestedManyWithoutEmployeeInput
   shiftClaims?: Prisma.ShiftClaimCreateNestedManyWithoutEmployeeInput
   availability?: Prisma.EmployeeAvailabilityCreateNestedManyWithoutEmployeeInput
   targetManagerClaims?: Prisma.ShiftClaimCreateNestedManyWithoutTargetManagerInput
   homeManagerClaims?: Prisma.ShiftClaimCreateNestedManyWithoutHomeManagerInput
-  organization: Prisma.OrganizationCreateNestedOneWithoutEmployeesInput
-  actions?: Prisma.AuditLogCreateNestedManyWithoutActorInput
 }
 
 export type EmployeeUncheckedCreateWithoutShiftsInput = {
   id?: string
   organizationId: string
-  userId?: string | null
+  userId: string
   firstName: string
   lastName: string
   email: string
   archivedAt?: Date | string | null
-  accessLevel?: $Enums.AccessLevel
   roleId: string
-  homeDepartmentId?: string | null
-  homeWardId?: string | null
-  managedOrganizations?: Prisma.OrganizationUncheckedCreateNestedManyWithoutAdminsInput
-  managedDepartments?: Prisma.DepartmentUncheckedCreateNestedManyWithoutManagersInput
-  managedWards?: Prisma.WardUncheckedCreateNestedManyWithoutManagersInput
+  affiliations?: Prisma.EmployeeLocationAffiliationUncheckedCreateNestedManyWithoutEmployeeInput
+  managementRoles?: Prisma.ManagementRoleUncheckedCreateNestedManyWithoutEmployeeInput
   assignedPattern?: Prisma.AssignedPatternUncheckedCreateNestedManyWithoutEmployeeInput
   leaveRequests?: Prisma.LeaveRequestUncheckedCreateNestedManyWithoutEmployeeInput
   shiftClaims?: Prisma.ShiftClaimUncheckedCreateNestedManyWithoutEmployeeInput
   availability?: Prisma.EmployeeAvailabilityUncheckedCreateNestedManyWithoutEmployeeInput
   targetManagerClaims?: Prisma.ShiftClaimUncheckedCreateNestedManyWithoutTargetManagerInput
   homeManagerClaims?: Prisma.ShiftClaimUncheckedCreateNestedManyWithoutHomeManagerInput
-  actions?: Prisma.AuditLogUncheckedCreateNestedManyWithoutActorInput
 }
 
 export type EmployeeCreateOrConnectWithoutShiftsInput = {
@@ -1648,98 +1256,78 @@ export type EmployeeUpdateToOneWithWhereWithoutShiftsInput = {
 
 export type EmployeeUpdateWithoutShiftsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   firstName?: Prisma.StringFieldUpdateOperationsInput | string
   lastName?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  accessLevel?: Prisma.EnumAccessLevelFieldUpdateOperationsInput | $Enums.AccessLevel
+  user?: Prisma.UserUpdateOneRequiredWithoutEmploymentsNestedInput
+  organization?: Prisma.OrganizationUpdateOneRequiredWithoutEmployeesNestedInput
   role?: Prisma.EmployeeRoleUpdateOneRequiredWithoutEmployeesNestedInput
-  homeDepartment?: Prisma.DepartmentUpdateOneWithoutHomeStaffNestedInput
-  homeWard?: Prisma.WardUpdateOneWithoutHomeStaffNestedInput
-  managedOrganizations?: Prisma.OrganizationUpdateManyWithoutAdminsNestedInput
-  managedDepartments?: Prisma.DepartmentUpdateManyWithoutManagersNestedInput
-  managedWards?: Prisma.WardUpdateManyWithoutManagersNestedInput
+  affiliations?: Prisma.EmployeeLocationAffiliationUpdateManyWithoutEmployeeNestedInput
+  managementRoles?: Prisma.ManagementRoleUpdateManyWithoutEmployeeNestedInput
   assignedPattern?: Prisma.AssignedPatternUpdateManyWithoutEmployeeNestedInput
   leaveRequests?: Prisma.LeaveRequestUpdateManyWithoutEmployeeNestedInput
   shiftClaims?: Prisma.ShiftClaimUpdateManyWithoutEmployeeNestedInput
   availability?: Prisma.EmployeeAvailabilityUpdateManyWithoutEmployeeNestedInput
   targetManagerClaims?: Prisma.ShiftClaimUpdateManyWithoutTargetManagerNestedInput
   homeManagerClaims?: Prisma.ShiftClaimUpdateManyWithoutHomeManagerNestedInput
-  organization?: Prisma.OrganizationUpdateOneRequiredWithoutEmployeesNestedInput
-  actions?: Prisma.AuditLogUpdateManyWithoutActorNestedInput
 }
 
 export type EmployeeUncheckedUpdateWithoutShiftsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   organizationId?: Prisma.StringFieldUpdateOperationsInput | string
-  userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
   firstName?: Prisma.StringFieldUpdateOperationsInput | string
   lastName?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  accessLevel?: Prisma.EnumAccessLevelFieldUpdateOperationsInput | $Enums.AccessLevel
   roleId?: Prisma.StringFieldUpdateOperationsInput | string
-  homeDepartmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  homeWardId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  managedOrganizations?: Prisma.OrganizationUncheckedUpdateManyWithoutAdminsNestedInput
-  managedDepartments?: Prisma.DepartmentUncheckedUpdateManyWithoutManagersNestedInput
-  managedWards?: Prisma.WardUncheckedUpdateManyWithoutManagersNestedInput
+  affiliations?: Prisma.EmployeeLocationAffiliationUncheckedUpdateManyWithoutEmployeeNestedInput
+  managementRoles?: Prisma.ManagementRoleUncheckedUpdateManyWithoutEmployeeNestedInput
   assignedPattern?: Prisma.AssignedPatternUncheckedUpdateManyWithoutEmployeeNestedInput
   leaveRequests?: Prisma.LeaveRequestUncheckedUpdateManyWithoutEmployeeNestedInput
   shiftClaims?: Prisma.ShiftClaimUncheckedUpdateManyWithoutEmployeeNestedInput
   availability?: Prisma.EmployeeAvailabilityUncheckedUpdateManyWithoutEmployeeNestedInput
   targetManagerClaims?: Prisma.ShiftClaimUncheckedUpdateManyWithoutTargetManagerNestedInput
   homeManagerClaims?: Prisma.ShiftClaimUncheckedUpdateManyWithoutHomeManagerNestedInput
-  actions?: Prisma.AuditLogUncheckedUpdateManyWithoutActorNestedInput
 }
 
 export type EmployeeCreateWithoutLeaveRequestsInput = {
   id?: string
-  userId?: string | null
   firstName: string
   lastName: string
   email: string
   archivedAt?: Date | string | null
-  accessLevel?: $Enums.AccessLevel
+  user: Prisma.UserCreateNestedOneWithoutEmploymentsInput
+  organization: Prisma.OrganizationCreateNestedOneWithoutEmployeesInput
   role: Prisma.EmployeeRoleCreateNestedOneWithoutEmployeesInput
-  homeDepartment?: Prisma.DepartmentCreateNestedOneWithoutHomeStaffInput
-  homeWard?: Prisma.WardCreateNestedOneWithoutHomeStaffInput
-  managedOrganizations?: Prisma.OrganizationCreateNestedManyWithoutAdminsInput
-  managedDepartments?: Prisma.DepartmentCreateNestedManyWithoutManagersInput
-  managedWards?: Prisma.WardCreateNestedManyWithoutManagersInput
+  affiliations?: Prisma.EmployeeLocationAffiliationCreateNestedManyWithoutEmployeeInput
+  managementRoles?: Prisma.ManagementRoleCreateNestedManyWithoutEmployeeInput
   shifts?: Prisma.ShiftInstanceCreateNestedManyWithoutEmployeeInput
   assignedPattern?: Prisma.AssignedPatternCreateNestedManyWithoutEmployeeInput
   shiftClaims?: Prisma.ShiftClaimCreateNestedManyWithoutEmployeeInput
   availability?: Prisma.EmployeeAvailabilityCreateNestedManyWithoutEmployeeInput
   targetManagerClaims?: Prisma.ShiftClaimCreateNestedManyWithoutTargetManagerInput
   homeManagerClaims?: Prisma.ShiftClaimCreateNestedManyWithoutHomeManagerInput
-  organization: Prisma.OrganizationCreateNestedOneWithoutEmployeesInput
-  actions?: Prisma.AuditLogCreateNestedManyWithoutActorInput
 }
 
 export type EmployeeUncheckedCreateWithoutLeaveRequestsInput = {
   id?: string
   organizationId: string
-  userId?: string | null
+  userId: string
   firstName: string
   lastName: string
   email: string
   archivedAt?: Date | string | null
-  accessLevel?: $Enums.AccessLevel
   roleId: string
-  homeDepartmentId?: string | null
-  homeWardId?: string | null
-  managedOrganizations?: Prisma.OrganizationUncheckedCreateNestedManyWithoutAdminsInput
-  managedDepartments?: Prisma.DepartmentUncheckedCreateNestedManyWithoutManagersInput
-  managedWards?: Prisma.WardUncheckedCreateNestedManyWithoutManagersInput
+  affiliations?: Prisma.EmployeeLocationAffiliationUncheckedCreateNestedManyWithoutEmployeeInput
+  managementRoles?: Prisma.ManagementRoleUncheckedCreateNestedManyWithoutEmployeeInput
   shifts?: Prisma.ShiftInstanceUncheckedCreateNestedManyWithoutEmployeeInput
   assignedPattern?: Prisma.AssignedPatternUncheckedCreateNestedManyWithoutEmployeeInput
   shiftClaims?: Prisma.ShiftClaimUncheckedCreateNestedManyWithoutEmployeeInput
   availability?: Prisma.EmployeeAvailabilityUncheckedCreateNestedManyWithoutEmployeeInput
   targetManagerClaims?: Prisma.ShiftClaimUncheckedCreateNestedManyWithoutTargetManagerInput
   homeManagerClaims?: Prisma.ShiftClaimUncheckedCreateNestedManyWithoutHomeManagerInput
-  actions?: Prisma.AuditLogUncheckedCreateNestedManyWithoutActorInput
 }
 
 export type EmployeeCreateOrConnectWithoutLeaveRequestsInput = {
@@ -1760,98 +1348,78 @@ export type EmployeeUpdateToOneWithWhereWithoutLeaveRequestsInput = {
 
 export type EmployeeUpdateWithoutLeaveRequestsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   firstName?: Prisma.StringFieldUpdateOperationsInput | string
   lastName?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  accessLevel?: Prisma.EnumAccessLevelFieldUpdateOperationsInput | $Enums.AccessLevel
+  user?: Prisma.UserUpdateOneRequiredWithoutEmploymentsNestedInput
+  organization?: Prisma.OrganizationUpdateOneRequiredWithoutEmployeesNestedInput
   role?: Prisma.EmployeeRoleUpdateOneRequiredWithoutEmployeesNestedInput
-  homeDepartment?: Prisma.DepartmentUpdateOneWithoutHomeStaffNestedInput
-  homeWard?: Prisma.WardUpdateOneWithoutHomeStaffNestedInput
-  managedOrganizations?: Prisma.OrganizationUpdateManyWithoutAdminsNestedInput
-  managedDepartments?: Prisma.DepartmentUpdateManyWithoutManagersNestedInput
-  managedWards?: Prisma.WardUpdateManyWithoutManagersNestedInput
+  affiliations?: Prisma.EmployeeLocationAffiliationUpdateManyWithoutEmployeeNestedInput
+  managementRoles?: Prisma.ManagementRoleUpdateManyWithoutEmployeeNestedInput
   shifts?: Prisma.ShiftInstanceUpdateManyWithoutEmployeeNestedInput
   assignedPattern?: Prisma.AssignedPatternUpdateManyWithoutEmployeeNestedInput
   shiftClaims?: Prisma.ShiftClaimUpdateManyWithoutEmployeeNestedInput
   availability?: Prisma.EmployeeAvailabilityUpdateManyWithoutEmployeeNestedInput
   targetManagerClaims?: Prisma.ShiftClaimUpdateManyWithoutTargetManagerNestedInput
   homeManagerClaims?: Prisma.ShiftClaimUpdateManyWithoutHomeManagerNestedInput
-  organization?: Prisma.OrganizationUpdateOneRequiredWithoutEmployeesNestedInput
-  actions?: Prisma.AuditLogUpdateManyWithoutActorNestedInput
 }
 
 export type EmployeeUncheckedUpdateWithoutLeaveRequestsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   organizationId?: Prisma.StringFieldUpdateOperationsInput | string
-  userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
   firstName?: Prisma.StringFieldUpdateOperationsInput | string
   lastName?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  accessLevel?: Prisma.EnumAccessLevelFieldUpdateOperationsInput | $Enums.AccessLevel
   roleId?: Prisma.StringFieldUpdateOperationsInput | string
-  homeDepartmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  homeWardId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  managedOrganizations?: Prisma.OrganizationUncheckedUpdateManyWithoutAdminsNestedInput
-  managedDepartments?: Prisma.DepartmentUncheckedUpdateManyWithoutManagersNestedInput
-  managedWards?: Prisma.WardUncheckedUpdateManyWithoutManagersNestedInput
+  affiliations?: Prisma.EmployeeLocationAffiliationUncheckedUpdateManyWithoutEmployeeNestedInput
+  managementRoles?: Prisma.ManagementRoleUncheckedUpdateManyWithoutEmployeeNestedInput
   shifts?: Prisma.ShiftInstanceUncheckedUpdateManyWithoutEmployeeNestedInput
   assignedPattern?: Prisma.AssignedPatternUncheckedUpdateManyWithoutEmployeeNestedInput
   shiftClaims?: Prisma.ShiftClaimUncheckedUpdateManyWithoutEmployeeNestedInput
   availability?: Prisma.EmployeeAvailabilityUncheckedUpdateManyWithoutEmployeeNestedInput
   targetManagerClaims?: Prisma.ShiftClaimUncheckedUpdateManyWithoutTargetManagerNestedInput
   homeManagerClaims?: Prisma.ShiftClaimUncheckedUpdateManyWithoutHomeManagerNestedInput
-  actions?: Prisma.AuditLogUncheckedUpdateManyWithoutActorNestedInput
 }
 
 export type EmployeeCreateWithoutShiftClaimsInput = {
   id?: string
-  userId?: string | null
   firstName: string
   lastName: string
   email: string
   archivedAt?: Date | string | null
-  accessLevel?: $Enums.AccessLevel
+  user: Prisma.UserCreateNestedOneWithoutEmploymentsInput
+  organization: Prisma.OrganizationCreateNestedOneWithoutEmployeesInput
   role: Prisma.EmployeeRoleCreateNestedOneWithoutEmployeesInput
-  homeDepartment?: Prisma.DepartmentCreateNestedOneWithoutHomeStaffInput
-  homeWard?: Prisma.WardCreateNestedOneWithoutHomeStaffInput
-  managedOrganizations?: Prisma.OrganizationCreateNestedManyWithoutAdminsInput
-  managedDepartments?: Prisma.DepartmentCreateNestedManyWithoutManagersInput
-  managedWards?: Prisma.WardCreateNestedManyWithoutManagersInput
+  affiliations?: Prisma.EmployeeLocationAffiliationCreateNestedManyWithoutEmployeeInput
+  managementRoles?: Prisma.ManagementRoleCreateNestedManyWithoutEmployeeInput
   shifts?: Prisma.ShiftInstanceCreateNestedManyWithoutEmployeeInput
   assignedPattern?: Prisma.AssignedPatternCreateNestedManyWithoutEmployeeInput
   leaveRequests?: Prisma.LeaveRequestCreateNestedManyWithoutEmployeeInput
   availability?: Prisma.EmployeeAvailabilityCreateNestedManyWithoutEmployeeInput
   targetManagerClaims?: Prisma.ShiftClaimCreateNestedManyWithoutTargetManagerInput
   homeManagerClaims?: Prisma.ShiftClaimCreateNestedManyWithoutHomeManagerInput
-  organization: Prisma.OrganizationCreateNestedOneWithoutEmployeesInput
-  actions?: Prisma.AuditLogCreateNestedManyWithoutActorInput
 }
 
 export type EmployeeUncheckedCreateWithoutShiftClaimsInput = {
   id?: string
   organizationId: string
-  userId?: string | null
+  userId: string
   firstName: string
   lastName: string
   email: string
   archivedAt?: Date | string | null
-  accessLevel?: $Enums.AccessLevel
   roleId: string
-  homeDepartmentId?: string | null
-  homeWardId?: string | null
-  managedOrganizations?: Prisma.OrganizationUncheckedCreateNestedManyWithoutAdminsInput
-  managedDepartments?: Prisma.DepartmentUncheckedCreateNestedManyWithoutManagersInput
-  managedWards?: Prisma.WardUncheckedCreateNestedManyWithoutManagersInput
+  affiliations?: Prisma.EmployeeLocationAffiliationUncheckedCreateNestedManyWithoutEmployeeInput
+  managementRoles?: Prisma.ManagementRoleUncheckedCreateNestedManyWithoutEmployeeInput
   shifts?: Prisma.ShiftInstanceUncheckedCreateNestedManyWithoutEmployeeInput
   assignedPattern?: Prisma.AssignedPatternUncheckedCreateNestedManyWithoutEmployeeInput
   leaveRequests?: Prisma.LeaveRequestUncheckedCreateNestedManyWithoutEmployeeInput
   availability?: Prisma.EmployeeAvailabilityUncheckedCreateNestedManyWithoutEmployeeInput
   targetManagerClaims?: Prisma.ShiftClaimUncheckedCreateNestedManyWithoutTargetManagerInput
   homeManagerClaims?: Prisma.ShiftClaimUncheckedCreateNestedManyWithoutHomeManagerInput
-  actions?: Prisma.AuditLogUncheckedCreateNestedManyWithoutActorInput
 }
 
 export type EmployeeCreateOrConnectWithoutShiftClaimsInput = {
@@ -1861,50 +1429,40 @@ export type EmployeeCreateOrConnectWithoutShiftClaimsInput = {
 
 export type EmployeeCreateWithoutTargetManagerClaimsInput = {
   id?: string
-  userId?: string | null
   firstName: string
   lastName: string
   email: string
   archivedAt?: Date | string | null
-  accessLevel?: $Enums.AccessLevel
+  user: Prisma.UserCreateNestedOneWithoutEmploymentsInput
+  organization: Prisma.OrganizationCreateNestedOneWithoutEmployeesInput
   role: Prisma.EmployeeRoleCreateNestedOneWithoutEmployeesInput
-  homeDepartment?: Prisma.DepartmentCreateNestedOneWithoutHomeStaffInput
-  homeWard?: Prisma.WardCreateNestedOneWithoutHomeStaffInput
-  managedOrganizations?: Prisma.OrganizationCreateNestedManyWithoutAdminsInput
-  managedDepartments?: Prisma.DepartmentCreateNestedManyWithoutManagersInput
-  managedWards?: Prisma.WardCreateNestedManyWithoutManagersInput
+  affiliations?: Prisma.EmployeeLocationAffiliationCreateNestedManyWithoutEmployeeInput
+  managementRoles?: Prisma.ManagementRoleCreateNestedManyWithoutEmployeeInput
   shifts?: Prisma.ShiftInstanceCreateNestedManyWithoutEmployeeInput
   assignedPattern?: Prisma.AssignedPatternCreateNestedManyWithoutEmployeeInput
   leaveRequests?: Prisma.LeaveRequestCreateNestedManyWithoutEmployeeInput
   shiftClaims?: Prisma.ShiftClaimCreateNestedManyWithoutEmployeeInput
   availability?: Prisma.EmployeeAvailabilityCreateNestedManyWithoutEmployeeInput
   homeManagerClaims?: Prisma.ShiftClaimCreateNestedManyWithoutHomeManagerInput
-  organization: Prisma.OrganizationCreateNestedOneWithoutEmployeesInput
-  actions?: Prisma.AuditLogCreateNestedManyWithoutActorInput
 }
 
 export type EmployeeUncheckedCreateWithoutTargetManagerClaimsInput = {
   id?: string
   organizationId: string
-  userId?: string | null
+  userId: string
   firstName: string
   lastName: string
   email: string
   archivedAt?: Date | string | null
-  accessLevel?: $Enums.AccessLevel
   roleId: string
-  homeDepartmentId?: string | null
-  homeWardId?: string | null
-  managedOrganizations?: Prisma.OrganizationUncheckedCreateNestedManyWithoutAdminsInput
-  managedDepartments?: Prisma.DepartmentUncheckedCreateNestedManyWithoutManagersInput
-  managedWards?: Prisma.WardUncheckedCreateNestedManyWithoutManagersInput
+  affiliations?: Prisma.EmployeeLocationAffiliationUncheckedCreateNestedManyWithoutEmployeeInput
+  managementRoles?: Prisma.ManagementRoleUncheckedCreateNestedManyWithoutEmployeeInput
   shifts?: Prisma.ShiftInstanceUncheckedCreateNestedManyWithoutEmployeeInput
   assignedPattern?: Prisma.AssignedPatternUncheckedCreateNestedManyWithoutEmployeeInput
   leaveRequests?: Prisma.LeaveRequestUncheckedCreateNestedManyWithoutEmployeeInput
   shiftClaims?: Prisma.ShiftClaimUncheckedCreateNestedManyWithoutEmployeeInput
   availability?: Prisma.EmployeeAvailabilityUncheckedCreateNestedManyWithoutEmployeeInput
   homeManagerClaims?: Prisma.ShiftClaimUncheckedCreateNestedManyWithoutHomeManagerInput
-  actions?: Prisma.AuditLogUncheckedCreateNestedManyWithoutActorInput
 }
 
 export type EmployeeCreateOrConnectWithoutTargetManagerClaimsInput = {
@@ -1914,50 +1472,40 @@ export type EmployeeCreateOrConnectWithoutTargetManagerClaimsInput = {
 
 export type EmployeeCreateWithoutHomeManagerClaimsInput = {
   id?: string
-  userId?: string | null
   firstName: string
   lastName: string
   email: string
   archivedAt?: Date | string | null
-  accessLevel?: $Enums.AccessLevel
+  user: Prisma.UserCreateNestedOneWithoutEmploymentsInput
+  organization: Prisma.OrganizationCreateNestedOneWithoutEmployeesInput
   role: Prisma.EmployeeRoleCreateNestedOneWithoutEmployeesInput
-  homeDepartment?: Prisma.DepartmentCreateNestedOneWithoutHomeStaffInput
-  homeWard?: Prisma.WardCreateNestedOneWithoutHomeStaffInput
-  managedOrganizations?: Prisma.OrganizationCreateNestedManyWithoutAdminsInput
-  managedDepartments?: Prisma.DepartmentCreateNestedManyWithoutManagersInput
-  managedWards?: Prisma.WardCreateNestedManyWithoutManagersInput
+  affiliations?: Prisma.EmployeeLocationAffiliationCreateNestedManyWithoutEmployeeInput
+  managementRoles?: Prisma.ManagementRoleCreateNestedManyWithoutEmployeeInput
   shifts?: Prisma.ShiftInstanceCreateNestedManyWithoutEmployeeInput
   assignedPattern?: Prisma.AssignedPatternCreateNestedManyWithoutEmployeeInput
   leaveRequests?: Prisma.LeaveRequestCreateNestedManyWithoutEmployeeInput
   shiftClaims?: Prisma.ShiftClaimCreateNestedManyWithoutEmployeeInput
   availability?: Prisma.EmployeeAvailabilityCreateNestedManyWithoutEmployeeInput
   targetManagerClaims?: Prisma.ShiftClaimCreateNestedManyWithoutTargetManagerInput
-  organization: Prisma.OrganizationCreateNestedOneWithoutEmployeesInput
-  actions?: Prisma.AuditLogCreateNestedManyWithoutActorInput
 }
 
 export type EmployeeUncheckedCreateWithoutHomeManagerClaimsInput = {
   id?: string
   organizationId: string
-  userId?: string | null
+  userId: string
   firstName: string
   lastName: string
   email: string
   archivedAt?: Date | string | null
-  accessLevel?: $Enums.AccessLevel
   roleId: string
-  homeDepartmentId?: string | null
-  homeWardId?: string | null
-  managedOrganizations?: Prisma.OrganizationUncheckedCreateNestedManyWithoutAdminsInput
-  managedDepartments?: Prisma.DepartmentUncheckedCreateNestedManyWithoutManagersInput
-  managedWards?: Prisma.WardUncheckedCreateNestedManyWithoutManagersInput
+  affiliations?: Prisma.EmployeeLocationAffiliationUncheckedCreateNestedManyWithoutEmployeeInput
+  managementRoles?: Prisma.ManagementRoleUncheckedCreateNestedManyWithoutEmployeeInput
   shifts?: Prisma.ShiftInstanceUncheckedCreateNestedManyWithoutEmployeeInput
   assignedPattern?: Prisma.AssignedPatternUncheckedCreateNestedManyWithoutEmployeeInput
   leaveRequests?: Prisma.LeaveRequestUncheckedCreateNestedManyWithoutEmployeeInput
   shiftClaims?: Prisma.ShiftClaimUncheckedCreateNestedManyWithoutEmployeeInput
   availability?: Prisma.EmployeeAvailabilityUncheckedCreateNestedManyWithoutEmployeeInput
   targetManagerClaims?: Prisma.ShiftClaimUncheckedCreateNestedManyWithoutTargetManagerInput
-  actions?: Prisma.AuditLogUncheckedCreateNestedManyWithoutActorInput
 }
 
 export type EmployeeCreateOrConnectWithoutHomeManagerClaimsInput = {
@@ -1978,50 +1526,40 @@ export type EmployeeUpdateToOneWithWhereWithoutShiftClaimsInput = {
 
 export type EmployeeUpdateWithoutShiftClaimsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   firstName?: Prisma.StringFieldUpdateOperationsInput | string
   lastName?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  accessLevel?: Prisma.EnumAccessLevelFieldUpdateOperationsInput | $Enums.AccessLevel
+  user?: Prisma.UserUpdateOneRequiredWithoutEmploymentsNestedInput
+  organization?: Prisma.OrganizationUpdateOneRequiredWithoutEmployeesNestedInput
   role?: Prisma.EmployeeRoleUpdateOneRequiredWithoutEmployeesNestedInput
-  homeDepartment?: Prisma.DepartmentUpdateOneWithoutHomeStaffNestedInput
-  homeWard?: Prisma.WardUpdateOneWithoutHomeStaffNestedInput
-  managedOrganizations?: Prisma.OrganizationUpdateManyWithoutAdminsNestedInput
-  managedDepartments?: Prisma.DepartmentUpdateManyWithoutManagersNestedInput
-  managedWards?: Prisma.WardUpdateManyWithoutManagersNestedInput
+  affiliations?: Prisma.EmployeeLocationAffiliationUpdateManyWithoutEmployeeNestedInput
+  managementRoles?: Prisma.ManagementRoleUpdateManyWithoutEmployeeNestedInput
   shifts?: Prisma.ShiftInstanceUpdateManyWithoutEmployeeNestedInput
   assignedPattern?: Prisma.AssignedPatternUpdateManyWithoutEmployeeNestedInput
   leaveRequests?: Prisma.LeaveRequestUpdateManyWithoutEmployeeNestedInput
   availability?: Prisma.EmployeeAvailabilityUpdateManyWithoutEmployeeNestedInput
   targetManagerClaims?: Prisma.ShiftClaimUpdateManyWithoutTargetManagerNestedInput
   homeManagerClaims?: Prisma.ShiftClaimUpdateManyWithoutHomeManagerNestedInput
-  organization?: Prisma.OrganizationUpdateOneRequiredWithoutEmployeesNestedInput
-  actions?: Prisma.AuditLogUpdateManyWithoutActorNestedInput
 }
 
 export type EmployeeUncheckedUpdateWithoutShiftClaimsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   organizationId?: Prisma.StringFieldUpdateOperationsInput | string
-  userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
   firstName?: Prisma.StringFieldUpdateOperationsInput | string
   lastName?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  accessLevel?: Prisma.EnumAccessLevelFieldUpdateOperationsInput | $Enums.AccessLevel
   roleId?: Prisma.StringFieldUpdateOperationsInput | string
-  homeDepartmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  homeWardId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  managedOrganizations?: Prisma.OrganizationUncheckedUpdateManyWithoutAdminsNestedInput
-  managedDepartments?: Prisma.DepartmentUncheckedUpdateManyWithoutManagersNestedInput
-  managedWards?: Prisma.WardUncheckedUpdateManyWithoutManagersNestedInput
+  affiliations?: Prisma.EmployeeLocationAffiliationUncheckedUpdateManyWithoutEmployeeNestedInput
+  managementRoles?: Prisma.ManagementRoleUncheckedUpdateManyWithoutEmployeeNestedInput
   shifts?: Prisma.ShiftInstanceUncheckedUpdateManyWithoutEmployeeNestedInput
   assignedPattern?: Prisma.AssignedPatternUncheckedUpdateManyWithoutEmployeeNestedInput
   leaveRequests?: Prisma.LeaveRequestUncheckedUpdateManyWithoutEmployeeNestedInput
   availability?: Prisma.EmployeeAvailabilityUncheckedUpdateManyWithoutEmployeeNestedInput
   targetManagerClaims?: Prisma.ShiftClaimUncheckedUpdateManyWithoutTargetManagerNestedInput
   homeManagerClaims?: Prisma.ShiftClaimUncheckedUpdateManyWithoutHomeManagerNestedInput
-  actions?: Prisma.AuditLogUncheckedUpdateManyWithoutActorNestedInput
 }
 
 export type EmployeeUpsertWithoutTargetManagerClaimsInput = {
@@ -2037,50 +1575,40 @@ export type EmployeeUpdateToOneWithWhereWithoutTargetManagerClaimsInput = {
 
 export type EmployeeUpdateWithoutTargetManagerClaimsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   firstName?: Prisma.StringFieldUpdateOperationsInput | string
   lastName?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  accessLevel?: Prisma.EnumAccessLevelFieldUpdateOperationsInput | $Enums.AccessLevel
+  user?: Prisma.UserUpdateOneRequiredWithoutEmploymentsNestedInput
+  organization?: Prisma.OrganizationUpdateOneRequiredWithoutEmployeesNestedInput
   role?: Prisma.EmployeeRoleUpdateOneRequiredWithoutEmployeesNestedInput
-  homeDepartment?: Prisma.DepartmentUpdateOneWithoutHomeStaffNestedInput
-  homeWard?: Prisma.WardUpdateOneWithoutHomeStaffNestedInput
-  managedOrganizations?: Prisma.OrganizationUpdateManyWithoutAdminsNestedInput
-  managedDepartments?: Prisma.DepartmentUpdateManyWithoutManagersNestedInput
-  managedWards?: Prisma.WardUpdateManyWithoutManagersNestedInput
+  affiliations?: Prisma.EmployeeLocationAffiliationUpdateManyWithoutEmployeeNestedInput
+  managementRoles?: Prisma.ManagementRoleUpdateManyWithoutEmployeeNestedInput
   shifts?: Prisma.ShiftInstanceUpdateManyWithoutEmployeeNestedInput
   assignedPattern?: Prisma.AssignedPatternUpdateManyWithoutEmployeeNestedInput
   leaveRequests?: Prisma.LeaveRequestUpdateManyWithoutEmployeeNestedInput
   shiftClaims?: Prisma.ShiftClaimUpdateManyWithoutEmployeeNestedInput
   availability?: Prisma.EmployeeAvailabilityUpdateManyWithoutEmployeeNestedInput
   homeManagerClaims?: Prisma.ShiftClaimUpdateManyWithoutHomeManagerNestedInput
-  organization?: Prisma.OrganizationUpdateOneRequiredWithoutEmployeesNestedInput
-  actions?: Prisma.AuditLogUpdateManyWithoutActorNestedInput
 }
 
 export type EmployeeUncheckedUpdateWithoutTargetManagerClaimsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   organizationId?: Prisma.StringFieldUpdateOperationsInput | string
-  userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
   firstName?: Prisma.StringFieldUpdateOperationsInput | string
   lastName?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  accessLevel?: Prisma.EnumAccessLevelFieldUpdateOperationsInput | $Enums.AccessLevel
   roleId?: Prisma.StringFieldUpdateOperationsInput | string
-  homeDepartmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  homeWardId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  managedOrganizations?: Prisma.OrganizationUncheckedUpdateManyWithoutAdminsNestedInput
-  managedDepartments?: Prisma.DepartmentUncheckedUpdateManyWithoutManagersNestedInput
-  managedWards?: Prisma.WardUncheckedUpdateManyWithoutManagersNestedInput
+  affiliations?: Prisma.EmployeeLocationAffiliationUncheckedUpdateManyWithoutEmployeeNestedInput
+  managementRoles?: Prisma.ManagementRoleUncheckedUpdateManyWithoutEmployeeNestedInput
   shifts?: Prisma.ShiftInstanceUncheckedUpdateManyWithoutEmployeeNestedInput
   assignedPattern?: Prisma.AssignedPatternUncheckedUpdateManyWithoutEmployeeNestedInput
   leaveRequests?: Prisma.LeaveRequestUncheckedUpdateManyWithoutEmployeeNestedInput
   shiftClaims?: Prisma.ShiftClaimUncheckedUpdateManyWithoutEmployeeNestedInput
   availability?: Prisma.EmployeeAvailabilityUncheckedUpdateManyWithoutEmployeeNestedInput
   homeManagerClaims?: Prisma.ShiftClaimUncheckedUpdateManyWithoutHomeManagerNestedInput
-  actions?: Prisma.AuditLogUncheckedUpdateManyWithoutActorNestedInput
 }
 
 export type EmployeeUpsertWithoutHomeManagerClaimsInput = {
@@ -2096,98 +1624,78 @@ export type EmployeeUpdateToOneWithWhereWithoutHomeManagerClaimsInput = {
 
 export type EmployeeUpdateWithoutHomeManagerClaimsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   firstName?: Prisma.StringFieldUpdateOperationsInput | string
   lastName?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  accessLevel?: Prisma.EnumAccessLevelFieldUpdateOperationsInput | $Enums.AccessLevel
+  user?: Prisma.UserUpdateOneRequiredWithoutEmploymentsNestedInput
+  organization?: Prisma.OrganizationUpdateOneRequiredWithoutEmployeesNestedInput
   role?: Prisma.EmployeeRoleUpdateOneRequiredWithoutEmployeesNestedInput
-  homeDepartment?: Prisma.DepartmentUpdateOneWithoutHomeStaffNestedInput
-  homeWard?: Prisma.WardUpdateOneWithoutHomeStaffNestedInput
-  managedOrganizations?: Prisma.OrganizationUpdateManyWithoutAdminsNestedInput
-  managedDepartments?: Prisma.DepartmentUpdateManyWithoutManagersNestedInput
-  managedWards?: Prisma.WardUpdateManyWithoutManagersNestedInput
+  affiliations?: Prisma.EmployeeLocationAffiliationUpdateManyWithoutEmployeeNestedInput
+  managementRoles?: Prisma.ManagementRoleUpdateManyWithoutEmployeeNestedInput
   shifts?: Prisma.ShiftInstanceUpdateManyWithoutEmployeeNestedInput
   assignedPattern?: Prisma.AssignedPatternUpdateManyWithoutEmployeeNestedInput
   leaveRequests?: Prisma.LeaveRequestUpdateManyWithoutEmployeeNestedInput
   shiftClaims?: Prisma.ShiftClaimUpdateManyWithoutEmployeeNestedInput
   availability?: Prisma.EmployeeAvailabilityUpdateManyWithoutEmployeeNestedInput
   targetManagerClaims?: Prisma.ShiftClaimUpdateManyWithoutTargetManagerNestedInput
-  organization?: Prisma.OrganizationUpdateOneRequiredWithoutEmployeesNestedInput
-  actions?: Prisma.AuditLogUpdateManyWithoutActorNestedInput
 }
 
 export type EmployeeUncheckedUpdateWithoutHomeManagerClaimsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   organizationId?: Prisma.StringFieldUpdateOperationsInput | string
-  userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
   firstName?: Prisma.StringFieldUpdateOperationsInput | string
   lastName?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  accessLevel?: Prisma.EnumAccessLevelFieldUpdateOperationsInput | $Enums.AccessLevel
   roleId?: Prisma.StringFieldUpdateOperationsInput | string
-  homeDepartmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  homeWardId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  managedOrganizations?: Prisma.OrganizationUncheckedUpdateManyWithoutAdminsNestedInput
-  managedDepartments?: Prisma.DepartmentUncheckedUpdateManyWithoutManagersNestedInput
-  managedWards?: Prisma.WardUncheckedUpdateManyWithoutManagersNestedInput
+  affiliations?: Prisma.EmployeeLocationAffiliationUncheckedUpdateManyWithoutEmployeeNestedInput
+  managementRoles?: Prisma.ManagementRoleUncheckedUpdateManyWithoutEmployeeNestedInput
   shifts?: Prisma.ShiftInstanceUncheckedUpdateManyWithoutEmployeeNestedInput
   assignedPattern?: Prisma.AssignedPatternUncheckedUpdateManyWithoutEmployeeNestedInput
   leaveRequests?: Prisma.LeaveRequestUncheckedUpdateManyWithoutEmployeeNestedInput
   shiftClaims?: Prisma.ShiftClaimUncheckedUpdateManyWithoutEmployeeNestedInput
   availability?: Prisma.EmployeeAvailabilityUncheckedUpdateManyWithoutEmployeeNestedInput
   targetManagerClaims?: Prisma.ShiftClaimUncheckedUpdateManyWithoutTargetManagerNestedInput
-  actions?: Prisma.AuditLogUncheckedUpdateManyWithoutActorNestedInput
 }
 
 export type EmployeeCreateWithoutAvailabilityInput = {
   id?: string
-  userId?: string | null
   firstName: string
   lastName: string
   email: string
   archivedAt?: Date | string | null
-  accessLevel?: $Enums.AccessLevel
+  user: Prisma.UserCreateNestedOneWithoutEmploymentsInput
+  organization: Prisma.OrganizationCreateNestedOneWithoutEmployeesInput
   role: Prisma.EmployeeRoleCreateNestedOneWithoutEmployeesInput
-  homeDepartment?: Prisma.DepartmentCreateNestedOneWithoutHomeStaffInput
-  homeWard?: Prisma.WardCreateNestedOneWithoutHomeStaffInput
-  managedOrganizations?: Prisma.OrganizationCreateNestedManyWithoutAdminsInput
-  managedDepartments?: Prisma.DepartmentCreateNestedManyWithoutManagersInput
-  managedWards?: Prisma.WardCreateNestedManyWithoutManagersInput
+  affiliations?: Prisma.EmployeeLocationAffiliationCreateNestedManyWithoutEmployeeInput
+  managementRoles?: Prisma.ManagementRoleCreateNestedManyWithoutEmployeeInput
   shifts?: Prisma.ShiftInstanceCreateNestedManyWithoutEmployeeInput
   assignedPattern?: Prisma.AssignedPatternCreateNestedManyWithoutEmployeeInput
   leaveRequests?: Prisma.LeaveRequestCreateNestedManyWithoutEmployeeInput
   shiftClaims?: Prisma.ShiftClaimCreateNestedManyWithoutEmployeeInput
   targetManagerClaims?: Prisma.ShiftClaimCreateNestedManyWithoutTargetManagerInput
   homeManagerClaims?: Prisma.ShiftClaimCreateNestedManyWithoutHomeManagerInput
-  organization: Prisma.OrganizationCreateNestedOneWithoutEmployeesInput
-  actions?: Prisma.AuditLogCreateNestedManyWithoutActorInput
 }
 
 export type EmployeeUncheckedCreateWithoutAvailabilityInput = {
   id?: string
   organizationId: string
-  userId?: string | null
+  userId: string
   firstName: string
   lastName: string
   email: string
   archivedAt?: Date | string | null
-  accessLevel?: $Enums.AccessLevel
   roleId: string
-  homeDepartmentId?: string | null
-  homeWardId?: string | null
-  managedOrganizations?: Prisma.OrganizationUncheckedCreateNestedManyWithoutAdminsInput
-  managedDepartments?: Prisma.DepartmentUncheckedCreateNestedManyWithoutManagersInput
-  managedWards?: Prisma.WardUncheckedCreateNestedManyWithoutManagersInput
+  affiliations?: Prisma.EmployeeLocationAffiliationUncheckedCreateNestedManyWithoutEmployeeInput
+  managementRoles?: Prisma.ManagementRoleUncheckedCreateNestedManyWithoutEmployeeInput
   shifts?: Prisma.ShiftInstanceUncheckedCreateNestedManyWithoutEmployeeInput
   assignedPattern?: Prisma.AssignedPatternUncheckedCreateNestedManyWithoutEmployeeInput
   leaveRequests?: Prisma.LeaveRequestUncheckedCreateNestedManyWithoutEmployeeInput
   shiftClaims?: Prisma.ShiftClaimUncheckedCreateNestedManyWithoutEmployeeInput
   targetManagerClaims?: Prisma.ShiftClaimUncheckedCreateNestedManyWithoutTargetManagerInput
   homeManagerClaims?: Prisma.ShiftClaimUncheckedCreateNestedManyWithoutHomeManagerInput
-  actions?: Prisma.AuditLogUncheckedCreateNestedManyWithoutActorInput
 }
 
 export type EmployeeCreateOrConnectWithoutAvailabilityInput = {
@@ -2208,130 +1716,62 @@ export type EmployeeUpdateToOneWithWhereWithoutAvailabilityInput = {
 
 export type EmployeeUpdateWithoutAvailabilityInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   firstName?: Prisma.StringFieldUpdateOperationsInput | string
   lastName?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  accessLevel?: Prisma.EnumAccessLevelFieldUpdateOperationsInput | $Enums.AccessLevel
+  user?: Prisma.UserUpdateOneRequiredWithoutEmploymentsNestedInput
+  organization?: Prisma.OrganizationUpdateOneRequiredWithoutEmployeesNestedInput
   role?: Prisma.EmployeeRoleUpdateOneRequiredWithoutEmployeesNestedInput
-  homeDepartment?: Prisma.DepartmentUpdateOneWithoutHomeStaffNestedInput
-  homeWard?: Prisma.WardUpdateOneWithoutHomeStaffNestedInput
-  managedOrganizations?: Prisma.OrganizationUpdateManyWithoutAdminsNestedInput
-  managedDepartments?: Prisma.DepartmentUpdateManyWithoutManagersNestedInput
-  managedWards?: Prisma.WardUpdateManyWithoutManagersNestedInput
+  affiliations?: Prisma.EmployeeLocationAffiliationUpdateManyWithoutEmployeeNestedInput
+  managementRoles?: Prisma.ManagementRoleUpdateManyWithoutEmployeeNestedInput
   shifts?: Prisma.ShiftInstanceUpdateManyWithoutEmployeeNestedInput
   assignedPattern?: Prisma.AssignedPatternUpdateManyWithoutEmployeeNestedInput
   leaveRequests?: Prisma.LeaveRequestUpdateManyWithoutEmployeeNestedInput
   shiftClaims?: Prisma.ShiftClaimUpdateManyWithoutEmployeeNestedInput
   targetManagerClaims?: Prisma.ShiftClaimUpdateManyWithoutTargetManagerNestedInput
   homeManagerClaims?: Prisma.ShiftClaimUpdateManyWithoutHomeManagerNestedInput
-  organization?: Prisma.OrganizationUpdateOneRequiredWithoutEmployeesNestedInput
-  actions?: Prisma.AuditLogUpdateManyWithoutActorNestedInput
 }
 
 export type EmployeeUncheckedUpdateWithoutAvailabilityInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   organizationId?: Prisma.StringFieldUpdateOperationsInput | string
-  userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
   firstName?: Prisma.StringFieldUpdateOperationsInput | string
   lastName?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  accessLevel?: Prisma.EnumAccessLevelFieldUpdateOperationsInput | $Enums.AccessLevel
   roleId?: Prisma.StringFieldUpdateOperationsInput | string
-  homeDepartmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  homeWardId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  managedOrganizations?: Prisma.OrganizationUncheckedUpdateManyWithoutAdminsNestedInput
-  managedDepartments?: Prisma.DepartmentUncheckedUpdateManyWithoutManagersNestedInput
-  managedWards?: Prisma.WardUncheckedUpdateManyWithoutManagersNestedInput
+  affiliations?: Prisma.EmployeeLocationAffiliationUncheckedUpdateManyWithoutEmployeeNestedInput
+  managementRoles?: Prisma.ManagementRoleUncheckedUpdateManyWithoutEmployeeNestedInput
   shifts?: Prisma.ShiftInstanceUncheckedUpdateManyWithoutEmployeeNestedInput
   assignedPattern?: Prisma.AssignedPatternUncheckedUpdateManyWithoutEmployeeNestedInput
   leaveRequests?: Prisma.LeaveRequestUncheckedUpdateManyWithoutEmployeeNestedInput
   shiftClaims?: Prisma.ShiftClaimUncheckedUpdateManyWithoutEmployeeNestedInput
   targetManagerClaims?: Prisma.ShiftClaimUncheckedUpdateManyWithoutTargetManagerNestedInput
   homeManagerClaims?: Prisma.ShiftClaimUncheckedUpdateManyWithoutHomeManagerNestedInput
-  actions?: Prisma.AuditLogUncheckedUpdateManyWithoutActorNestedInput
 }
 
-export type EmployeeCreateWithoutActionsInput = {
-  id?: string
-  userId?: string | null
-  firstName: string
-  lastName: string
-  email: string
-  archivedAt?: Date | string | null
-  accessLevel?: $Enums.AccessLevel
-  role: Prisma.EmployeeRoleCreateNestedOneWithoutEmployeesInput
-  homeDepartment?: Prisma.DepartmentCreateNestedOneWithoutHomeStaffInput
-  homeWard?: Prisma.WardCreateNestedOneWithoutHomeStaffInput
-  managedOrganizations?: Prisma.OrganizationCreateNestedManyWithoutAdminsInput
-  managedDepartments?: Prisma.DepartmentCreateNestedManyWithoutManagersInput
-  managedWards?: Prisma.WardCreateNestedManyWithoutManagersInput
-  shifts?: Prisma.ShiftInstanceCreateNestedManyWithoutEmployeeInput
-  assignedPattern?: Prisma.AssignedPatternCreateNestedManyWithoutEmployeeInput
-  leaveRequests?: Prisma.LeaveRequestCreateNestedManyWithoutEmployeeInput
-  shiftClaims?: Prisma.ShiftClaimCreateNestedManyWithoutEmployeeInput
-  availability?: Prisma.EmployeeAvailabilityCreateNestedManyWithoutEmployeeInput
-  targetManagerClaims?: Prisma.ShiftClaimCreateNestedManyWithoutTargetManagerInput
-  homeManagerClaims?: Prisma.ShiftClaimCreateNestedManyWithoutHomeManagerInput
-  organization: Prisma.OrganizationCreateNestedOneWithoutEmployeesInput
-}
-
-export type EmployeeUncheckedCreateWithoutActionsInput = {
+export type EmployeeCreateManyUserInput = {
   id?: string
   organizationId: string
-  userId?: string | null
   firstName: string
   lastName: string
   email: string
   archivedAt?: Date | string | null
-  accessLevel?: $Enums.AccessLevel
   roleId: string
-  homeDepartmentId?: string | null
-  homeWardId?: string | null
-  managedOrganizations?: Prisma.OrganizationUncheckedCreateNestedManyWithoutAdminsInput
-  managedDepartments?: Prisma.DepartmentUncheckedCreateNestedManyWithoutManagersInput
-  managedWards?: Prisma.WardUncheckedCreateNestedManyWithoutManagersInput
-  shifts?: Prisma.ShiftInstanceUncheckedCreateNestedManyWithoutEmployeeInput
-  assignedPattern?: Prisma.AssignedPatternUncheckedCreateNestedManyWithoutEmployeeInput
-  leaveRequests?: Prisma.LeaveRequestUncheckedCreateNestedManyWithoutEmployeeInput
-  shiftClaims?: Prisma.ShiftClaimUncheckedCreateNestedManyWithoutEmployeeInput
-  availability?: Prisma.EmployeeAvailabilityUncheckedCreateNestedManyWithoutEmployeeInput
-  targetManagerClaims?: Prisma.ShiftClaimUncheckedCreateNestedManyWithoutTargetManagerInput
-  homeManagerClaims?: Prisma.ShiftClaimUncheckedCreateNestedManyWithoutHomeManagerInput
 }
 
-export type EmployeeCreateOrConnectWithoutActionsInput = {
-  where: Prisma.EmployeeWhereUniqueInput
-  create: Prisma.XOR<Prisma.EmployeeCreateWithoutActionsInput, Prisma.EmployeeUncheckedCreateWithoutActionsInput>
-}
-
-export type EmployeeUpsertWithoutActionsInput = {
-  update: Prisma.XOR<Prisma.EmployeeUpdateWithoutActionsInput, Prisma.EmployeeUncheckedUpdateWithoutActionsInput>
-  create: Prisma.XOR<Prisma.EmployeeCreateWithoutActionsInput, Prisma.EmployeeUncheckedCreateWithoutActionsInput>
-  where?: Prisma.EmployeeWhereInput
-}
-
-export type EmployeeUpdateToOneWithWhereWithoutActionsInput = {
-  where?: Prisma.EmployeeWhereInput
-  data: Prisma.XOR<Prisma.EmployeeUpdateWithoutActionsInput, Prisma.EmployeeUncheckedUpdateWithoutActionsInput>
-}
-
-export type EmployeeUpdateWithoutActionsInput = {
+export type EmployeeUpdateWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   firstName?: Prisma.StringFieldUpdateOperationsInput | string
   lastName?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  accessLevel?: Prisma.EnumAccessLevelFieldUpdateOperationsInput | $Enums.AccessLevel
+  organization?: Prisma.OrganizationUpdateOneRequiredWithoutEmployeesNestedInput
   role?: Prisma.EmployeeRoleUpdateOneRequiredWithoutEmployeesNestedInput
-  homeDepartment?: Prisma.DepartmentUpdateOneWithoutHomeStaffNestedInput
-  homeWard?: Prisma.WardUpdateOneWithoutHomeStaffNestedInput
-  managedOrganizations?: Prisma.OrganizationUpdateManyWithoutAdminsNestedInput
-  managedDepartments?: Prisma.DepartmentUpdateManyWithoutManagersNestedInput
-  managedWards?: Prisma.WardUpdateManyWithoutManagersNestedInput
+  affiliations?: Prisma.EmployeeLocationAffiliationUpdateManyWithoutEmployeeNestedInput
+  managementRoles?: Prisma.ManagementRoleUpdateManyWithoutEmployeeNestedInput
   shifts?: Prisma.ShiftInstanceUpdateManyWithoutEmployeeNestedInput
   assignedPattern?: Prisma.AssignedPatternUpdateManyWithoutEmployeeNestedInput
   leaveRequests?: Prisma.LeaveRequestUpdateManyWithoutEmployeeNestedInput
@@ -2339,24 +1779,18 @@ export type EmployeeUpdateWithoutActionsInput = {
   availability?: Prisma.EmployeeAvailabilityUpdateManyWithoutEmployeeNestedInput
   targetManagerClaims?: Prisma.ShiftClaimUpdateManyWithoutTargetManagerNestedInput
   homeManagerClaims?: Prisma.ShiftClaimUpdateManyWithoutHomeManagerNestedInput
-  organization?: Prisma.OrganizationUpdateOneRequiredWithoutEmployeesNestedInput
 }
 
-export type EmployeeUncheckedUpdateWithoutActionsInput = {
+export type EmployeeUncheckedUpdateWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   organizationId?: Prisma.StringFieldUpdateOperationsInput | string
-  userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   firstName?: Prisma.StringFieldUpdateOperationsInput | string
   lastName?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  accessLevel?: Prisma.EnumAccessLevelFieldUpdateOperationsInput | $Enums.AccessLevel
   roleId?: Prisma.StringFieldUpdateOperationsInput | string
-  homeDepartmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  homeWardId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  managedOrganizations?: Prisma.OrganizationUncheckedUpdateManyWithoutAdminsNestedInput
-  managedDepartments?: Prisma.DepartmentUncheckedUpdateManyWithoutManagersNestedInput
-  managedWards?: Prisma.WardUncheckedUpdateManyWithoutManagersNestedInput
+  affiliations?: Prisma.EmployeeLocationAffiliationUncheckedUpdateManyWithoutEmployeeNestedInput
+  managementRoles?: Prisma.ManagementRoleUncheckedUpdateManyWithoutEmployeeNestedInput
   shifts?: Prisma.ShiftInstanceUncheckedUpdateManyWithoutEmployeeNestedInput
   assignedPattern?: Prisma.AssignedPatternUncheckedUpdateManyWithoutEmployeeNestedInput
   leaveRequests?: Prisma.LeaveRequestUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -2364,35 +1798,38 @@ export type EmployeeUncheckedUpdateWithoutActionsInput = {
   availability?: Prisma.EmployeeAvailabilityUncheckedUpdateManyWithoutEmployeeNestedInput
   targetManagerClaims?: Prisma.ShiftClaimUncheckedUpdateManyWithoutTargetManagerNestedInput
   homeManagerClaims?: Prisma.ShiftClaimUncheckedUpdateManyWithoutHomeManagerNestedInput
+}
+
+export type EmployeeUncheckedUpdateManyWithoutUserInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  organizationId?: Prisma.StringFieldUpdateOperationsInput | string
+  firstName?: Prisma.StringFieldUpdateOperationsInput | string
+  lastName?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  roleId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type EmployeeCreateManyOrganizationInput = {
   id?: string
-  userId?: string | null
+  userId: string
   firstName: string
   lastName: string
   email: string
   archivedAt?: Date | string | null
-  accessLevel?: $Enums.AccessLevel
   roleId: string
-  homeDepartmentId?: string | null
-  homeWardId?: string | null
 }
 
 export type EmployeeUpdateWithoutOrganizationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   firstName?: Prisma.StringFieldUpdateOperationsInput | string
   lastName?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  accessLevel?: Prisma.EnumAccessLevelFieldUpdateOperationsInput | $Enums.AccessLevel
+  user?: Prisma.UserUpdateOneRequiredWithoutEmploymentsNestedInput
   role?: Prisma.EmployeeRoleUpdateOneRequiredWithoutEmployeesNestedInput
-  homeDepartment?: Prisma.DepartmentUpdateOneWithoutHomeStaffNestedInput
-  homeWard?: Prisma.WardUpdateOneWithoutHomeStaffNestedInput
-  managedOrganizations?: Prisma.OrganizationUpdateManyWithoutAdminsNestedInput
-  managedDepartments?: Prisma.DepartmentUpdateManyWithoutManagersNestedInput
-  managedWards?: Prisma.WardUpdateManyWithoutManagersNestedInput
+  affiliations?: Prisma.EmployeeLocationAffiliationUpdateManyWithoutEmployeeNestedInput
+  managementRoles?: Prisma.ManagementRoleUpdateManyWithoutEmployeeNestedInput
   shifts?: Prisma.ShiftInstanceUpdateManyWithoutEmployeeNestedInput
   assignedPattern?: Prisma.AssignedPatternUpdateManyWithoutEmployeeNestedInput
   leaveRequests?: Prisma.LeaveRequestUpdateManyWithoutEmployeeNestedInput
@@ -2400,23 +1837,18 @@ export type EmployeeUpdateWithoutOrganizationInput = {
   availability?: Prisma.EmployeeAvailabilityUpdateManyWithoutEmployeeNestedInput
   targetManagerClaims?: Prisma.ShiftClaimUpdateManyWithoutTargetManagerNestedInput
   homeManagerClaims?: Prisma.ShiftClaimUpdateManyWithoutHomeManagerNestedInput
-  actions?: Prisma.AuditLogUpdateManyWithoutActorNestedInput
 }
 
 export type EmployeeUncheckedUpdateWithoutOrganizationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
   firstName?: Prisma.StringFieldUpdateOperationsInput | string
   lastName?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  accessLevel?: Prisma.EnumAccessLevelFieldUpdateOperationsInput | $Enums.AccessLevel
   roleId?: Prisma.StringFieldUpdateOperationsInput | string
-  homeDepartmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  homeWardId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  managedOrganizations?: Prisma.OrganizationUncheckedUpdateManyWithoutAdminsNestedInput
-  managedDepartments?: Prisma.DepartmentUncheckedUpdateManyWithoutManagersNestedInput
-  managedWards?: Prisma.WardUncheckedUpdateManyWithoutManagersNestedInput
+  affiliations?: Prisma.EmployeeLocationAffiliationUncheckedUpdateManyWithoutEmployeeNestedInput
+  managementRoles?: Prisma.ManagementRoleUncheckedUpdateManyWithoutEmployeeNestedInput
   shifts?: Prisma.ShiftInstanceUncheckedUpdateManyWithoutEmployeeNestedInput
   assignedPattern?: Prisma.AssignedPatternUncheckedUpdateManyWithoutEmployeeNestedInput
   leaveRequests?: Prisma.LeaveRequestUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -2424,382 +1856,38 @@ export type EmployeeUncheckedUpdateWithoutOrganizationInput = {
   availability?: Prisma.EmployeeAvailabilityUncheckedUpdateManyWithoutEmployeeNestedInput
   targetManagerClaims?: Prisma.ShiftClaimUncheckedUpdateManyWithoutTargetManagerNestedInput
   homeManagerClaims?: Prisma.ShiftClaimUncheckedUpdateManyWithoutHomeManagerNestedInput
-  actions?: Prisma.AuditLogUncheckedUpdateManyWithoutActorNestedInput
 }
 
 export type EmployeeUncheckedUpdateManyWithoutOrganizationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
   firstName?: Prisma.StringFieldUpdateOperationsInput | string
   lastName?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  accessLevel?: Prisma.EnumAccessLevelFieldUpdateOperationsInput | $Enums.AccessLevel
   roleId?: Prisma.StringFieldUpdateOperationsInput | string
-  homeDepartmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  homeWardId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-}
-
-export type EmployeeUpdateWithoutManagedOrganizationsInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  firstName?: Prisma.StringFieldUpdateOperationsInput | string
-  lastName?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  accessLevel?: Prisma.EnumAccessLevelFieldUpdateOperationsInput | $Enums.AccessLevel
-  role?: Prisma.EmployeeRoleUpdateOneRequiredWithoutEmployeesNestedInput
-  homeDepartment?: Prisma.DepartmentUpdateOneWithoutHomeStaffNestedInput
-  homeWard?: Prisma.WardUpdateOneWithoutHomeStaffNestedInput
-  managedDepartments?: Prisma.DepartmentUpdateManyWithoutManagersNestedInput
-  managedWards?: Prisma.WardUpdateManyWithoutManagersNestedInput
-  shifts?: Prisma.ShiftInstanceUpdateManyWithoutEmployeeNestedInput
-  assignedPattern?: Prisma.AssignedPatternUpdateManyWithoutEmployeeNestedInput
-  leaveRequests?: Prisma.LeaveRequestUpdateManyWithoutEmployeeNestedInput
-  shiftClaims?: Prisma.ShiftClaimUpdateManyWithoutEmployeeNestedInput
-  availability?: Prisma.EmployeeAvailabilityUpdateManyWithoutEmployeeNestedInput
-  targetManagerClaims?: Prisma.ShiftClaimUpdateManyWithoutTargetManagerNestedInput
-  homeManagerClaims?: Prisma.ShiftClaimUpdateManyWithoutHomeManagerNestedInput
-  organization?: Prisma.OrganizationUpdateOneRequiredWithoutEmployeesNestedInput
-  actions?: Prisma.AuditLogUpdateManyWithoutActorNestedInput
-}
-
-export type EmployeeUncheckedUpdateWithoutManagedOrganizationsInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  organizationId?: Prisma.StringFieldUpdateOperationsInput | string
-  userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  firstName?: Prisma.StringFieldUpdateOperationsInput | string
-  lastName?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  accessLevel?: Prisma.EnumAccessLevelFieldUpdateOperationsInput | $Enums.AccessLevel
-  roleId?: Prisma.StringFieldUpdateOperationsInput | string
-  homeDepartmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  homeWardId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  managedDepartments?: Prisma.DepartmentUncheckedUpdateManyWithoutManagersNestedInput
-  managedWards?: Prisma.WardUncheckedUpdateManyWithoutManagersNestedInput
-  shifts?: Prisma.ShiftInstanceUncheckedUpdateManyWithoutEmployeeNestedInput
-  assignedPattern?: Prisma.AssignedPatternUncheckedUpdateManyWithoutEmployeeNestedInput
-  leaveRequests?: Prisma.LeaveRequestUncheckedUpdateManyWithoutEmployeeNestedInput
-  shiftClaims?: Prisma.ShiftClaimUncheckedUpdateManyWithoutEmployeeNestedInput
-  availability?: Prisma.EmployeeAvailabilityUncheckedUpdateManyWithoutEmployeeNestedInput
-  targetManagerClaims?: Prisma.ShiftClaimUncheckedUpdateManyWithoutTargetManagerNestedInput
-  homeManagerClaims?: Prisma.ShiftClaimUncheckedUpdateManyWithoutHomeManagerNestedInput
-  actions?: Prisma.AuditLogUncheckedUpdateManyWithoutActorNestedInput
-}
-
-export type EmployeeUncheckedUpdateManyWithoutManagedOrganizationsInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  organizationId?: Prisma.StringFieldUpdateOperationsInput | string
-  userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  firstName?: Prisma.StringFieldUpdateOperationsInput | string
-  lastName?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  accessLevel?: Prisma.EnumAccessLevelFieldUpdateOperationsInput | $Enums.AccessLevel
-  roleId?: Prisma.StringFieldUpdateOperationsInput | string
-  homeDepartmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  homeWardId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-}
-
-export type EmployeeCreateManyHomeDepartmentInput = {
-  id?: string
-  organizationId: string
-  userId?: string | null
-  firstName: string
-  lastName: string
-  email: string
-  archivedAt?: Date | string | null
-  accessLevel?: $Enums.AccessLevel
-  roleId: string
-  homeWardId?: string | null
-}
-
-export type EmployeeUpdateWithoutManagedDepartmentsInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  firstName?: Prisma.StringFieldUpdateOperationsInput | string
-  lastName?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  accessLevel?: Prisma.EnumAccessLevelFieldUpdateOperationsInput | $Enums.AccessLevel
-  role?: Prisma.EmployeeRoleUpdateOneRequiredWithoutEmployeesNestedInput
-  homeDepartment?: Prisma.DepartmentUpdateOneWithoutHomeStaffNestedInput
-  homeWard?: Prisma.WardUpdateOneWithoutHomeStaffNestedInput
-  managedOrganizations?: Prisma.OrganizationUpdateManyWithoutAdminsNestedInput
-  managedWards?: Prisma.WardUpdateManyWithoutManagersNestedInput
-  shifts?: Prisma.ShiftInstanceUpdateManyWithoutEmployeeNestedInput
-  assignedPattern?: Prisma.AssignedPatternUpdateManyWithoutEmployeeNestedInput
-  leaveRequests?: Prisma.LeaveRequestUpdateManyWithoutEmployeeNestedInput
-  shiftClaims?: Prisma.ShiftClaimUpdateManyWithoutEmployeeNestedInput
-  availability?: Prisma.EmployeeAvailabilityUpdateManyWithoutEmployeeNestedInput
-  targetManagerClaims?: Prisma.ShiftClaimUpdateManyWithoutTargetManagerNestedInput
-  homeManagerClaims?: Prisma.ShiftClaimUpdateManyWithoutHomeManagerNestedInput
-  organization?: Prisma.OrganizationUpdateOneRequiredWithoutEmployeesNestedInput
-  actions?: Prisma.AuditLogUpdateManyWithoutActorNestedInput
-}
-
-export type EmployeeUncheckedUpdateWithoutManagedDepartmentsInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  organizationId?: Prisma.StringFieldUpdateOperationsInput | string
-  userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  firstName?: Prisma.StringFieldUpdateOperationsInput | string
-  lastName?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  accessLevel?: Prisma.EnumAccessLevelFieldUpdateOperationsInput | $Enums.AccessLevel
-  roleId?: Prisma.StringFieldUpdateOperationsInput | string
-  homeDepartmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  homeWardId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  managedOrganizations?: Prisma.OrganizationUncheckedUpdateManyWithoutAdminsNestedInput
-  managedWards?: Prisma.WardUncheckedUpdateManyWithoutManagersNestedInput
-  shifts?: Prisma.ShiftInstanceUncheckedUpdateManyWithoutEmployeeNestedInput
-  assignedPattern?: Prisma.AssignedPatternUncheckedUpdateManyWithoutEmployeeNestedInput
-  leaveRequests?: Prisma.LeaveRequestUncheckedUpdateManyWithoutEmployeeNestedInput
-  shiftClaims?: Prisma.ShiftClaimUncheckedUpdateManyWithoutEmployeeNestedInput
-  availability?: Prisma.EmployeeAvailabilityUncheckedUpdateManyWithoutEmployeeNestedInput
-  targetManagerClaims?: Prisma.ShiftClaimUncheckedUpdateManyWithoutTargetManagerNestedInput
-  homeManagerClaims?: Prisma.ShiftClaimUncheckedUpdateManyWithoutHomeManagerNestedInput
-  actions?: Prisma.AuditLogUncheckedUpdateManyWithoutActorNestedInput
-}
-
-export type EmployeeUncheckedUpdateManyWithoutManagedDepartmentsInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  organizationId?: Prisma.StringFieldUpdateOperationsInput | string
-  userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  firstName?: Prisma.StringFieldUpdateOperationsInput | string
-  lastName?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  accessLevel?: Prisma.EnumAccessLevelFieldUpdateOperationsInput | $Enums.AccessLevel
-  roleId?: Prisma.StringFieldUpdateOperationsInput | string
-  homeDepartmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  homeWardId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-}
-
-export type EmployeeUpdateWithoutHomeDepartmentInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  firstName?: Prisma.StringFieldUpdateOperationsInput | string
-  lastName?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  accessLevel?: Prisma.EnumAccessLevelFieldUpdateOperationsInput | $Enums.AccessLevel
-  role?: Prisma.EmployeeRoleUpdateOneRequiredWithoutEmployeesNestedInput
-  homeWard?: Prisma.WardUpdateOneWithoutHomeStaffNestedInput
-  managedOrganizations?: Prisma.OrganizationUpdateManyWithoutAdminsNestedInput
-  managedDepartments?: Prisma.DepartmentUpdateManyWithoutManagersNestedInput
-  managedWards?: Prisma.WardUpdateManyWithoutManagersNestedInput
-  shifts?: Prisma.ShiftInstanceUpdateManyWithoutEmployeeNestedInput
-  assignedPattern?: Prisma.AssignedPatternUpdateManyWithoutEmployeeNestedInput
-  leaveRequests?: Prisma.LeaveRequestUpdateManyWithoutEmployeeNestedInput
-  shiftClaims?: Prisma.ShiftClaimUpdateManyWithoutEmployeeNestedInput
-  availability?: Prisma.EmployeeAvailabilityUpdateManyWithoutEmployeeNestedInput
-  targetManagerClaims?: Prisma.ShiftClaimUpdateManyWithoutTargetManagerNestedInput
-  homeManagerClaims?: Prisma.ShiftClaimUpdateManyWithoutHomeManagerNestedInput
-  organization?: Prisma.OrganizationUpdateOneRequiredWithoutEmployeesNestedInput
-  actions?: Prisma.AuditLogUpdateManyWithoutActorNestedInput
-}
-
-export type EmployeeUncheckedUpdateWithoutHomeDepartmentInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  organizationId?: Prisma.StringFieldUpdateOperationsInput | string
-  userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  firstName?: Prisma.StringFieldUpdateOperationsInput | string
-  lastName?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  accessLevel?: Prisma.EnumAccessLevelFieldUpdateOperationsInput | $Enums.AccessLevel
-  roleId?: Prisma.StringFieldUpdateOperationsInput | string
-  homeWardId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  managedOrganizations?: Prisma.OrganizationUncheckedUpdateManyWithoutAdminsNestedInput
-  managedDepartments?: Prisma.DepartmentUncheckedUpdateManyWithoutManagersNestedInput
-  managedWards?: Prisma.WardUncheckedUpdateManyWithoutManagersNestedInput
-  shifts?: Prisma.ShiftInstanceUncheckedUpdateManyWithoutEmployeeNestedInput
-  assignedPattern?: Prisma.AssignedPatternUncheckedUpdateManyWithoutEmployeeNestedInput
-  leaveRequests?: Prisma.LeaveRequestUncheckedUpdateManyWithoutEmployeeNestedInput
-  shiftClaims?: Prisma.ShiftClaimUncheckedUpdateManyWithoutEmployeeNestedInput
-  availability?: Prisma.EmployeeAvailabilityUncheckedUpdateManyWithoutEmployeeNestedInput
-  targetManagerClaims?: Prisma.ShiftClaimUncheckedUpdateManyWithoutTargetManagerNestedInput
-  homeManagerClaims?: Prisma.ShiftClaimUncheckedUpdateManyWithoutHomeManagerNestedInput
-  actions?: Prisma.AuditLogUncheckedUpdateManyWithoutActorNestedInput
-}
-
-export type EmployeeUncheckedUpdateManyWithoutHomeDepartmentInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  organizationId?: Prisma.StringFieldUpdateOperationsInput | string
-  userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  firstName?: Prisma.StringFieldUpdateOperationsInput | string
-  lastName?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  accessLevel?: Prisma.EnumAccessLevelFieldUpdateOperationsInput | $Enums.AccessLevel
-  roleId?: Prisma.StringFieldUpdateOperationsInput | string
-  homeWardId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-}
-
-export type EmployeeCreateManyHomeWardInput = {
-  id?: string
-  organizationId: string
-  userId?: string | null
-  firstName: string
-  lastName: string
-  email: string
-  archivedAt?: Date | string | null
-  accessLevel?: $Enums.AccessLevel
-  roleId: string
-  homeDepartmentId?: string | null
-}
-
-export type EmployeeUpdateWithoutManagedWardsInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  firstName?: Prisma.StringFieldUpdateOperationsInput | string
-  lastName?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  accessLevel?: Prisma.EnumAccessLevelFieldUpdateOperationsInput | $Enums.AccessLevel
-  role?: Prisma.EmployeeRoleUpdateOneRequiredWithoutEmployeesNestedInput
-  homeDepartment?: Prisma.DepartmentUpdateOneWithoutHomeStaffNestedInput
-  homeWard?: Prisma.WardUpdateOneWithoutHomeStaffNestedInput
-  managedOrganizations?: Prisma.OrganizationUpdateManyWithoutAdminsNestedInput
-  managedDepartments?: Prisma.DepartmentUpdateManyWithoutManagersNestedInput
-  shifts?: Prisma.ShiftInstanceUpdateManyWithoutEmployeeNestedInput
-  assignedPattern?: Prisma.AssignedPatternUpdateManyWithoutEmployeeNestedInput
-  leaveRequests?: Prisma.LeaveRequestUpdateManyWithoutEmployeeNestedInput
-  shiftClaims?: Prisma.ShiftClaimUpdateManyWithoutEmployeeNestedInput
-  availability?: Prisma.EmployeeAvailabilityUpdateManyWithoutEmployeeNestedInput
-  targetManagerClaims?: Prisma.ShiftClaimUpdateManyWithoutTargetManagerNestedInput
-  homeManagerClaims?: Prisma.ShiftClaimUpdateManyWithoutHomeManagerNestedInput
-  organization?: Prisma.OrganizationUpdateOneRequiredWithoutEmployeesNestedInput
-  actions?: Prisma.AuditLogUpdateManyWithoutActorNestedInput
-}
-
-export type EmployeeUncheckedUpdateWithoutManagedWardsInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  organizationId?: Prisma.StringFieldUpdateOperationsInput | string
-  userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  firstName?: Prisma.StringFieldUpdateOperationsInput | string
-  lastName?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  accessLevel?: Prisma.EnumAccessLevelFieldUpdateOperationsInput | $Enums.AccessLevel
-  roleId?: Prisma.StringFieldUpdateOperationsInput | string
-  homeDepartmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  homeWardId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  managedOrganizations?: Prisma.OrganizationUncheckedUpdateManyWithoutAdminsNestedInput
-  managedDepartments?: Prisma.DepartmentUncheckedUpdateManyWithoutManagersNestedInput
-  shifts?: Prisma.ShiftInstanceUncheckedUpdateManyWithoutEmployeeNestedInput
-  assignedPattern?: Prisma.AssignedPatternUncheckedUpdateManyWithoutEmployeeNestedInput
-  leaveRequests?: Prisma.LeaveRequestUncheckedUpdateManyWithoutEmployeeNestedInput
-  shiftClaims?: Prisma.ShiftClaimUncheckedUpdateManyWithoutEmployeeNestedInput
-  availability?: Prisma.EmployeeAvailabilityUncheckedUpdateManyWithoutEmployeeNestedInput
-  targetManagerClaims?: Prisma.ShiftClaimUncheckedUpdateManyWithoutTargetManagerNestedInput
-  homeManagerClaims?: Prisma.ShiftClaimUncheckedUpdateManyWithoutHomeManagerNestedInput
-  actions?: Prisma.AuditLogUncheckedUpdateManyWithoutActorNestedInput
-}
-
-export type EmployeeUncheckedUpdateManyWithoutManagedWardsInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  organizationId?: Prisma.StringFieldUpdateOperationsInput | string
-  userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  firstName?: Prisma.StringFieldUpdateOperationsInput | string
-  lastName?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  accessLevel?: Prisma.EnumAccessLevelFieldUpdateOperationsInput | $Enums.AccessLevel
-  roleId?: Prisma.StringFieldUpdateOperationsInput | string
-  homeDepartmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  homeWardId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-}
-
-export type EmployeeUpdateWithoutHomeWardInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  firstName?: Prisma.StringFieldUpdateOperationsInput | string
-  lastName?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  accessLevel?: Prisma.EnumAccessLevelFieldUpdateOperationsInput | $Enums.AccessLevel
-  role?: Prisma.EmployeeRoleUpdateOneRequiredWithoutEmployeesNestedInput
-  homeDepartment?: Prisma.DepartmentUpdateOneWithoutHomeStaffNestedInput
-  managedOrganizations?: Prisma.OrganizationUpdateManyWithoutAdminsNestedInput
-  managedDepartments?: Prisma.DepartmentUpdateManyWithoutManagersNestedInput
-  managedWards?: Prisma.WardUpdateManyWithoutManagersNestedInput
-  shifts?: Prisma.ShiftInstanceUpdateManyWithoutEmployeeNestedInput
-  assignedPattern?: Prisma.AssignedPatternUpdateManyWithoutEmployeeNestedInput
-  leaveRequests?: Prisma.LeaveRequestUpdateManyWithoutEmployeeNestedInput
-  shiftClaims?: Prisma.ShiftClaimUpdateManyWithoutEmployeeNestedInput
-  availability?: Prisma.EmployeeAvailabilityUpdateManyWithoutEmployeeNestedInput
-  targetManagerClaims?: Prisma.ShiftClaimUpdateManyWithoutTargetManagerNestedInput
-  homeManagerClaims?: Prisma.ShiftClaimUpdateManyWithoutHomeManagerNestedInput
-  organization?: Prisma.OrganizationUpdateOneRequiredWithoutEmployeesNestedInput
-  actions?: Prisma.AuditLogUpdateManyWithoutActorNestedInput
-}
-
-export type EmployeeUncheckedUpdateWithoutHomeWardInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  organizationId?: Prisma.StringFieldUpdateOperationsInput | string
-  userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  firstName?: Prisma.StringFieldUpdateOperationsInput | string
-  lastName?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  accessLevel?: Prisma.EnumAccessLevelFieldUpdateOperationsInput | $Enums.AccessLevel
-  roleId?: Prisma.StringFieldUpdateOperationsInput | string
-  homeDepartmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  managedOrganizations?: Prisma.OrganizationUncheckedUpdateManyWithoutAdminsNestedInput
-  managedDepartments?: Prisma.DepartmentUncheckedUpdateManyWithoutManagersNestedInput
-  managedWards?: Prisma.WardUncheckedUpdateManyWithoutManagersNestedInput
-  shifts?: Prisma.ShiftInstanceUncheckedUpdateManyWithoutEmployeeNestedInput
-  assignedPattern?: Prisma.AssignedPatternUncheckedUpdateManyWithoutEmployeeNestedInput
-  leaveRequests?: Prisma.LeaveRequestUncheckedUpdateManyWithoutEmployeeNestedInput
-  shiftClaims?: Prisma.ShiftClaimUncheckedUpdateManyWithoutEmployeeNestedInput
-  availability?: Prisma.EmployeeAvailabilityUncheckedUpdateManyWithoutEmployeeNestedInput
-  targetManagerClaims?: Prisma.ShiftClaimUncheckedUpdateManyWithoutTargetManagerNestedInput
-  homeManagerClaims?: Prisma.ShiftClaimUncheckedUpdateManyWithoutHomeManagerNestedInput
-  actions?: Prisma.AuditLogUncheckedUpdateManyWithoutActorNestedInput
-}
-
-export type EmployeeUncheckedUpdateManyWithoutHomeWardInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  organizationId?: Prisma.StringFieldUpdateOperationsInput | string
-  userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  firstName?: Prisma.StringFieldUpdateOperationsInput | string
-  lastName?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  accessLevel?: Prisma.EnumAccessLevelFieldUpdateOperationsInput | $Enums.AccessLevel
-  roleId?: Prisma.StringFieldUpdateOperationsInput | string
-  homeDepartmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type EmployeeCreateManyRoleInput = {
   id?: string
   organizationId: string
-  userId?: string | null
+  userId: string
   firstName: string
   lastName: string
   email: string
   archivedAt?: Date | string | null
-  accessLevel?: $Enums.AccessLevel
-  homeDepartmentId?: string | null
-  homeWardId?: string | null
 }
 
 export type EmployeeUpdateWithoutRoleInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   firstName?: Prisma.StringFieldUpdateOperationsInput | string
   lastName?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  accessLevel?: Prisma.EnumAccessLevelFieldUpdateOperationsInput | $Enums.AccessLevel
-  homeDepartment?: Prisma.DepartmentUpdateOneWithoutHomeStaffNestedInput
-  homeWard?: Prisma.WardUpdateOneWithoutHomeStaffNestedInput
-  managedOrganizations?: Prisma.OrganizationUpdateManyWithoutAdminsNestedInput
-  managedDepartments?: Prisma.DepartmentUpdateManyWithoutManagersNestedInput
-  managedWards?: Prisma.WardUpdateManyWithoutManagersNestedInput
+  user?: Prisma.UserUpdateOneRequiredWithoutEmploymentsNestedInput
+  organization?: Prisma.OrganizationUpdateOneRequiredWithoutEmployeesNestedInput
+  affiliations?: Prisma.EmployeeLocationAffiliationUpdateManyWithoutEmployeeNestedInput
+  managementRoles?: Prisma.ManagementRoleUpdateManyWithoutEmployeeNestedInput
   shifts?: Prisma.ShiftInstanceUpdateManyWithoutEmployeeNestedInput
   assignedPattern?: Prisma.AssignedPatternUpdateManyWithoutEmployeeNestedInput
   leaveRequests?: Prisma.LeaveRequestUpdateManyWithoutEmployeeNestedInput
@@ -2807,24 +1895,18 @@ export type EmployeeUpdateWithoutRoleInput = {
   availability?: Prisma.EmployeeAvailabilityUpdateManyWithoutEmployeeNestedInput
   targetManagerClaims?: Prisma.ShiftClaimUpdateManyWithoutTargetManagerNestedInput
   homeManagerClaims?: Prisma.ShiftClaimUpdateManyWithoutHomeManagerNestedInput
-  organization?: Prisma.OrganizationUpdateOneRequiredWithoutEmployeesNestedInput
-  actions?: Prisma.AuditLogUpdateManyWithoutActorNestedInput
 }
 
 export type EmployeeUncheckedUpdateWithoutRoleInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   organizationId?: Prisma.StringFieldUpdateOperationsInput | string
-  userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
   firstName?: Prisma.StringFieldUpdateOperationsInput | string
   lastName?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  accessLevel?: Prisma.EnumAccessLevelFieldUpdateOperationsInput | $Enums.AccessLevel
-  homeDepartmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  homeWardId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  managedOrganizations?: Prisma.OrganizationUncheckedUpdateManyWithoutAdminsNestedInput
-  managedDepartments?: Prisma.DepartmentUncheckedUpdateManyWithoutManagersNestedInput
-  managedWards?: Prisma.WardUncheckedUpdateManyWithoutManagersNestedInput
+  affiliations?: Prisma.EmployeeLocationAffiliationUncheckedUpdateManyWithoutEmployeeNestedInput
+  managementRoles?: Prisma.ManagementRoleUncheckedUpdateManyWithoutEmployeeNestedInput
   shifts?: Prisma.ShiftInstanceUncheckedUpdateManyWithoutEmployeeNestedInput
   assignedPattern?: Prisma.AssignedPatternUncheckedUpdateManyWithoutEmployeeNestedInput
   leaveRequests?: Prisma.LeaveRequestUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -2832,20 +1914,16 @@ export type EmployeeUncheckedUpdateWithoutRoleInput = {
   availability?: Prisma.EmployeeAvailabilityUncheckedUpdateManyWithoutEmployeeNestedInput
   targetManagerClaims?: Prisma.ShiftClaimUncheckedUpdateManyWithoutTargetManagerNestedInput
   homeManagerClaims?: Prisma.ShiftClaimUncheckedUpdateManyWithoutHomeManagerNestedInput
-  actions?: Prisma.AuditLogUncheckedUpdateManyWithoutActorNestedInput
 }
 
 export type EmployeeUncheckedUpdateManyWithoutRoleInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   organizationId?: Prisma.StringFieldUpdateOperationsInput | string
-  userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
   firstName?: Prisma.StringFieldUpdateOperationsInput | string
   lastName?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  accessLevel?: Prisma.EnumAccessLevelFieldUpdateOperationsInput | $Enums.AccessLevel
-  homeDepartmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  homeWardId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 
@@ -2854,9 +1932,8 @@ export type EmployeeUncheckedUpdateManyWithoutRoleInput = {
  */
 
 export type EmployeeCountOutputType = {
-  managedOrganizations: number
-  managedDepartments: number
-  managedWards: number
+  affiliations: number
+  managementRoles: number
   shifts: number
   assignedPattern: number
   leaveRequests: number
@@ -2864,13 +1941,11 @@ export type EmployeeCountOutputType = {
   availability: number
   targetManagerClaims: number
   homeManagerClaims: number
-  actions: number
 }
 
 export type EmployeeCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  managedOrganizations?: boolean | EmployeeCountOutputTypeCountManagedOrganizationsArgs
-  managedDepartments?: boolean | EmployeeCountOutputTypeCountManagedDepartmentsArgs
-  managedWards?: boolean | EmployeeCountOutputTypeCountManagedWardsArgs
+  affiliations?: boolean | EmployeeCountOutputTypeCountAffiliationsArgs
+  managementRoles?: boolean | EmployeeCountOutputTypeCountManagementRolesArgs
   shifts?: boolean | EmployeeCountOutputTypeCountShiftsArgs
   assignedPattern?: boolean | EmployeeCountOutputTypeCountAssignedPatternArgs
   leaveRequests?: boolean | EmployeeCountOutputTypeCountLeaveRequestsArgs
@@ -2878,7 +1953,6 @@ export type EmployeeCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensio
   availability?: boolean | EmployeeCountOutputTypeCountAvailabilityArgs
   targetManagerClaims?: boolean | EmployeeCountOutputTypeCountTargetManagerClaimsArgs
   homeManagerClaims?: boolean | EmployeeCountOutputTypeCountHomeManagerClaimsArgs
-  actions?: boolean | EmployeeCountOutputTypeCountActionsArgs
 }
 
 /**
@@ -2894,22 +1968,15 @@ export type EmployeeCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Ext
 /**
  * EmployeeCountOutputType without action
  */
-export type EmployeeCountOutputTypeCountManagedOrganizationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.OrganizationWhereInput
+export type EmployeeCountOutputTypeCountAffiliationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.EmployeeLocationAffiliationWhereInput
 }
 
 /**
  * EmployeeCountOutputType without action
  */
-export type EmployeeCountOutputTypeCountManagedDepartmentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.DepartmentWhereInput
-}
-
-/**
- * EmployeeCountOutputType without action
- */
-export type EmployeeCountOutputTypeCountManagedWardsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.WardWhereInput
+export type EmployeeCountOutputTypeCountManagementRolesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ManagementRoleWhereInput
 }
 
 /**
@@ -2961,13 +2028,6 @@ export type EmployeeCountOutputTypeCountHomeManagerClaimsArgs<ExtArgs extends ru
   where?: Prisma.ShiftClaimWhereInput
 }
 
-/**
- * EmployeeCountOutputType without action
- */
-export type EmployeeCountOutputTypeCountActionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.AuditLogWhereInput
-}
-
 
 export type EmployeeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -2977,16 +2037,12 @@ export type EmployeeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
   lastName?: boolean
   email?: boolean
   archivedAt?: boolean
-  accessLevel?: boolean
   roleId?: boolean
-  homeDepartmentId?: boolean
-  homeWardId?: boolean
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
   role?: boolean | Prisma.EmployeeRoleDefaultArgs<ExtArgs>
-  homeDepartment?: boolean | Prisma.Employee$homeDepartmentArgs<ExtArgs>
-  homeWard?: boolean | Prisma.Employee$homeWardArgs<ExtArgs>
-  managedOrganizations?: boolean | Prisma.Employee$managedOrganizationsArgs<ExtArgs>
-  managedDepartments?: boolean | Prisma.Employee$managedDepartmentsArgs<ExtArgs>
-  managedWards?: boolean | Prisma.Employee$managedWardsArgs<ExtArgs>
+  affiliations?: boolean | Prisma.Employee$affiliationsArgs<ExtArgs>
+  managementRoles?: boolean | Prisma.Employee$managementRolesArgs<ExtArgs>
   shifts?: boolean | Prisma.Employee$shiftsArgs<ExtArgs>
   assignedPattern?: boolean | Prisma.Employee$assignedPatternArgs<ExtArgs>
   leaveRequests?: boolean | Prisma.Employee$leaveRequestsArgs<ExtArgs>
@@ -2994,8 +2050,6 @@ export type EmployeeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
   availability?: boolean | Prisma.Employee$availabilityArgs<ExtArgs>
   targetManagerClaims?: boolean | Prisma.Employee$targetManagerClaimsArgs<ExtArgs>
   homeManagerClaims?: boolean | Prisma.Employee$homeManagerClaimsArgs<ExtArgs>
-  organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
-  actions?: boolean | Prisma.Employee$actionsArgs<ExtArgs>
   _count?: boolean | Prisma.EmployeeCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["employee"]>
 
@@ -3007,14 +2061,10 @@ export type EmployeeSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exte
   lastName?: boolean
   email?: boolean
   archivedAt?: boolean
-  accessLevel?: boolean
   roleId?: boolean
-  homeDepartmentId?: boolean
-  homeWardId?: boolean
-  role?: boolean | Prisma.EmployeeRoleDefaultArgs<ExtArgs>
-  homeDepartment?: boolean | Prisma.Employee$homeDepartmentArgs<ExtArgs>
-  homeWard?: boolean | Prisma.Employee$homeWardArgs<ExtArgs>
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
+  role?: boolean | Prisma.EmployeeRoleDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["employee"]>
 
 export type EmployeeSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -3025,14 +2075,10 @@ export type EmployeeSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exte
   lastName?: boolean
   email?: boolean
   archivedAt?: boolean
-  accessLevel?: boolean
   roleId?: boolean
-  homeDepartmentId?: boolean
-  homeWardId?: boolean
-  role?: boolean | Prisma.EmployeeRoleDefaultArgs<ExtArgs>
-  homeDepartment?: boolean | Prisma.Employee$homeDepartmentArgs<ExtArgs>
-  homeWard?: boolean | Prisma.Employee$homeWardArgs<ExtArgs>
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
+  role?: boolean | Prisma.EmployeeRoleDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["employee"]>
 
 export type EmployeeSelectScalar = {
@@ -3043,20 +2089,16 @@ export type EmployeeSelectScalar = {
   lastName?: boolean
   email?: boolean
   archivedAt?: boolean
-  accessLevel?: boolean
   roleId?: boolean
-  homeDepartmentId?: boolean
-  homeWardId?: boolean
 }
 
-export type EmployeeOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "organizationId" | "userId" | "firstName" | "lastName" | "email" | "archivedAt" | "accessLevel" | "roleId" | "homeDepartmentId" | "homeWardId", ExtArgs["result"]["employee"]>
+export type EmployeeOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "organizationId" | "userId" | "firstName" | "lastName" | "email" | "archivedAt" | "roleId", ExtArgs["result"]["employee"]>
 export type EmployeeInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
   role?: boolean | Prisma.EmployeeRoleDefaultArgs<ExtArgs>
-  homeDepartment?: boolean | Prisma.Employee$homeDepartmentArgs<ExtArgs>
-  homeWard?: boolean | Prisma.Employee$homeWardArgs<ExtArgs>
-  managedOrganizations?: boolean | Prisma.Employee$managedOrganizationsArgs<ExtArgs>
-  managedDepartments?: boolean | Prisma.Employee$managedDepartmentsArgs<ExtArgs>
-  managedWards?: boolean | Prisma.Employee$managedWardsArgs<ExtArgs>
+  affiliations?: boolean | Prisma.Employee$affiliationsArgs<ExtArgs>
+  managementRoles?: boolean | Prisma.Employee$managementRolesArgs<ExtArgs>
   shifts?: boolean | Prisma.Employee$shiftsArgs<ExtArgs>
   assignedPattern?: boolean | Prisma.Employee$assignedPatternArgs<ExtArgs>
   leaveRequests?: boolean | Prisma.Employee$leaveRequestsArgs<ExtArgs>
@@ -3064,32 +2106,27 @@ export type EmployeeInclude<ExtArgs extends runtime.Types.Extensions.InternalArg
   availability?: boolean | Prisma.Employee$availabilityArgs<ExtArgs>
   targetManagerClaims?: boolean | Prisma.Employee$targetManagerClaimsArgs<ExtArgs>
   homeManagerClaims?: boolean | Prisma.Employee$homeManagerClaimsArgs<ExtArgs>
-  organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
-  actions?: boolean | Prisma.Employee$actionsArgs<ExtArgs>
   _count?: boolean | Prisma.EmployeeCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type EmployeeIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  role?: boolean | Prisma.EmployeeRoleDefaultArgs<ExtArgs>
-  homeDepartment?: boolean | Prisma.Employee$homeDepartmentArgs<ExtArgs>
-  homeWard?: boolean | Prisma.Employee$homeWardArgs<ExtArgs>
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
+  role?: boolean | Prisma.EmployeeRoleDefaultArgs<ExtArgs>
 }
 export type EmployeeIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  role?: boolean | Prisma.EmployeeRoleDefaultArgs<ExtArgs>
-  homeDepartment?: boolean | Prisma.Employee$homeDepartmentArgs<ExtArgs>
-  homeWard?: boolean | Prisma.Employee$homeWardArgs<ExtArgs>
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
+  role?: boolean | Prisma.EmployeeRoleDefaultArgs<ExtArgs>
 }
 
 export type $EmployeePayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Employee"
   objects: {
+    user: Prisma.$UserPayload<ExtArgs>
+    organization: Prisma.$OrganizationPayload<ExtArgs>
     role: Prisma.$EmployeeRolePayload<ExtArgs>
-    homeDepartment: Prisma.$DepartmentPayload<ExtArgs> | null
-    homeWard: Prisma.$WardPayload<ExtArgs> | null
-    managedOrganizations: Prisma.$OrganizationPayload<ExtArgs>[]
-    managedDepartments: Prisma.$DepartmentPayload<ExtArgs>[]
-    managedWards: Prisma.$WardPayload<ExtArgs>[]
+    affiliations: Prisma.$EmployeeLocationAffiliationPayload<ExtArgs>[]
+    managementRoles: Prisma.$ManagementRolePayload<ExtArgs>[]
     shifts: Prisma.$ShiftInstancePayload<ExtArgs>[]
     assignedPattern: Prisma.$AssignedPatternPayload<ExtArgs>[]
     leaveRequests: Prisma.$LeaveRequestPayload<ExtArgs>[]
@@ -3097,21 +2134,16 @@ export type $EmployeePayload<ExtArgs extends runtime.Types.Extensions.InternalAr
     availability: Prisma.$EmployeeAvailabilityPayload<ExtArgs>[]
     targetManagerClaims: Prisma.$ShiftClaimPayload<ExtArgs>[]
     homeManagerClaims: Prisma.$ShiftClaimPayload<ExtArgs>[]
-    organization: Prisma.$OrganizationPayload<ExtArgs>
-    actions: Prisma.$AuditLogPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     organizationId: string
-    userId: string | null
+    userId: string
     firstName: string
     lastName: string
     email: string
     archivedAt: Date | null
-    accessLevel: $Enums.AccessLevel
     roleId: string
-    homeDepartmentId: string | null
-    homeWardId: string | null
   }, ExtArgs["result"]["employee"]>
   composites: {}
 }
@@ -3506,12 +2538,11 @@ readonly fields: EmployeeFieldRefs;
  */
 export interface Prisma__EmployeeClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
+  user<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  organization<T extends Prisma.OrganizationDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.OrganizationDefaultArgs<ExtArgs>>): Prisma.Prisma__OrganizationClient<runtime.Types.Result.GetResult<Prisma.$OrganizationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   role<T extends Prisma.EmployeeRoleDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.EmployeeRoleDefaultArgs<ExtArgs>>): Prisma.Prisma__EmployeeRoleClient<runtime.Types.Result.GetResult<Prisma.$EmployeeRolePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-  homeDepartment<T extends Prisma.Employee$homeDepartmentArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Employee$homeDepartmentArgs<ExtArgs>>): Prisma.Prisma__DepartmentClient<runtime.Types.Result.GetResult<Prisma.$DepartmentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-  homeWard<T extends Prisma.Employee$homeWardArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Employee$homeWardArgs<ExtArgs>>): Prisma.Prisma__WardClient<runtime.Types.Result.GetResult<Prisma.$WardPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-  managedOrganizations<T extends Prisma.Employee$managedOrganizationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Employee$managedOrganizationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$OrganizationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  managedDepartments<T extends Prisma.Employee$managedDepartmentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Employee$managedDepartmentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$DepartmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  managedWards<T extends Prisma.Employee$managedWardsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Employee$managedWardsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$WardPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  affiliations<T extends Prisma.Employee$affiliationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Employee$affiliationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$EmployeeLocationAffiliationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  managementRoles<T extends Prisma.Employee$managementRolesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Employee$managementRolesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ManagementRolePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   shifts<T extends Prisma.Employee$shiftsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Employee$shiftsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ShiftInstancePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   assignedPattern<T extends Prisma.Employee$assignedPatternArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Employee$assignedPatternArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AssignedPatternPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   leaveRequests<T extends Prisma.Employee$leaveRequestsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Employee$leaveRequestsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$LeaveRequestPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
@@ -3519,8 +2550,6 @@ export interface Prisma__EmployeeClient<T, Null = never, ExtArgs extends runtime
   availability<T extends Prisma.Employee$availabilityArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Employee$availabilityArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$EmployeeAvailabilityPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   targetManagerClaims<T extends Prisma.Employee$targetManagerClaimsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Employee$targetManagerClaimsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ShiftClaimPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   homeManagerClaims<T extends Prisma.Employee$homeManagerClaimsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Employee$homeManagerClaimsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ShiftClaimPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  organization<T extends Prisma.OrganizationDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.OrganizationDefaultArgs<ExtArgs>>): Prisma.Prisma__OrganizationClient<runtime.Types.Result.GetResult<Prisma.$OrganizationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-  actions<T extends Prisma.Employee$actionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Employee$actionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AuditLogPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -3557,10 +2586,7 @@ export interface EmployeeFieldRefs {
   readonly lastName: Prisma.FieldRef<"Employee", 'String'>
   readonly email: Prisma.FieldRef<"Employee", 'String'>
   readonly archivedAt: Prisma.FieldRef<"Employee", 'DateTime'>
-  readonly accessLevel: Prisma.FieldRef<"Employee", 'AccessLevel'>
   readonly roleId: Prisma.FieldRef<"Employee", 'String'>
-  readonly homeDepartmentId: Prisma.FieldRef<"Employee", 'String'>
-  readonly homeWardId: Prisma.FieldRef<"Employee", 'String'>
 }
     
 
@@ -3957,113 +2983,51 @@ export type EmployeeDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Inte
 }
 
 /**
- * Employee.homeDepartment
+ * Employee.affiliations
  */
-export type Employee$homeDepartmentArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type Employee$affiliationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the Department
+   * Select specific fields to fetch from the EmployeeLocationAffiliation
    */
-  select?: Prisma.DepartmentSelect<ExtArgs> | null
+  select?: Prisma.EmployeeLocationAffiliationSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the Department
+   * Omit specific fields from the EmployeeLocationAffiliation
    */
-  omit?: Prisma.DepartmentOmit<ExtArgs> | null
+  omit?: Prisma.EmployeeLocationAffiliationOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.DepartmentInclude<ExtArgs> | null
-  where?: Prisma.DepartmentWhereInput
-}
-
-/**
- * Employee.homeWard
- */
-export type Employee$homeWardArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the Ward
-   */
-  select?: Prisma.WardSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the Ward
-   */
-  omit?: Prisma.WardOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.WardInclude<ExtArgs> | null
-  where?: Prisma.WardWhereInput
-}
-
-/**
- * Employee.managedOrganizations
- */
-export type Employee$managedOrganizationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the Organization
-   */
-  select?: Prisma.OrganizationSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the Organization
-   */
-  omit?: Prisma.OrganizationOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.OrganizationInclude<ExtArgs> | null
-  where?: Prisma.OrganizationWhereInput
-  orderBy?: Prisma.OrganizationOrderByWithRelationInput | Prisma.OrganizationOrderByWithRelationInput[]
-  cursor?: Prisma.OrganizationWhereUniqueInput
+  include?: Prisma.EmployeeLocationAffiliationInclude<ExtArgs> | null
+  where?: Prisma.EmployeeLocationAffiliationWhereInput
+  orderBy?: Prisma.EmployeeLocationAffiliationOrderByWithRelationInput | Prisma.EmployeeLocationAffiliationOrderByWithRelationInput[]
+  cursor?: Prisma.EmployeeLocationAffiliationWhereUniqueInput
   take?: number
   skip?: number
-  distinct?: Prisma.OrganizationScalarFieldEnum | Prisma.OrganizationScalarFieldEnum[]
+  distinct?: Prisma.EmployeeLocationAffiliationScalarFieldEnum | Prisma.EmployeeLocationAffiliationScalarFieldEnum[]
 }
 
 /**
- * Employee.managedDepartments
+ * Employee.managementRoles
  */
-export type Employee$managedDepartmentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type Employee$managementRolesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the Department
+   * Select specific fields to fetch from the ManagementRole
    */
-  select?: Prisma.DepartmentSelect<ExtArgs> | null
+  select?: Prisma.ManagementRoleSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the Department
+   * Omit specific fields from the ManagementRole
    */
-  omit?: Prisma.DepartmentOmit<ExtArgs> | null
+  omit?: Prisma.ManagementRoleOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.DepartmentInclude<ExtArgs> | null
-  where?: Prisma.DepartmentWhereInput
-  orderBy?: Prisma.DepartmentOrderByWithRelationInput | Prisma.DepartmentOrderByWithRelationInput[]
-  cursor?: Prisma.DepartmentWhereUniqueInput
+  include?: Prisma.ManagementRoleInclude<ExtArgs> | null
+  where?: Prisma.ManagementRoleWhereInput
+  orderBy?: Prisma.ManagementRoleOrderByWithRelationInput | Prisma.ManagementRoleOrderByWithRelationInput[]
+  cursor?: Prisma.ManagementRoleWhereUniqueInput
   take?: number
   skip?: number
-  distinct?: Prisma.DepartmentScalarFieldEnum | Prisma.DepartmentScalarFieldEnum[]
-}
-
-/**
- * Employee.managedWards
- */
-export type Employee$managedWardsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the Ward
-   */
-  select?: Prisma.WardSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the Ward
-   */
-  omit?: Prisma.WardOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.WardInclude<ExtArgs> | null
-  where?: Prisma.WardWhereInput
-  orderBy?: Prisma.WardOrderByWithRelationInput | Prisma.WardOrderByWithRelationInput[]
-  cursor?: Prisma.WardWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.WardScalarFieldEnum | Prisma.WardScalarFieldEnum[]
+  distinct?: Prisma.ManagementRoleScalarFieldEnum | Prisma.ManagementRoleScalarFieldEnum[]
 }
 
 /**
@@ -4232,30 +3196,6 @@ export type Employee$homeManagerClaimsArgs<ExtArgs extends runtime.Types.Extensi
   take?: number
   skip?: number
   distinct?: Prisma.ShiftClaimScalarFieldEnum | Prisma.ShiftClaimScalarFieldEnum[]
-}
-
-/**
- * Employee.actions
- */
-export type Employee$actionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the AuditLog
-   */
-  select?: Prisma.AuditLogSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the AuditLog
-   */
-  omit?: Prisma.AuditLogOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.AuditLogInclude<ExtArgs> | null
-  where?: Prisma.AuditLogWhereInput
-  orderBy?: Prisma.AuditLogOrderByWithRelationInput | Prisma.AuditLogOrderByWithRelationInput[]
-  cursor?: Prisma.AuditLogWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.AuditLogScalarFieldEnum | Prisma.AuditLogScalarFieldEnum[]
 }
 
 /**

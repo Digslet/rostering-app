@@ -9,14 +9,13 @@
 * 🟢 You can import this file directly.
 */
 
-export const AccessLevel = {
-  EMPLOYEE: 'EMPLOYEE',
-  WARD_MANAGER: 'WARD_MANAGER',
-  DEPT_MANAGER: 'DEPT_MANAGER',
-  ORG_ADMIN: 'ORG_ADMIN'
+export const ManagerLevel = {
+  ORG: 'ORG',
+  DEPT: 'DEPT',
+  LOCATION: 'LOCATION'
 } as const
 
-export type AccessLevel = (typeof AccessLevel)[keyof typeof AccessLevel]
+export type ManagerLevel = (typeof ManagerLevel)[keyof typeof ManagerLevel]
 
 
 export const ShiftStatus = {

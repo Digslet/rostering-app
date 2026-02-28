@@ -28,18 +28,21 @@ export type EmployeeRoleMinAggregateOutputType = {
   id: string | null
   organizationId: string | null
   name: string | null
+  archivedAt: Date | null
 }
 
 export type EmployeeRoleMaxAggregateOutputType = {
   id: string | null
   organizationId: string | null
   name: string | null
+  archivedAt: Date | null
 }
 
 export type EmployeeRoleCountAggregateOutputType = {
   id: number
   organizationId: number
   name: number
+  archivedAt: number
   _all: number
 }
 
@@ -48,18 +51,21 @@ export type EmployeeRoleMinAggregateInputType = {
   id?: true
   organizationId?: true
   name?: true
+  archivedAt?: true
 }
 
 export type EmployeeRoleMaxAggregateInputType = {
   id?: true
   organizationId?: true
   name?: true
+  archivedAt?: true
 }
 
 export type EmployeeRoleCountAggregateInputType = {
   id?: true
   organizationId?: true
   name?: true
+  archivedAt?: true
   _all?: true
 }
 
@@ -139,6 +145,7 @@ export type EmployeeRoleGroupByOutputType = {
   id: string
   organizationId: string
   name: string
+  archivedAt: Date | null
   _count: EmployeeRoleCountAggregateOutputType | null
   _min: EmployeeRoleMinAggregateOutputType | null
   _max: EmployeeRoleMaxAggregateOutputType | null
@@ -166,6 +173,7 @@ export type EmployeeRoleWhereInput = {
   id?: Prisma.StringFilter<"EmployeeRole"> | string
   organizationId?: Prisma.StringFilter<"EmployeeRole"> | string
   name?: Prisma.StringFilter<"EmployeeRole"> | string
+  archivedAt?: Prisma.DateTimeNullableFilter<"EmployeeRole"> | Date | string | null
   organization?: Prisma.XOR<Prisma.OrganizationScalarRelationFilter, Prisma.OrganizationWhereInput>
   employees?: Prisma.EmployeeListRelationFilter
   requirements?: Prisma.StaffingRequirementListRelationFilter
@@ -176,6 +184,7 @@ export type EmployeeRoleOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   organizationId?: Prisma.SortOrder
   name?: Prisma.SortOrder
+  archivedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   organization?: Prisma.OrganizationOrderByWithRelationInput
   employees?: Prisma.EmployeeOrderByRelationAggregateInput
   requirements?: Prisma.StaffingRequirementOrderByRelationAggregateInput
@@ -189,6 +198,7 @@ export type EmployeeRoleWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.EmployeeRoleWhereInput | Prisma.EmployeeRoleWhereInput[]
   organizationId?: Prisma.StringFilter<"EmployeeRole"> | string
   name?: Prisma.StringFilter<"EmployeeRole"> | string
+  archivedAt?: Prisma.DateTimeNullableFilter<"EmployeeRole"> | Date | string | null
   organization?: Prisma.XOR<Prisma.OrganizationScalarRelationFilter, Prisma.OrganizationWhereInput>
   employees?: Prisma.EmployeeListRelationFilter
   requirements?: Prisma.StaffingRequirementListRelationFilter
@@ -199,6 +209,7 @@ export type EmployeeRoleOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   organizationId?: Prisma.SortOrder
   name?: Prisma.SortOrder
+  archivedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.EmployeeRoleCountOrderByAggregateInput
   _max?: Prisma.EmployeeRoleMaxOrderByAggregateInput
   _min?: Prisma.EmployeeRoleMinOrderByAggregateInput
@@ -211,11 +222,13 @@ export type EmployeeRoleScalarWhereWithAggregatesInput = {
   id?: Prisma.StringWithAggregatesFilter<"EmployeeRole"> | string
   organizationId?: Prisma.StringWithAggregatesFilter<"EmployeeRole"> | string
   name?: Prisma.StringWithAggregatesFilter<"EmployeeRole"> | string
+  archivedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"EmployeeRole"> | Date | string | null
 }
 
 export type EmployeeRoleCreateInput = {
   id?: string
   name: string
+  archivedAt?: Date | string | null
   organization: Prisma.OrganizationCreateNestedOneWithoutRolesInput
   employees?: Prisma.EmployeeCreateNestedManyWithoutRoleInput
   requirements?: Prisma.StaffingRequirementCreateNestedManyWithoutRoleInput
@@ -226,6 +239,7 @@ export type EmployeeRoleUncheckedCreateInput = {
   id?: string
   organizationId: string
   name: string
+  archivedAt?: Date | string | null
   employees?: Prisma.EmployeeUncheckedCreateNestedManyWithoutRoleInput
   requirements?: Prisma.StaffingRequirementUncheckedCreateNestedManyWithoutRoleInput
   advertisements?: Prisma.ShiftAdvertisementUncheckedCreateNestedManyWithoutAllowedRolesInput
@@ -234,6 +248,7 @@ export type EmployeeRoleUncheckedCreateInput = {
 export type EmployeeRoleUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutRolesNestedInput
   employees?: Prisma.EmployeeUpdateManyWithoutRoleNestedInput
   requirements?: Prisma.StaffingRequirementUpdateManyWithoutRoleNestedInput
@@ -244,6 +259,7 @@ export type EmployeeRoleUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   organizationId?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   employees?: Prisma.EmployeeUncheckedUpdateManyWithoutRoleNestedInput
   requirements?: Prisma.StaffingRequirementUncheckedUpdateManyWithoutRoleNestedInput
   advertisements?: Prisma.ShiftAdvertisementUncheckedUpdateManyWithoutAllowedRolesNestedInput
@@ -253,17 +269,20 @@ export type EmployeeRoleCreateManyInput = {
   id?: string
   organizationId: string
   name: string
+  archivedAt?: Date | string | null
 }
 
 export type EmployeeRoleUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type EmployeeRoleUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   organizationId?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type EmployeeRoleListRelationFilter = {
@@ -285,18 +304,21 @@ export type EmployeeRoleCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   organizationId?: Prisma.SortOrder
   name?: Prisma.SortOrder
+  archivedAt?: Prisma.SortOrder
 }
 
 export type EmployeeRoleMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   organizationId?: Prisma.SortOrder
   name?: Prisma.SortOrder
+  archivedAt?: Prisma.SortOrder
 }
 
 export type EmployeeRoleMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   organizationId?: Prisma.SortOrder
   name?: Prisma.SortOrder
+  archivedAt?: Prisma.SortOrder
 }
 
 export type EmployeeRoleCreateNestedManyWithoutOrganizationInput = {
@@ -410,6 +432,7 @@ export type EmployeeRoleUncheckedUpdateManyWithoutAdvertisementsNestedInput = {
 export type EmployeeRoleCreateWithoutOrganizationInput = {
   id?: string
   name: string
+  archivedAt?: Date | string | null
   employees?: Prisma.EmployeeCreateNestedManyWithoutRoleInput
   requirements?: Prisma.StaffingRequirementCreateNestedManyWithoutRoleInput
   advertisements?: Prisma.ShiftAdvertisementCreateNestedManyWithoutAllowedRolesInput
@@ -418,6 +441,7 @@ export type EmployeeRoleCreateWithoutOrganizationInput = {
 export type EmployeeRoleUncheckedCreateWithoutOrganizationInput = {
   id?: string
   name: string
+  archivedAt?: Date | string | null
   employees?: Prisma.EmployeeUncheckedCreateNestedManyWithoutRoleInput
   requirements?: Prisma.StaffingRequirementUncheckedCreateNestedManyWithoutRoleInput
   advertisements?: Prisma.ShiftAdvertisementUncheckedCreateNestedManyWithoutAllowedRolesInput
@@ -456,11 +480,13 @@ export type EmployeeRoleScalarWhereInput = {
   id?: Prisma.StringFilter<"EmployeeRole"> | string
   organizationId?: Prisma.StringFilter<"EmployeeRole"> | string
   name?: Prisma.StringFilter<"EmployeeRole"> | string
+  archivedAt?: Prisma.DateTimeNullableFilter<"EmployeeRole"> | Date | string | null
 }
 
 export type EmployeeRoleCreateWithoutEmployeesInput = {
   id?: string
   name: string
+  archivedAt?: Date | string | null
   organization: Prisma.OrganizationCreateNestedOneWithoutRolesInput
   requirements?: Prisma.StaffingRequirementCreateNestedManyWithoutRoleInput
   advertisements?: Prisma.ShiftAdvertisementCreateNestedManyWithoutAllowedRolesInput
@@ -470,6 +496,7 @@ export type EmployeeRoleUncheckedCreateWithoutEmployeesInput = {
   id?: string
   organizationId: string
   name: string
+  archivedAt?: Date | string | null
   requirements?: Prisma.StaffingRequirementUncheckedCreateNestedManyWithoutRoleInput
   advertisements?: Prisma.ShiftAdvertisementUncheckedCreateNestedManyWithoutAllowedRolesInput
 }
@@ -493,6 +520,7 @@ export type EmployeeRoleUpdateToOneWithWhereWithoutEmployeesInput = {
 export type EmployeeRoleUpdateWithoutEmployeesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutRolesNestedInput
   requirements?: Prisma.StaffingRequirementUpdateManyWithoutRoleNestedInput
   advertisements?: Prisma.ShiftAdvertisementUpdateManyWithoutAllowedRolesNestedInput
@@ -502,6 +530,7 @@ export type EmployeeRoleUncheckedUpdateWithoutEmployeesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   organizationId?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   requirements?: Prisma.StaffingRequirementUncheckedUpdateManyWithoutRoleNestedInput
   advertisements?: Prisma.ShiftAdvertisementUncheckedUpdateManyWithoutAllowedRolesNestedInput
 }
@@ -509,6 +538,7 @@ export type EmployeeRoleUncheckedUpdateWithoutEmployeesInput = {
 export type EmployeeRoleCreateWithoutRequirementsInput = {
   id?: string
   name: string
+  archivedAt?: Date | string | null
   organization: Prisma.OrganizationCreateNestedOneWithoutRolesInput
   employees?: Prisma.EmployeeCreateNestedManyWithoutRoleInput
   advertisements?: Prisma.ShiftAdvertisementCreateNestedManyWithoutAllowedRolesInput
@@ -518,6 +548,7 @@ export type EmployeeRoleUncheckedCreateWithoutRequirementsInput = {
   id?: string
   organizationId: string
   name: string
+  archivedAt?: Date | string | null
   employees?: Prisma.EmployeeUncheckedCreateNestedManyWithoutRoleInput
   advertisements?: Prisma.ShiftAdvertisementUncheckedCreateNestedManyWithoutAllowedRolesInput
 }
@@ -541,6 +572,7 @@ export type EmployeeRoleUpdateToOneWithWhereWithoutRequirementsInput = {
 export type EmployeeRoleUpdateWithoutRequirementsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutRolesNestedInput
   employees?: Prisma.EmployeeUpdateManyWithoutRoleNestedInput
   advertisements?: Prisma.ShiftAdvertisementUpdateManyWithoutAllowedRolesNestedInput
@@ -550,6 +582,7 @@ export type EmployeeRoleUncheckedUpdateWithoutRequirementsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   organizationId?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   employees?: Prisma.EmployeeUncheckedUpdateManyWithoutRoleNestedInput
   advertisements?: Prisma.ShiftAdvertisementUncheckedUpdateManyWithoutAllowedRolesNestedInput
 }
@@ -557,6 +590,7 @@ export type EmployeeRoleUncheckedUpdateWithoutRequirementsInput = {
 export type EmployeeRoleCreateWithoutAdvertisementsInput = {
   id?: string
   name: string
+  archivedAt?: Date | string | null
   organization: Prisma.OrganizationCreateNestedOneWithoutRolesInput
   employees?: Prisma.EmployeeCreateNestedManyWithoutRoleInput
   requirements?: Prisma.StaffingRequirementCreateNestedManyWithoutRoleInput
@@ -566,6 +600,7 @@ export type EmployeeRoleUncheckedCreateWithoutAdvertisementsInput = {
   id?: string
   organizationId: string
   name: string
+  archivedAt?: Date | string | null
   employees?: Prisma.EmployeeUncheckedCreateNestedManyWithoutRoleInput
   requirements?: Prisma.StaffingRequirementUncheckedCreateNestedManyWithoutRoleInput
 }
@@ -594,11 +629,13 @@ export type EmployeeRoleUpdateManyWithWhereWithoutAdvertisementsInput = {
 export type EmployeeRoleCreateManyOrganizationInput = {
   id?: string
   name: string
+  archivedAt?: Date | string | null
 }
 
 export type EmployeeRoleUpdateWithoutOrganizationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   employees?: Prisma.EmployeeUpdateManyWithoutRoleNestedInput
   requirements?: Prisma.StaffingRequirementUpdateManyWithoutRoleNestedInput
   advertisements?: Prisma.ShiftAdvertisementUpdateManyWithoutAllowedRolesNestedInput
@@ -607,6 +644,7 @@ export type EmployeeRoleUpdateWithoutOrganizationInput = {
 export type EmployeeRoleUncheckedUpdateWithoutOrganizationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   employees?: Prisma.EmployeeUncheckedUpdateManyWithoutRoleNestedInput
   requirements?: Prisma.StaffingRequirementUncheckedUpdateManyWithoutRoleNestedInput
   advertisements?: Prisma.ShiftAdvertisementUncheckedUpdateManyWithoutAllowedRolesNestedInput
@@ -615,11 +653,13 @@ export type EmployeeRoleUncheckedUpdateWithoutOrganizationInput = {
 export type EmployeeRoleUncheckedUpdateManyWithoutOrganizationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type EmployeeRoleUpdateWithoutAdvertisementsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutRolesNestedInput
   employees?: Prisma.EmployeeUpdateManyWithoutRoleNestedInput
   requirements?: Prisma.StaffingRequirementUpdateManyWithoutRoleNestedInput
@@ -629,6 +669,7 @@ export type EmployeeRoleUncheckedUpdateWithoutAdvertisementsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   organizationId?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   employees?: Prisma.EmployeeUncheckedUpdateManyWithoutRoleNestedInput
   requirements?: Prisma.StaffingRequirementUncheckedUpdateManyWithoutRoleNestedInput
 }
@@ -637,6 +678,7 @@ export type EmployeeRoleUncheckedUpdateManyWithoutAdvertisementsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   organizationId?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 
@@ -692,6 +734,7 @@ export type EmployeeRoleSelect<ExtArgs extends runtime.Types.Extensions.Internal
   id?: boolean
   organizationId?: boolean
   name?: boolean
+  archivedAt?: boolean
   organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
   employees?: boolean | Prisma.EmployeeRole$employeesArgs<ExtArgs>
   requirements?: boolean | Prisma.EmployeeRole$requirementsArgs<ExtArgs>
@@ -703,6 +746,7 @@ export type EmployeeRoleSelectCreateManyAndReturn<ExtArgs extends runtime.Types.
   id?: boolean
   organizationId?: boolean
   name?: boolean
+  archivedAt?: boolean
   organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["employeeRole"]>
 
@@ -710,6 +754,7 @@ export type EmployeeRoleSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.
   id?: boolean
   organizationId?: boolean
   name?: boolean
+  archivedAt?: boolean
   organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["employeeRole"]>
 
@@ -717,9 +762,10 @@ export type EmployeeRoleSelectScalar = {
   id?: boolean
   organizationId?: boolean
   name?: boolean
+  archivedAt?: boolean
 }
 
-export type EmployeeRoleOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "organizationId" | "name", ExtArgs["result"]["employeeRole"]>
+export type EmployeeRoleOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "organizationId" | "name" | "archivedAt", ExtArgs["result"]["employeeRole"]>
 export type EmployeeRoleInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
   employees?: boolean | Prisma.EmployeeRole$employeesArgs<ExtArgs>
@@ -746,6 +792,7 @@ export type $EmployeeRolePayload<ExtArgs extends runtime.Types.Extensions.Intern
     id: string
     organizationId: string
     name: string
+    archivedAt: Date | null
   }, ExtArgs["result"]["employeeRole"]>
   composites: {}
 }
@@ -1176,6 +1223,7 @@ export interface EmployeeRoleFieldRefs {
   readonly id: Prisma.FieldRef<"EmployeeRole", 'String'>
   readonly organizationId: Prisma.FieldRef<"EmployeeRole", 'String'>
   readonly name: Prisma.FieldRef<"EmployeeRole", 'String'>
+  readonly archivedAt: Prisma.FieldRef<"EmployeeRole", 'DateTime'>
 }
     
 

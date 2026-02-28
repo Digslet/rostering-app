@@ -36,21 +36,27 @@ export type RosterPatternSumAggregateOutputType = {
 
 export type RosterPatternMinAggregateOutputType = {
   id: string | null
-  wardId: string | null
+  organizationId: string | null
+  departmentId: string | null
+  locationId: string | null
   name: string | null
   cycleLength: number | null
 }
 
 export type RosterPatternMaxAggregateOutputType = {
   id: string | null
-  wardId: string | null
+  organizationId: string | null
+  departmentId: string | null
+  locationId: string | null
   name: string | null
   cycleLength: number | null
 }
 
 export type RosterPatternCountAggregateOutputType = {
   id: number
-  wardId: number
+  organizationId: number
+  departmentId: number
+  locationId: number
   name: number
   cycleLength: number
   _all: number
@@ -67,21 +73,27 @@ export type RosterPatternSumAggregateInputType = {
 
 export type RosterPatternMinAggregateInputType = {
   id?: true
-  wardId?: true
+  organizationId?: true
+  departmentId?: true
+  locationId?: true
   name?: true
   cycleLength?: true
 }
 
 export type RosterPatternMaxAggregateInputType = {
   id?: true
-  wardId?: true
+  organizationId?: true
+  departmentId?: true
+  locationId?: true
   name?: true
   cycleLength?: true
 }
 
 export type RosterPatternCountAggregateInputType = {
   id?: true
-  wardId?: true
+  organizationId?: true
+  departmentId?: true
+  locationId?: true
   name?: true
   cycleLength?: true
   _all?: true
@@ -175,7 +187,9 @@ export type RosterPatternGroupByArgs<ExtArgs extends runtime.Types.Extensions.In
 
 export type RosterPatternGroupByOutputType = {
   id: string
-  wardId: string
+  organizationId: string
+  departmentId: string | null
+  locationId: string | null
   name: string
   cycleLength: number
   _count: RosterPatternCountAggregateOutputType | null
@@ -205,21 +219,29 @@ export type RosterPatternWhereInput = {
   OR?: Prisma.RosterPatternWhereInput[]
   NOT?: Prisma.RosterPatternWhereInput | Prisma.RosterPatternWhereInput[]
   id?: Prisma.StringFilter<"RosterPattern"> | string
-  wardId?: Prisma.StringFilter<"RosterPattern"> | string
+  organizationId?: Prisma.StringFilter<"RosterPattern"> | string
+  departmentId?: Prisma.StringNullableFilter<"RosterPattern"> | string | null
+  locationId?: Prisma.StringNullableFilter<"RosterPattern"> | string | null
   name?: Prisma.StringFilter<"RosterPattern"> | string
   cycleLength?: Prisma.IntFilter<"RosterPattern"> | number
   items?: Prisma.PatternItemListRelationFilter
-  ward?: Prisma.XOR<Prisma.WardScalarRelationFilter, Prisma.WardWhereInput>
+  organization?: Prisma.XOR<Prisma.OrganizationScalarRelationFilter, Prisma.OrganizationWhereInput>
+  department?: Prisma.XOR<Prisma.DepartmentNullableScalarRelationFilter, Prisma.DepartmentWhereInput> | null
+  location?: Prisma.XOR<Prisma.LocationNullableScalarRelationFilter, Prisma.LocationWhereInput> | null
   assignees?: Prisma.AssignedPatternListRelationFilter
 }
 
 export type RosterPatternOrderByWithRelationInput = {
   id?: Prisma.SortOrder
-  wardId?: Prisma.SortOrder
+  organizationId?: Prisma.SortOrder
+  departmentId?: Prisma.SortOrderInput | Prisma.SortOrder
+  locationId?: Prisma.SortOrderInput | Prisma.SortOrder
   name?: Prisma.SortOrder
   cycleLength?: Prisma.SortOrder
   items?: Prisma.PatternItemOrderByRelationAggregateInput
-  ward?: Prisma.WardOrderByWithRelationInput
+  organization?: Prisma.OrganizationOrderByWithRelationInput
+  department?: Prisma.DepartmentOrderByWithRelationInput
+  location?: Prisma.LocationOrderByWithRelationInput
   assignees?: Prisma.AssignedPatternOrderByRelationAggregateInput
 }
 
@@ -228,17 +250,23 @@ export type RosterPatternWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.RosterPatternWhereInput | Prisma.RosterPatternWhereInput[]
   OR?: Prisma.RosterPatternWhereInput[]
   NOT?: Prisma.RosterPatternWhereInput | Prisma.RosterPatternWhereInput[]
-  wardId?: Prisma.StringFilter<"RosterPattern"> | string
+  organizationId?: Prisma.StringFilter<"RosterPattern"> | string
+  departmentId?: Prisma.StringNullableFilter<"RosterPattern"> | string | null
+  locationId?: Prisma.StringNullableFilter<"RosterPattern"> | string | null
   name?: Prisma.StringFilter<"RosterPattern"> | string
   cycleLength?: Prisma.IntFilter<"RosterPattern"> | number
   items?: Prisma.PatternItemListRelationFilter
-  ward?: Prisma.XOR<Prisma.WardScalarRelationFilter, Prisma.WardWhereInput>
+  organization?: Prisma.XOR<Prisma.OrganizationScalarRelationFilter, Prisma.OrganizationWhereInput>
+  department?: Prisma.XOR<Prisma.DepartmentNullableScalarRelationFilter, Prisma.DepartmentWhereInput> | null
+  location?: Prisma.XOR<Prisma.LocationNullableScalarRelationFilter, Prisma.LocationWhereInput> | null
   assignees?: Prisma.AssignedPatternListRelationFilter
 }, "id">
 
 export type RosterPatternOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
-  wardId?: Prisma.SortOrder
+  organizationId?: Prisma.SortOrder
+  departmentId?: Prisma.SortOrderInput | Prisma.SortOrder
+  locationId?: Prisma.SortOrderInput | Prisma.SortOrder
   name?: Prisma.SortOrder
   cycleLength?: Prisma.SortOrder
   _count?: Prisma.RosterPatternCountOrderByAggregateInput
@@ -253,7 +281,9 @@ export type RosterPatternScalarWhereWithAggregatesInput = {
   OR?: Prisma.RosterPatternScalarWhereWithAggregatesInput[]
   NOT?: Prisma.RosterPatternScalarWhereWithAggregatesInput | Prisma.RosterPatternScalarWhereWithAggregatesInput[]
   id?: Prisma.StringWithAggregatesFilter<"RosterPattern"> | string
-  wardId?: Prisma.StringWithAggregatesFilter<"RosterPattern"> | string
+  organizationId?: Prisma.StringWithAggregatesFilter<"RosterPattern"> | string
+  departmentId?: Prisma.StringNullableWithAggregatesFilter<"RosterPattern"> | string | null
+  locationId?: Prisma.StringNullableWithAggregatesFilter<"RosterPattern"> | string | null
   name?: Prisma.StringWithAggregatesFilter<"RosterPattern"> | string
   cycleLength?: Prisma.IntWithAggregatesFilter<"RosterPattern"> | number
 }
@@ -263,13 +293,17 @@ export type RosterPatternCreateInput = {
   name: string
   cycleLength: number
   items?: Prisma.PatternItemCreateNestedManyWithoutPatternInput
-  ward: Prisma.WardCreateNestedOneWithoutPatternsInput
+  organization: Prisma.OrganizationCreateNestedOneWithoutRosterPatternsInput
+  department?: Prisma.DepartmentCreateNestedOneWithoutSharedPatternsInput
+  location?: Prisma.LocationCreateNestedOneWithoutPatternsInput
   assignees?: Prisma.AssignedPatternCreateNestedManyWithoutPatternInput
 }
 
 export type RosterPatternUncheckedCreateInput = {
   id?: string
-  wardId: string
+  organizationId: string
+  departmentId?: string | null
+  locationId?: string | null
   name: string
   cycleLength: number
   items?: Prisma.PatternItemUncheckedCreateNestedManyWithoutPatternInput
@@ -281,13 +315,17 @@ export type RosterPatternUpdateInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   cycleLength?: Prisma.IntFieldUpdateOperationsInput | number
   items?: Prisma.PatternItemUpdateManyWithoutPatternNestedInput
-  ward?: Prisma.WardUpdateOneRequiredWithoutPatternsNestedInput
+  organization?: Prisma.OrganizationUpdateOneRequiredWithoutRosterPatternsNestedInput
+  department?: Prisma.DepartmentUpdateOneWithoutSharedPatternsNestedInput
+  location?: Prisma.LocationUpdateOneWithoutPatternsNestedInput
   assignees?: Prisma.AssignedPatternUpdateManyWithoutPatternNestedInput
 }
 
 export type RosterPatternUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  wardId?: Prisma.StringFieldUpdateOperationsInput | string
+  organizationId?: Prisma.StringFieldUpdateOperationsInput | string
+  departmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  locationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   name?: Prisma.StringFieldUpdateOperationsInput | string
   cycleLength?: Prisma.IntFieldUpdateOperationsInput | number
   items?: Prisma.PatternItemUncheckedUpdateManyWithoutPatternNestedInput
@@ -296,7 +334,9 @@ export type RosterPatternUncheckedUpdateInput = {
 
 export type RosterPatternCreateManyInput = {
   id?: string
-  wardId: string
+  organizationId: string
+  departmentId?: string | null
+  locationId?: string | null
   name: string
   cycleLength: number
 }
@@ -309,7 +349,9 @@ export type RosterPatternUpdateManyMutationInput = {
 
 export type RosterPatternUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  wardId?: Prisma.StringFieldUpdateOperationsInput | string
+  organizationId?: Prisma.StringFieldUpdateOperationsInput | string
+  departmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  locationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   name?: Prisma.StringFieldUpdateOperationsInput | string
   cycleLength?: Prisma.IntFieldUpdateOperationsInput | number
 }
@@ -326,7 +368,9 @@ export type RosterPatternOrderByRelationAggregateInput = {
 
 export type RosterPatternCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  wardId?: Prisma.SortOrder
+  organizationId?: Prisma.SortOrder
+  departmentId?: Prisma.SortOrder
+  locationId?: Prisma.SortOrder
   name?: Prisma.SortOrder
   cycleLength?: Prisma.SortOrder
 }
@@ -337,14 +381,18 @@ export type RosterPatternAvgOrderByAggregateInput = {
 
 export type RosterPatternMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  wardId?: Prisma.SortOrder
+  organizationId?: Prisma.SortOrder
+  departmentId?: Prisma.SortOrder
+  locationId?: Prisma.SortOrder
   name?: Prisma.SortOrder
   cycleLength?: Prisma.SortOrder
 }
 
 export type RosterPatternMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  wardId?: Prisma.SortOrder
+  organizationId?: Prisma.SortOrder
+  departmentId?: Prisma.SortOrder
+  locationId?: Prisma.SortOrder
   name?: Prisma.SortOrder
   cycleLength?: Prisma.SortOrder
 }
@@ -358,45 +406,129 @@ export type RosterPatternScalarRelationFilter = {
   isNot?: Prisma.RosterPatternWhereInput
 }
 
-export type RosterPatternCreateNestedManyWithoutWardInput = {
-  create?: Prisma.XOR<Prisma.RosterPatternCreateWithoutWardInput, Prisma.RosterPatternUncheckedCreateWithoutWardInput> | Prisma.RosterPatternCreateWithoutWardInput[] | Prisma.RosterPatternUncheckedCreateWithoutWardInput[]
-  connectOrCreate?: Prisma.RosterPatternCreateOrConnectWithoutWardInput | Prisma.RosterPatternCreateOrConnectWithoutWardInput[]
-  createMany?: Prisma.RosterPatternCreateManyWardInputEnvelope
+export type RosterPatternCreateNestedManyWithoutOrganizationInput = {
+  create?: Prisma.XOR<Prisma.RosterPatternCreateWithoutOrganizationInput, Prisma.RosterPatternUncheckedCreateWithoutOrganizationInput> | Prisma.RosterPatternCreateWithoutOrganizationInput[] | Prisma.RosterPatternUncheckedCreateWithoutOrganizationInput[]
+  connectOrCreate?: Prisma.RosterPatternCreateOrConnectWithoutOrganizationInput | Prisma.RosterPatternCreateOrConnectWithoutOrganizationInput[]
+  createMany?: Prisma.RosterPatternCreateManyOrganizationInputEnvelope
   connect?: Prisma.RosterPatternWhereUniqueInput | Prisma.RosterPatternWhereUniqueInput[]
 }
 
-export type RosterPatternUncheckedCreateNestedManyWithoutWardInput = {
-  create?: Prisma.XOR<Prisma.RosterPatternCreateWithoutWardInput, Prisma.RosterPatternUncheckedCreateWithoutWardInput> | Prisma.RosterPatternCreateWithoutWardInput[] | Prisma.RosterPatternUncheckedCreateWithoutWardInput[]
-  connectOrCreate?: Prisma.RosterPatternCreateOrConnectWithoutWardInput | Prisma.RosterPatternCreateOrConnectWithoutWardInput[]
-  createMany?: Prisma.RosterPatternCreateManyWardInputEnvelope
+export type RosterPatternUncheckedCreateNestedManyWithoutOrganizationInput = {
+  create?: Prisma.XOR<Prisma.RosterPatternCreateWithoutOrganizationInput, Prisma.RosterPatternUncheckedCreateWithoutOrganizationInput> | Prisma.RosterPatternCreateWithoutOrganizationInput[] | Prisma.RosterPatternUncheckedCreateWithoutOrganizationInput[]
+  connectOrCreate?: Prisma.RosterPatternCreateOrConnectWithoutOrganizationInput | Prisma.RosterPatternCreateOrConnectWithoutOrganizationInput[]
+  createMany?: Prisma.RosterPatternCreateManyOrganizationInputEnvelope
   connect?: Prisma.RosterPatternWhereUniqueInput | Prisma.RosterPatternWhereUniqueInput[]
 }
 
-export type RosterPatternUpdateManyWithoutWardNestedInput = {
-  create?: Prisma.XOR<Prisma.RosterPatternCreateWithoutWardInput, Prisma.RosterPatternUncheckedCreateWithoutWardInput> | Prisma.RosterPatternCreateWithoutWardInput[] | Prisma.RosterPatternUncheckedCreateWithoutWardInput[]
-  connectOrCreate?: Prisma.RosterPatternCreateOrConnectWithoutWardInput | Prisma.RosterPatternCreateOrConnectWithoutWardInput[]
-  upsert?: Prisma.RosterPatternUpsertWithWhereUniqueWithoutWardInput | Prisma.RosterPatternUpsertWithWhereUniqueWithoutWardInput[]
-  createMany?: Prisma.RosterPatternCreateManyWardInputEnvelope
+export type RosterPatternUpdateManyWithoutOrganizationNestedInput = {
+  create?: Prisma.XOR<Prisma.RosterPatternCreateWithoutOrganizationInput, Prisma.RosterPatternUncheckedCreateWithoutOrganizationInput> | Prisma.RosterPatternCreateWithoutOrganizationInput[] | Prisma.RosterPatternUncheckedCreateWithoutOrganizationInput[]
+  connectOrCreate?: Prisma.RosterPatternCreateOrConnectWithoutOrganizationInput | Prisma.RosterPatternCreateOrConnectWithoutOrganizationInput[]
+  upsert?: Prisma.RosterPatternUpsertWithWhereUniqueWithoutOrganizationInput | Prisma.RosterPatternUpsertWithWhereUniqueWithoutOrganizationInput[]
+  createMany?: Prisma.RosterPatternCreateManyOrganizationInputEnvelope
   set?: Prisma.RosterPatternWhereUniqueInput | Prisma.RosterPatternWhereUniqueInput[]
   disconnect?: Prisma.RosterPatternWhereUniqueInput | Prisma.RosterPatternWhereUniqueInput[]
   delete?: Prisma.RosterPatternWhereUniqueInput | Prisma.RosterPatternWhereUniqueInput[]
   connect?: Prisma.RosterPatternWhereUniqueInput | Prisma.RosterPatternWhereUniqueInput[]
-  update?: Prisma.RosterPatternUpdateWithWhereUniqueWithoutWardInput | Prisma.RosterPatternUpdateWithWhereUniqueWithoutWardInput[]
-  updateMany?: Prisma.RosterPatternUpdateManyWithWhereWithoutWardInput | Prisma.RosterPatternUpdateManyWithWhereWithoutWardInput[]
+  update?: Prisma.RosterPatternUpdateWithWhereUniqueWithoutOrganizationInput | Prisma.RosterPatternUpdateWithWhereUniqueWithoutOrganizationInput[]
+  updateMany?: Prisma.RosterPatternUpdateManyWithWhereWithoutOrganizationInput | Prisma.RosterPatternUpdateManyWithWhereWithoutOrganizationInput[]
   deleteMany?: Prisma.RosterPatternScalarWhereInput | Prisma.RosterPatternScalarWhereInput[]
 }
 
-export type RosterPatternUncheckedUpdateManyWithoutWardNestedInput = {
-  create?: Prisma.XOR<Prisma.RosterPatternCreateWithoutWardInput, Prisma.RosterPatternUncheckedCreateWithoutWardInput> | Prisma.RosterPatternCreateWithoutWardInput[] | Prisma.RosterPatternUncheckedCreateWithoutWardInput[]
-  connectOrCreate?: Prisma.RosterPatternCreateOrConnectWithoutWardInput | Prisma.RosterPatternCreateOrConnectWithoutWardInput[]
-  upsert?: Prisma.RosterPatternUpsertWithWhereUniqueWithoutWardInput | Prisma.RosterPatternUpsertWithWhereUniqueWithoutWardInput[]
-  createMany?: Prisma.RosterPatternCreateManyWardInputEnvelope
+export type RosterPatternUncheckedUpdateManyWithoutOrganizationNestedInput = {
+  create?: Prisma.XOR<Prisma.RosterPatternCreateWithoutOrganizationInput, Prisma.RosterPatternUncheckedCreateWithoutOrganizationInput> | Prisma.RosterPatternCreateWithoutOrganizationInput[] | Prisma.RosterPatternUncheckedCreateWithoutOrganizationInput[]
+  connectOrCreate?: Prisma.RosterPatternCreateOrConnectWithoutOrganizationInput | Prisma.RosterPatternCreateOrConnectWithoutOrganizationInput[]
+  upsert?: Prisma.RosterPatternUpsertWithWhereUniqueWithoutOrganizationInput | Prisma.RosterPatternUpsertWithWhereUniqueWithoutOrganizationInput[]
+  createMany?: Prisma.RosterPatternCreateManyOrganizationInputEnvelope
   set?: Prisma.RosterPatternWhereUniqueInput | Prisma.RosterPatternWhereUniqueInput[]
   disconnect?: Prisma.RosterPatternWhereUniqueInput | Prisma.RosterPatternWhereUniqueInput[]
   delete?: Prisma.RosterPatternWhereUniqueInput | Prisma.RosterPatternWhereUniqueInput[]
   connect?: Prisma.RosterPatternWhereUniqueInput | Prisma.RosterPatternWhereUniqueInput[]
-  update?: Prisma.RosterPatternUpdateWithWhereUniqueWithoutWardInput | Prisma.RosterPatternUpdateWithWhereUniqueWithoutWardInput[]
-  updateMany?: Prisma.RosterPatternUpdateManyWithWhereWithoutWardInput | Prisma.RosterPatternUpdateManyWithWhereWithoutWardInput[]
+  update?: Prisma.RosterPatternUpdateWithWhereUniqueWithoutOrganizationInput | Prisma.RosterPatternUpdateWithWhereUniqueWithoutOrganizationInput[]
+  updateMany?: Prisma.RosterPatternUpdateManyWithWhereWithoutOrganizationInput | Prisma.RosterPatternUpdateManyWithWhereWithoutOrganizationInput[]
+  deleteMany?: Prisma.RosterPatternScalarWhereInput | Prisma.RosterPatternScalarWhereInput[]
+}
+
+export type RosterPatternCreateNestedManyWithoutDepartmentInput = {
+  create?: Prisma.XOR<Prisma.RosterPatternCreateWithoutDepartmentInput, Prisma.RosterPatternUncheckedCreateWithoutDepartmentInput> | Prisma.RosterPatternCreateWithoutDepartmentInput[] | Prisma.RosterPatternUncheckedCreateWithoutDepartmentInput[]
+  connectOrCreate?: Prisma.RosterPatternCreateOrConnectWithoutDepartmentInput | Prisma.RosterPatternCreateOrConnectWithoutDepartmentInput[]
+  createMany?: Prisma.RosterPatternCreateManyDepartmentInputEnvelope
+  connect?: Prisma.RosterPatternWhereUniqueInput | Prisma.RosterPatternWhereUniqueInput[]
+}
+
+export type RosterPatternUncheckedCreateNestedManyWithoutDepartmentInput = {
+  create?: Prisma.XOR<Prisma.RosterPatternCreateWithoutDepartmentInput, Prisma.RosterPatternUncheckedCreateWithoutDepartmentInput> | Prisma.RosterPatternCreateWithoutDepartmentInput[] | Prisma.RosterPatternUncheckedCreateWithoutDepartmentInput[]
+  connectOrCreate?: Prisma.RosterPatternCreateOrConnectWithoutDepartmentInput | Prisma.RosterPatternCreateOrConnectWithoutDepartmentInput[]
+  createMany?: Prisma.RosterPatternCreateManyDepartmentInputEnvelope
+  connect?: Prisma.RosterPatternWhereUniqueInput | Prisma.RosterPatternWhereUniqueInput[]
+}
+
+export type RosterPatternUpdateManyWithoutDepartmentNestedInput = {
+  create?: Prisma.XOR<Prisma.RosterPatternCreateWithoutDepartmentInput, Prisma.RosterPatternUncheckedCreateWithoutDepartmentInput> | Prisma.RosterPatternCreateWithoutDepartmentInput[] | Prisma.RosterPatternUncheckedCreateWithoutDepartmentInput[]
+  connectOrCreate?: Prisma.RosterPatternCreateOrConnectWithoutDepartmentInput | Prisma.RosterPatternCreateOrConnectWithoutDepartmentInput[]
+  upsert?: Prisma.RosterPatternUpsertWithWhereUniqueWithoutDepartmentInput | Prisma.RosterPatternUpsertWithWhereUniqueWithoutDepartmentInput[]
+  createMany?: Prisma.RosterPatternCreateManyDepartmentInputEnvelope
+  set?: Prisma.RosterPatternWhereUniqueInput | Prisma.RosterPatternWhereUniqueInput[]
+  disconnect?: Prisma.RosterPatternWhereUniqueInput | Prisma.RosterPatternWhereUniqueInput[]
+  delete?: Prisma.RosterPatternWhereUniqueInput | Prisma.RosterPatternWhereUniqueInput[]
+  connect?: Prisma.RosterPatternWhereUniqueInput | Prisma.RosterPatternWhereUniqueInput[]
+  update?: Prisma.RosterPatternUpdateWithWhereUniqueWithoutDepartmentInput | Prisma.RosterPatternUpdateWithWhereUniqueWithoutDepartmentInput[]
+  updateMany?: Prisma.RosterPatternUpdateManyWithWhereWithoutDepartmentInput | Prisma.RosterPatternUpdateManyWithWhereWithoutDepartmentInput[]
+  deleteMany?: Prisma.RosterPatternScalarWhereInput | Prisma.RosterPatternScalarWhereInput[]
+}
+
+export type RosterPatternUncheckedUpdateManyWithoutDepartmentNestedInput = {
+  create?: Prisma.XOR<Prisma.RosterPatternCreateWithoutDepartmentInput, Prisma.RosterPatternUncheckedCreateWithoutDepartmentInput> | Prisma.RosterPatternCreateWithoutDepartmentInput[] | Prisma.RosterPatternUncheckedCreateWithoutDepartmentInput[]
+  connectOrCreate?: Prisma.RosterPatternCreateOrConnectWithoutDepartmentInput | Prisma.RosterPatternCreateOrConnectWithoutDepartmentInput[]
+  upsert?: Prisma.RosterPatternUpsertWithWhereUniqueWithoutDepartmentInput | Prisma.RosterPatternUpsertWithWhereUniqueWithoutDepartmentInput[]
+  createMany?: Prisma.RosterPatternCreateManyDepartmentInputEnvelope
+  set?: Prisma.RosterPatternWhereUniqueInput | Prisma.RosterPatternWhereUniqueInput[]
+  disconnect?: Prisma.RosterPatternWhereUniqueInput | Prisma.RosterPatternWhereUniqueInput[]
+  delete?: Prisma.RosterPatternWhereUniqueInput | Prisma.RosterPatternWhereUniqueInput[]
+  connect?: Prisma.RosterPatternWhereUniqueInput | Prisma.RosterPatternWhereUniqueInput[]
+  update?: Prisma.RosterPatternUpdateWithWhereUniqueWithoutDepartmentInput | Prisma.RosterPatternUpdateWithWhereUniqueWithoutDepartmentInput[]
+  updateMany?: Prisma.RosterPatternUpdateManyWithWhereWithoutDepartmentInput | Prisma.RosterPatternUpdateManyWithWhereWithoutDepartmentInput[]
+  deleteMany?: Prisma.RosterPatternScalarWhereInput | Prisma.RosterPatternScalarWhereInput[]
+}
+
+export type RosterPatternCreateNestedManyWithoutLocationInput = {
+  create?: Prisma.XOR<Prisma.RosterPatternCreateWithoutLocationInput, Prisma.RosterPatternUncheckedCreateWithoutLocationInput> | Prisma.RosterPatternCreateWithoutLocationInput[] | Prisma.RosterPatternUncheckedCreateWithoutLocationInput[]
+  connectOrCreate?: Prisma.RosterPatternCreateOrConnectWithoutLocationInput | Prisma.RosterPatternCreateOrConnectWithoutLocationInput[]
+  createMany?: Prisma.RosterPatternCreateManyLocationInputEnvelope
+  connect?: Prisma.RosterPatternWhereUniqueInput | Prisma.RosterPatternWhereUniqueInput[]
+}
+
+export type RosterPatternUncheckedCreateNestedManyWithoutLocationInput = {
+  create?: Prisma.XOR<Prisma.RosterPatternCreateWithoutLocationInput, Prisma.RosterPatternUncheckedCreateWithoutLocationInput> | Prisma.RosterPatternCreateWithoutLocationInput[] | Prisma.RosterPatternUncheckedCreateWithoutLocationInput[]
+  connectOrCreate?: Prisma.RosterPatternCreateOrConnectWithoutLocationInput | Prisma.RosterPatternCreateOrConnectWithoutLocationInput[]
+  createMany?: Prisma.RosterPatternCreateManyLocationInputEnvelope
+  connect?: Prisma.RosterPatternWhereUniqueInput | Prisma.RosterPatternWhereUniqueInput[]
+}
+
+export type RosterPatternUpdateManyWithoutLocationNestedInput = {
+  create?: Prisma.XOR<Prisma.RosterPatternCreateWithoutLocationInput, Prisma.RosterPatternUncheckedCreateWithoutLocationInput> | Prisma.RosterPatternCreateWithoutLocationInput[] | Prisma.RosterPatternUncheckedCreateWithoutLocationInput[]
+  connectOrCreate?: Prisma.RosterPatternCreateOrConnectWithoutLocationInput | Prisma.RosterPatternCreateOrConnectWithoutLocationInput[]
+  upsert?: Prisma.RosterPatternUpsertWithWhereUniqueWithoutLocationInput | Prisma.RosterPatternUpsertWithWhereUniqueWithoutLocationInput[]
+  createMany?: Prisma.RosterPatternCreateManyLocationInputEnvelope
+  set?: Prisma.RosterPatternWhereUniqueInput | Prisma.RosterPatternWhereUniqueInput[]
+  disconnect?: Prisma.RosterPatternWhereUniqueInput | Prisma.RosterPatternWhereUniqueInput[]
+  delete?: Prisma.RosterPatternWhereUniqueInput | Prisma.RosterPatternWhereUniqueInput[]
+  connect?: Prisma.RosterPatternWhereUniqueInput | Prisma.RosterPatternWhereUniqueInput[]
+  update?: Prisma.RosterPatternUpdateWithWhereUniqueWithoutLocationInput | Prisma.RosterPatternUpdateWithWhereUniqueWithoutLocationInput[]
+  updateMany?: Prisma.RosterPatternUpdateManyWithWhereWithoutLocationInput | Prisma.RosterPatternUpdateManyWithWhereWithoutLocationInput[]
+  deleteMany?: Prisma.RosterPatternScalarWhereInput | Prisma.RosterPatternScalarWhereInput[]
+}
+
+export type RosterPatternUncheckedUpdateManyWithoutLocationNestedInput = {
+  create?: Prisma.XOR<Prisma.RosterPatternCreateWithoutLocationInput, Prisma.RosterPatternUncheckedCreateWithoutLocationInput> | Prisma.RosterPatternCreateWithoutLocationInput[] | Prisma.RosterPatternUncheckedCreateWithoutLocationInput[]
+  connectOrCreate?: Prisma.RosterPatternCreateOrConnectWithoutLocationInput | Prisma.RosterPatternCreateOrConnectWithoutLocationInput[]
+  upsert?: Prisma.RosterPatternUpsertWithWhereUniqueWithoutLocationInput | Prisma.RosterPatternUpsertWithWhereUniqueWithoutLocationInput[]
+  createMany?: Prisma.RosterPatternCreateManyLocationInputEnvelope
+  set?: Prisma.RosterPatternWhereUniqueInput | Prisma.RosterPatternWhereUniqueInput[]
+  disconnect?: Prisma.RosterPatternWhereUniqueInput | Prisma.RosterPatternWhereUniqueInput[]
+  delete?: Prisma.RosterPatternWhereUniqueInput | Prisma.RosterPatternWhereUniqueInput[]
+  connect?: Prisma.RosterPatternWhereUniqueInput | Prisma.RosterPatternWhereUniqueInput[]
+  update?: Prisma.RosterPatternUpdateWithWhereUniqueWithoutLocationInput | Prisma.RosterPatternUpdateWithWhereUniqueWithoutLocationInput[]
+  updateMany?: Prisma.RosterPatternUpdateManyWithWhereWithoutLocationInput | Prisma.RosterPatternUpdateManyWithWhereWithoutLocationInput[]
   deleteMany?: Prisma.RosterPatternScalarWhereInput | Prisma.RosterPatternScalarWhereInput[]
 }
 
@@ -428,46 +560,50 @@ export type RosterPatternUpdateOneRequiredWithoutAssigneesNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.RosterPatternUpdateToOneWithWhereWithoutAssigneesInput, Prisma.RosterPatternUpdateWithoutAssigneesInput>, Prisma.RosterPatternUncheckedUpdateWithoutAssigneesInput>
 }
 
-export type RosterPatternCreateWithoutWardInput = {
+export type RosterPatternCreateWithoutOrganizationInput = {
   id?: string
   name: string
   cycleLength: number
   items?: Prisma.PatternItemCreateNestedManyWithoutPatternInput
+  department?: Prisma.DepartmentCreateNestedOneWithoutSharedPatternsInput
+  location?: Prisma.LocationCreateNestedOneWithoutPatternsInput
   assignees?: Prisma.AssignedPatternCreateNestedManyWithoutPatternInput
 }
 
-export type RosterPatternUncheckedCreateWithoutWardInput = {
+export type RosterPatternUncheckedCreateWithoutOrganizationInput = {
   id?: string
+  departmentId?: string | null
+  locationId?: string | null
   name: string
   cycleLength: number
   items?: Prisma.PatternItemUncheckedCreateNestedManyWithoutPatternInput
   assignees?: Prisma.AssignedPatternUncheckedCreateNestedManyWithoutPatternInput
 }
 
-export type RosterPatternCreateOrConnectWithoutWardInput = {
+export type RosterPatternCreateOrConnectWithoutOrganizationInput = {
   where: Prisma.RosterPatternWhereUniqueInput
-  create: Prisma.XOR<Prisma.RosterPatternCreateWithoutWardInput, Prisma.RosterPatternUncheckedCreateWithoutWardInput>
+  create: Prisma.XOR<Prisma.RosterPatternCreateWithoutOrganizationInput, Prisma.RosterPatternUncheckedCreateWithoutOrganizationInput>
 }
 
-export type RosterPatternCreateManyWardInputEnvelope = {
-  data: Prisma.RosterPatternCreateManyWardInput | Prisma.RosterPatternCreateManyWardInput[]
+export type RosterPatternCreateManyOrganizationInputEnvelope = {
+  data: Prisma.RosterPatternCreateManyOrganizationInput | Prisma.RosterPatternCreateManyOrganizationInput[]
   skipDuplicates?: boolean
 }
 
-export type RosterPatternUpsertWithWhereUniqueWithoutWardInput = {
+export type RosterPatternUpsertWithWhereUniqueWithoutOrganizationInput = {
   where: Prisma.RosterPatternWhereUniqueInput
-  update: Prisma.XOR<Prisma.RosterPatternUpdateWithoutWardInput, Prisma.RosterPatternUncheckedUpdateWithoutWardInput>
-  create: Prisma.XOR<Prisma.RosterPatternCreateWithoutWardInput, Prisma.RosterPatternUncheckedCreateWithoutWardInput>
+  update: Prisma.XOR<Prisma.RosterPatternUpdateWithoutOrganizationInput, Prisma.RosterPatternUncheckedUpdateWithoutOrganizationInput>
+  create: Prisma.XOR<Prisma.RosterPatternCreateWithoutOrganizationInput, Prisma.RosterPatternUncheckedCreateWithoutOrganizationInput>
 }
 
-export type RosterPatternUpdateWithWhereUniqueWithoutWardInput = {
+export type RosterPatternUpdateWithWhereUniqueWithoutOrganizationInput = {
   where: Prisma.RosterPatternWhereUniqueInput
-  data: Prisma.XOR<Prisma.RosterPatternUpdateWithoutWardInput, Prisma.RosterPatternUncheckedUpdateWithoutWardInput>
+  data: Prisma.XOR<Prisma.RosterPatternUpdateWithoutOrganizationInput, Prisma.RosterPatternUncheckedUpdateWithoutOrganizationInput>
 }
 
-export type RosterPatternUpdateManyWithWhereWithoutWardInput = {
+export type RosterPatternUpdateManyWithWhereWithoutOrganizationInput = {
   where: Prisma.RosterPatternScalarWhereInput
-  data: Prisma.XOR<Prisma.RosterPatternUpdateManyMutationInput, Prisma.RosterPatternUncheckedUpdateManyWithoutWardInput>
+  data: Prisma.XOR<Prisma.RosterPatternUpdateManyMutationInput, Prisma.RosterPatternUncheckedUpdateManyWithoutOrganizationInput>
 }
 
 export type RosterPatternScalarWhereInput = {
@@ -475,22 +611,120 @@ export type RosterPatternScalarWhereInput = {
   OR?: Prisma.RosterPatternScalarWhereInput[]
   NOT?: Prisma.RosterPatternScalarWhereInput | Prisma.RosterPatternScalarWhereInput[]
   id?: Prisma.StringFilter<"RosterPattern"> | string
-  wardId?: Prisma.StringFilter<"RosterPattern"> | string
+  organizationId?: Prisma.StringFilter<"RosterPattern"> | string
+  departmentId?: Prisma.StringNullableFilter<"RosterPattern"> | string | null
+  locationId?: Prisma.StringNullableFilter<"RosterPattern"> | string | null
   name?: Prisma.StringFilter<"RosterPattern"> | string
   cycleLength?: Prisma.IntFilter<"RosterPattern"> | number
+}
+
+export type RosterPatternCreateWithoutDepartmentInput = {
+  id?: string
+  name: string
+  cycleLength: number
+  items?: Prisma.PatternItemCreateNestedManyWithoutPatternInput
+  organization: Prisma.OrganizationCreateNestedOneWithoutRosterPatternsInput
+  location?: Prisma.LocationCreateNestedOneWithoutPatternsInput
+  assignees?: Prisma.AssignedPatternCreateNestedManyWithoutPatternInput
+}
+
+export type RosterPatternUncheckedCreateWithoutDepartmentInput = {
+  id?: string
+  organizationId: string
+  locationId?: string | null
+  name: string
+  cycleLength: number
+  items?: Prisma.PatternItemUncheckedCreateNestedManyWithoutPatternInput
+  assignees?: Prisma.AssignedPatternUncheckedCreateNestedManyWithoutPatternInput
+}
+
+export type RosterPatternCreateOrConnectWithoutDepartmentInput = {
+  where: Prisma.RosterPatternWhereUniqueInput
+  create: Prisma.XOR<Prisma.RosterPatternCreateWithoutDepartmentInput, Prisma.RosterPatternUncheckedCreateWithoutDepartmentInput>
+}
+
+export type RosterPatternCreateManyDepartmentInputEnvelope = {
+  data: Prisma.RosterPatternCreateManyDepartmentInput | Prisma.RosterPatternCreateManyDepartmentInput[]
+  skipDuplicates?: boolean
+}
+
+export type RosterPatternUpsertWithWhereUniqueWithoutDepartmentInput = {
+  where: Prisma.RosterPatternWhereUniqueInput
+  update: Prisma.XOR<Prisma.RosterPatternUpdateWithoutDepartmentInput, Prisma.RosterPatternUncheckedUpdateWithoutDepartmentInput>
+  create: Prisma.XOR<Prisma.RosterPatternCreateWithoutDepartmentInput, Prisma.RosterPatternUncheckedCreateWithoutDepartmentInput>
+}
+
+export type RosterPatternUpdateWithWhereUniqueWithoutDepartmentInput = {
+  where: Prisma.RosterPatternWhereUniqueInput
+  data: Prisma.XOR<Prisma.RosterPatternUpdateWithoutDepartmentInput, Prisma.RosterPatternUncheckedUpdateWithoutDepartmentInput>
+}
+
+export type RosterPatternUpdateManyWithWhereWithoutDepartmentInput = {
+  where: Prisma.RosterPatternScalarWhereInput
+  data: Prisma.XOR<Prisma.RosterPatternUpdateManyMutationInput, Prisma.RosterPatternUncheckedUpdateManyWithoutDepartmentInput>
+}
+
+export type RosterPatternCreateWithoutLocationInput = {
+  id?: string
+  name: string
+  cycleLength: number
+  items?: Prisma.PatternItemCreateNestedManyWithoutPatternInput
+  organization: Prisma.OrganizationCreateNestedOneWithoutRosterPatternsInput
+  department?: Prisma.DepartmentCreateNestedOneWithoutSharedPatternsInput
+  assignees?: Prisma.AssignedPatternCreateNestedManyWithoutPatternInput
+}
+
+export type RosterPatternUncheckedCreateWithoutLocationInput = {
+  id?: string
+  organizationId: string
+  departmentId?: string | null
+  name: string
+  cycleLength: number
+  items?: Prisma.PatternItemUncheckedCreateNestedManyWithoutPatternInput
+  assignees?: Prisma.AssignedPatternUncheckedCreateNestedManyWithoutPatternInput
+}
+
+export type RosterPatternCreateOrConnectWithoutLocationInput = {
+  where: Prisma.RosterPatternWhereUniqueInput
+  create: Prisma.XOR<Prisma.RosterPatternCreateWithoutLocationInput, Prisma.RosterPatternUncheckedCreateWithoutLocationInput>
+}
+
+export type RosterPatternCreateManyLocationInputEnvelope = {
+  data: Prisma.RosterPatternCreateManyLocationInput | Prisma.RosterPatternCreateManyLocationInput[]
+  skipDuplicates?: boolean
+}
+
+export type RosterPatternUpsertWithWhereUniqueWithoutLocationInput = {
+  where: Prisma.RosterPatternWhereUniqueInput
+  update: Prisma.XOR<Prisma.RosterPatternUpdateWithoutLocationInput, Prisma.RosterPatternUncheckedUpdateWithoutLocationInput>
+  create: Prisma.XOR<Prisma.RosterPatternCreateWithoutLocationInput, Prisma.RosterPatternUncheckedCreateWithoutLocationInput>
+}
+
+export type RosterPatternUpdateWithWhereUniqueWithoutLocationInput = {
+  where: Prisma.RosterPatternWhereUniqueInput
+  data: Prisma.XOR<Prisma.RosterPatternUpdateWithoutLocationInput, Prisma.RosterPatternUncheckedUpdateWithoutLocationInput>
+}
+
+export type RosterPatternUpdateManyWithWhereWithoutLocationInput = {
+  where: Prisma.RosterPatternScalarWhereInput
+  data: Prisma.XOR<Prisma.RosterPatternUpdateManyMutationInput, Prisma.RosterPatternUncheckedUpdateManyWithoutLocationInput>
 }
 
 export type RosterPatternCreateWithoutItemsInput = {
   id?: string
   name: string
   cycleLength: number
-  ward: Prisma.WardCreateNestedOneWithoutPatternsInput
+  organization: Prisma.OrganizationCreateNestedOneWithoutRosterPatternsInput
+  department?: Prisma.DepartmentCreateNestedOneWithoutSharedPatternsInput
+  location?: Prisma.LocationCreateNestedOneWithoutPatternsInput
   assignees?: Prisma.AssignedPatternCreateNestedManyWithoutPatternInput
 }
 
 export type RosterPatternUncheckedCreateWithoutItemsInput = {
   id?: string
-  wardId: string
+  organizationId: string
+  departmentId?: string | null
+  locationId?: string | null
   name: string
   cycleLength: number
   assignees?: Prisma.AssignedPatternUncheckedCreateNestedManyWithoutPatternInput
@@ -516,13 +750,17 @@ export type RosterPatternUpdateWithoutItemsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   cycleLength?: Prisma.IntFieldUpdateOperationsInput | number
-  ward?: Prisma.WardUpdateOneRequiredWithoutPatternsNestedInput
+  organization?: Prisma.OrganizationUpdateOneRequiredWithoutRosterPatternsNestedInput
+  department?: Prisma.DepartmentUpdateOneWithoutSharedPatternsNestedInput
+  location?: Prisma.LocationUpdateOneWithoutPatternsNestedInput
   assignees?: Prisma.AssignedPatternUpdateManyWithoutPatternNestedInput
 }
 
 export type RosterPatternUncheckedUpdateWithoutItemsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  wardId?: Prisma.StringFieldUpdateOperationsInput | string
+  organizationId?: Prisma.StringFieldUpdateOperationsInput | string
+  departmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  locationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   name?: Prisma.StringFieldUpdateOperationsInput | string
   cycleLength?: Prisma.IntFieldUpdateOperationsInput | number
   assignees?: Prisma.AssignedPatternUncheckedUpdateManyWithoutPatternNestedInput
@@ -533,12 +771,16 @@ export type RosterPatternCreateWithoutAssigneesInput = {
   name: string
   cycleLength: number
   items?: Prisma.PatternItemCreateNestedManyWithoutPatternInput
-  ward: Prisma.WardCreateNestedOneWithoutPatternsInput
+  organization: Prisma.OrganizationCreateNestedOneWithoutRosterPatternsInput
+  department?: Prisma.DepartmentCreateNestedOneWithoutSharedPatternsInput
+  location?: Prisma.LocationCreateNestedOneWithoutPatternsInput
 }
 
 export type RosterPatternUncheckedCreateWithoutAssigneesInput = {
   id?: string
-  wardId: string
+  organizationId: string
+  departmentId?: string | null
+  locationId?: string | null
   name: string
   cycleLength: number
   items?: Prisma.PatternItemUncheckedCreateNestedManyWithoutPatternInput
@@ -565,41 +807,125 @@ export type RosterPatternUpdateWithoutAssigneesInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   cycleLength?: Prisma.IntFieldUpdateOperationsInput | number
   items?: Prisma.PatternItemUpdateManyWithoutPatternNestedInput
-  ward?: Prisma.WardUpdateOneRequiredWithoutPatternsNestedInput
+  organization?: Prisma.OrganizationUpdateOneRequiredWithoutRosterPatternsNestedInput
+  department?: Prisma.DepartmentUpdateOneWithoutSharedPatternsNestedInput
+  location?: Prisma.LocationUpdateOneWithoutPatternsNestedInput
 }
 
 export type RosterPatternUncheckedUpdateWithoutAssigneesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  wardId?: Prisma.StringFieldUpdateOperationsInput | string
+  organizationId?: Prisma.StringFieldUpdateOperationsInput | string
+  departmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  locationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   name?: Prisma.StringFieldUpdateOperationsInput | string
   cycleLength?: Prisma.IntFieldUpdateOperationsInput | number
   items?: Prisma.PatternItemUncheckedUpdateManyWithoutPatternNestedInput
 }
 
-export type RosterPatternCreateManyWardInput = {
+export type RosterPatternCreateManyOrganizationInput = {
   id?: string
+  departmentId?: string | null
+  locationId?: string | null
   name: string
   cycleLength: number
 }
 
-export type RosterPatternUpdateWithoutWardInput = {
+export type RosterPatternUpdateWithoutOrganizationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   cycleLength?: Prisma.IntFieldUpdateOperationsInput | number
   items?: Prisma.PatternItemUpdateManyWithoutPatternNestedInput
+  department?: Prisma.DepartmentUpdateOneWithoutSharedPatternsNestedInput
+  location?: Prisma.LocationUpdateOneWithoutPatternsNestedInput
   assignees?: Prisma.AssignedPatternUpdateManyWithoutPatternNestedInput
 }
 
-export type RosterPatternUncheckedUpdateWithoutWardInput = {
+export type RosterPatternUncheckedUpdateWithoutOrganizationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  departmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  locationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   name?: Prisma.StringFieldUpdateOperationsInput | string
   cycleLength?: Prisma.IntFieldUpdateOperationsInput | number
   items?: Prisma.PatternItemUncheckedUpdateManyWithoutPatternNestedInput
   assignees?: Prisma.AssignedPatternUncheckedUpdateManyWithoutPatternNestedInput
 }
 
-export type RosterPatternUncheckedUpdateManyWithoutWardInput = {
+export type RosterPatternUncheckedUpdateManyWithoutOrganizationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  departmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  locationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  cycleLength?: Prisma.IntFieldUpdateOperationsInput | number
+}
+
+export type RosterPatternCreateManyDepartmentInput = {
+  id?: string
+  organizationId: string
+  locationId?: string | null
+  name: string
+  cycleLength: number
+}
+
+export type RosterPatternUpdateWithoutDepartmentInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  cycleLength?: Prisma.IntFieldUpdateOperationsInput | number
+  items?: Prisma.PatternItemUpdateManyWithoutPatternNestedInput
+  organization?: Prisma.OrganizationUpdateOneRequiredWithoutRosterPatternsNestedInput
+  location?: Prisma.LocationUpdateOneWithoutPatternsNestedInput
+  assignees?: Prisma.AssignedPatternUpdateManyWithoutPatternNestedInput
+}
+
+export type RosterPatternUncheckedUpdateWithoutDepartmentInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  organizationId?: Prisma.StringFieldUpdateOperationsInput | string
+  locationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  cycleLength?: Prisma.IntFieldUpdateOperationsInput | number
+  items?: Prisma.PatternItemUncheckedUpdateManyWithoutPatternNestedInput
+  assignees?: Prisma.AssignedPatternUncheckedUpdateManyWithoutPatternNestedInput
+}
+
+export type RosterPatternUncheckedUpdateManyWithoutDepartmentInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  organizationId?: Prisma.StringFieldUpdateOperationsInput | string
+  locationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  cycleLength?: Prisma.IntFieldUpdateOperationsInput | number
+}
+
+export type RosterPatternCreateManyLocationInput = {
+  id?: string
+  organizationId: string
+  departmentId?: string | null
+  name: string
+  cycleLength: number
+}
+
+export type RosterPatternUpdateWithoutLocationInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  cycleLength?: Prisma.IntFieldUpdateOperationsInput | number
+  items?: Prisma.PatternItemUpdateManyWithoutPatternNestedInput
+  organization?: Prisma.OrganizationUpdateOneRequiredWithoutRosterPatternsNestedInput
+  department?: Prisma.DepartmentUpdateOneWithoutSharedPatternsNestedInput
+  assignees?: Prisma.AssignedPatternUpdateManyWithoutPatternNestedInput
+}
+
+export type RosterPatternUncheckedUpdateWithoutLocationInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  organizationId?: Prisma.StringFieldUpdateOperationsInput | string
+  departmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  cycleLength?: Prisma.IntFieldUpdateOperationsInput | number
+  items?: Prisma.PatternItemUncheckedUpdateManyWithoutPatternNestedInput
+  assignees?: Prisma.AssignedPatternUncheckedUpdateManyWithoutPatternNestedInput
+}
+
+export type RosterPatternUncheckedUpdateManyWithoutLocationInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  organizationId?: Prisma.StringFieldUpdateOperationsInput | string
+  departmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   name?: Prisma.StringFieldUpdateOperationsInput | string
   cycleLength?: Prisma.IntFieldUpdateOperationsInput | number
 }
@@ -646,62 +972,86 @@ export type RosterPatternCountOutputTypeCountAssigneesArgs<ExtArgs extends runti
 
 export type RosterPatternSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  wardId?: boolean
+  organizationId?: boolean
+  departmentId?: boolean
+  locationId?: boolean
   name?: boolean
   cycleLength?: boolean
   items?: boolean | Prisma.RosterPattern$itemsArgs<ExtArgs>
-  ward?: boolean | Prisma.WardDefaultArgs<ExtArgs>
+  organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
+  department?: boolean | Prisma.RosterPattern$departmentArgs<ExtArgs>
+  location?: boolean | Prisma.RosterPattern$locationArgs<ExtArgs>
   assignees?: boolean | Prisma.RosterPattern$assigneesArgs<ExtArgs>
   _count?: boolean | Prisma.RosterPatternCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["rosterPattern"]>
 
 export type RosterPatternSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  wardId?: boolean
+  organizationId?: boolean
+  departmentId?: boolean
+  locationId?: boolean
   name?: boolean
   cycleLength?: boolean
-  ward?: boolean | Prisma.WardDefaultArgs<ExtArgs>
+  organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
+  department?: boolean | Prisma.RosterPattern$departmentArgs<ExtArgs>
+  location?: boolean | Prisma.RosterPattern$locationArgs<ExtArgs>
 }, ExtArgs["result"]["rosterPattern"]>
 
 export type RosterPatternSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  wardId?: boolean
+  organizationId?: boolean
+  departmentId?: boolean
+  locationId?: boolean
   name?: boolean
   cycleLength?: boolean
-  ward?: boolean | Prisma.WardDefaultArgs<ExtArgs>
+  organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
+  department?: boolean | Prisma.RosterPattern$departmentArgs<ExtArgs>
+  location?: boolean | Prisma.RosterPattern$locationArgs<ExtArgs>
 }, ExtArgs["result"]["rosterPattern"]>
 
 export type RosterPatternSelectScalar = {
   id?: boolean
-  wardId?: boolean
+  organizationId?: boolean
+  departmentId?: boolean
+  locationId?: boolean
   name?: boolean
   cycleLength?: boolean
 }
 
-export type RosterPatternOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "wardId" | "name" | "cycleLength", ExtArgs["result"]["rosterPattern"]>
+export type RosterPatternOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "organizationId" | "departmentId" | "locationId" | "name" | "cycleLength", ExtArgs["result"]["rosterPattern"]>
 export type RosterPatternInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   items?: boolean | Prisma.RosterPattern$itemsArgs<ExtArgs>
-  ward?: boolean | Prisma.WardDefaultArgs<ExtArgs>
+  organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
+  department?: boolean | Prisma.RosterPattern$departmentArgs<ExtArgs>
+  location?: boolean | Prisma.RosterPattern$locationArgs<ExtArgs>
   assignees?: boolean | Prisma.RosterPattern$assigneesArgs<ExtArgs>
   _count?: boolean | Prisma.RosterPatternCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type RosterPatternIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  ward?: boolean | Prisma.WardDefaultArgs<ExtArgs>
+  organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
+  department?: boolean | Prisma.RosterPattern$departmentArgs<ExtArgs>
+  location?: boolean | Prisma.RosterPattern$locationArgs<ExtArgs>
 }
 export type RosterPatternIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  ward?: boolean | Prisma.WardDefaultArgs<ExtArgs>
+  organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
+  department?: boolean | Prisma.RosterPattern$departmentArgs<ExtArgs>
+  location?: boolean | Prisma.RosterPattern$locationArgs<ExtArgs>
 }
 
 export type $RosterPatternPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "RosterPattern"
   objects: {
     items: Prisma.$PatternItemPayload<ExtArgs>[]
-    ward: Prisma.$WardPayload<ExtArgs>
+    organization: Prisma.$OrganizationPayload<ExtArgs>
+    department: Prisma.$DepartmentPayload<ExtArgs> | null
+    location: Prisma.$LocationPayload<ExtArgs> | null
     assignees: Prisma.$AssignedPatternPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
-    wardId: string
+    organizationId: string
+    departmentId: string | null
+    locationId: string | null
     name: string
     cycleLength: number
   }, ExtArgs["result"]["rosterPattern"]>
@@ -1099,7 +1449,9 @@ readonly fields: RosterPatternFieldRefs;
 export interface Prisma__RosterPatternClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   items<T extends Prisma.RosterPattern$itemsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.RosterPattern$itemsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PatternItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  ward<T extends Prisma.WardDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.WardDefaultArgs<ExtArgs>>): Prisma.Prisma__WardClient<runtime.Types.Result.GetResult<Prisma.$WardPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  organization<T extends Prisma.OrganizationDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.OrganizationDefaultArgs<ExtArgs>>): Prisma.Prisma__OrganizationClient<runtime.Types.Result.GetResult<Prisma.$OrganizationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  department<T extends Prisma.RosterPattern$departmentArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.RosterPattern$departmentArgs<ExtArgs>>): Prisma.Prisma__DepartmentClient<runtime.Types.Result.GetResult<Prisma.$DepartmentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  location<T extends Prisma.RosterPattern$locationArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.RosterPattern$locationArgs<ExtArgs>>): Prisma.Prisma__LocationClient<runtime.Types.Result.GetResult<Prisma.$LocationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   assignees<T extends Prisma.RosterPattern$assigneesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.RosterPattern$assigneesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AssignedPatternPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -1131,7 +1483,9 @@ export interface Prisma__RosterPatternClient<T, Null = never, ExtArgs extends ru
  */
 export interface RosterPatternFieldRefs {
   readonly id: Prisma.FieldRef<"RosterPattern", 'String'>
-  readonly wardId: Prisma.FieldRef<"RosterPattern", 'String'>
+  readonly organizationId: Prisma.FieldRef<"RosterPattern", 'String'>
+  readonly departmentId: Prisma.FieldRef<"RosterPattern", 'String'>
+  readonly locationId: Prisma.FieldRef<"RosterPattern", 'String'>
   readonly name: Prisma.FieldRef<"RosterPattern", 'String'>
   readonly cycleLength: Prisma.FieldRef<"RosterPattern", 'Int'>
 }
@@ -1551,6 +1905,44 @@ export type RosterPattern$itemsArgs<ExtArgs extends runtime.Types.Extensions.Int
   take?: number
   skip?: number
   distinct?: Prisma.PatternItemScalarFieldEnum | Prisma.PatternItemScalarFieldEnum[]
+}
+
+/**
+ * RosterPattern.department
+ */
+export type RosterPattern$departmentArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Department
+   */
+  select?: Prisma.DepartmentSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Department
+   */
+  omit?: Prisma.DepartmentOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.DepartmentInclude<ExtArgs> | null
+  where?: Prisma.DepartmentWhereInput
+}
+
+/**
+ * RosterPattern.location
+ */
+export type RosterPattern$locationArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Location
+   */
+  select?: Prisma.LocationSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Location
+   */
+  omit?: Prisma.LocationOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.LocationInclude<ExtArgs> | null
+  where?: Prisma.LocationWhereInput
 }
 
 /**

@@ -1,6 +1,6 @@
 generator client {
-  provider = "prisma-client"
-  output   = "../src/generated/prisma"
+  provider        = "prisma-client"
+  output          = "../src/generated/prisma"
 }
 
 datasource db {
@@ -8,230 +8,250 @@ datasource db {
 }
 
 // ==========================================
-// 🏥 LAYER 1: HIERARCHY & TENANCY
+// 🌍 LAYER 0: GLOBAL IDENTITY
 // ==========================================
+model User {
+  id         String     @id 
+  email      String     @unique
+  firstName  String
+  lastName   String
+  employments Employee[] 
+  createdAt  DateTime   @default(now())
+  archivedAt DateTime? 
+}
 
+// ==========================================
+// 🏥 LAYER 1: TENANCY & ORG
+// ==========================================
 model Organization {
-  id         String    @id @default(uuid())
-  name       String
-  settings   Json      @default("{}")
-  archivedAt DateTime? // SOFT DELETE
-
-  departments Department[]
-  roles       EmployeeRole[]
-  leaveTypes  LeaveCategory[]
-  employees   Employee[]
-  audits      AuditLog[]
-
-  // SCOPED ACCESS
-  admins Employee[] @relation("OrgAdmins")
-
-  createdAt DateTime @default(now())
+  id                     String    @id @default(uuid())
+  name                   String
+  settings               Json      @default("{}")
+  archivedAt             DateTime? 
+  departments            Department[]
+  locations              Location[]
+  roles                  EmployeeRole[]
+  leaveTypes             LeaveCategory[]
+  employees              Employee[]
+  affiliations           EmployeeLocationAffiliation[] 
+  shiftDefinitions       ShiftDefinition[]
+  staffingRequirements   StaffingRequirement[]
+  rosterPatterns         RosterPattern[]
+  patternItems           PatternItem[]
+  assignedPatterns       AssignedPattern[]
+  shiftInstances         ShiftInstance[]
+  leaveRequests          LeaveRequest[]
+  shiftAdvertisements    ShiftAdvertisement[]
+  shiftClaims            ShiftClaim[]
+  employeeAvailabilities EmployeeAvailability[]
+  managementRoles        ManagementRole[]
+  createdAt              DateTime @default(now())
 }
 
 model Department {
-  id             String    @id @default(uuid())
-  organizationId String
-  name           String    // e.g. "Surgery", "Emergency"
-  archivedAt     DateTime? // SOFT DELETE
-
-  organization Organization @relation(fields: [organizationId], references: [id])
-  wards        Ward[]
-
-  // SCOPED ACCESS & PEOPLE
-  managers  Employee[] @relation("DeptManagers") 
-  homeStaff Employee[] @relation("HomeDepartment") // For Dept-Level Locums
-
+  id               String    @id @default(uuid())
+  organizationId   String
+  name             String    
+  archivedAt       DateTime? 
+  organization     Organization @relation(fields: [organizationId], references: [id], onDelete: Restrict)
+  locations        Location[]
+  managers         ManagementRole[] 
   sharedShiftTypes ShiftDefinition[]
+  sharedPatterns   RosterPattern[]
 }
 
-model Ward {
-  id           String    @id @default(uuid())
-  departmentId String
-  name         String    // e.g. "Ward 3B"
-  archivedAt   DateTime? // SOFT DELETE
-
-  department Department @relation(fields: [departmentId], references: [id])
-
+model Location {
+  id                   String    @id @default(uuid())
+  organizationId       String
+  departmentId         String
+  name                 String    
+  timezone             String    @default("UTC") 
+  archivedAt           DateTime? 
+  organization         Organization @relation(fields: [organizationId], references: [id], onDelete: Restrict)
+  department           Department   @relation(fields: [departmentId], references: [id], onDelete: Restrict)
   shiftDefinitions     ShiftDefinition[]
   staffingRequirements StaffingRequirement[]
-
-  // SCOPED ACCESS & PEOPLE
-  managers  Employee[] @relation("WardManagers") 
-  homeStaff Employee[] @relation("HomeWard")     
-
-  rosters      ShiftInstance[]
-  patterns     RosterPattern[] 
-  availability EmployeeAvailability[] @relation("PreferredAvailabilityWards")
+  managers             ManagementRole[] 
+  affiliatedStaff      EmployeeLocationAffiliation[]
+  rosters              ShiftInstance[]
+  patterns             RosterPattern[] 
+  availability         EmployeeAvailability[] @relation("PreferredAvailabilityLocations")
 }
 
 // ==========================================
-// 👥 LAYER 2: PEOPLE & ROLES
+// 👥 LAYER 2: PEOPLE, AFFILIATIONS & RBAC
 // ==========================================
-
-enum AccessLevel {
-  EMPLOYEE 
-  WARD_MANAGER 
-  DEPT_MANAGER 
-  ORG_ADMIN 
+enum ManagerLevel {
+  ORG
+  DEPT
+  LOCATION
 }
 
 model Employee {
-  id             String    @id @default(uuid())
-  organizationId String
-  userId         String?   @unique // Clerk ID
+  id                  String    @id @default(uuid())
+  organizationId      String
+  userId              String
 
-  firstName  String
-  lastName   String
-  email      String
-  archivedAt DateTime? // SOFT DELETE
-
-  // SECURITY SCOPE
-  accessLevel AccessLevel @default(EMPLOYEE)
-
-  // JOB TITLE
-  roleId String
-  role   EmployeeRole @relation(fields: [roleId], references: [id])
-
-  // THE LOCUM SOLUTION (Optional Homes)
-  // Standard = Both populated. Dept Locum = Ward is null. Global Locum = Both null.
-  homeDepartmentId String?
-  homeDepartment   Department? @relation("HomeDepartment", fields: [homeDepartmentId], references: [id])
-  homeWardId       String?
-  homeWard         Ward?       @relation("HomeWard", fields: [homeWardId], references: [id])
-
-  // PERMISSIONS (Manager Scopes)
-  managedOrganizations Organization[] @relation("OrgAdmins")
-  managedDepartments   Department[]   @relation("DeptManagers")
-  managedWards         Ward[]         @relation("WardManagers")
-
-  // ROSTERING & MARKETPLACE
+  firstName      String
+  lastName       String
+  email          String
+    
+  archivedAt          DateTime? 
+  user                User         @relation(fields: [userId], references: [id], onDelete: Restrict)
+  organization        Organization @relation(fields: [organizationId], references: [id], onDelete: Restrict)
+  roleId              String
+  role                EmployeeRole @relation(fields: [roleId], references: [id], onDelete: Restrict)
+  affiliations        EmployeeLocationAffiliation[]
+  managementRoles     ManagementRole[]
   shifts              ShiftInstance[]
   assignedPattern     AssignedPattern[]
   leaveRequests       LeaveRequest[]
   shiftClaims         ShiftClaim[] 
   availability        EmployeeAvailability[]
-  
-  // CLAIM APPROVALS (Strict Relational Ties)
   targetManagerClaims ShiftClaim[] @relation("TargetManager")
   homeManagerClaims   ShiftClaim[] @relation("HomeManager")
+  
+  @@index([organizationId, userId])
+}
 
-  organization Organization @relation(fields: [organizationId], references: [id])
-  actions      AuditLog[]
+model EmployeeLocationAffiliation {
+  id             String    @id @default(uuid())
+  organizationId String
+  employeeId     String
+  locationId     String
+  isPrimary      Boolean   @default(false) 
+  archivedAt     DateTime?
+  organization   Organization @relation(fields: [organizationId], references: [id], onDelete: Restrict)
+  employee       Employee     @relation(fields: [employeeId], references: [id], onDelete: Restrict)
+  location       Location     @relation(fields: [locationId], references: [id], onDelete: Restrict)
+
+  @@unique([employeeId, locationId])
+  @@index([organizationId, locationId])
+  @@index([organizationId, employeeId])
+}
+
+model ManagementRole {
+  id             String       @id @default(uuid())
+  employeeId     String
+  organizationId String
+  departmentId   String?
+  locationId     String?
+  level          ManagerLevel 
+  archivedAt     DateTime?
+  employee       Employee     @relation(fields: [employeeId], references: [id], onDelete: Restrict)
+  organization   Organization @relation(fields: [organizationId], references: [id], onDelete: Restrict)
+  department     Department?  @relation(fields: [departmentId], references: [id], onDelete: Restrict)
+  location       Location?    @relation(fields: [locationId], references: [id], onDelete: Restrict)
+
+  @@unique([employeeId, organizationId, departmentId, locationId])
 }
 
 model EmployeeRole {
-  id             String @id @default(uuid())
+  id             String    @id @default(uuid())
   organizationId String
-  name           String // "Registered Nurse", "HCA"
-
-  organization   Organization          @relation(fields: [organizationId], references: [id])
+  name           String 
+  archivedAt     DateTime?
+  organization   Organization          @relation(fields: [organizationId], references: [id], onDelete: Restrict)
   employees      Employee[]
   requirements   StaffingRequirement[] 
   advertisements ShiftAdvertisement[]  @relation("AdAllowedRoles")
 }
 
 // ==========================================
-// ⚙️ LAYER 3: CONFIGURATION (The Controls)
+// ⚙️ LAYER 3: CONFIGURATION
 // ==========================================
-
 model ShiftDefinition {
-  id         String    @id @default(uuid())
-  archivedAt DateTime? // SOFT DELETE
-
-  departmentId String?
-  wardId       String?
-
-  name      String 
-  startTime String 
-  endTime   String 
-  colorCode String?
-
-  department Department? @relation(fields: [departmentId], references: [id])
-  ward       Ward?       @relation(fields: [wardId], references: [id])
-
-  requirements   StaffingRequirement[]
-  shifts         ShiftInstance[] 
-  patternItems   PatternItem[]
-  advertisements ShiftAdvertisement[]
+  id               String    @id @default(uuid())
+  organizationId   String
+  departmentId     String?   
+  locationId       String?   
+  archivedAt       DateTime? 
+  name             String 
+  startTimeMinutes Int     
+  durationMinutes  Int     
+  colorCode        String?
+  organization     Organization @relation(fields: [organizationId], references: [id], onDelete: Restrict)
+  department       Department?  @relation(fields: [departmentId], references: [id], onDelete: Restrict)
+  location         Location?    @relation(fields: [locationId], references: [id], onDelete: Restrict)
+  requirements     StaffingRequirement[]
+  shifts           ShiftInstance[] 
+  patternItems     PatternItem[]
 }
 
 model StaffingRequirement {
-  id String @id @default(uuid())
-
-  wardId            String 
+  id                String @id @default(uuid())
+  organizationId    String
+  locationId        String 
   shiftDefinitionId String 
   roleId            String 
-
-  minCount    Int
-  targetCount Int 
-
-  ward            Ward            @relation(fields: [wardId], references: [id])
-  shiftDefinition ShiftDefinition @relation(fields: [shiftDefinitionId], references: [id])
-  role            EmployeeRole    @relation(fields: [roleId], references: [id])
+  minCount          Int
+  targetCount       Int 
+  organization      Organization    @relation(fields: [organizationId], references: [id], onDelete: Restrict)
+  location          Location        @relation(fields: [locationId], references: [id], onDelete: Restrict)
+  shiftDefinition   ShiftDefinition @relation(fields: [shiftDefinitionId], references: [id], onDelete: Restrict)
+  role              EmployeeRole    @relation(fields: [roleId], references: [id], onDelete: Restrict)
 }
 
 model LeaveCategory {
-  id             String  @id @default(uuid())
+  id             String    @id @default(uuid())
   organizationId String
-  name           String  // "Annual", "Sick", "Study"
-  isPaid         Boolean @default(true)
-
-  organization Organization   @relation(fields: [organizationId], references: [id])
-  requests     LeaveRequest[]
-  shifts       ShiftInstance[] 
+  name           String  
+  isPaid         Boolean   @default(true)
+  archivedAt     DateTime?
+  organization   Organization   @relation(fields: [organizationId], references: [id], onDelete: Restrict)
+  requests       LeaveRequest[]
 }
 
 // ==========================================
 // 🔄 LAYER 4: AUTOMATION (Patterns)
 // ==========================================
-
 model RosterPattern {
-  id          String @id @default(uuid())
-  wardId      String
-  name        String 
-  cycleLength Int 
-
-  items PatternItem[]
-
-  ward      Ward              @relation(fields: [wardId], references: [id])
-  assignees AssignedPattern[] 
+  id             String @id @default(uuid())
+  organizationId String
+  departmentId   String?   
+  locationId     String?   
+  name           String 
+  cycleLength    Int 
+  items          PatternItem[]
+  organization   Organization  @relation(fields: [organizationId], references: [id], onDelete: Restrict)
+  department     Department?   @relation(fields: [departmentId], references: [id], onDelete: Restrict)
+  location       Location?     @relation(fields: [locationId], references: [id], onDelete: Restrict)
+  assignees      AssignedPattern[] 
 }
 
 model PatternItem {
-  id        String @id @default(uuid())
-  patternId String
-
+  id                String @id @default(uuid())
+  organizationId    String
+  patternId         String
   dayOffset         Int 
   shiftDefinitionId String
-
-  shiftDefinition ShiftDefinition @relation(fields: [shiftDefinitionId], references: [id])
-  pattern         RosterPattern   @relation(fields: [patternId], references: [id])
+  organization      Organization    @relation(fields: [organizationId], references: [id], onDelete: Restrict)
+  shiftDefinition   ShiftDefinition @relation(fields: [shiftDefinitionId], references: [id], onDelete: Restrict)
+  pattern           RosterPattern   @relation(fields: [patternId], references: [id], onDelete: Restrict)
 }
 
 model AssignedPattern {
-  id         String @id @default(uuid())
-  employeeId String
-  patternId  String
-
-  anchorDate DateTime
-  startDate  DateTime
-  endDate    DateTime?
-
-  employee Employee      @relation(fields: [employeeId], references: [id])
-  pattern  RosterPattern @relation(fields: [patternId], references: [id])
+  id             String @id @default(uuid())
+  organizationId String
+  employeeId     String
+  patternId      String
+  anchorDate     DateTime
+  startDate      DateTime
+  endDate        DateTime?
+  organization   Organization  @relation(fields: [organizationId], references: [id], onDelete: Restrict)
+  employee       Employee      @relation(fields: [employeeId], references: [id], onDelete: Restrict)
+  pattern        RosterPattern @relation(fields: [patternId], references: [id], onDelete: Restrict)
 
   @@index([employeeId, startDate])
 }
 
 // ==========================================
-// 📅 LAYER 5: LIVE ROSTER, LEAVE & MARKETPLACE
+// 📅 LAYER 5: LIVE ROSTER & MARKETPLACE
 // ==========================================
-
 enum ShiftStatus {
   DRAFT
   PUBLISHED
-  OPEN      // The placeholder state
+  OPEN
   VOID
   SICK
   COMPLETED
@@ -259,126 +279,98 @@ enum AdStatus {
 }
 
 model ShiftInstance {
-  id             String  @id @default(uuid())
-  organizationId String
-  wardId         String
-  employeeId     String? // Nullable (Open Shift placeholder)
-
-  date DateTime
-
+  id                String  @id @default(uuid())
+  organizationId    String
+  locationId        String
+  employeeId        String? 
+  startTime         DateTime
+  endTime           DateTime
   shiftDefinitionId String?
-  shiftDefinition   ShiftDefinition? @relation(fields: [shiftDefinitionId], references: [id])
+  shiftDefinition   ShiftDefinition? @relation(fields: [shiftDefinitionId], references: [id], onDelete: Restrict)
+  status            ShiftStatus @default(PUBLISHED)
+  isManual          Boolean     @default(false)
+  archivedAt        DateTime?
+  organization      Organization        @relation(fields: [organizationId], references: [id], onDelete: Restrict)
+  location          Location            @relation(fields: [locationId], references: [id], onDelete: Restrict)
+  employee          Employee?           @relation(fields: [employeeId], references: [id], onDelete: Restrict)
+  advertisement     ShiftAdvertisement? 
 
-  startTime DateTime
-  endTime   DateTime
-
-  status   ShiftStatus @default(PUBLISHED)
-  isManual Boolean     @default(false)
-
-  leaveCategoryId String?
-  leaveCategory   LeaveCategory? @relation(fields: [leaveCategoryId], references: [id])
-
-  ward          Ward                @relation(fields: [wardId], references: [id])
-  employee      Employee?           @relation(fields: [employeeId], references: [id])
-  advertisement ShiftAdvertisement? // 1-to-1 link for Open Shifts
-
-  @@index([wardId, date])
+  @@index([organizationId, locationId, startTime, endTime])
+  @@index([employeeId, startTime])
 }
 
 model LeaveRequest {
-  id         String @id @default(uuid())
-  employeeId String
-  categoryId String
-
-  startDate DateTime
-  endDate   DateTime
-  status    LeaveStatus @default(PENDING)
-
-  employee Employee      @relation(fields: [employeeId], references: [id])
-  category LeaveCategory @relation(fields: [categoryId], references: [id])
+  id             String @id @default(uuid())
+  organizationId String
+  employeeId     String
+  categoryId     String
+  startDate      DateTime
+  endDate        DateTime
+  status         LeaveStatus @default(PENDING)
+  organization   Organization  @relation(fields: [organizationId], references: [id], onDelete: Restrict)
+  employee       Employee      @relation(fields: [employeeId], references: [id], onDelete: Restrict)
+  category       LeaveCategory @relation(fields: [categoryId], references: [id], onDelete: Restrict)
 }
 
-// THE BULLETIN BOARD
 model ShiftAdvertisement {
   id                String   @id @default(uuid())
   organizationId    String
-  wardId            String
-  
-  // Ties the Ad to the physical roster placeholder
+  locationId        String
   shiftInstanceId   String   @unique 
-  shiftInstance     ShiftInstance @relation(fields: [shiftInstanceId], references: [id])
-
-  date              DateTime
-  shiftDefinitionId String
-  shiftDefinition   ShiftDefinition @relation(fields: [shiftDefinitionId], references: [id])
-
-  // Supports multiple required roles (e.g. "RN" or "HCA")
+  shiftInstance     ShiftInstance @relation(fields: [shiftInstanceId], references: [id], onDelete: Restrict)
   allowedRoles      EmployeeRole[]  @relation("AdAllowedRoles")
-
   status            AdStatus @default(ACTIVE)
-
   claims            ShiftClaim[] 
-
+  organization      Organization @relation(fields: [organizationId], references: [id], onDelete: Restrict)
   createdAt         DateTime @default(now())
   updatedAt         DateTime @updatedAt
 }
 
-// THE BUFFER
 model ShiftClaim {
   id                   String @id @default(uuid())
-  
+  organizationId       String
   shiftAdvertisementId String 
-  advertisement        ShiftAdvertisement @relation(fields: [shiftAdvertisementId], references: [id])
-  
+  advertisement        ShiftAdvertisement @relation(fields: [shiftAdvertisementId], references: [id], onDelete: Restrict)
   employeeId           String
-  employee             Employee @relation(fields: [employeeId], references: [id])
-
-  // Strict Referential Integrity for Approvals
+  employee             Employee @relation(fields: [employeeId], references: [id], onDelete: Restrict)
   targetManagerId      String?
-  targetManager        Employee? @relation("TargetManager", fields: [targetManagerId], references: [id])
-  
+  targetManager        Employee? @relation("TargetManager", fields: [targetManagerId], references: [id], onDelete: SetNull)
   homeManagerId        String?
-  homeManager          Employee? @relation("HomeManager", fields: [homeManagerId], references: [id])
-
+  homeManager          Employee? @relation("HomeManager", fields: [homeManagerId], references: [id], onDelete: SetNull)
   status               ClaimStatus @default(PENDING)
-
+  organization         Organization @relation(fields: [organizationId], references: [id], onDelete: Restrict)
   createdAt            DateTime @default(now())
   updatedAt            DateTime @updatedAt
 
   @@unique([shiftAdvertisementId, employeeId])
 }
 
-// FUTURE-PROOFING: AVAILABILITY
 model EmployeeAvailability {
-  id           String   @id @default(uuid())
-  employeeId   String
-  employee     Employee @relation(fields: [employeeId], references: [id])
-  
-  date         DateTime
-  
-  // "AVAILABLE" or "UNAVAILABLE"
-  preference   String   @default("UNAVAILABLE") 
-  
-  // Optional: Specific wards they are willing to float to
-  preferredWards Ward[] @relation("PreferredAvailabilityWards")
+  id                 String   @id @default(uuid())
+  organizationId     String
+  employeeId         String
+  employee           Employee @relation(fields: [employeeId], references: [id], onDelete: Restrict)
+  date               DateTime
+  preference         String   @default("UNAVAILABLE") 
+  preferredLocations Location[] @relation("PreferredAvailabilityLocations")
+  organization       Organization @relation(fields: [organizationId], references: [id], onDelete: Restrict)
 
-  @@index([employeeId, date])
+  @@index([organizationId, employeeId, date])
 }
 
 // ==========================================
 // 🔒 LAYER 6: AUDIT TRAIL
 // ==========================================
-
 model AuditLog {
   id             String   @id @default(uuid())
   timestamp      DateTime @default(now())
-  organizationId String
-
-  actorId String
-  actor   Employee @relation(fields: [actorId], references: [id])
-
-  action       String 
-  targetId     String
-  details      Json 
-  organization Organization @relation(fields: [organizationId], references: [id])
+  organizationId String   
+  actorId        String   
+  action         String 
+  targetId       String
+  details        Json     
+  
+  @@index([organizationId, targetId])
+  @@index([organizationId, timestamp])
+  @@index([actorId, timestamp])
 }

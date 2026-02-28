@@ -179,11 +179,22 @@ export type OrganizationWhereInput = {
   archivedAt?: Prisma.DateTimeNullableFilter<"Organization"> | Date | string | null
   createdAt?: Prisma.DateTimeFilter<"Organization"> | Date | string
   departments?: Prisma.DepartmentListRelationFilter
+  locations?: Prisma.LocationListRelationFilter
   roles?: Prisma.EmployeeRoleListRelationFilter
   leaveTypes?: Prisma.LeaveCategoryListRelationFilter
   employees?: Prisma.EmployeeListRelationFilter
-  audits?: Prisma.AuditLogListRelationFilter
-  admins?: Prisma.EmployeeListRelationFilter
+  affiliations?: Prisma.EmployeeLocationAffiliationListRelationFilter
+  shiftDefinitions?: Prisma.ShiftDefinitionListRelationFilter
+  staffingRequirements?: Prisma.StaffingRequirementListRelationFilter
+  rosterPatterns?: Prisma.RosterPatternListRelationFilter
+  patternItems?: Prisma.PatternItemListRelationFilter
+  assignedPatterns?: Prisma.AssignedPatternListRelationFilter
+  shiftInstances?: Prisma.ShiftInstanceListRelationFilter
+  leaveRequests?: Prisma.LeaveRequestListRelationFilter
+  shiftAdvertisements?: Prisma.ShiftAdvertisementListRelationFilter
+  shiftClaims?: Prisma.ShiftClaimListRelationFilter
+  employeeAvailabilities?: Prisma.EmployeeAvailabilityListRelationFilter
+  managementRoles?: Prisma.ManagementRoleListRelationFilter
 }
 
 export type OrganizationOrderByWithRelationInput = {
@@ -193,11 +204,22 @@ export type OrganizationOrderByWithRelationInput = {
   archivedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   departments?: Prisma.DepartmentOrderByRelationAggregateInput
+  locations?: Prisma.LocationOrderByRelationAggregateInput
   roles?: Prisma.EmployeeRoleOrderByRelationAggregateInput
   leaveTypes?: Prisma.LeaveCategoryOrderByRelationAggregateInput
   employees?: Prisma.EmployeeOrderByRelationAggregateInput
-  audits?: Prisma.AuditLogOrderByRelationAggregateInput
-  admins?: Prisma.EmployeeOrderByRelationAggregateInput
+  affiliations?: Prisma.EmployeeLocationAffiliationOrderByRelationAggregateInput
+  shiftDefinitions?: Prisma.ShiftDefinitionOrderByRelationAggregateInput
+  staffingRequirements?: Prisma.StaffingRequirementOrderByRelationAggregateInput
+  rosterPatterns?: Prisma.RosterPatternOrderByRelationAggregateInput
+  patternItems?: Prisma.PatternItemOrderByRelationAggregateInput
+  assignedPatterns?: Prisma.AssignedPatternOrderByRelationAggregateInput
+  shiftInstances?: Prisma.ShiftInstanceOrderByRelationAggregateInput
+  leaveRequests?: Prisma.LeaveRequestOrderByRelationAggregateInput
+  shiftAdvertisements?: Prisma.ShiftAdvertisementOrderByRelationAggregateInput
+  shiftClaims?: Prisma.ShiftClaimOrderByRelationAggregateInput
+  employeeAvailabilities?: Prisma.EmployeeAvailabilityOrderByRelationAggregateInput
+  managementRoles?: Prisma.ManagementRoleOrderByRelationAggregateInput
 }
 
 export type OrganizationWhereUniqueInput = Prisma.AtLeast<{
@@ -210,11 +232,22 @@ export type OrganizationWhereUniqueInput = Prisma.AtLeast<{
   archivedAt?: Prisma.DateTimeNullableFilter<"Organization"> | Date | string | null
   createdAt?: Prisma.DateTimeFilter<"Organization"> | Date | string
   departments?: Prisma.DepartmentListRelationFilter
+  locations?: Prisma.LocationListRelationFilter
   roles?: Prisma.EmployeeRoleListRelationFilter
   leaveTypes?: Prisma.LeaveCategoryListRelationFilter
   employees?: Prisma.EmployeeListRelationFilter
-  audits?: Prisma.AuditLogListRelationFilter
-  admins?: Prisma.EmployeeListRelationFilter
+  affiliations?: Prisma.EmployeeLocationAffiliationListRelationFilter
+  shiftDefinitions?: Prisma.ShiftDefinitionListRelationFilter
+  staffingRequirements?: Prisma.StaffingRequirementListRelationFilter
+  rosterPatterns?: Prisma.RosterPatternListRelationFilter
+  patternItems?: Prisma.PatternItemListRelationFilter
+  assignedPatterns?: Prisma.AssignedPatternListRelationFilter
+  shiftInstances?: Prisma.ShiftInstanceListRelationFilter
+  leaveRequests?: Prisma.LeaveRequestListRelationFilter
+  shiftAdvertisements?: Prisma.ShiftAdvertisementListRelationFilter
+  shiftClaims?: Prisma.ShiftClaimListRelationFilter
+  employeeAvailabilities?: Prisma.EmployeeAvailabilityListRelationFilter
+  managementRoles?: Prisma.ManagementRoleListRelationFilter
 }, "id">
 
 export type OrganizationOrderByWithAggregationInput = {
@@ -246,11 +279,22 @@ export type OrganizationCreateInput = {
   archivedAt?: Date | string | null
   createdAt?: Date | string
   departments?: Prisma.DepartmentCreateNestedManyWithoutOrganizationInput
+  locations?: Prisma.LocationCreateNestedManyWithoutOrganizationInput
   roles?: Prisma.EmployeeRoleCreateNestedManyWithoutOrganizationInput
   leaveTypes?: Prisma.LeaveCategoryCreateNestedManyWithoutOrganizationInput
   employees?: Prisma.EmployeeCreateNestedManyWithoutOrganizationInput
-  audits?: Prisma.AuditLogCreateNestedManyWithoutOrganizationInput
-  admins?: Prisma.EmployeeCreateNestedManyWithoutManagedOrganizationsInput
+  affiliations?: Prisma.EmployeeLocationAffiliationCreateNestedManyWithoutOrganizationInput
+  shiftDefinitions?: Prisma.ShiftDefinitionCreateNestedManyWithoutOrganizationInput
+  staffingRequirements?: Prisma.StaffingRequirementCreateNestedManyWithoutOrganizationInput
+  rosterPatterns?: Prisma.RosterPatternCreateNestedManyWithoutOrganizationInput
+  patternItems?: Prisma.PatternItemCreateNestedManyWithoutOrganizationInput
+  assignedPatterns?: Prisma.AssignedPatternCreateNestedManyWithoutOrganizationInput
+  shiftInstances?: Prisma.ShiftInstanceCreateNestedManyWithoutOrganizationInput
+  leaveRequests?: Prisma.LeaveRequestCreateNestedManyWithoutOrganizationInput
+  shiftAdvertisements?: Prisma.ShiftAdvertisementCreateNestedManyWithoutOrganizationInput
+  shiftClaims?: Prisma.ShiftClaimCreateNestedManyWithoutOrganizationInput
+  employeeAvailabilities?: Prisma.EmployeeAvailabilityCreateNestedManyWithoutOrganizationInput
+  managementRoles?: Prisma.ManagementRoleCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationUncheckedCreateInput = {
@@ -260,11 +304,22 @@ export type OrganizationUncheckedCreateInput = {
   archivedAt?: Date | string | null
   createdAt?: Date | string
   departments?: Prisma.DepartmentUncheckedCreateNestedManyWithoutOrganizationInput
+  locations?: Prisma.LocationUncheckedCreateNestedManyWithoutOrganizationInput
   roles?: Prisma.EmployeeRoleUncheckedCreateNestedManyWithoutOrganizationInput
   leaveTypes?: Prisma.LeaveCategoryUncheckedCreateNestedManyWithoutOrganizationInput
   employees?: Prisma.EmployeeUncheckedCreateNestedManyWithoutOrganizationInput
-  audits?: Prisma.AuditLogUncheckedCreateNestedManyWithoutOrganizationInput
-  admins?: Prisma.EmployeeUncheckedCreateNestedManyWithoutManagedOrganizationsInput
+  affiliations?: Prisma.EmployeeLocationAffiliationUncheckedCreateNestedManyWithoutOrganizationInput
+  shiftDefinitions?: Prisma.ShiftDefinitionUncheckedCreateNestedManyWithoutOrganizationInput
+  staffingRequirements?: Prisma.StaffingRequirementUncheckedCreateNestedManyWithoutOrganizationInput
+  rosterPatterns?: Prisma.RosterPatternUncheckedCreateNestedManyWithoutOrganizationInput
+  patternItems?: Prisma.PatternItemUncheckedCreateNestedManyWithoutOrganizationInput
+  assignedPatterns?: Prisma.AssignedPatternUncheckedCreateNestedManyWithoutOrganizationInput
+  shiftInstances?: Prisma.ShiftInstanceUncheckedCreateNestedManyWithoutOrganizationInput
+  leaveRequests?: Prisma.LeaveRequestUncheckedCreateNestedManyWithoutOrganizationInput
+  shiftAdvertisements?: Prisma.ShiftAdvertisementUncheckedCreateNestedManyWithoutOrganizationInput
+  shiftClaims?: Prisma.ShiftClaimUncheckedCreateNestedManyWithoutOrganizationInput
+  employeeAvailabilities?: Prisma.EmployeeAvailabilityUncheckedCreateNestedManyWithoutOrganizationInput
+  managementRoles?: Prisma.ManagementRoleUncheckedCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationUpdateInput = {
@@ -274,11 +329,22 @@ export type OrganizationUpdateInput = {
   archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   departments?: Prisma.DepartmentUpdateManyWithoutOrganizationNestedInput
+  locations?: Prisma.LocationUpdateManyWithoutOrganizationNestedInput
   roles?: Prisma.EmployeeRoleUpdateManyWithoutOrganizationNestedInput
   leaveTypes?: Prisma.LeaveCategoryUpdateManyWithoutOrganizationNestedInput
   employees?: Prisma.EmployeeUpdateManyWithoutOrganizationNestedInput
-  audits?: Prisma.AuditLogUpdateManyWithoutOrganizationNestedInput
-  admins?: Prisma.EmployeeUpdateManyWithoutManagedOrganizationsNestedInput
+  affiliations?: Prisma.EmployeeLocationAffiliationUpdateManyWithoutOrganizationNestedInput
+  shiftDefinitions?: Prisma.ShiftDefinitionUpdateManyWithoutOrganizationNestedInput
+  staffingRequirements?: Prisma.StaffingRequirementUpdateManyWithoutOrganizationNestedInput
+  rosterPatterns?: Prisma.RosterPatternUpdateManyWithoutOrganizationNestedInput
+  patternItems?: Prisma.PatternItemUpdateManyWithoutOrganizationNestedInput
+  assignedPatterns?: Prisma.AssignedPatternUpdateManyWithoutOrganizationNestedInput
+  shiftInstances?: Prisma.ShiftInstanceUpdateManyWithoutOrganizationNestedInput
+  leaveRequests?: Prisma.LeaveRequestUpdateManyWithoutOrganizationNestedInput
+  shiftAdvertisements?: Prisma.ShiftAdvertisementUpdateManyWithoutOrganizationNestedInput
+  shiftClaims?: Prisma.ShiftClaimUpdateManyWithoutOrganizationNestedInput
+  employeeAvailabilities?: Prisma.EmployeeAvailabilityUpdateManyWithoutOrganizationNestedInput
+  managementRoles?: Prisma.ManagementRoleUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationUncheckedUpdateInput = {
@@ -288,11 +354,22 @@ export type OrganizationUncheckedUpdateInput = {
   archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   departments?: Prisma.DepartmentUncheckedUpdateManyWithoutOrganizationNestedInput
+  locations?: Prisma.LocationUncheckedUpdateManyWithoutOrganizationNestedInput
   roles?: Prisma.EmployeeRoleUncheckedUpdateManyWithoutOrganizationNestedInput
   leaveTypes?: Prisma.LeaveCategoryUncheckedUpdateManyWithoutOrganizationNestedInput
   employees?: Prisma.EmployeeUncheckedUpdateManyWithoutOrganizationNestedInput
-  audits?: Prisma.AuditLogUncheckedUpdateManyWithoutOrganizationNestedInput
-  admins?: Prisma.EmployeeUncheckedUpdateManyWithoutManagedOrganizationsNestedInput
+  affiliations?: Prisma.EmployeeLocationAffiliationUncheckedUpdateManyWithoutOrganizationNestedInput
+  shiftDefinitions?: Prisma.ShiftDefinitionUncheckedUpdateManyWithoutOrganizationNestedInput
+  staffingRequirements?: Prisma.StaffingRequirementUncheckedUpdateManyWithoutOrganizationNestedInput
+  rosterPatterns?: Prisma.RosterPatternUncheckedUpdateManyWithoutOrganizationNestedInput
+  patternItems?: Prisma.PatternItemUncheckedUpdateManyWithoutOrganizationNestedInput
+  assignedPatterns?: Prisma.AssignedPatternUncheckedUpdateManyWithoutOrganizationNestedInput
+  shiftInstances?: Prisma.ShiftInstanceUncheckedUpdateManyWithoutOrganizationNestedInput
+  leaveRequests?: Prisma.LeaveRequestUncheckedUpdateManyWithoutOrganizationNestedInput
+  shiftAdvertisements?: Prisma.ShiftAdvertisementUncheckedUpdateManyWithoutOrganizationNestedInput
+  shiftClaims?: Prisma.ShiftClaimUncheckedUpdateManyWithoutOrganizationNestedInput
+  employeeAvailabilities?: Prisma.EmployeeAvailabilityUncheckedUpdateManyWithoutOrganizationNestedInput
+  managementRoles?: Prisma.ManagementRoleUncheckedUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationCreateManyInput = {
@@ -346,28 +423,6 @@ export type OrganizationScalarRelationFilter = {
   isNot?: Prisma.OrganizationWhereInput
 }
 
-export type OrganizationListRelationFilter = {
-  every?: Prisma.OrganizationWhereInput
-  some?: Prisma.OrganizationWhereInput
-  none?: Prisma.OrganizationWhereInput
-}
-
-export type OrganizationOrderByRelationAggregateInput = {
-  _count?: Prisma.SortOrder
-}
-
-export type StringFieldUpdateOperationsInput = {
-  set?: string
-}
-
-export type NullableDateTimeFieldUpdateOperationsInput = {
-  set?: Date | string | null
-}
-
-export type DateTimeFieldUpdateOperationsInput = {
-  set?: Date | string
-}
-
 export type OrganizationCreateNestedOneWithoutDepartmentsInput = {
   create?: Prisma.XOR<Prisma.OrganizationCreateWithoutDepartmentsInput, Prisma.OrganizationUncheckedCreateWithoutDepartmentsInput>
   connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutDepartmentsInput
@@ -382,35 +437,24 @@ export type OrganizationUpdateOneRequiredWithoutDepartmentsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.OrganizationUpdateToOneWithWhereWithoutDepartmentsInput, Prisma.OrganizationUpdateWithoutDepartmentsInput>, Prisma.OrganizationUncheckedUpdateWithoutDepartmentsInput>
 }
 
-export type OrganizationCreateNestedManyWithoutAdminsInput = {
-  create?: Prisma.XOR<Prisma.OrganizationCreateWithoutAdminsInput, Prisma.OrganizationUncheckedCreateWithoutAdminsInput> | Prisma.OrganizationCreateWithoutAdminsInput[] | Prisma.OrganizationUncheckedCreateWithoutAdminsInput[]
-  connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutAdminsInput | Prisma.OrganizationCreateOrConnectWithoutAdminsInput[]
-  connect?: Prisma.OrganizationWhereUniqueInput | Prisma.OrganizationWhereUniqueInput[]
+export type OrganizationCreateNestedOneWithoutLocationsInput = {
+  create?: Prisma.XOR<Prisma.OrganizationCreateWithoutLocationsInput, Prisma.OrganizationUncheckedCreateWithoutLocationsInput>
+  connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutLocationsInput
+  connect?: Prisma.OrganizationWhereUniqueInput
+}
+
+export type OrganizationUpdateOneRequiredWithoutLocationsNestedInput = {
+  create?: Prisma.XOR<Prisma.OrganizationCreateWithoutLocationsInput, Prisma.OrganizationUncheckedCreateWithoutLocationsInput>
+  connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutLocationsInput
+  upsert?: Prisma.OrganizationUpsertWithoutLocationsInput
+  connect?: Prisma.OrganizationWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.OrganizationUpdateToOneWithWhereWithoutLocationsInput, Prisma.OrganizationUpdateWithoutLocationsInput>, Prisma.OrganizationUncheckedUpdateWithoutLocationsInput>
 }
 
 export type OrganizationCreateNestedOneWithoutEmployeesInput = {
   create?: Prisma.XOR<Prisma.OrganizationCreateWithoutEmployeesInput, Prisma.OrganizationUncheckedCreateWithoutEmployeesInput>
   connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutEmployeesInput
   connect?: Prisma.OrganizationWhereUniqueInput
-}
-
-export type OrganizationUncheckedCreateNestedManyWithoutAdminsInput = {
-  create?: Prisma.XOR<Prisma.OrganizationCreateWithoutAdminsInput, Prisma.OrganizationUncheckedCreateWithoutAdminsInput> | Prisma.OrganizationCreateWithoutAdminsInput[] | Prisma.OrganizationUncheckedCreateWithoutAdminsInput[]
-  connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutAdminsInput | Prisma.OrganizationCreateOrConnectWithoutAdminsInput[]
-  connect?: Prisma.OrganizationWhereUniqueInput | Prisma.OrganizationWhereUniqueInput[]
-}
-
-export type OrganizationUpdateManyWithoutAdminsNestedInput = {
-  create?: Prisma.XOR<Prisma.OrganizationCreateWithoutAdminsInput, Prisma.OrganizationUncheckedCreateWithoutAdminsInput> | Prisma.OrganizationCreateWithoutAdminsInput[] | Prisma.OrganizationUncheckedCreateWithoutAdminsInput[]
-  connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutAdminsInput | Prisma.OrganizationCreateOrConnectWithoutAdminsInput[]
-  upsert?: Prisma.OrganizationUpsertWithWhereUniqueWithoutAdminsInput | Prisma.OrganizationUpsertWithWhereUniqueWithoutAdminsInput[]
-  set?: Prisma.OrganizationWhereUniqueInput | Prisma.OrganizationWhereUniqueInput[]
-  disconnect?: Prisma.OrganizationWhereUniqueInput | Prisma.OrganizationWhereUniqueInput[]
-  delete?: Prisma.OrganizationWhereUniqueInput | Prisma.OrganizationWhereUniqueInput[]
-  connect?: Prisma.OrganizationWhereUniqueInput | Prisma.OrganizationWhereUniqueInput[]
-  update?: Prisma.OrganizationUpdateWithWhereUniqueWithoutAdminsInput | Prisma.OrganizationUpdateWithWhereUniqueWithoutAdminsInput[]
-  updateMany?: Prisma.OrganizationUpdateManyWithWhereWithoutAdminsInput | Prisma.OrganizationUpdateManyWithWhereWithoutAdminsInput[]
-  deleteMany?: Prisma.OrganizationScalarWhereInput | Prisma.OrganizationScalarWhereInput[]
 }
 
 export type OrganizationUpdateOneRequiredWithoutEmployeesNestedInput = {
@@ -421,17 +465,32 @@ export type OrganizationUpdateOneRequiredWithoutEmployeesNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.OrganizationUpdateToOneWithWhereWithoutEmployeesInput, Prisma.OrganizationUpdateWithoutEmployeesInput>, Prisma.OrganizationUncheckedUpdateWithoutEmployeesInput>
 }
 
-export type OrganizationUncheckedUpdateManyWithoutAdminsNestedInput = {
-  create?: Prisma.XOR<Prisma.OrganizationCreateWithoutAdminsInput, Prisma.OrganizationUncheckedCreateWithoutAdminsInput> | Prisma.OrganizationCreateWithoutAdminsInput[] | Prisma.OrganizationUncheckedCreateWithoutAdminsInput[]
-  connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutAdminsInput | Prisma.OrganizationCreateOrConnectWithoutAdminsInput[]
-  upsert?: Prisma.OrganizationUpsertWithWhereUniqueWithoutAdminsInput | Prisma.OrganizationUpsertWithWhereUniqueWithoutAdminsInput[]
-  set?: Prisma.OrganizationWhereUniqueInput | Prisma.OrganizationWhereUniqueInput[]
-  disconnect?: Prisma.OrganizationWhereUniqueInput | Prisma.OrganizationWhereUniqueInput[]
-  delete?: Prisma.OrganizationWhereUniqueInput | Prisma.OrganizationWhereUniqueInput[]
-  connect?: Prisma.OrganizationWhereUniqueInput | Prisma.OrganizationWhereUniqueInput[]
-  update?: Prisma.OrganizationUpdateWithWhereUniqueWithoutAdminsInput | Prisma.OrganizationUpdateWithWhereUniqueWithoutAdminsInput[]
-  updateMany?: Prisma.OrganizationUpdateManyWithWhereWithoutAdminsInput | Prisma.OrganizationUpdateManyWithWhereWithoutAdminsInput[]
-  deleteMany?: Prisma.OrganizationScalarWhereInput | Prisma.OrganizationScalarWhereInput[]
+export type OrganizationCreateNestedOneWithoutAffiliationsInput = {
+  create?: Prisma.XOR<Prisma.OrganizationCreateWithoutAffiliationsInput, Prisma.OrganizationUncheckedCreateWithoutAffiliationsInput>
+  connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutAffiliationsInput
+  connect?: Prisma.OrganizationWhereUniqueInput
+}
+
+export type OrganizationUpdateOneRequiredWithoutAffiliationsNestedInput = {
+  create?: Prisma.XOR<Prisma.OrganizationCreateWithoutAffiliationsInput, Prisma.OrganizationUncheckedCreateWithoutAffiliationsInput>
+  connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutAffiliationsInput
+  upsert?: Prisma.OrganizationUpsertWithoutAffiliationsInput
+  connect?: Prisma.OrganizationWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.OrganizationUpdateToOneWithWhereWithoutAffiliationsInput, Prisma.OrganizationUpdateWithoutAffiliationsInput>, Prisma.OrganizationUncheckedUpdateWithoutAffiliationsInput>
+}
+
+export type OrganizationCreateNestedOneWithoutManagementRolesInput = {
+  create?: Prisma.XOR<Prisma.OrganizationCreateWithoutManagementRolesInput, Prisma.OrganizationUncheckedCreateWithoutManagementRolesInput>
+  connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutManagementRolesInput
+  connect?: Prisma.OrganizationWhereUniqueInput
+}
+
+export type OrganizationUpdateOneRequiredWithoutManagementRolesNestedInput = {
+  create?: Prisma.XOR<Prisma.OrganizationCreateWithoutManagementRolesInput, Prisma.OrganizationUncheckedCreateWithoutManagementRolesInput>
+  connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutManagementRolesInput
+  upsert?: Prisma.OrganizationUpsertWithoutManagementRolesInput
+  connect?: Prisma.OrganizationWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.OrganizationUpdateToOneWithWhereWithoutManagementRolesInput, Prisma.OrganizationUpdateWithoutManagementRolesInput>, Prisma.OrganizationUncheckedUpdateWithoutManagementRolesInput>
 }
 
 export type OrganizationCreateNestedOneWithoutRolesInput = {
@@ -448,6 +507,34 @@ export type OrganizationUpdateOneRequiredWithoutRolesNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.OrganizationUpdateToOneWithWhereWithoutRolesInput, Prisma.OrganizationUpdateWithoutRolesInput>, Prisma.OrganizationUncheckedUpdateWithoutRolesInput>
 }
 
+export type OrganizationCreateNestedOneWithoutShiftDefinitionsInput = {
+  create?: Prisma.XOR<Prisma.OrganizationCreateWithoutShiftDefinitionsInput, Prisma.OrganizationUncheckedCreateWithoutShiftDefinitionsInput>
+  connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutShiftDefinitionsInput
+  connect?: Prisma.OrganizationWhereUniqueInput
+}
+
+export type OrganizationUpdateOneRequiredWithoutShiftDefinitionsNestedInput = {
+  create?: Prisma.XOR<Prisma.OrganizationCreateWithoutShiftDefinitionsInput, Prisma.OrganizationUncheckedCreateWithoutShiftDefinitionsInput>
+  connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutShiftDefinitionsInput
+  upsert?: Prisma.OrganizationUpsertWithoutShiftDefinitionsInput
+  connect?: Prisma.OrganizationWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.OrganizationUpdateToOneWithWhereWithoutShiftDefinitionsInput, Prisma.OrganizationUpdateWithoutShiftDefinitionsInput>, Prisma.OrganizationUncheckedUpdateWithoutShiftDefinitionsInput>
+}
+
+export type OrganizationCreateNestedOneWithoutStaffingRequirementsInput = {
+  create?: Prisma.XOR<Prisma.OrganizationCreateWithoutStaffingRequirementsInput, Prisma.OrganizationUncheckedCreateWithoutStaffingRequirementsInput>
+  connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutStaffingRequirementsInput
+  connect?: Prisma.OrganizationWhereUniqueInput
+}
+
+export type OrganizationUpdateOneRequiredWithoutStaffingRequirementsNestedInput = {
+  create?: Prisma.XOR<Prisma.OrganizationCreateWithoutStaffingRequirementsInput, Prisma.OrganizationUncheckedCreateWithoutStaffingRequirementsInput>
+  connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutStaffingRequirementsInput
+  upsert?: Prisma.OrganizationUpsertWithoutStaffingRequirementsInput
+  connect?: Prisma.OrganizationWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.OrganizationUpdateToOneWithWhereWithoutStaffingRequirementsInput, Prisma.OrganizationUpdateWithoutStaffingRequirementsInput>, Prisma.OrganizationUncheckedUpdateWithoutStaffingRequirementsInput>
+}
+
 export type OrganizationCreateNestedOneWithoutLeaveTypesInput = {
   create?: Prisma.XOR<Prisma.OrganizationCreateWithoutLeaveTypesInput, Prisma.OrganizationUncheckedCreateWithoutLeaveTypesInput>
   connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutLeaveTypesInput
@@ -462,18 +549,116 @@ export type OrganizationUpdateOneRequiredWithoutLeaveTypesNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.OrganizationUpdateToOneWithWhereWithoutLeaveTypesInput, Prisma.OrganizationUpdateWithoutLeaveTypesInput>, Prisma.OrganizationUncheckedUpdateWithoutLeaveTypesInput>
 }
 
-export type OrganizationCreateNestedOneWithoutAuditsInput = {
-  create?: Prisma.XOR<Prisma.OrganizationCreateWithoutAuditsInput, Prisma.OrganizationUncheckedCreateWithoutAuditsInput>
-  connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutAuditsInput
+export type OrganizationCreateNestedOneWithoutRosterPatternsInput = {
+  create?: Prisma.XOR<Prisma.OrganizationCreateWithoutRosterPatternsInput, Prisma.OrganizationUncheckedCreateWithoutRosterPatternsInput>
+  connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutRosterPatternsInput
   connect?: Prisma.OrganizationWhereUniqueInput
 }
 
-export type OrganizationUpdateOneRequiredWithoutAuditsNestedInput = {
-  create?: Prisma.XOR<Prisma.OrganizationCreateWithoutAuditsInput, Prisma.OrganizationUncheckedCreateWithoutAuditsInput>
-  connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutAuditsInput
-  upsert?: Prisma.OrganizationUpsertWithoutAuditsInput
+export type OrganizationUpdateOneRequiredWithoutRosterPatternsNestedInput = {
+  create?: Prisma.XOR<Prisma.OrganizationCreateWithoutRosterPatternsInput, Prisma.OrganizationUncheckedCreateWithoutRosterPatternsInput>
+  connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutRosterPatternsInput
+  upsert?: Prisma.OrganizationUpsertWithoutRosterPatternsInput
   connect?: Prisma.OrganizationWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.OrganizationUpdateToOneWithWhereWithoutAuditsInput, Prisma.OrganizationUpdateWithoutAuditsInput>, Prisma.OrganizationUncheckedUpdateWithoutAuditsInput>
+  update?: Prisma.XOR<Prisma.XOR<Prisma.OrganizationUpdateToOneWithWhereWithoutRosterPatternsInput, Prisma.OrganizationUpdateWithoutRosterPatternsInput>, Prisma.OrganizationUncheckedUpdateWithoutRosterPatternsInput>
+}
+
+export type OrganizationCreateNestedOneWithoutPatternItemsInput = {
+  create?: Prisma.XOR<Prisma.OrganizationCreateWithoutPatternItemsInput, Prisma.OrganizationUncheckedCreateWithoutPatternItemsInput>
+  connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutPatternItemsInput
+  connect?: Prisma.OrganizationWhereUniqueInput
+}
+
+export type OrganizationUpdateOneRequiredWithoutPatternItemsNestedInput = {
+  create?: Prisma.XOR<Prisma.OrganizationCreateWithoutPatternItemsInput, Prisma.OrganizationUncheckedCreateWithoutPatternItemsInput>
+  connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutPatternItemsInput
+  upsert?: Prisma.OrganizationUpsertWithoutPatternItemsInput
+  connect?: Prisma.OrganizationWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.OrganizationUpdateToOneWithWhereWithoutPatternItemsInput, Prisma.OrganizationUpdateWithoutPatternItemsInput>, Prisma.OrganizationUncheckedUpdateWithoutPatternItemsInput>
+}
+
+export type OrganizationCreateNestedOneWithoutAssignedPatternsInput = {
+  create?: Prisma.XOR<Prisma.OrganizationCreateWithoutAssignedPatternsInput, Prisma.OrganizationUncheckedCreateWithoutAssignedPatternsInput>
+  connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutAssignedPatternsInput
+  connect?: Prisma.OrganizationWhereUniqueInput
+}
+
+export type OrganizationUpdateOneRequiredWithoutAssignedPatternsNestedInput = {
+  create?: Prisma.XOR<Prisma.OrganizationCreateWithoutAssignedPatternsInput, Prisma.OrganizationUncheckedCreateWithoutAssignedPatternsInput>
+  connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutAssignedPatternsInput
+  upsert?: Prisma.OrganizationUpsertWithoutAssignedPatternsInput
+  connect?: Prisma.OrganizationWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.OrganizationUpdateToOneWithWhereWithoutAssignedPatternsInput, Prisma.OrganizationUpdateWithoutAssignedPatternsInput>, Prisma.OrganizationUncheckedUpdateWithoutAssignedPatternsInput>
+}
+
+export type OrganizationCreateNestedOneWithoutShiftInstancesInput = {
+  create?: Prisma.XOR<Prisma.OrganizationCreateWithoutShiftInstancesInput, Prisma.OrganizationUncheckedCreateWithoutShiftInstancesInput>
+  connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutShiftInstancesInput
+  connect?: Prisma.OrganizationWhereUniqueInput
+}
+
+export type OrganizationUpdateOneRequiredWithoutShiftInstancesNestedInput = {
+  create?: Prisma.XOR<Prisma.OrganizationCreateWithoutShiftInstancesInput, Prisma.OrganizationUncheckedCreateWithoutShiftInstancesInput>
+  connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutShiftInstancesInput
+  upsert?: Prisma.OrganizationUpsertWithoutShiftInstancesInput
+  connect?: Prisma.OrganizationWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.OrganizationUpdateToOneWithWhereWithoutShiftInstancesInput, Prisma.OrganizationUpdateWithoutShiftInstancesInput>, Prisma.OrganizationUncheckedUpdateWithoutShiftInstancesInput>
+}
+
+export type OrganizationCreateNestedOneWithoutLeaveRequestsInput = {
+  create?: Prisma.XOR<Prisma.OrganizationCreateWithoutLeaveRequestsInput, Prisma.OrganizationUncheckedCreateWithoutLeaveRequestsInput>
+  connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutLeaveRequestsInput
+  connect?: Prisma.OrganizationWhereUniqueInput
+}
+
+export type OrganizationUpdateOneRequiredWithoutLeaveRequestsNestedInput = {
+  create?: Prisma.XOR<Prisma.OrganizationCreateWithoutLeaveRequestsInput, Prisma.OrganizationUncheckedCreateWithoutLeaveRequestsInput>
+  connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutLeaveRequestsInput
+  upsert?: Prisma.OrganizationUpsertWithoutLeaveRequestsInput
+  connect?: Prisma.OrganizationWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.OrganizationUpdateToOneWithWhereWithoutLeaveRequestsInput, Prisma.OrganizationUpdateWithoutLeaveRequestsInput>, Prisma.OrganizationUncheckedUpdateWithoutLeaveRequestsInput>
+}
+
+export type OrganizationCreateNestedOneWithoutShiftAdvertisementsInput = {
+  create?: Prisma.XOR<Prisma.OrganizationCreateWithoutShiftAdvertisementsInput, Prisma.OrganizationUncheckedCreateWithoutShiftAdvertisementsInput>
+  connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutShiftAdvertisementsInput
+  connect?: Prisma.OrganizationWhereUniqueInput
+}
+
+export type OrganizationUpdateOneRequiredWithoutShiftAdvertisementsNestedInput = {
+  create?: Prisma.XOR<Prisma.OrganizationCreateWithoutShiftAdvertisementsInput, Prisma.OrganizationUncheckedCreateWithoutShiftAdvertisementsInput>
+  connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutShiftAdvertisementsInput
+  upsert?: Prisma.OrganizationUpsertWithoutShiftAdvertisementsInput
+  connect?: Prisma.OrganizationWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.OrganizationUpdateToOneWithWhereWithoutShiftAdvertisementsInput, Prisma.OrganizationUpdateWithoutShiftAdvertisementsInput>, Prisma.OrganizationUncheckedUpdateWithoutShiftAdvertisementsInput>
+}
+
+export type OrganizationCreateNestedOneWithoutShiftClaimsInput = {
+  create?: Prisma.XOR<Prisma.OrganizationCreateWithoutShiftClaimsInput, Prisma.OrganizationUncheckedCreateWithoutShiftClaimsInput>
+  connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutShiftClaimsInput
+  connect?: Prisma.OrganizationWhereUniqueInput
+}
+
+export type OrganizationUpdateOneRequiredWithoutShiftClaimsNestedInput = {
+  create?: Prisma.XOR<Prisma.OrganizationCreateWithoutShiftClaimsInput, Prisma.OrganizationUncheckedCreateWithoutShiftClaimsInput>
+  connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutShiftClaimsInput
+  upsert?: Prisma.OrganizationUpsertWithoutShiftClaimsInput
+  connect?: Prisma.OrganizationWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.OrganizationUpdateToOneWithWhereWithoutShiftClaimsInput, Prisma.OrganizationUpdateWithoutShiftClaimsInput>, Prisma.OrganizationUncheckedUpdateWithoutShiftClaimsInput>
+}
+
+export type OrganizationCreateNestedOneWithoutEmployeeAvailabilitiesInput = {
+  create?: Prisma.XOR<Prisma.OrganizationCreateWithoutEmployeeAvailabilitiesInput, Prisma.OrganizationUncheckedCreateWithoutEmployeeAvailabilitiesInput>
+  connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutEmployeeAvailabilitiesInput
+  connect?: Prisma.OrganizationWhereUniqueInput
+}
+
+export type OrganizationUpdateOneRequiredWithoutEmployeeAvailabilitiesNestedInput = {
+  create?: Prisma.XOR<Prisma.OrganizationCreateWithoutEmployeeAvailabilitiesInput, Prisma.OrganizationUncheckedCreateWithoutEmployeeAvailabilitiesInput>
+  connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutEmployeeAvailabilitiesInput
+  upsert?: Prisma.OrganizationUpsertWithoutEmployeeAvailabilitiesInput
+  connect?: Prisma.OrganizationWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.OrganizationUpdateToOneWithWhereWithoutEmployeeAvailabilitiesInput, Prisma.OrganizationUpdateWithoutEmployeeAvailabilitiesInput>, Prisma.OrganizationUncheckedUpdateWithoutEmployeeAvailabilitiesInput>
 }
 
 export type OrganizationCreateWithoutDepartmentsInput = {
@@ -482,11 +667,22 @@ export type OrganizationCreateWithoutDepartmentsInput = {
   settings?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   archivedAt?: Date | string | null
   createdAt?: Date | string
+  locations?: Prisma.LocationCreateNestedManyWithoutOrganizationInput
   roles?: Prisma.EmployeeRoleCreateNestedManyWithoutOrganizationInput
   leaveTypes?: Prisma.LeaveCategoryCreateNestedManyWithoutOrganizationInput
   employees?: Prisma.EmployeeCreateNestedManyWithoutOrganizationInput
-  audits?: Prisma.AuditLogCreateNestedManyWithoutOrganizationInput
-  admins?: Prisma.EmployeeCreateNestedManyWithoutManagedOrganizationsInput
+  affiliations?: Prisma.EmployeeLocationAffiliationCreateNestedManyWithoutOrganizationInput
+  shiftDefinitions?: Prisma.ShiftDefinitionCreateNestedManyWithoutOrganizationInput
+  staffingRequirements?: Prisma.StaffingRequirementCreateNestedManyWithoutOrganizationInput
+  rosterPatterns?: Prisma.RosterPatternCreateNestedManyWithoutOrganizationInput
+  patternItems?: Prisma.PatternItemCreateNestedManyWithoutOrganizationInput
+  assignedPatterns?: Prisma.AssignedPatternCreateNestedManyWithoutOrganizationInput
+  shiftInstances?: Prisma.ShiftInstanceCreateNestedManyWithoutOrganizationInput
+  leaveRequests?: Prisma.LeaveRequestCreateNestedManyWithoutOrganizationInput
+  shiftAdvertisements?: Prisma.ShiftAdvertisementCreateNestedManyWithoutOrganizationInput
+  shiftClaims?: Prisma.ShiftClaimCreateNestedManyWithoutOrganizationInput
+  employeeAvailabilities?: Prisma.EmployeeAvailabilityCreateNestedManyWithoutOrganizationInput
+  managementRoles?: Prisma.ManagementRoleCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationUncheckedCreateWithoutDepartmentsInput = {
@@ -495,11 +691,22 @@ export type OrganizationUncheckedCreateWithoutDepartmentsInput = {
   settings?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   archivedAt?: Date | string | null
   createdAt?: Date | string
+  locations?: Prisma.LocationUncheckedCreateNestedManyWithoutOrganizationInput
   roles?: Prisma.EmployeeRoleUncheckedCreateNestedManyWithoutOrganizationInput
   leaveTypes?: Prisma.LeaveCategoryUncheckedCreateNestedManyWithoutOrganizationInput
   employees?: Prisma.EmployeeUncheckedCreateNestedManyWithoutOrganizationInput
-  audits?: Prisma.AuditLogUncheckedCreateNestedManyWithoutOrganizationInput
-  admins?: Prisma.EmployeeUncheckedCreateNestedManyWithoutManagedOrganizationsInput
+  affiliations?: Prisma.EmployeeLocationAffiliationUncheckedCreateNestedManyWithoutOrganizationInput
+  shiftDefinitions?: Prisma.ShiftDefinitionUncheckedCreateNestedManyWithoutOrganizationInput
+  staffingRequirements?: Prisma.StaffingRequirementUncheckedCreateNestedManyWithoutOrganizationInput
+  rosterPatterns?: Prisma.RosterPatternUncheckedCreateNestedManyWithoutOrganizationInput
+  patternItems?: Prisma.PatternItemUncheckedCreateNestedManyWithoutOrganizationInput
+  assignedPatterns?: Prisma.AssignedPatternUncheckedCreateNestedManyWithoutOrganizationInput
+  shiftInstances?: Prisma.ShiftInstanceUncheckedCreateNestedManyWithoutOrganizationInput
+  leaveRequests?: Prisma.LeaveRequestUncheckedCreateNestedManyWithoutOrganizationInput
+  shiftAdvertisements?: Prisma.ShiftAdvertisementUncheckedCreateNestedManyWithoutOrganizationInput
+  shiftClaims?: Prisma.ShiftClaimUncheckedCreateNestedManyWithoutOrganizationInput
+  employeeAvailabilities?: Prisma.EmployeeAvailabilityUncheckedCreateNestedManyWithoutOrganizationInput
+  managementRoles?: Prisma.ManagementRoleUncheckedCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationCreateOrConnectWithoutDepartmentsInput = {
@@ -524,11 +731,22 @@ export type OrganizationUpdateWithoutDepartmentsInput = {
   settings?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  locations?: Prisma.LocationUpdateManyWithoutOrganizationNestedInput
   roles?: Prisma.EmployeeRoleUpdateManyWithoutOrganizationNestedInput
   leaveTypes?: Prisma.LeaveCategoryUpdateManyWithoutOrganizationNestedInput
   employees?: Prisma.EmployeeUpdateManyWithoutOrganizationNestedInput
-  audits?: Prisma.AuditLogUpdateManyWithoutOrganizationNestedInput
-  admins?: Prisma.EmployeeUpdateManyWithoutManagedOrganizationsNestedInput
+  affiliations?: Prisma.EmployeeLocationAffiliationUpdateManyWithoutOrganizationNestedInput
+  shiftDefinitions?: Prisma.ShiftDefinitionUpdateManyWithoutOrganizationNestedInput
+  staffingRequirements?: Prisma.StaffingRequirementUpdateManyWithoutOrganizationNestedInput
+  rosterPatterns?: Prisma.RosterPatternUpdateManyWithoutOrganizationNestedInput
+  patternItems?: Prisma.PatternItemUpdateManyWithoutOrganizationNestedInput
+  assignedPatterns?: Prisma.AssignedPatternUpdateManyWithoutOrganizationNestedInput
+  shiftInstances?: Prisma.ShiftInstanceUpdateManyWithoutOrganizationNestedInput
+  leaveRequests?: Prisma.LeaveRequestUpdateManyWithoutOrganizationNestedInput
+  shiftAdvertisements?: Prisma.ShiftAdvertisementUpdateManyWithoutOrganizationNestedInput
+  shiftClaims?: Prisma.ShiftClaimUpdateManyWithoutOrganizationNestedInput
+  employeeAvailabilities?: Prisma.EmployeeAvailabilityUpdateManyWithoutOrganizationNestedInput
+  managementRoles?: Prisma.ManagementRoleUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationUncheckedUpdateWithoutDepartmentsInput = {
@@ -537,14 +755,25 @@ export type OrganizationUncheckedUpdateWithoutDepartmentsInput = {
   settings?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  locations?: Prisma.LocationUncheckedUpdateManyWithoutOrganizationNestedInput
   roles?: Prisma.EmployeeRoleUncheckedUpdateManyWithoutOrganizationNestedInput
   leaveTypes?: Prisma.LeaveCategoryUncheckedUpdateManyWithoutOrganizationNestedInput
   employees?: Prisma.EmployeeUncheckedUpdateManyWithoutOrganizationNestedInput
-  audits?: Prisma.AuditLogUncheckedUpdateManyWithoutOrganizationNestedInput
-  admins?: Prisma.EmployeeUncheckedUpdateManyWithoutManagedOrganizationsNestedInput
+  affiliations?: Prisma.EmployeeLocationAffiliationUncheckedUpdateManyWithoutOrganizationNestedInput
+  shiftDefinitions?: Prisma.ShiftDefinitionUncheckedUpdateManyWithoutOrganizationNestedInput
+  staffingRequirements?: Prisma.StaffingRequirementUncheckedUpdateManyWithoutOrganizationNestedInput
+  rosterPatterns?: Prisma.RosterPatternUncheckedUpdateManyWithoutOrganizationNestedInput
+  patternItems?: Prisma.PatternItemUncheckedUpdateManyWithoutOrganizationNestedInput
+  assignedPatterns?: Prisma.AssignedPatternUncheckedUpdateManyWithoutOrganizationNestedInput
+  shiftInstances?: Prisma.ShiftInstanceUncheckedUpdateManyWithoutOrganizationNestedInput
+  leaveRequests?: Prisma.LeaveRequestUncheckedUpdateManyWithoutOrganizationNestedInput
+  shiftAdvertisements?: Prisma.ShiftAdvertisementUncheckedUpdateManyWithoutOrganizationNestedInput
+  shiftClaims?: Prisma.ShiftClaimUncheckedUpdateManyWithoutOrganizationNestedInput
+  employeeAvailabilities?: Prisma.EmployeeAvailabilityUncheckedUpdateManyWithoutOrganizationNestedInput
+  managementRoles?: Prisma.ManagementRoleUncheckedUpdateManyWithoutOrganizationNestedInput
 }
 
-export type OrganizationCreateWithoutAdminsInput = {
+export type OrganizationCreateWithoutLocationsInput = {
   id?: string
   name: string
   settings?: Prisma.JsonNullValueInput | runtime.InputJsonValue
@@ -554,10 +783,21 @@ export type OrganizationCreateWithoutAdminsInput = {
   roles?: Prisma.EmployeeRoleCreateNestedManyWithoutOrganizationInput
   leaveTypes?: Prisma.LeaveCategoryCreateNestedManyWithoutOrganizationInput
   employees?: Prisma.EmployeeCreateNestedManyWithoutOrganizationInput
-  audits?: Prisma.AuditLogCreateNestedManyWithoutOrganizationInput
+  affiliations?: Prisma.EmployeeLocationAffiliationCreateNestedManyWithoutOrganizationInput
+  shiftDefinitions?: Prisma.ShiftDefinitionCreateNestedManyWithoutOrganizationInput
+  staffingRequirements?: Prisma.StaffingRequirementCreateNestedManyWithoutOrganizationInput
+  rosterPatterns?: Prisma.RosterPatternCreateNestedManyWithoutOrganizationInput
+  patternItems?: Prisma.PatternItemCreateNestedManyWithoutOrganizationInput
+  assignedPatterns?: Prisma.AssignedPatternCreateNestedManyWithoutOrganizationInput
+  shiftInstances?: Prisma.ShiftInstanceCreateNestedManyWithoutOrganizationInput
+  leaveRequests?: Prisma.LeaveRequestCreateNestedManyWithoutOrganizationInput
+  shiftAdvertisements?: Prisma.ShiftAdvertisementCreateNestedManyWithoutOrganizationInput
+  shiftClaims?: Prisma.ShiftClaimCreateNestedManyWithoutOrganizationInput
+  employeeAvailabilities?: Prisma.EmployeeAvailabilityCreateNestedManyWithoutOrganizationInput
+  managementRoles?: Prisma.ManagementRoleCreateNestedManyWithoutOrganizationInput
 }
 
-export type OrganizationUncheckedCreateWithoutAdminsInput = {
+export type OrganizationUncheckedCreateWithoutLocationsInput = {
   id?: string
   name: string
   settings?: Prisma.JsonNullValueInput | runtime.InputJsonValue
@@ -567,12 +807,82 @@ export type OrganizationUncheckedCreateWithoutAdminsInput = {
   roles?: Prisma.EmployeeRoleUncheckedCreateNestedManyWithoutOrganizationInput
   leaveTypes?: Prisma.LeaveCategoryUncheckedCreateNestedManyWithoutOrganizationInput
   employees?: Prisma.EmployeeUncheckedCreateNestedManyWithoutOrganizationInput
-  audits?: Prisma.AuditLogUncheckedCreateNestedManyWithoutOrganizationInput
+  affiliations?: Prisma.EmployeeLocationAffiliationUncheckedCreateNestedManyWithoutOrganizationInput
+  shiftDefinitions?: Prisma.ShiftDefinitionUncheckedCreateNestedManyWithoutOrganizationInput
+  staffingRequirements?: Prisma.StaffingRequirementUncheckedCreateNestedManyWithoutOrganizationInput
+  rosterPatterns?: Prisma.RosterPatternUncheckedCreateNestedManyWithoutOrganizationInput
+  patternItems?: Prisma.PatternItemUncheckedCreateNestedManyWithoutOrganizationInput
+  assignedPatterns?: Prisma.AssignedPatternUncheckedCreateNestedManyWithoutOrganizationInput
+  shiftInstances?: Prisma.ShiftInstanceUncheckedCreateNestedManyWithoutOrganizationInput
+  leaveRequests?: Prisma.LeaveRequestUncheckedCreateNestedManyWithoutOrganizationInput
+  shiftAdvertisements?: Prisma.ShiftAdvertisementUncheckedCreateNestedManyWithoutOrganizationInput
+  shiftClaims?: Prisma.ShiftClaimUncheckedCreateNestedManyWithoutOrganizationInput
+  employeeAvailabilities?: Prisma.EmployeeAvailabilityUncheckedCreateNestedManyWithoutOrganizationInput
+  managementRoles?: Prisma.ManagementRoleUncheckedCreateNestedManyWithoutOrganizationInput
 }
 
-export type OrganizationCreateOrConnectWithoutAdminsInput = {
+export type OrganizationCreateOrConnectWithoutLocationsInput = {
   where: Prisma.OrganizationWhereUniqueInput
-  create: Prisma.XOR<Prisma.OrganizationCreateWithoutAdminsInput, Prisma.OrganizationUncheckedCreateWithoutAdminsInput>
+  create: Prisma.XOR<Prisma.OrganizationCreateWithoutLocationsInput, Prisma.OrganizationUncheckedCreateWithoutLocationsInput>
+}
+
+export type OrganizationUpsertWithoutLocationsInput = {
+  update: Prisma.XOR<Prisma.OrganizationUpdateWithoutLocationsInput, Prisma.OrganizationUncheckedUpdateWithoutLocationsInput>
+  create: Prisma.XOR<Prisma.OrganizationCreateWithoutLocationsInput, Prisma.OrganizationUncheckedCreateWithoutLocationsInput>
+  where?: Prisma.OrganizationWhereInput
+}
+
+export type OrganizationUpdateToOneWithWhereWithoutLocationsInput = {
+  where?: Prisma.OrganizationWhereInput
+  data: Prisma.XOR<Prisma.OrganizationUpdateWithoutLocationsInput, Prisma.OrganizationUncheckedUpdateWithoutLocationsInput>
+}
+
+export type OrganizationUpdateWithoutLocationsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  settings?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  departments?: Prisma.DepartmentUpdateManyWithoutOrganizationNestedInput
+  roles?: Prisma.EmployeeRoleUpdateManyWithoutOrganizationNestedInput
+  leaveTypes?: Prisma.LeaveCategoryUpdateManyWithoutOrganizationNestedInput
+  employees?: Prisma.EmployeeUpdateManyWithoutOrganizationNestedInput
+  affiliations?: Prisma.EmployeeLocationAffiliationUpdateManyWithoutOrganizationNestedInput
+  shiftDefinitions?: Prisma.ShiftDefinitionUpdateManyWithoutOrganizationNestedInput
+  staffingRequirements?: Prisma.StaffingRequirementUpdateManyWithoutOrganizationNestedInput
+  rosterPatterns?: Prisma.RosterPatternUpdateManyWithoutOrganizationNestedInput
+  patternItems?: Prisma.PatternItemUpdateManyWithoutOrganizationNestedInput
+  assignedPatterns?: Prisma.AssignedPatternUpdateManyWithoutOrganizationNestedInput
+  shiftInstances?: Prisma.ShiftInstanceUpdateManyWithoutOrganizationNestedInput
+  leaveRequests?: Prisma.LeaveRequestUpdateManyWithoutOrganizationNestedInput
+  shiftAdvertisements?: Prisma.ShiftAdvertisementUpdateManyWithoutOrganizationNestedInput
+  shiftClaims?: Prisma.ShiftClaimUpdateManyWithoutOrganizationNestedInput
+  employeeAvailabilities?: Prisma.EmployeeAvailabilityUpdateManyWithoutOrganizationNestedInput
+  managementRoles?: Prisma.ManagementRoleUpdateManyWithoutOrganizationNestedInput
+}
+
+export type OrganizationUncheckedUpdateWithoutLocationsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  settings?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  departments?: Prisma.DepartmentUncheckedUpdateManyWithoutOrganizationNestedInput
+  roles?: Prisma.EmployeeRoleUncheckedUpdateManyWithoutOrganizationNestedInput
+  leaveTypes?: Prisma.LeaveCategoryUncheckedUpdateManyWithoutOrganizationNestedInput
+  employees?: Prisma.EmployeeUncheckedUpdateManyWithoutOrganizationNestedInput
+  affiliations?: Prisma.EmployeeLocationAffiliationUncheckedUpdateManyWithoutOrganizationNestedInput
+  shiftDefinitions?: Prisma.ShiftDefinitionUncheckedUpdateManyWithoutOrganizationNestedInput
+  staffingRequirements?: Prisma.StaffingRequirementUncheckedUpdateManyWithoutOrganizationNestedInput
+  rosterPatterns?: Prisma.RosterPatternUncheckedUpdateManyWithoutOrganizationNestedInput
+  patternItems?: Prisma.PatternItemUncheckedUpdateManyWithoutOrganizationNestedInput
+  assignedPatterns?: Prisma.AssignedPatternUncheckedUpdateManyWithoutOrganizationNestedInput
+  shiftInstances?: Prisma.ShiftInstanceUncheckedUpdateManyWithoutOrganizationNestedInput
+  leaveRequests?: Prisma.LeaveRequestUncheckedUpdateManyWithoutOrganizationNestedInput
+  shiftAdvertisements?: Prisma.ShiftAdvertisementUncheckedUpdateManyWithoutOrganizationNestedInput
+  shiftClaims?: Prisma.ShiftClaimUncheckedUpdateManyWithoutOrganizationNestedInput
+  employeeAvailabilities?: Prisma.EmployeeAvailabilityUncheckedUpdateManyWithoutOrganizationNestedInput
+  managementRoles?: Prisma.ManagementRoleUncheckedUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationCreateWithoutEmployeesInput = {
@@ -582,10 +892,21 @@ export type OrganizationCreateWithoutEmployeesInput = {
   archivedAt?: Date | string | null
   createdAt?: Date | string
   departments?: Prisma.DepartmentCreateNestedManyWithoutOrganizationInput
+  locations?: Prisma.LocationCreateNestedManyWithoutOrganizationInput
   roles?: Prisma.EmployeeRoleCreateNestedManyWithoutOrganizationInput
   leaveTypes?: Prisma.LeaveCategoryCreateNestedManyWithoutOrganizationInput
-  audits?: Prisma.AuditLogCreateNestedManyWithoutOrganizationInput
-  admins?: Prisma.EmployeeCreateNestedManyWithoutManagedOrganizationsInput
+  affiliations?: Prisma.EmployeeLocationAffiliationCreateNestedManyWithoutOrganizationInput
+  shiftDefinitions?: Prisma.ShiftDefinitionCreateNestedManyWithoutOrganizationInput
+  staffingRequirements?: Prisma.StaffingRequirementCreateNestedManyWithoutOrganizationInput
+  rosterPatterns?: Prisma.RosterPatternCreateNestedManyWithoutOrganizationInput
+  patternItems?: Prisma.PatternItemCreateNestedManyWithoutOrganizationInput
+  assignedPatterns?: Prisma.AssignedPatternCreateNestedManyWithoutOrganizationInput
+  shiftInstances?: Prisma.ShiftInstanceCreateNestedManyWithoutOrganizationInput
+  leaveRequests?: Prisma.LeaveRequestCreateNestedManyWithoutOrganizationInput
+  shiftAdvertisements?: Prisma.ShiftAdvertisementCreateNestedManyWithoutOrganizationInput
+  shiftClaims?: Prisma.ShiftClaimCreateNestedManyWithoutOrganizationInput
+  employeeAvailabilities?: Prisma.EmployeeAvailabilityCreateNestedManyWithoutOrganizationInput
+  managementRoles?: Prisma.ManagementRoleCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationUncheckedCreateWithoutEmployeesInput = {
@@ -595,42 +916,26 @@ export type OrganizationUncheckedCreateWithoutEmployeesInput = {
   archivedAt?: Date | string | null
   createdAt?: Date | string
   departments?: Prisma.DepartmentUncheckedCreateNestedManyWithoutOrganizationInput
+  locations?: Prisma.LocationUncheckedCreateNestedManyWithoutOrganizationInput
   roles?: Prisma.EmployeeRoleUncheckedCreateNestedManyWithoutOrganizationInput
   leaveTypes?: Prisma.LeaveCategoryUncheckedCreateNestedManyWithoutOrganizationInput
-  audits?: Prisma.AuditLogUncheckedCreateNestedManyWithoutOrganizationInput
-  admins?: Prisma.EmployeeUncheckedCreateNestedManyWithoutManagedOrganizationsInput
+  affiliations?: Prisma.EmployeeLocationAffiliationUncheckedCreateNestedManyWithoutOrganizationInput
+  shiftDefinitions?: Prisma.ShiftDefinitionUncheckedCreateNestedManyWithoutOrganizationInput
+  staffingRequirements?: Prisma.StaffingRequirementUncheckedCreateNestedManyWithoutOrganizationInput
+  rosterPatterns?: Prisma.RosterPatternUncheckedCreateNestedManyWithoutOrganizationInput
+  patternItems?: Prisma.PatternItemUncheckedCreateNestedManyWithoutOrganizationInput
+  assignedPatterns?: Prisma.AssignedPatternUncheckedCreateNestedManyWithoutOrganizationInput
+  shiftInstances?: Prisma.ShiftInstanceUncheckedCreateNestedManyWithoutOrganizationInput
+  leaveRequests?: Prisma.LeaveRequestUncheckedCreateNestedManyWithoutOrganizationInput
+  shiftAdvertisements?: Prisma.ShiftAdvertisementUncheckedCreateNestedManyWithoutOrganizationInput
+  shiftClaims?: Prisma.ShiftClaimUncheckedCreateNestedManyWithoutOrganizationInput
+  employeeAvailabilities?: Prisma.EmployeeAvailabilityUncheckedCreateNestedManyWithoutOrganizationInput
+  managementRoles?: Prisma.ManagementRoleUncheckedCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationCreateOrConnectWithoutEmployeesInput = {
   where: Prisma.OrganizationWhereUniqueInput
   create: Prisma.XOR<Prisma.OrganizationCreateWithoutEmployeesInput, Prisma.OrganizationUncheckedCreateWithoutEmployeesInput>
-}
-
-export type OrganizationUpsertWithWhereUniqueWithoutAdminsInput = {
-  where: Prisma.OrganizationWhereUniqueInput
-  update: Prisma.XOR<Prisma.OrganizationUpdateWithoutAdminsInput, Prisma.OrganizationUncheckedUpdateWithoutAdminsInput>
-  create: Prisma.XOR<Prisma.OrganizationCreateWithoutAdminsInput, Prisma.OrganizationUncheckedCreateWithoutAdminsInput>
-}
-
-export type OrganizationUpdateWithWhereUniqueWithoutAdminsInput = {
-  where: Prisma.OrganizationWhereUniqueInput
-  data: Prisma.XOR<Prisma.OrganizationUpdateWithoutAdminsInput, Prisma.OrganizationUncheckedUpdateWithoutAdminsInput>
-}
-
-export type OrganizationUpdateManyWithWhereWithoutAdminsInput = {
-  where: Prisma.OrganizationScalarWhereInput
-  data: Prisma.XOR<Prisma.OrganizationUpdateManyMutationInput, Prisma.OrganizationUncheckedUpdateManyWithoutAdminsInput>
-}
-
-export type OrganizationScalarWhereInput = {
-  AND?: Prisma.OrganizationScalarWhereInput | Prisma.OrganizationScalarWhereInput[]
-  OR?: Prisma.OrganizationScalarWhereInput[]
-  NOT?: Prisma.OrganizationScalarWhereInput | Prisma.OrganizationScalarWhereInput[]
-  id?: Prisma.StringFilter<"Organization"> | string
-  name?: Prisma.StringFilter<"Organization"> | string
-  settings?: Prisma.JsonFilter<"Organization">
-  archivedAt?: Prisma.DateTimeNullableFilter<"Organization"> | Date | string | null
-  createdAt?: Prisma.DateTimeFilter<"Organization"> | Date | string
 }
 
 export type OrganizationUpsertWithoutEmployeesInput = {
@@ -651,10 +956,21 @@ export type OrganizationUpdateWithoutEmployeesInput = {
   archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   departments?: Prisma.DepartmentUpdateManyWithoutOrganizationNestedInput
+  locations?: Prisma.LocationUpdateManyWithoutOrganizationNestedInput
   roles?: Prisma.EmployeeRoleUpdateManyWithoutOrganizationNestedInput
   leaveTypes?: Prisma.LeaveCategoryUpdateManyWithoutOrganizationNestedInput
-  audits?: Prisma.AuditLogUpdateManyWithoutOrganizationNestedInput
-  admins?: Prisma.EmployeeUpdateManyWithoutManagedOrganizationsNestedInput
+  affiliations?: Prisma.EmployeeLocationAffiliationUpdateManyWithoutOrganizationNestedInput
+  shiftDefinitions?: Prisma.ShiftDefinitionUpdateManyWithoutOrganizationNestedInput
+  staffingRequirements?: Prisma.StaffingRequirementUpdateManyWithoutOrganizationNestedInput
+  rosterPatterns?: Prisma.RosterPatternUpdateManyWithoutOrganizationNestedInput
+  patternItems?: Prisma.PatternItemUpdateManyWithoutOrganizationNestedInput
+  assignedPatterns?: Prisma.AssignedPatternUpdateManyWithoutOrganizationNestedInput
+  shiftInstances?: Prisma.ShiftInstanceUpdateManyWithoutOrganizationNestedInput
+  leaveRequests?: Prisma.LeaveRequestUpdateManyWithoutOrganizationNestedInput
+  shiftAdvertisements?: Prisma.ShiftAdvertisementUpdateManyWithoutOrganizationNestedInput
+  shiftClaims?: Prisma.ShiftClaimUpdateManyWithoutOrganizationNestedInput
+  employeeAvailabilities?: Prisma.EmployeeAvailabilityUpdateManyWithoutOrganizationNestedInput
+  managementRoles?: Prisma.ManagementRoleUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationUncheckedUpdateWithoutEmployeesInput = {
@@ -664,10 +980,245 @@ export type OrganizationUncheckedUpdateWithoutEmployeesInput = {
   archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   departments?: Prisma.DepartmentUncheckedUpdateManyWithoutOrganizationNestedInput
+  locations?: Prisma.LocationUncheckedUpdateManyWithoutOrganizationNestedInput
   roles?: Prisma.EmployeeRoleUncheckedUpdateManyWithoutOrganizationNestedInput
   leaveTypes?: Prisma.LeaveCategoryUncheckedUpdateManyWithoutOrganizationNestedInput
-  audits?: Prisma.AuditLogUncheckedUpdateManyWithoutOrganizationNestedInput
-  admins?: Prisma.EmployeeUncheckedUpdateManyWithoutManagedOrganizationsNestedInput
+  affiliations?: Prisma.EmployeeLocationAffiliationUncheckedUpdateManyWithoutOrganizationNestedInput
+  shiftDefinitions?: Prisma.ShiftDefinitionUncheckedUpdateManyWithoutOrganizationNestedInput
+  staffingRequirements?: Prisma.StaffingRequirementUncheckedUpdateManyWithoutOrganizationNestedInput
+  rosterPatterns?: Prisma.RosterPatternUncheckedUpdateManyWithoutOrganizationNestedInput
+  patternItems?: Prisma.PatternItemUncheckedUpdateManyWithoutOrganizationNestedInput
+  assignedPatterns?: Prisma.AssignedPatternUncheckedUpdateManyWithoutOrganizationNestedInput
+  shiftInstances?: Prisma.ShiftInstanceUncheckedUpdateManyWithoutOrganizationNestedInput
+  leaveRequests?: Prisma.LeaveRequestUncheckedUpdateManyWithoutOrganizationNestedInput
+  shiftAdvertisements?: Prisma.ShiftAdvertisementUncheckedUpdateManyWithoutOrganizationNestedInput
+  shiftClaims?: Prisma.ShiftClaimUncheckedUpdateManyWithoutOrganizationNestedInput
+  employeeAvailabilities?: Prisma.EmployeeAvailabilityUncheckedUpdateManyWithoutOrganizationNestedInput
+  managementRoles?: Prisma.ManagementRoleUncheckedUpdateManyWithoutOrganizationNestedInput
+}
+
+export type OrganizationCreateWithoutAffiliationsInput = {
+  id?: string
+  name: string
+  settings?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  archivedAt?: Date | string | null
+  createdAt?: Date | string
+  departments?: Prisma.DepartmentCreateNestedManyWithoutOrganizationInput
+  locations?: Prisma.LocationCreateNestedManyWithoutOrganizationInput
+  roles?: Prisma.EmployeeRoleCreateNestedManyWithoutOrganizationInput
+  leaveTypes?: Prisma.LeaveCategoryCreateNestedManyWithoutOrganizationInput
+  employees?: Prisma.EmployeeCreateNestedManyWithoutOrganizationInput
+  shiftDefinitions?: Prisma.ShiftDefinitionCreateNestedManyWithoutOrganizationInput
+  staffingRequirements?: Prisma.StaffingRequirementCreateNestedManyWithoutOrganizationInput
+  rosterPatterns?: Prisma.RosterPatternCreateNestedManyWithoutOrganizationInput
+  patternItems?: Prisma.PatternItemCreateNestedManyWithoutOrganizationInput
+  assignedPatterns?: Prisma.AssignedPatternCreateNestedManyWithoutOrganizationInput
+  shiftInstances?: Prisma.ShiftInstanceCreateNestedManyWithoutOrganizationInput
+  leaveRequests?: Prisma.LeaveRequestCreateNestedManyWithoutOrganizationInput
+  shiftAdvertisements?: Prisma.ShiftAdvertisementCreateNestedManyWithoutOrganizationInput
+  shiftClaims?: Prisma.ShiftClaimCreateNestedManyWithoutOrganizationInput
+  employeeAvailabilities?: Prisma.EmployeeAvailabilityCreateNestedManyWithoutOrganizationInput
+  managementRoles?: Prisma.ManagementRoleCreateNestedManyWithoutOrganizationInput
+}
+
+export type OrganizationUncheckedCreateWithoutAffiliationsInput = {
+  id?: string
+  name: string
+  settings?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  archivedAt?: Date | string | null
+  createdAt?: Date | string
+  departments?: Prisma.DepartmentUncheckedCreateNestedManyWithoutOrganizationInput
+  locations?: Prisma.LocationUncheckedCreateNestedManyWithoutOrganizationInput
+  roles?: Prisma.EmployeeRoleUncheckedCreateNestedManyWithoutOrganizationInput
+  leaveTypes?: Prisma.LeaveCategoryUncheckedCreateNestedManyWithoutOrganizationInput
+  employees?: Prisma.EmployeeUncheckedCreateNestedManyWithoutOrganizationInput
+  shiftDefinitions?: Prisma.ShiftDefinitionUncheckedCreateNestedManyWithoutOrganizationInput
+  staffingRequirements?: Prisma.StaffingRequirementUncheckedCreateNestedManyWithoutOrganizationInput
+  rosterPatterns?: Prisma.RosterPatternUncheckedCreateNestedManyWithoutOrganizationInput
+  patternItems?: Prisma.PatternItemUncheckedCreateNestedManyWithoutOrganizationInput
+  assignedPatterns?: Prisma.AssignedPatternUncheckedCreateNestedManyWithoutOrganizationInput
+  shiftInstances?: Prisma.ShiftInstanceUncheckedCreateNestedManyWithoutOrganizationInput
+  leaveRequests?: Prisma.LeaveRequestUncheckedCreateNestedManyWithoutOrganizationInput
+  shiftAdvertisements?: Prisma.ShiftAdvertisementUncheckedCreateNestedManyWithoutOrganizationInput
+  shiftClaims?: Prisma.ShiftClaimUncheckedCreateNestedManyWithoutOrganizationInput
+  employeeAvailabilities?: Prisma.EmployeeAvailabilityUncheckedCreateNestedManyWithoutOrganizationInput
+  managementRoles?: Prisma.ManagementRoleUncheckedCreateNestedManyWithoutOrganizationInput
+}
+
+export type OrganizationCreateOrConnectWithoutAffiliationsInput = {
+  where: Prisma.OrganizationWhereUniqueInput
+  create: Prisma.XOR<Prisma.OrganizationCreateWithoutAffiliationsInput, Prisma.OrganizationUncheckedCreateWithoutAffiliationsInput>
+}
+
+export type OrganizationUpsertWithoutAffiliationsInput = {
+  update: Prisma.XOR<Prisma.OrganizationUpdateWithoutAffiliationsInput, Prisma.OrganizationUncheckedUpdateWithoutAffiliationsInput>
+  create: Prisma.XOR<Prisma.OrganizationCreateWithoutAffiliationsInput, Prisma.OrganizationUncheckedCreateWithoutAffiliationsInput>
+  where?: Prisma.OrganizationWhereInput
+}
+
+export type OrganizationUpdateToOneWithWhereWithoutAffiliationsInput = {
+  where?: Prisma.OrganizationWhereInput
+  data: Prisma.XOR<Prisma.OrganizationUpdateWithoutAffiliationsInput, Prisma.OrganizationUncheckedUpdateWithoutAffiliationsInput>
+}
+
+export type OrganizationUpdateWithoutAffiliationsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  settings?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  departments?: Prisma.DepartmentUpdateManyWithoutOrganizationNestedInput
+  locations?: Prisma.LocationUpdateManyWithoutOrganizationNestedInput
+  roles?: Prisma.EmployeeRoleUpdateManyWithoutOrganizationNestedInput
+  leaveTypes?: Prisma.LeaveCategoryUpdateManyWithoutOrganizationNestedInput
+  employees?: Prisma.EmployeeUpdateManyWithoutOrganizationNestedInput
+  shiftDefinitions?: Prisma.ShiftDefinitionUpdateManyWithoutOrganizationNestedInput
+  staffingRequirements?: Prisma.StaffingRequirementUpdateManyWithoutOrganizationNestedInput
+  rosterPatterns?: Prisma.RosterPatternUpdateManyWithoutOrganizationNestedInput
+  patternItems?: Prisma.PatternItemUpdateManyWithoutOrganizationNestedInput
+  assignedPatterns?: Prisma.AssignedPatternUpdateManyWithoutOrganizationNestedInput
+  shiftInstances?: Prisma.ShiftInstanceUpdateManyWithoutOrganizationNestedInput
+  leaveRequests?: Prisma.LeaveRequestUpdateManyWithoutOrganizationNestedInput
+  shiftAdvertisements?: Prisma.ShiftAdvertisementUpdateManyWithoutOrganizationNestedInput
+  shiftClaims?: Prisma.ShiftClaimUpdateManyWithoutOrganizationNestedInput
+  employeeAvailabilities?: Prisma.EmployeeAvailabilityUpdateManyWithoutOrganizationNestedInput
+  managementRoles?: Prisma.ManagementRoleUpdateManyWithoutOrganizationNestedInput
+}
+
+export type OrganizationUncheckedUpdateWithoutAffiliationsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  settings?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  departments?: Prisma.DepartmentUncheckedUpdateManyWithoutOrganizationNestedInput
+  locations?: Prisma.LocationUncheckedUpdateManyWithoutOrganizationNestedInput
+  roles?: Prisma.EmployeeRoleUncheckedUpdateManyWithoutOrganizationNestedInput
+  leaveTypes?: Prisma.LeaveCategoryUncheckedUpdateManyWithoutOrganizationNestedInput
+  employees?: Prisma.EmployeeUncheckedUpdateManyWithoutOrganizationNestedInput
+  shiftDefinitions?: Prisma.ShiftDefinitionUncheckedUpdateManyWithoutOrganizationNestedInput
+  staffingRequirements?: Prisma.StaffingRequirementUncheckedUpdateManyWithoutOrganizationNestedInput
+  rosterPatterns?: Prisma.RosterPatternUncheckedUpdateManyWithoutOrganizationNestedInput
+  patternItems?: Prisma.PatternItemUncheckedUpdateManyWithoutOrganizationNestedInput
+  assignedPatterns?: Prisma.AssignedPatternUncheckedUpdateManyWithoutOrganizationNestedInput
+  shiftInstances?: Prisma.ShiftInstanceUncheckedUpdateManyWithoutOrganizationNestedInput
+  leaveRequests?: Prisma.LeaveRequestUncheckedUpdateManyWithoutOrganizationNestedInput
+  shiftAdvertisements?: Prisma.ShiftAdvertisementUncheckedUpdateManyWithoutOrganizationNestedInput
+  shiftClaims?: Prisma.ShiftClaimUncheckedUpdateManyWithoutOrganizationNestedInput
+  employeeAvailabilities?: Prisma.EmployeeAvailabilityUncheckedUpdateManyWithoutOrganizationNestedInput
+  managementRoles?: Prisma.ManagementRoleUncheckedUpdateManyWithoutOrganizationNestedInput
+}
+
+export type OrganizationCreateWithoutManagementRolesInput = {
+  id?: string
+  name: string
+  settings?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  archivedAt?: Date | string | null
+  createdAt?: Date | string
+  departments?: Prisma.DepartmentCreateNestedManyWithoutOrganizationInput
+  locations?: Prisma.LocationCreateNestedManyWithoutOrganizationInput
+  roles?: Prisma.EmployeeRoleCreateNestedManyWithoutOrganizationInput
+  leaveTypes?: Prisma.LeaveCategoryCreateNestedManyWithoutOrganizationInput
+  employees?: Prisma.EmployeeCreateNestedManyWithoutOrganizationInput
+  affiliations?: Prisma.EmployeeLocationAffiliationCreateNestedManyWithoutOrganizationInput
+  shiftDefinitions?: Prisma.ShiftDefinitionCreateNestedManyWithoutOrganizationInput
+  staffingRequirements?: Prisma.StaffingRequirementCreateNestedManyWithoutOrganizationInput
+  rosterPatterns?: Prisma.RosterPatternCreateNestedManyWithoutOrganizationInput
+  patternItems?: Prisma.PatternItemCreateNestedManyWithoutOrganizationInput
+  assignedPatterns?: Prisma.AssignedPatternCreateNestedManyWithoutOrganizationInput
+  shiftInstances?: Prisma.ShiftInstanceCreateNestedManyWithoutOrganizationInput
+  leaveRequests?: Prisma.LeaveRequestCreateNestedManyWithoutOrganizationInput
+  shiftAdvertisements?: Prisma.ShiftAdvertisementCreateNestedManyWithoutOrganizationInput
+  shiftClaims?: Prisma.ShiftClaimCreateNestedManyWithoutOrganizationInput
+  employeeAvailabilities?: Prisma.EmployeeAvailabilityCreateNestedManyWithoutOrganizationInput
+}
+
+export type OrganizationUncheckedCreateWithoutManagementRolesInput = {
+  id?: string
+  name: string
+  settings?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  archivedAt?: Date | string | null
+  createdAt?: Date | string
+  departments?: Prisma.DepartmentUncheckedCreateNestedManyWithoutOrganizationInput
+  locations?: Prisma.LocationUncheckedCreateNestedManyWithoutOrganizationInput
+  roles?: Prisma.EmployeeRoleUncheckedCreateNestedManyWithoutOrganizationInput
+  leaveTypes?: Prisma.LeaveCategoryUncheckedCreateNestedManyWithoutOrganizationInput
+  employees?: Prisma.EmployeeUncheckedCreateNestedManyWithoutOrganizationInput
+  affiliations?: Prisma.EmployeeLocationAffiliationUncheckedCreateNestedManyWithoutOrganizationInput
+  shiftDefinitions?: Prisma.ShiftDefinitionUncheckedCreateNestedManyWithoutOrganizationInput
+  staffingRequirements?: Prisma.StaffingRequirementUncheckedCreateNestedManyWithoutOrganizationInput
+  rosterPatterns?: Prisma.RosterPatternUncheckedCreateNestedManyWithoutOrganizationInput
+  patternItems?: Prisma.PatternItemUncheckedCreateNestedManyWithoutOrganizationInput
+  assignedPatterns?: Prisma.AssignedPatternUncheckedCreateNestedManyWithoutOrganizationInput
+  shiftInstances?: Prisma.ShiftInstanceUncheckedCreateNestedManyWithoutOrganizationInput
+  leaveRequests?: Prisma.LeaveRequestUncheckedCreateNestedManyWithoutOrganizationInput
+  shiftAdvertisements?: Prisma.ShiftAdvertisementUncheckedCreateNestedManyWithoutOrganizationInput
+  shiftClaims?: Prisma.ShiftClaimUncheckedCreateNestedManyWithoutOrganizationInput
+  employeeAvailabilities?: Prisma.EmployeeAvailabilityUncheckedCreateNestedManyWithoutOrganizationInput
+}
+
+export type OrganizationCreateOrConnectWithoutManagementRolesInput = {
+  where: Prisma.OrganizationWhereUniqueInput
+  create: Prisma.XOR<Prisma.OrganizationCreateWithoutManagementRolesInput, Prisma.OrganizationUncheckedCreateWithoutManagementRolesInput>
+}
+
+export type OrganizationUpsertWithoutManagementRolesInput = {
+  update: Prisma.XOR<Prisma.OrganizationUpdateWithoutManagementRolesInput, Prisma.OrganizationUncheckedUpdateWithoutManagementRolesInput>
+  create: Prisma.XOR<Prisma.OrganizationCreateWithoutManagementRolesInput, Prisma.OrganizationUncheckedCreateWithoutManagementRolesInput>
+  where?: Prisma.OrganizationWhereInput
+}
+
+export type OrganizationUpdateToOneWithWhereWithoutManagementRolesInput = {
+  where?: Prisma.OrganizationWhereInput
+  data: Prisma.XOR<Prisma.OrganizationUpdateWithoutManagementRolesInput, Prisma.OrganizationUncheckedUpdateWithoutManagementRolesInput>
+}
+
+export type OrganizationUpdateWithoutManagementRolesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  settings?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  departments?: Prisma.DepartmentUpdateManyWithoutOrganizationNestedInput
+  locations?: Prisma.LocationUpdateManyWithoutOrganizationNestedInput
+  roles?: Prisma.EmployeeRoleUpdateManyWithoutOrganizationNestedInput
+  leaveTypes?: Prisma.LeaveCategoryUpdateManyWithoutOrganizationNestedInput
+  employees?: Prisma.EmployeeUpdateManyWithoutOrganizationNestedInput
+  affiliations?: Prisma.EmployeeLocationAffiliationUpdateManyWithoutOrganizationNestedInput
+  shiftDefinitions?: Prisma.ShiftDefinitionUpdateManyWithoutOrganizationNestedInput
+  staffingRequirements?: Prisma.StaffingRequirementUpdateManyWithoutOrganizationNestedInput
+  rosterPatterns?: Prisma.RosterPatternUpdateManyWithoutOrganizationNestedInput
+  patternItems?: Prisma.PatternItemUpdateManyWithoutOrganizationNestedInput
+  assignedPatterns?: Prisma.AssignedPatternUpdateManyWithoutOrganizationNestedInput
+  shiftInstances?: Prisma.ShiftInstanceUpdateManyWithoutOrganizationNestedInput
+  leaveRequests?: Prisma.LeaveRequestUpdateManyWithoutOrganizationNestedInput
+  shiftAdvertisements?: Prisma.ShiftAdvertisementUpdateManyWithoutOrganizationNestedInput
+  shiftClaims?: Prisma.ShiftClaimUpdateManyWithoutOrganizationNestedInput
+  employeeAvailabilities?: Prisma.EmployeeAvailabilityUpdateManyWithoutOrganizationNestedInput
+}
+
+export type OrganizationUncheckedUpdateWithoutManagementRolesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  settings?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  departments?: Prisma.DepartmentUncheckedUpdateManyWithoutOrganizationNestedInput
+  locations?: Prisma.LocationUncheckedUpdateManyWithoutOrganizationNestedInput
+  roles?: Prisma.EmployeeRoleUncheckedUpdateManyWithoutOrganizationNestedInput
+  leaveTypes?: Prisma.LeaveCategoryUncheckedUpdateManyWithoutOrganizationNestedInput
+  employees?: Prisma.EmployeeUncheckedUpdateManyWithoutOrganizationNestedInput
+  affiliations?: Prisma.EmployeeLocationAffiliationUncheckedUpdateManyWithoutOrganizationNestedInput
+  shiftDefinitions?: Prisma.ShiftDefinitionUncheckedUpdateManyWithoutOrganizationNestedInput
+  staffingRequirements?: Prisma.StaffingRequirementUncheckedUpdateManyWithoutOrganizationNestedInput
+  rosterPatterns?: Prisma.RosterPatternUncheckedUpdateManyWithoutOrganizationNestedInput
+  patternItems?: Prisma.PatternItemUncheckedUpdateManyWithoutOrganizationNestedInput
+  assignedPatterns?: Prisma.AssignedPatternUncheckedUpdateManyWithoutOrganizationNestedInput
+  shiftInstances?: Prisma.ShiftInstanceUncheckedUpdateManyWithoutOrganizationNestedInput
+  leaveRequests?: Prisma.LeaveRequestUncheckedUpdateManyWithoutOrganizationNestedInput
+  shiftAdvertisements?: Prisma.ShiftAdvertisementUncheckedUpdateManyWithoutOrganizationNestedInput
+  shiftClaims?: Prisma.ShiftClaimUncheckedUpdateManyWithoutOrganizationNestedInput
+  employeeAvailabilities?: Prisma.EmployeeAvailabilityUncheckedUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationCreateWithoutRolesInput = {
@@ -677,10 +1228,21 @@ export type OrganizationCreateWithoutRolesInput = {
   archivedAt?: Date | string | null
   createdAt?: Date | string
   departments?: Prisma.DepartmentCreateNestedManyWithoutOrganizationInput
+  locations?: Prisma.LocationCreateNestedManyWithoutOrganizationInput
   leaveTypes?: Prisma.LeaveCategoryCreateNestedManyWithoutOrganizationInput
   employees?: Prisma.EmployeeCreateNestedManyWithoutOrganizationInput
-  audits?: Prisma.AuditLogCreateNestedManyWithoutOrganizationInput
-  admins?: Prisma.EmployeeCreateNestedManyWithoutManagedOrganizationsInput
+  affiliations?: Prisma.EmployeeLocationAffiliationCreateNestedManyWithoutOrganizationInput
+  shiftDefinitions?: Prisma.ShiftDefinitionCreateNestedManyWithoutOrganizationInput
+  staffingRequirements?: Prisma.StaffingRequirementCreateNestedManyWithoutOrganizationInput
+  rosterPatterns?: Prisma.RosterPatternCreateNestedManyWithoutOrganizationInput
+  patternItems?: Prisma.PatternItemCreateNestedManyWithoutOrganizationInput
+  assignedPatterns?: Prisma.AssignedPatternCreateNestedManyWithoutOrganizationInput
+  shiftInstances?: Prisma.ShiftInstanceCreateNestedManyWithoutOrganizationInput
+  leaveRequests?: Prisma.LeaveRequestCreateNestedManyWithoutOrganizationInput
+  shiftAdvertisements?: Prisma.ShiftAdvertisementCreateNestedManyWithoutOrganizationInput
+  shiftClaims?: Prisma.ShiftClaimCreateNestedManyWithoutOrganizationInput
+  employeeAvailabilities?: Prisma.EmployeeAvailabilityCreateNestedManyWithoutOrganizationInput
+  managementRoles?: Prisma.ManagementRoleCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationUncheckedCreateWithoutRolesInput = {
@@ -690,10 +1252,21 @@ export type OrganizationUncheckedCreateWithoutRolesInput = {
   archivedAt?: Date | string | null
   createdAt?: Date | string
   departments?: Prisma.DepartmentUncheckedCreateNestedManyWithoutOrganizationInput
+  locations?: Prisma.LocationUncheckedCreateNestedManyWithoutOrganizationInput
   leaveTypes?: Prisma.LeaveCategoryUncheckedCreateNestedManyWithoutOrganizationInput
   employees?: Prisma.EmployeeUncheckedCreateNestedManyWithoutOrganizationInput
-  audits?: Prisma.AuditLogUncheckedCreateNestedManyWithoutOrganizationInput
-  admins?: Prisma.EmployeeUncheckedCreateNestedManyWithoutManagedOrganizationsInput
+  affiliations?: Prisma.EmployeeLocationAffiliationUncheckedCreateNestedManyWithoutOrganizationInput
+  shiftDefinitions?: Prisma.ShiftDefinitionUncheckedCreateNestedManyWithoutOrganizationInput
+  staffingRequirements?: Prisma.StaffingRequirementUncheckedCreateNestedManyWithoutOrganizationInput
+  rosterPatterns?: Prisma.RosterPatternUncheckedCreateNestedManyWithoutOrganizationInput
+  patternItems?: Prisma.PatternItemUncheckedCreateNestedManyWithoutOrganizationInput
+  assignedPatterns?: Prisma.AssignedPatternUncheckedCreateNestedManyWithoutOrganizationInput
+  shiftInstances?: Prisma.ShiftInstanceUncheckedCreateNestedManyWithoutOrganizationInput
+  leaveRequests?: Prisma.LeaveRequestUncheckedCreateNestedManyWithoutOrganizationInput
+  shiftAdvertisements?: Prisma.ShiftAdvertisementUncheckedCreateNestedManyWithoutOrganizationInput
+  shiftClaims?: Prisma.ShiftClaimUncheckedCreateNestedManyWithoutOrganizationInput
+  employeeAvailabilities?: Prisma.EmployeeAvailabilityUncheckedCreateNestedManyWithoutOrganizationInput
+  managementRoles?: Prisma.ManagementRoleUncheckedCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationCreateOrConnectWithoutRolesInput = {
@@ -719,10 +1292,21 @@ export type OrganizationUpdateWithoutRolesInput = {
   archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   departments?: Prisma.DepartmentUpdateManyWithoutOrganizationNestedInput
+  locations?: Prisma.LocationUpdateManyWithoutOrganizationNestedInput
   leaveTypes?: Prisma.LeaveCategoryUpdateManyWithoutOrganizationNestedInput
   employees?: Prisma.EmployeeUpdateManyWithoutOrganizationNestedInput
-  audits?: Prisma.AuditLogUpdateManyWithoutOrganizationNestedInput
-  admins?: Prisma.EmployeeUpdateManyWithoutManagedOrganizationsNestedInput
+  affiliations?: Prisma.EmployeeLocationAffiliationUpdateManyWithoutOrganizationNestedInput
+  shiftDefinitions?: Prisma.ShiftDefinitionUpdateManyWithoutOrganizationNestedInput
+  staffingRequirements?: Prisma.StaffingRequirementUpdateManyWithoutOrganizationNestedInput
+  rosterPatterns?: Prisma.RosterPatternUpdateManyWithoutOrganizationNestedInput
+  patternItems?: Prisma.PatternItemUpdateManyWithoutOrganizationNestedInput
+  assignedPatterns?: Prisma.AssignedPatternUpdateManyWithoutOrganizationNestedInput
+  shiftInstances?: Prisma.ShiftInstanceUpdateManyWithoutOrganizationNestedInput
+  leaveRequests?: Prisma.LeaveRequestUpdateManyWithoutOrganizationNestedInput
+  shiftAdvertisements?: Prisma.ShiftAdvertisementUpdateManyWithoutOrganizationNestedInput
+  shiftClaims?: Prisma.ShiftClaimUpdateManyWithoutOrganizationNestedInput
+  employeeAvailabilities?: Prisma.EmployeeAvailabilityUpdateManyWithoutOrganizationNestedInput
+  managementRoles?: Prisma.ManagementRoleUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationUncheckedUpdateWithoutRolesInput = {
@@ -732,10 +1316,245 @@ export type OrganizationUncheckedUpdateWithoutRolesInput = {
   archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   departments?: Prisma.DepartmentUncheckedUpdateManyWithoutOrganizationNestedInput
+  locations?: Prisma.LocationUncheckedUpdateManyWithoutOrganizationNestedInput
   leaveTypes?: Prisma.LeaveCategoryUncheckedUpdateManyWithoutOrganizationNestedInput
   employees?: Prisma.EmployeeUncheckedUpdateManyWithoutOrganizationNestedInput
-  audits?: Prisma.AuditLogUncheckedUpdateManyWithoutOrganizationNestedInput
-  admins?: Prisma.EmployeeUncheckedUpdateManyWithoutManagedOrganizationsNestedInput
+  affiliations?: Prisma.EmployeeLocationAffiliationUncheckedUpdateManyWithoutOrganizationNestedInput
+  shiftDefinitions?: Prisma.ShiftDefinitionUncheckedUpdateManyWithoutOrganizationNestedInput
+  staffingRequirements?: Prisma.StaffingRequirementUncheckedUpdateManyWithoutOrganizationNestedInput
+  rosterPatterns?: Prisma.RosterPatternUncheckedUpdateManyWithoutOrganizationNestedInput
+  patternItems?: Prisma.PatternItemUncheckedUpdateManyWithoutOrganizationNestedInput
+  assignedPatterns?: Prisma.AssignedPatternUncheckedUpdateManyWithoutOrganizationNestedInput
+  shiftInstances?: Prisma.ShiftInstanceUncheckedUpdateManyWithoutOrganizationNestedInput
+  leaveRequests?: Prisma.LeaveRequestUncheckedUpdateManyWithoutOrganizationNestedInput
+  shiftAdvertisements?: Prisma.ShiftAdvertisementUncheckedUpdateManyWithoutOrganizationNestedInput
+  shiftClaims?: Prisma.ShiftClaimUncheckedUpdateManyWithoutOrganizationNestedInput
+  employeeAvailabilities?: Prisma.EmployeeAvailabilityUncheckedUpdateManyWithoutOrganizationNestedInput
+  managementRoles?: Prisma.ManagementRoleUncheckedUpdateManyWithoutOrganizationNestedInput
+}
+
+export type OrganizationCreateWithoutShiftDefinitionsInput = {
+  id?: string
+  name: string
+  settings?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  archivedAt?: Date | string | null
+  createdAt?: Date | string
+  departments?: Prisma.DepartmentCreateNestedManyWithoutOrganizationInput
+  locations?: Prisma.LocationCreateNestedManyWithoutOrganizationInput
+  roles?: Prisma.EmployeeRoleCreateNestedManyWithoutOrganizationInput
+  leaveTypes?: Prisma.LeaveCategoryCreateNestedManyWithoutOrganizationInput
+  employees?: Prisma.EmployeeCreateNestedManyWithoutOrganizationInput
+  affiliations?: Prisma.EmployeeLocationAffiliationCreateNestedManyWithoutOrganizationInput
+  staffingRequirements?: Prisma.StaffingRequirementCreateNestedManyWithoutOrganizationInput
+  rosterPatterns?: Prisma.RosterPatternCreateNestedManyWithoutOrganizationInput
+  patternItems?: Prisma.PatternItemCreateNestedManyWithoutOrganizationInput
+  assignedPatterns?: Prisma.AssignedPatternCreateNestedManyWithoutOrganizationInput
+  shiftInstances?: Prisma.ShiftInstanceCreateNestedManyWithoutOrganizationInput
+  leaveRequests?: Prisma.LeaveRequestCreateNestedManyWithoutOrganizationInput
+  shiftAdvertisements?: Prisma.ShiftAdvertisementCreateNestedManyWithoutOrganizationInput
+  shiftClaims?: Prisma.ShiftClaimCreateNestedManyWithoutOrganizationInput
+  employeeAvailabilities?: Prisma.EmployeeAvailabilityCreateNestedManyWithoutOrganizationInput
+  managementRoles?: Prisma.ManagementRoleCreateNestedManyWithoutOrganizationInput
+}
+
+export type OrganizationUncheckedCreateWithoutShiftDefinitionsInput = {
+  id?: string
+  name: string
+  settings?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  archivedAt?: Date | string | null
+  createdAt?: Date | string
+  departments?: Prisma.DepartmentUncheckedCreateNestedManyWithoutOrganizationInput
+  locations?: Prisma.LocationUncheckedCreateNestedManyWithoutOrganizationInput
+  roles?: Prisma.EmployeeRoleUncheckedCreateNestedManyWithoutOrganizationInput
+  leaveTypes?: Prisma.LeaveCategoryUncheckedCreateNestedManyWithoutOrganizationInput
+  employees?: Prisma.EmployeeUncheckedCreateNestedManyWithoutOrganizationInput
+  affiliations?: Prisma.EmployeeLocationAffiliationUncheckedCreateNestedManyWithoutOrganizationInput
+  staffingRequirements?: Prisma.StaffingRequirementUncheckedCreateNestedManyWithoutOrganizationInput
+  rosterPatterns?: Prisma.RosterPatternUncheckedCreateNestedManyWithoutOrganizationInput
+  patternItems?: Prisma.PatternItemUncheckedCreateNestedManyWithoutOrganizationInput
+  assignedPatterns?: Prisma.AssignedPatternUncheckedCreateNestedManyWithoutOrganizationInput
+  shiftInstances?: Prisma.ShiftInstanceUncheckedCreateNestedManyWithoutOrganizationInput
+  leaveRequests?: Prisma.LeaveRequestUncheckedCreateNestedManyWithoutOrganizationInput
+  shiftAdvertisements?: Prisma.ShiftAdvertisementUncheckedCreateNestedManyWithoutOrganizationInput
+  shiftClaims?: Prisma.ShiftClaimUncheckedCreateNestedManyWithoutOrganizationInput
+  employeeAvailabilities?: Prisma.EmployeeAvailabilityUncheckedCreateNestedManyWithoutOrganizationInput
+  managementRoles?: Prisma.ManagementRoleUncheckedCreateNestedManyWithoutOrganizationInput
+}
+
+export type OrganizationCreateOrConnectWithoutShiftDefinitionsInput = {
+  where: Prisma.OrganizationWhereUniqueInput
+  create: Prisma.XOR<Prisma.OrganizationCreateWithoutShiftDefinitionsInput, Prisma.OrganizationUncheckedCreateWithoutShiftDefinitionsInput>
+}
+
+export type OrganizationUpsertWithoutShiftDefinitionsInput = {
+  update: Prisma.XOR<Prisma.OrganizationUpdateWithoutShiftDefinitionsInput, Prisma.OrganizationUncheckedUpdateWithoutShiftDefinitionsInput>
+  create: Prisma.XOR<Prisma.OrganizationCreateWithoutShiftDefinitionsInput, Prisma.OrganizationUncheckedCreateWithoutShiftDefinitionsInput>
+  where?: Prisma.OrganizationWhereInput
+}
+
+export type OrganizationUpdateToOneWithWhereWithoutShiftDefinitionsInput = {
+  where?: Prisma.OrganizationWhereInput
+  data: Prisma.XOR<Prisma.OrganizationUpdateWithoutShiftDefinitionsInput, Prisma.OrganizationUncheckedUpdateWithoutShiftDefinitionsInput>
+}
+
+export type OrganizationUpdateWithoutShiftDefinitionsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  settings?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  departments?: Prisma.DepartmentUpdateManyWithoutOrganizationNestedInput
+  locations?: Prisma.LocationUpdateManyWithoutOrganizationNestedInput
+  roles?: Prisma.EmployeeRoleUpdateManyWithoutOrganizationNestedInput
+  leaveTypes?: Prisma.LeaveCategoryUpdateManyWithoutOrganizationNestedInput
+  employees?: Prisma.EmployeeUpdateManyWithoutOrganizationNestedInput
+  affiliations?: Prisma.EmployeeLocationAffiliationUpdateManyWithoutOrganizationNestedInput
+  staffingRequirements?: Prisma.StaffingRequirementUpdateManyWithoutOrganizationNestedInput
+  rosterPatterns?: Prisma.RosterPatternUpdateManyWithoutOrganizationNestedInput
+  patternItems?: Prisma.PatternItemUpdateManyWithoutOrganizationNestedInput
+  assignedPatterns?: Prisma.AssignedPatternUpdateManyWithoutOrganizationNestedInput
+  shiftInstances?: Prisma.ShiftInstanceUpdateManyWithoutOrganizationNestedInput
+  leaveRequests?: Prisma.LeaveRequestUpdateManyWithoutOrganizationNestedInput
+  shiftAdvertisements?: Prisma.ShiftAdvertisementUpdateManyWithoutOrganizationNestedInput
+  shiftClaims?: Prisma.ShiftClaimUpdateManyWithoutOrganizationNestedInput
+  employeeAvailabilities?: Prisma.EmployeeAvailabilityUpdateManyWithoutOrganizationNestedInput
+  managementRoles?: Prisma.ManagementRoleUpdateManyWithoutOrganizationNestedInput
+}
+
+export type OrganizationUncheckedUpdateWithoutShiftDefinitionsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  settings?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  departments?: Prisma.DepartmentUncheckedUpdateManyWithoutOrganizationNestedInput
+  locations?: Prisma.LocationUncheckedUpdateManyWithoutOrganizationNestedInput
+  roles?: Prisma.EmployeeRoleUncheckedUpdateManyWithoutOrganizationNestedInput
+  leaveTypes?: Prisma.LeaveCategoryUncheckedUpdateManyWithoutOrganizationNestedInput
+  employees?: Prisma.EmployeeUncheckedUpdateManyWithoutOrganizationNestedInput
+  affiliations?: Prisma.EmployeeLocationAffiliationUncheckedUpdateManyWithoutOrganizationNestedInput
+  staffingRequirements?: Prisma.StaffingRequirementUncheckedUpdateManyWithoutOrganizationNestedInput
+  rosterPatterns?: Prisma.RosterPatternUncheckedUpdateManyWithoutOrganizationNestedInput
+  patternItems?: Prisma.PatternItemUncheckedUpdateManyWithoutOrganizationNestedInput
+  assignedPatterns?: Prisma.AssignedPatternUncheckedUpdateManyWithoutOrganizationNestedInput
+  shiftInstances?: Prisma.ShiftInstanceUncheckedUpdateManyWithoutOrganizationNestedInput
+  leaveRequests?: Prisma.LeaveRequestUncheckedUpdateManyWithoutOrganizationNestedInput
+  shiftAdvertisements?: Prisma.ShiftAdvertisementUncheckedUpdateManyWithoutOrganizationNestedInput
+  shiftClaims?: Prisma.ShiftClaimUncheckedUpdateManyWithoutOrganizationNestedInput
+  employeeAvailabilities?: Prisma.EmployeeAvailabilityUncheckedUpdateManyWithoutOrganizationNestedInput
+  managementRoles?: Prisma.ManagementRoleUncheckedUpdateManyWithoutOrganizationNestedInput
+}
+
+export type OrganizationCreateWithoutStaffingRequirementsInput = {
+  id?: string
+  name: string
+  settings?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  archivedAt?: Date | string | null
+  createdAt?: Date | string
+  departments?: Prisma.DepartmentCreateNestedManyWithoutOrganizationInput
+  locations?: Prisma.LocationCreateNestedManyWithoutOrganizationInput
+  roles?: Prisma.EmployeeRoleCreateNestedManyWithoutOrganizationInput
+  leaveTypes?: Prisma.LeaveCategoryCreateNestedManyWithoutOrganizationInput
+  employees?: Prisma.EmployeeCreateNestedManyWithoutOrganizationInput
+  affiliations?: Prisma.EmployeeLocationAffiliationCreateNestedManyWithoutOrganizationInput
+  shiftDefinitions?: Prisma.ShiftDefinitionCreateNestedManyWithoutOrganizationInput
+  rosterPatterns?: Prisma.RosterPatternCreateNestedManyWithoutOrganizationInput
+  patternItems?: Prisma.PatternItemCreateNestedManyWithoutOrganizationInput
+  assignedPatterns?: Prisma.AssignedPatternCreateNestedManyWithoutOrganizationInput
+  shiftInstances?: Prisma.ShiftInstanceCreateNestedManyWithoutOrganizationInput
+  leaveRequests?: Prisma.LeaveRequestCreateNestedManyWithoutOrganizationInput
+  shiftAdvertisements?: Prisma.ShiftAdvertisementCreateNestedManyWithoutOrganizationInput
+  shiftClaims?: Prisma.ShiftClaimCreateNestedManyWithoutOrganizationInput
+  employeeAvailabilities?: Prisma.EmployeeAvailabilityCreateNestedManyWithoutOrganizationInput
+  managementRoles?: Prisma.ManagementRoleCreateNestedManyWithoutOrganizationInput
+}
+
+export type OrganizationUncheckedCreateWithoutStaffingRequirementsInput = {
+  id?: string
+  name: string
+  settings?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  archivedAt?: Date | string | null
+  createdAt?: Date | string
+  departments?: Prisma.DepartmentUncheckedCreateNestedManyWithoutOrganizationInput
+  locations?: Prisma.LocationUncheckedCreateNestedManyWithoutOrganizationInput
+  roles?: Prisma.EmployeeRoleUncheckedCreateNestedManyWithoutOrganizationInput
+  leaveTypes?: Prisma.LeaveCategoryUncheckedCreateNestedManyWithoutOrganizationInput
+  employees?: Prisma.EmployeeUncheckedCreateNestedManyWithoutOrganizationInput
+  affiliations?: Prisma.EmployeeLocationAffiliationUncheckedCreateNestedManyWithoutOrganizationInput
+  shiftDefinitions?: Prisma.ShiftDefinitionUncheckedCreateNestedManyWithoutOrganizationInput
+  rosterPatterns?: Prisma.RosterPatternUncheckedCreateNestedManyWithoutOrganizationInput
+  patternItems?: Prisma.PatternItemUncheckedCreateNestedManyWithoutOrganizationInput
+  assignedPatterns?: Prisma.AssignedPatternUncheckedCreateNestedManyWithoutOrganizationInput
+  shiftInstances?: Prisma.ShiftInstanceUncheckedCreateNestedManyWithoutOrganizationInput
+  leaveRequests?: Prisma.LeaveRequestUncheckedCreateNestedManyWithoutOrganizationInput
+  shiftAdvertisements?: Prisma.ShiftAdvertisementUncheckedCreateNestedManyWithoutOrganizationInput
+  shiftClaims?: Prisma.ShiftClaimUncheckedCreateNestedManyWithoutOrganizationInput
+  employeeAvailabilities?: Prisma.EmployeeAvailabilityUncheckedCreateNestedManyWithoutOrganizationInput
+  managementRoles?: Prisma.ManagementRoleUncheckedCreateNestedManyWithoutOrganizationInput
+}
+
+export type OrganizationCreateOrConnectWithoutStaffingRequirementsInput = {
+  where: Prisma.OrganizationWhereUniqueInput
+  create: Prisma.XOR<Prisma.OrganizationCreateWithoutStaffingRequirementsInput, Prisma.OrganizationUncheckedCreateWithoutStaffingRequirementsInput>
+}
+
+export type OrganizationUpsertWithoutStaffingRequirementsInput = {
+  update: Prisma.XOR<Prisma.OrganizationUpdateWithoutStaffingRequirementsInput, Prisma.OrganizationUncheckedUpdateWithoutStaffingRequirementsInput>
+  create: Prisma.XOR<Prisma.OrganizationCreateWithoutStaffingRequirementsInput, Prisma.OrganizationUncheckedCreateWithoutStaffingRequirementsInput>
+  where?: Prisma.OrganizationWhereInput
+}
+
+export type OrganizationUpdateToOneWithWhereWithoutStaffingRequirementsInput = {
+  where?: Prisma.OrganizationWhereInput
+  data: Prisma.XOR<Prisma.OrganizationUpdateWithoutStaffingRequirementsInput, Prisma.OrganizationUncheckedUpdateWithoutStaffingRequirementsInput>
+}
+
+export type OrganizationUpdateWithoutStaffingRequirementsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  settings?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  departments?: Prisma.DepartmentUpdateManyWithoutOrganizationNestedInput
+  locations?: Prisma.LocationUpdateManyWithoutOrganizationNestedInput
+  roles?: Prisma.EmployeeRoleUpdateManyWithoutOrganizationNestedInput
+  leaveTypes?: Prisma.LeaveCategoryUpdateManyWithoutOrganizationNestedInput
+  employees?: Prisma.EmployeeUpdateManyWithoutOrganizationNestedInput
+  affiliations?: Prisma.EmployeeLocationAffiliationUpdateManyWithoutOrganizationNestedInput
+  shiftDefinitions?: Prisma.ShiftDefinitionUpdateManyWithoutOrganizationNestedInput
+  rosterPatterns?: Prisma.RosterPatternUpdateManyWithoutOrganizationNestedInput
+  patternItems?: Prisma.PatternItemUpdateManyWithoutOrganizationNestedInput
+  assignedPatterns?: Prisma.AssignedPatternUpdateManyWithoutOrganizationNestedInput
+  shiftInstances?: Prisma.ShiftInstanceUpdateManyWithoutOrganizationNestedInput
+  leaveRequests?: Prisma.LeaveRequestUpdateManyWithoutOrganizationNestedInput
+  shiftAdvertisements?: Prisma.ShiftAdvertisementUpdateManyWithoutOrganizationNestedInput
+  shiftClaims?: Prisma.ShiftClaimUpdateManyWithoutOrganizationNestedInput
+  employeeAvailabilities?: Prisma.EmployeeAvailabilityUpdateManyWithoutOrganizationNestedInput
+  managementRoles?: Prisma.ManagementRoleUpdateManyWithoutOrganizationNestedInput
+}
+
+export type OrganizationUncheckedUpdateWithoutStaffingRequirementsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  settings?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  departments?: Prisma.DepartmentUncheckedUpdateManyWithoutOrganizationNestedInput
+  locations?: Prisma.LocationUncheckedUpdateManyWithoutOrganizationNestedInput
+  roles?: Prisma.EmployeeRoleUncheckedUpdateManyWithoutOrganizationNestedInput
+  leaveTypes?: Prisma.LeaveCategoryUncheckedUpdateManyWithoutOrganizationNestedInput
+  employees?: Prisma.EmployeeUncheckedUpdateManyWithoutOrganizationNestedInput
+  affiliations?: Prisma.EmployeeLocationAffiliationUncheckedUpdateManyWithoutOrganizationNestedInput
+  shiftDefinitions?: Prisma.ShiftDefinitionUncheckedUpdateManyWithoutOrganizationNestedInput
+  rosterPatterns?: Prisma.RosterPatternUncheckedUpdateManyWithoutOrganizationNestedInput
+  patternItems?: Prisma.PatternItemUncheckedUpdateManyWithoutOrganizationNestedInput
+  assignedPatterns?: Prisma.AssignedPatternUncheckedUpdateManyWithoutOrganizationNestedInput
+  shiftInstances?: Prisma.ShiftInstanceUncheckedUpdateManyWithoutOrganizationNestedInput
+  leaveRequests?: Prisma.LeaveRequestUncheckedUpdateManyWithoutOrganizationNestedInput
+  shiftAdvertisements?: Prisma.ShiftAdvertisementUncheckedUpdateManyWithoutOrganizationNestedInput
+  shiftClaims?: Prisma.ShiftClaimUncheckedUpdateManyWithoutOrganizationNestedInput
+  employeeAvailabilities?: Prisma.EmployeeAvailabilityUncheckedUpdateManyWithoutOrganizationNestedInput
+  managementRoles?: Prisma.ManagementRoleUncheckedUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationCreateWithoutLeaveTypesInput = {
@@ -745,10 +1564,21 @@ export type OrganizationCreateWithoutLeaveTypesInput = {
   archivedAt?: Date | string | null
   createdAt?: Date | string
   departments?: Prisma.DepartmentCreateNestedManyWithoutOrganizationInput
+  locations?: Prisma.LocationCreateNestedManyWithoutOrganizationInput
   roles?: Prisma.EmployeeRoleCreateNestedManyWithoutOrganizationInput
   employees?: Prisma.EmployeeCreateNestedManyWithoutOrganizationInput
-  audits?: Prisma.AuditLogCreateNestedManyWithoutOrganizationInput
-  admins?: Prisma.EmployeeCreateNestedManyWithoutManagedOrganizationsInput
+  affiliations?: Prisma.EmployeeLocationAffiliationCreateNestedManyWithoutOrganizationInput
+  shiftDefinitions?: Prisma.ShiftDefinitionCreateNestedManyWithoutOrganizationInput
+  staffingRequirements?: Prisma.StaffingRequirementCreateNestedManyWithoutOrganizationInput
+  rosterPatterns?: Prisma.RosterPatternCreateNestedManyWithoutOrganizationInput
+  patternItems?: Prisma.PatternItemCreateNestedManyWithoutOrganizationInput
+  assignedPatterns?: Prisma.AssignedPatternCreateNestedManyWithoutOrganizationInput
+  shiftInstances?: Prisma.ShiftInstanceCreateNestedManyWithoutOrganizationInput
+  leaveRequests?: Prisma.LeaveRequestCreateNestedManyWithoutOrganizationInput
+  shiftAdvertisements?: Prisma.ShiftAdvertisementCreateNestedManyWithoutOrganizationInput
+  shiftClaims?: Prisma.ShiftClaimCreateNestedManyWithoutOrganizationInput
+  employeeAvailabilities?: Prisma.EmployeeAvailabilityCreateNestedManyWithoutOrganizationInput
+  managementRoles?: Prisma.ManagementRoleCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationUncheckedCreateWithoutLeaveTypesInput = {
@@ -758,10 +1588,21 @@ export type OrganizationUncheckedCreateWithoutLeaveTypesInput = {
   archivedAt?: Date | string | null
   createdAt?: Date | string
   departments?: Prisma.DepartmentUncheckedCreateNestedManyWithoutOrganizationInput
+  locations?: Prisma.LocationUncheckedCreateNestedManyWithoutOrganizationInput
   roles?: Prisma.EmployeeRoleUncheckedCreateNestedManyWithoutOrganizationInput
   employees?: Prisma.EmployeeUncheckedCreateNestedManyWithoutOrganizationInput
-  audits?: Prisma.AuditLogUncheckedCreateNestedManyWithoutOrganizationInput
-  admins?: Prisma.EmployeeUncheckedCreateNestedManyWithoutManagedOrganizationsInput
+  affiliations?: Prisma.EmployeeLocationAffiliationUncheckedCreateNestedManyWithoutOrganizationInput
+  shiftDefinitions?: Prisma.ShiftDefinitionUncheckedCreateNestedManyWithoutOrganizationInput
+  staffingRequirements?: Prisma.StaffingRequirementUncheckedCreateNestedManyWithoutOrganizationInput
+  rosterPatterns?: Prisma.RosterPatternUncheckedCreateNestedManyWithoutOrganizationInput
+  patternItems?: Prisma.PatternItemUncheckedCreateNestedManyWithoutOrganizationInput
+  assignedPatterns?: Prisma.AssignedPatternUncheckedCreateNestedManyWithoutOrganizationInput
+  shiftInstances?: Prisma.ShiftInstanceUncheckedCreateNestedManyWithoutOrganizationInput
+  leaveRequests?: Prisma.LeaveRequestUncheckedCreateNestedManyWithoutOrganizationInput
+  shiftAdvertisements?: Prisma.ShiftAdvertisementUncheckedCreateNestedManyWithoutOrganizationInput
+  shiftClaims?: Prisma.ShiftClaimUncheckedCreateNestedManyWithoutOrganizationInput
+  employeeAvailabilities?: Prisma.EmployeeAvailabilityUncheckedCreateNestedManyWithoutOrganizationInput
+  managementRoles?: Prisma.ManagementRoleUncheckedCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationCreateOrConnectWithoutLeaveTypesInput = {
@@ -787,10 +1628,21 @@ export type OrganizationUpdateWithoutLeaveTypesInput = {
   archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   departments?: Prisma.DepartmentUpdateManyWithoutOrganizationNestedInput
+  locations?: Prisma.LocationUpdateManyWithoutOrganizationNestedInput
   roles?: Prisma.EmployeeRoleUpdateManyWithoutOrganizationNestedInput
   employees?: Prisma.EmployeeUpdateManyWithoutOrganizationNestedInput
-  audits?: Prisma.AuditLogUpdateManyWithoutOrganizationNestedInput
-  admins?: Prisma.EmployeeUpdateManyWithoutManagedOrganizationsNestedInput
+  affiliations?: Prisma.EmployeeLocationAffiliationUpdateManyWithoutOrganizationNestedInput
+  shiftDefinitions?: Prisma.ShiftDefinitionUpdateManyWithoutOrganizationNestedInput
+  staffingRequirements?: Prisma.StaffingRequirementUpdateManyWithoutOrganizationNestedInput
+  rosterPatterns?: Prisma.RosterPatternUpdateManyWithoutOrganizationNestedInput
+  patternItems?: Prisma.PatternItemUpdateManyWithoutOrganizationNestedInput
+  assignedPatterns?: Prisma.AssignedPatternUpdateManyWithoutOrganizationNestedInput
+  shiftInstances?: Prisma.ShiftInstanceUpdateManyWithoutOrganizationNestedInput
+  leaveRequests?: Prisma.LeaveRequestUpdateManyWithoutOrganizationNestedInput
+  shiftAdvertisements?: Prisma.ShiftAdvertisementUpdateManyWithoutOrganizationNestedInput
+  shiftClaims?: Prisma.ShiftClaimUpdateManyWithoutOrganizationNestedInput
+  employeeAvailabilities?: Prisma.EmployeeAvailabilityUpdateManyWithoutOrganizationNestedInput
+  managementRoles?: Prisma.ManagementRoleUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationUncheckedUpdateWithoutLeaveTypesInput = {
@@ -800,112 +1652,917 @@ export type OrganizationUncheckedUpdateWithoutLeaveTypesInput = {
   archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   departments?: Prisma.DepartmentUncheckedUpdateManyWithoutOrganizationNestedInput
+  locations?: Prisma.LocationUncheckedUpdateManyWithoutOrganizationNestedInput
   roles?: Prisma.EmployeeRoleUncheckedUpdateManyWithoutOrganizationNestedInput
   employees?: Prisma.EmployeeUncheckedUpdateManyWithoutOrganizationNestedInput
-  audits?: Prisma.AuditLogUncheckedUpdateManyWithoutOrganizationNestedInput
-  admins?: Prisma.EmployeeUncheckedUpdateManyWithoutManagedOrganizationsNestedInput
+  affiliations?: Prisma.EmployeeLocationAffiliationUncheckedUpdateManyWithoutOrganizationNestedInput
+  shiftDefinitions?: Prisma.ShiftDefinitionUncheckedUpdateManyWithoutOrganizationNestedInput
+  staffingRequirements?: Prisma.StaffingRequirementUncheckedUpdateManyWithoutOrganizationNestedInput
+  rosterPatterns?: Prisma.RosterPatternUncheckedUpdateManyWithoutOrganizationNestedInput
+  patternItems?: Prisma.PatternItemUncheckedUpdateManyWithoutOrganizationNestedInput
+  assignedPatterns?: Prisma.AssignedPatternUncheckedUpdateManyWithoutOrganizationNestedInput
+  shiftInstances?: Prisma.ShiftInstanceUncheckedUpdateManyWithoutOrganizationNestedInput
+  leaveRequests?: Prisma.LeaveRequestUncheckedUpdateManyWithoutOrganizationNestedInput
+  shiftAdvertisements?: Prisma.ShiftAdvertisementUncheckedUpdateManyWithoutOrganizationNestedInput
+  shiftClaims?: Prisma.ShiftClaimUncheckedUpdateManyWithoutOrganizationNestedInput
+  employeeAvailabilities?: Prisma.EmployeeAvailabilityUncheckedUpdateManyWithoutOrganizationNestedInput
+  managementRoles?: Prisma.ManagementRoleUncheckedUpdateManyWithoutOrganizationNestedInput
 }
 
-export type OrganizationCreateWithoutAuditsInput = {
+export type OrganizationCreateWithoutRosterPatternsInput = {
   id?: string
   name: string
   settings?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   archivedAt?: Date | string | null
   createdAt?: Date | string
   departments?: Prisma.DepartmentCreateNestedManyWithoutOrganizationInput
+  locations?: Prisma.LocationCreateNestedManyWithoutOrganizationInput
   roles?: Prisma.EmployeeRoleCreateNestedManyWithoutOrganizationInput
   leaveTypes?: Prisma.LeaveCategoryCreateNestedManyWithoutOrganizationInput
   employees?: Prisma.EmployeeCreateNestedManyWithoutOrganizationInput
-  admins?: Prisma.EmployeeCreateNestedManyWithoutManagedOrganizationsInput
+  affiliations?: Prisma.EmployeeLocationAffiliationCreateNestedManyWithoutOrganizationInput
+  shiftDefinitions?: Prisma.ShiftDefinitionCreateNestedManyWithoutOrganizationInput
+  staffingRequirements?: Prisma.StaffingRequirementCreateNestedManyWithoutOrganizationInput
+  patternItems?: Prisma.PatternItemCreateNestedManyWithoutOrganizationInput
+  assignedPatterns?: Prisma.AssignedPatternCreateNestedManyWithoutOrganizationInput
+  shiftInstances?: Prisma.ShiftInstanceCreateNestedManyWithoutOrganizationInput
+  leaveRequests?: Prisma.LeaveRequestCreateNestedManyWithoutOrganizationInput
+  shiftAdvertisements?: Prisma.ShiftAdvertisementCreateNestedManyWithoutOrganizationInput
+  shiftClaims?: Prisma.ShiftClaimCreateNestedManyWithoutOrganizationInput
+  employeeAvailabilities?: Prisma.EmployeeAvailabilityCreateNestedManyWithoutOrganizationInput
+  managementRoles?: Prisma.ManagementRoleCreateNestedManyWithoutOrganizationInput
 }
 
-export type OrganizationUncheckedCreateWithoutAuditsInput = {
+export type OrganizationUncheckedCreateWithoutRosterPatternsInput = {
   id?: string
   name: string
   settings?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   archivedAt?: Date | string | null
   createdAt?: Date | string
   departments?: Prisma.DepartmentUncheckedCreateNestedManyWithoutOrganizationInput
+  locations?: Prisma.LocationUncheckedCreateNestedManyWithoutOrganizationInput
   roles?: Prisma.EmployeeRoleUncheckedCreateNestedManyWithoutOrganizationInput
   leaveTypes?: Prisma.LeaveCategoryUncheckedCreateNestedManyWithoutOrganizationInput
   employees?: Prisma.EmployeeUncheckedCreateNestedManyWithoutOrganizationInput
-  admins?: Prisma.EmployeeUncheckedCreateNestedManyWithoutManagedOrganizationsInput
+  affiliations?: Prisma.EmployeeLocationAffiliationUncheckedCreateNestedManyWithoutOrganizationInput
+  shiftDefinitions?: Prisma.ShiftDefinitionUncheckedCreateNestedManyWithoutOrganizationInput
+  staffingRequirements?: Prisma.StaffingRequirementUncheckedCreateNestedManyWithoutOrganizationInput
+  patternItems?: Prisma.PatternItemUncheckedCreateNestedManyWithoutOrganizationInput
+  assignedPatterns?: Prisma.AssignedPatternUncheckedCreateNestedManyWithoutOrganizationInput
+  shiftInstances?: Prisma.ShiftInstanceUncheckedCreateNestedManyWithoutOrganizationInput
+  leaveRequests?: Prisma.LeaveRequestUncheckedCreateNestedManyWithoutOrganizationInput
+  shiftAdvertisements?: Prisma.ShiftAdvertisementUncheckedCreateNestedManyWithoutOrganizationInput
+  shiftClaims?: Prisma.ShiftClaimUncheckedCreateNestedManyWithoutOrganizationInput
+  employeeAvailabilities?: Prisma.EmployeeAvailabilityUncheckedCreateNestedManyWithoutOrganizationInput
+  managementRoles?: Prisma.ManagementRoleUncheckedCreateNestedManyWithoutOrganizationInput
 }
 
-export type OrganizationCreateOrConnectWithoutAuditsInput = {
+export type OrganizationCreateOrConnectWithoutRosterPatternsInput = {
   where: Prisma.OrganizationWhereUniqueInput
-  create: Prisma.XOR<Prisma.OrganizationCreateWithoutAuditsInput, Prisma.OrganizationUncheckedCreateWithoutAuditsInput>
+  create: Prisma.XOR<Prisma.OrganizationCreateWithoutRosterPatternsInput, Prisma.OrganizationUncheckedCreateWithoutRosterPatternsInput>
 }
 
-export type OrganizationUpsertWithoutAuditsInput = {
-  update: Prisma.XOR<Prisma.OrganizationUpdateWithoutAuditsInput, Prisma.OrganizationUncheckedUpdateWithoutAuditsInput>
-  create: Prisma.XOR<Prisma.OrganizationCreateWithoutAuditsInput, Prisma.OrganizationUncheckedCreateWithoutAuditsInput>
+export type OrganizationUpsertWithoutRosterPatternsInput = {
+  update: Prisma.XOR<Prisma.OrganizationUpdateWithoutRosterPatternsInput, Prisma.OrganizationUncheckedUpdateWithoutRosterPatternsInput>
+  create: Prisma.XOR<Prisma.OrganizationCreateWithoutRosterPatternsInput, Prisma.OrganizationUncheckedCreateWithoutRosterPatternsInput>
   where?: Prisma.OrganizationWhereInput
 }
 
-export type OrganizationUpdateToOneWithWhereWithoutAuditsInput = {
+export type OrganizationUpdateToOneWithWhereWithoutRosterPatternsInput = {
   where?: Prisma.OrganizationWhereInput
-  data: Prisma.XOR<Prisma.OrganizationUpdateWithoutAuditsInput, Prisma.OrganizationUncheckedUpdateWithoutAuditsInput>
+  data: Prisma.XOR<Prisma.OrganizationUpdateWithoutRosterPatternsInput, Prisma.OrganizationUncheckedUpdateWithoutRosterPatternsInput>
 }
 
-export type OrganizationUpdateWithoutAuditsInput = {
+export type OrganizationUpdateWithoutRosterPatternsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   settings?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   departments?: Prisma.DepartmentUpdateManyWithoutOrganizationNestedInput
+  locations?: Prisma.LocationUpdateManyWithoutOrganizationNestedInput
   roles?: Prisma.EmployeeRoleUpdateManyWithoutOrganizationNestedInput
   leaveTypes?: Prisma.LeaveCategoryUpdateManyWithoutOrganizationNestedInput
   employees?: Prisma.EmployeeUpdateManyWithoutOrganizationNestedInput
-  admins?: Prisma.EmployeeUpdateManyWithoutManagedOrganizationsNestedInput
+  affiliations?: Prisma.EmployeeLocationAffiliationUpdateManyWithoutOrganizationNestedInput
+  shiftDefinitions?: Prisma.ShiftDefinitionUpdateManyWithoutOrganizationNestedInput
+  staffingRequirements?: Prisma.StaffingRequirementUpdateManyWithoutOrganizationNestedInput
+  patternItems?: Prisma.PatternItemUpdateManyWithoutOrganizationNestedInput
+  assignedPatterns?: Prisma.AssignedPatternUpdateManyWithoutOrganizationNestedInput
+  shiftInstances?: Prisma.ShiftInstanceUpdateManyWithoutOrganizationNestedInput
+  leaveRequests?: Prisma.LeaveRequestUpdateManyWithoutOrganizationNestedInput
+  shiftAdvertisements?: Prisma.ShiftAdvertisementUpdateManyWithoutOrganizationNestedInput
+  shiftClaims?: Prisma.ShiftClaimUpdateManyWithoutOrganizationNestedInput
+  employeeAvailabilities?: Prisma.EmployeeAvailabilityUpdateManyWithoutOrganizationNestedInput
+  managementRoles?: Prisma.ManagementRoleUpdateManyWithoutOrganizationNestedInput
 }
 
-export type OrganizationUncheckedUpdateWithoutAuditsInput = {
+export type OrganizationUncheckedUpdateWithoutRosterPatternsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   settings?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   departments?: Prisma.DepartmentUncheckedUpdateManyWithoutOrganizationNestedInput
+  locations?: Prisma.LocationUncheckedUpdateManyWithoutOrganizationNestedInput
   roles?: Prisma.EmployeeRoleUncheckedUpdateManyWithoutOrganizationNestedInput
   leaveTypes?: Prisma.LeaveCategoryUncheckedUpdateManyWithoutOrganizationNestedInput
   employees?: Prisma.EmployeeUncheckedUpdateManyWithoutOrganizationNestedInput
-  admins?: Prisma.EmployeeUncheckedUpdateManyWithoutManagedOrganizationsNestedInput
+  affiliations?: Prisma.EmployeeLocationAffiliationUncheckedUpdateManyWithoutOrganizationNestedInput
+  shiftDefinitions?: Prisma.ShiftDefinitionUncheckedUpdateManyWithoutOrganizationNestedInput
+  staffingRequirements?: Prisma.StaffingRequirementUncheckedUpdateManyWithoutOrganizationNestedInput
+  patternItems?: Prisma.PatternItemUncheckedUpdateManyWithoutOrganizationNestedInput
+  assignedPatterns?: Prisma.AssignedPatternUncheckedUpdateManyWithoutOrganizationNestedInput
+  shiftInstances?: Prisma.ShiftInstanceUncheckedUpdateManyWithoutOrganizationNestedInput
+  leaveRequests?: Prisma.LeaveRequestUncheckedUpdateManyWithoutOrganizationNestedInput
+  shiftAdvertisements?: Prisma.ShiftAdvertisementUncheckedUpdateManyWithoutOrganizationNestedInput
+  shiftClaims?: Prisma.ShiftClaimUncheckedUpdateManyWithoutOrganizationNestedInput
+  employeeAvailabilities?: Prisma.EmployeeAvailabilityUncheckedUpdateManyWithoutOrganizationNestedInput
+  managementRoles?: Prisma.ManagementRoleUncheckedUpdateManyWithoutOrganizationNestedInput
 }
 
-export type OrganizationUpdateWithoutAdminsInput = {
+export type OrganizationCreateWithoutPatternItemsInput = {
+  id?: string
+  name: string
+  settings?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  archivedAt?: Date | string | null
+  createdAt?: Date | string
+  departments?: Prisma.DepartmentCreateNestedManyWithoutOrganizationInput
+  locations?: Prisma.LocationCreateNestedManyWithoutOrganizationInput
+  roles?: Prisma.EmployeeRoleCreateNestedManyWithoutOrganizationInput
+  leaveTypes?: Prisma.LeaveCategoryCreateNestedManyWithoutOrganizationInput
+  employees?: Prisma.EmployeeCreateNestedManyWithoutOrganizationInput
+  affiliations?: Prisma.EmployeeLocationAffiliationCreateNestedManyWithoutOrganizationInput
+  shiftDefinitions?: Prisma.ShiftDefinitionCreateNestedManyWithoutOrganizationInput
+  staffingRequirements?: Prisma.StaffingRequirementCreateNestedManyWithoutOrganizationInput
+  rosterPatterns?: Prisma.RosterPatternCreateNestedManyWithoutOrganizationInput
+  assignedPatterns?: Prisma.AssignedPatternCreateNestedManyWithoutOrganizationInput
+  shiftInstances?: Prisma.ShiftInstanceCreateNestedManyWithoutOrganizationInput
+  leaveRequests?: Prisma.LeaveRequestCreateNestedManyWithoutOrganizationInput
+  shiftAdvertisements?: Prisma.ShiftAdvertisementCreateNestedManyWithoutOrganizationInput
+  shiftClaims?: Prisma.ShiftClaimCreateNestedManyWithoutOrganizationInput
+  employeeAvailabilities?: Prisma.EmployeeAvailabilityCreateNestedManyWithoutOrganizationInput
+  managementRoles?: Prisma.ManagementRoleCreateNestedManyWithoutOrganizationInput
+}
+
+export type OrganizationUncheckedCreateWithoutPatternItemsInput = {
+  id?: string
+  name: string
+  settings?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  archivedAt?: Date | string | null
+  createdAt?: Date | string
+  departments?: Prisma.DepartmentUncheckedCreateNestedManyWithoutOrganizationInput
+  locations?: Prisma.LocationUncheckedCreateNestedManyWithoutOrganizationInput
+  roles?: Prisma.EmployeeRoleUncheckedCreateNestedManyWithoutOrganizationInput
+  leaveTypes?: Prisma.LeaveCategoryUncheckedCreateNestedManyWithoutOrganizationInput
+  employees?: Prisma.EmployeeUncheckedCreateNestedManyWithoutOrganizationInput
+  affiliations?: Prisma.EmployeeLocationAffiliationUncheckedCreateNestedManyWithoutOrganizationInput
+  shiftDefinitions?: Prisma.ShiftDefinitionUncheckedCreateNestedManyWithoutOrganizationInput
+  staffingRequirements?: Prisma.StaffingRequirementUncheckedCreateNestedManyWithoutOrganizationInput
+  rosterPatterns?: Prisma.RosterPatternUncheckedCreateNestedManyWithoutOrganizationInput
+  assignedPatterns?: Prisma.AssignedPatternUncheckedCreateNestedManyWithoutOrganizationInput
+  shiftInstances?: Prisma.ShiftInstanceUncheckedCreateNestedManyWithoutOrganizationInput
+  leaveRequests?: Prisma.LeaveRequestUncheckedCreateNestedManyWithoutOrganizationInput
+  shiftAdvertisements?: Prisma.ShiftAdvertisementUncheckedCreateNestedManyWithoutOrganizationInput
+  shiftClaims?: Prisma.ShiftClaimUncheckedCreateNestedManyWithoutOrganizationInput
+  employeeAvailabilities?: Prisma.EmployeeAvailabilityUncheckedCreateNestedManyWithoutOrganizationInput
+  managementRoles?: Prisma.ManagementRoleUncheckedCreateNestedManyWithoutOrganizationInput
+}
+
+export type OrganizationCreateOrConnectWithoutPatternItemsInput = {
+  where: Prisma.OrganizationWhereUniqueInput
+  create: Prisma.XOR<Prisma.OrganizationCreateWithoutPatternItemsInput, Prisma.OrganizationUncheckedCreateWithoutPatternItemsInput>
+}
+
+export type OrganizationUpsertWithoutPatternItemsInput = {
+  update: Prisma.XOR<Prisma.OrganizationUpdateWithoutPatternItemsInput, Prisma.OrganizationUncheckedUpdateWithoutPatternItemsInput>
+  create: Prisma.XOR<Prisma.OrganizationCreateWithoutPatternItemsInput, Prisma.OrganizationUncheckedCreateWithoutPatternItemsInput>
+  where?: Prisma.OrganizationWhereInput
+}
+
+export type OrganizationUpdateToOneWithWhereWithoutPatternItemsInput = {
+  where?: Prisma.OrganizationWhereInput
+  data: Prisma.XOR<Prisma.OrganizationUpdateWithoutPatternItemsInput, Prisma.OrganizationUncheckedUpdateWithoutPatternItemsInput>
+}
+
+export type OrganizationUpdateWithoutPatternItemsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   settings?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   departments?: Prisma.DepartmentUpdateManyWithoutOrganizationNestedInput
+  locations?: Prisma.LocationUpdateManyWithoutOrganizationNestedInput
   roles?: Prisma.EmployeeRoleUpdateManyWithoutOrganizationNestedInput
   leaveTypes?: Prisma.LeaveCategoryUpdateManyWithoutOrganizationNestedInput
   employees?: Prisma.EmployeeUpdateManyWithoutOrganizationNestedInput
-  audits?: Prisma.AuditLogUpdateManyWithoutOrganizationNestedInput
+  affiliations?: Prisma.EmployeeLocationAffiliationUpdateManyWithoutOrganizationNestedInput
+  shiftDefinitions?: Prisma.ShiftDefinitionUpdateManyWithoutOrganizationNestedInput
+  staffingRequirements?: Prisma.StaffingRequirementUpdateManyWithoutOrganizationNestedInput
+  rosterPatterns?: Prisma.RosterPatternUpdateManyWithoutOrganizationNestedInput
+  assignedPatterns?: Prisma.AssignedPatternUpdateManyWithoutOrganizationNestedInput
+  shiftInstances?: Prisma.ShiftInstanceUpdateManyWithoutOrganizationNestedInput
+  leaveRequests?: Prisma.LeaveRequestUpdateManyWithoutOrganizationNestedInput
+  shiftAdvertisements?: Prisma.ShiftAdvertisementUpdateManyWithoutOrganizationNestedInput
+  shiftClaims?: Prisma.ShiftClaimUpdateManyWithoutOrganizationNestedInput
+  employeeAvailabilities?: Prisma.EmployeeAvailabilityUpdateManyWithoutOrganizationNestedInput
+  managementRoles?: Prisma.ManagementRoleUpdateManyWithoutOrganizationNestedInput
 }
 
-export type OrganizationUncheckedUpdateWithoutAdminsInput = {
+export type OrganizationUncheckedUpdateWithoutPatternItemsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   settings?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   departments?: Prisma.DepartmentUncheckedUpdateManyWithoutOrganizationNestedInput
+  locations?: Prisma.LocationUncheckedUpdateManyWithoutOrganizationNestedInput
   roles?: Prisma.EmployeeRoleUncheckedUpdateManyWithoutOrganizationNestedInput
   leaveTypes?: Prisma.LeaveCategoryUncheckedUpdateManyWithoutOrganizationNestedInput
   employees?: Prisma.EmployeeUncheckedUpdateManyWithoutOrganizationNestedInput
-  audits?: Prisma.AuditLogUncheckedUpdateManyWithoutOrganizationNestedInput
+  affiliations?: Prisma.EmployeeLocationAffiliationUncheckedUpdateManyWithoutOrganizationNestedInput
+  shiftDefinitions?: Prisma.ShiftDefinitionUncheckedUpdateManyWithoutOrganizationNestedInput
+  staffingRequirements?: Prisma.StaffingRequirementUncheckedUpdateManyWithoutOrganizationNestedInput
+  rosterPatterns?: Prisma.RosterPatternUncheckedUpdateManyWithoutOrganizationNestedInput
+  assignedPatterns?: Prisma.AssignedPatternUncheckedUpdateManyWithoutOrganizationNestedInput
+  shiftInstances?: Prisma.ShiftInstanceUncheckedUpdateManyWithoutOrganizationNestedInput
+  leaveRequests?: Prisma.LeaveRequestUncheckedUpdateManyWithoutOrganizationNestedInput
+  shiftAdvertisements?: Prisma.ShiftAdvertisementUncheckedUpdateManyWithoutOrganizationNestedInput
+  shiftClaims?: Prisma.ShiftClaimUncheckedUpdateManyWithoutOrganizationNestedInput
+  employeeAvailabilities?: Prisma.EmployeeAvailabilityUncheckedUpdateManyWithoutOrganizationNestedInput
+  managementRoles?: Prisma.ManagementRoleUncheckedUpdateManyWithoutOrganizationNestedInput
 }
 
-export type OrganizationUncheckedUpdateManyWithoutAdminsInput = {
+export type OrganizationCreateWithoutAssignedPatternsInput = {
+  id?: string
+  name: string
+  settings?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  archivedAt?: Date | string | null
+  createdAt?: Date | string
+  departments?: Prisma.DepartmentCreateNestedManyWithoutOrganizationInput
+  locations?: Prisma.LocationCreateNestedManyWithoutOrganizationInput
+  roles?: Prisma.EmployeeRoleCreateNestedManyWithoutOrganizationInput
+  leaveTypes?: Prisma.LeaveCategoryCreateNestedManyWithoutOrganizationInput
+  employees?: Prisma.EmployeeCreateNestedManyWithoutOrganizationInput
+  affiliations?: Prisma.EmployeeLocationAffiliationCreateNestedManyWithoutOrganizationInput
+  shiftDefinitions?: Prisma.ShiftDefinitionCreateNestedManyWithoutOrganizationInput
+  staffingRequirements?: Prisma.StaffingRequirementCreateNestedManyWithoutOrganizationInput
+  rosterPatterns?: Prisma.RosterPatternCreateNestedManyWithoutOrganizationInput
+  patternItems?: Prisma.PatternItemCreateNestedManyWithoutOrganizationInput
+  shiftInstances?: Prisma.ShiftInstanceCreateNestedManyWithoutOrganizationInput
+  leaveRequests?: Prisma.LeaveRequestCreateNestedManyWithoutOrganizationInput
+  shiftAdvertisements?: Prisma.ShiftAdvertisementCreateNestedManyWithoutOrganizationInput
+  shiftClaims?: Prisma.ShiftClaimCreateNestedManyWithoutOrganizationInput
+  employeeAvailabilities?: Prisma.EmployeeAvailabilityCreateNestedManyWithoutOrganizationInput
+  managementRoles?: Prisma.ManagementRoleCreateNestedManyWithoutOrganizationInput
+}
+
+export type OrganizationUncheckedCreateWithoutAssignedPatternsInput = {
+  id?: string
+  name: string
+  settings?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  archivedAt?: Date | string | null
+  createdAt?: Date | string
+  departments?: Prisma.DepartmentUncheckedCreateNestedManyWithoutOrganizationInput
+  locations?: Prisma.LocationUncheckedCreateNestedManyWithoutOrganizationInput
+  roles?: Prisma.EmployeeRoleUncheckedCreateNestedManyWithoutOrganizationInput
+  leaveTypes?: Prisma.LeaveCategoryUncheckedCreateNestedManyWithoutOrganizationInput
+  employees?: Prisma.EmployeeUncheckedCreateNestedManyWithoutOrganizationInput
+  affiliations?: Prisma.EmployeeLocationAffiliationUncheckedCreateNestedManyWithoutOrganizationInput
+  shiftDefinitions?: Prisma.ShiftDefinitionUncheckedCreateNestedManyWithoutOrganizationInput
+  staffingRequirements?: Prisma.StaffingRequirementUncheckedCreateNestedManyWithoutOrganizationInput
+  rosterPatterns?: Prisma.RosterPatternUncheckedCreateNestedManyWithoutOrganizationInput
+  patternItems?: Prisma.PatternItemUncheckedCreateNestedManyWithoutOrganizationInput
+  shiftInstances?: Prisma.ShiftInstanceUncheckedCreateNestedManyWithoutOrganizationInput
+  leaveRequests?: Prisma.LeaveRequestUncheckedCreateNestedManyWithoutOrganizationInput
+  shiftAdvertisements?: Prisma.ShiftAdvertisementUncheckedCreateNestedManyWithoutOrganizationInput
+  shiftClaims?: Prisma.ShiftClaimUncheckedCreateNestedManyWithoutOrganizationInput
+  employeeAvailabilities?: Prisma.EmployeeAvailabilityUncheckedCreateNestedManyWithoutOrganizationInput
+  managementRoles?: Prisma.ManagementRoleUncheckedCreateNestedManyWithoutOrganizationInput
+}
+
+export type OrganizationCreateOrConnectWithoutAssignedPatternsInput = {
+  where: Prisma.OrganizationWhereUniqueInput
+  create: Prisma.XOR<Prisma.OrganizationCreateWithoutAssignedPatternsInput, Prisma.OrganizationUncheckedCreateWithoutAssignedPatternsInput>
+}
+
+export type OrganizationUpsertWithoutAssignedPatternsInput = {
+  update: Prisma.XOR<Prisma.OrganizationUpdateWithoutAssignedPatternsInput, Prisma.OrganizationUncheckedUpdateWithoutAssignedPatternsInput>
+  create: Prisma.XOR<Prisma.OrganizationCreateWithoutAssignedPatternsInput, Prisma.OrganizationUncheckedCreateWithoutAssignedPatternsInput>
+  where?: Prisma.OrganizationWhereInput
+}
+
+export type OrganizationUpdateToOneWithWhereWithoutAssignedPatternsInput = {
+  where?: Prisma.OrganizationWhereInput
+  data: Prisma.XOR<Prisma.OrganizationUpdateWithoutAssignedPatternsInput, Prisma.OrganizationUncheckedUpdateWithoutAssignedPatternsInput>
+}
+
+export type OrganizationUpdateWithoutAssignedPatternsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   settings?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  departments?: Prisma.DepartmentUpdateManyWithoutOrganizationNestedInput
+  locations?: Prisma.LocationUpdateManyWithoutOrganizationNestedInput
+  roles?: Prisma.EmployeeRoleUpdateManyWithoutOrganizationNestedInput
+  leaveTypes?: Prisma.LeaveCategoryUpdateManyWithoutOrganizationNestedInput
+  employees?: Prisma.EmployeeUpdateManyWithoutOrganizationNestedInput
+  affiliations?: Prisma.EmployeeLocationAffiliationUpdateManyWithoutOrganizationNestedInput
+  shiftDefinitions?: Prisma.ShiftDefinitionUpdateManyWithoutOrganizationNestedInput
+  staffingRequirements?: Prisma.StaffingRequirementUpdateManyWithoutOrganizationNestedInput
+  rosterPatterns?: Prisma.RosterPatternUpdateManyWithoutOrganizationNestedInput
+  patternItems?: Prisma.PatternItemUpdateManyWithoutOrganizationNestedInput
+  shiftInstances?: Prisma.ShiftInstanceUpdateManyWithoutOrganizationNestedInput
+  leaveRequests?: Prisma.LeaveRequestUpdateManyWithoutOrganizationNestedInput
+  shiftAdvertisements?: Prisma.ShiftAdvertisementUpdateManyWithoutOrganizationNestedInput
+  shiftClaims?: Prisma.ShiftClaimUpdateManyWithoutOrganizationNestedInput
+  employeeAvailabilities?: Prisma.EmployeeAvailabilityUpdateManyWithoutOrganizationNestedInput
+  managementRoles?: Prisma.ManagementRoleUpdateManyWithoutOrganizationNestedInput
+}
+
+export type OrganizationUncheckedUpdateWithoutAssignedPatternsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  settings?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  departments?: Prisma.DepartmentUncheckedUpdateManyWithoutOrganizationNestedInput
+  locations?: Prisma.LocationUncheckedUpdateManyWithoutOrganizationNestedInput
+  roles?: Prisma.EmployeeRoleUncheckedUpdateManyWithoutOrganizationNestedInput
+  leaveTypes?: Prisma.LeaveCategoryUncheckedUpdateManyWithoutOrganizationNestedInput
+  employees?: Prisma.EmployeeUncheckedUpdateManyWithoutOrganizationNestedInput
+  affiliations?: Prisma.EmployeeLocationAffiliationUncheckedUpdateManyWithoutOrganizationNestedInput
+  shiftDefinitions?: Prisma.ShiftDefinitionUncheckedUpdateManyWithoutOrganizationNestedInput
+  staffingRequirements?: Prisma.StaffingRequirementUncheckedUpdateManyWithoutOrganizationNestedInput
+  rosterPatterns?: Prisma.RosterPatternUncheckedUpdateManyWithoutOrganizationNestedInput
+  patternItems?: Prisma.PatternItemUncheckedUpdateManyWithoutOrganizationNestedInput
+  shiftInstances?: Prisma.ShiftInstanceUncheckedUpdateManyWithoutOrganizationNestedInput
+  leaveRequests?: Prisma.LeaveRequestUncheckedUpdateManyWithoutOrganizationNestedInput
+  shiftAdvertisements?: Prisma.ShiftAdvertisementUncheckedUpdateManyWithoutOrganizationNestedInput
+  shiftClaims?: Prisma.ShiftClaimUncheckedUpdateManyWithoutOrganizationNestedInput
+  employeeAvailabilities?: Prisma.EmployeeAvailabilityUncheckedUpdateManyWithoutOrganizationNestedInput
+  managementRoles?: Prisma.ManagementRoleUncheckedUpdateManyWithoutOrganizationNestedInput
+}
+
+export type OrganizationCreateWithoutShiftInstancesInput = {
+  id?: string
+  name: string
+  settings?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  archivedAt?: Date | string | null
+  createdAt?: Date | string
+  departments?: Prisma.DepartmentCreateNestedManyWithoutOrganizationInput
+  locations?: Prisma.LocationCreateNestedManyWithoutOrganizationInput
+  roles?: Prisma.EmployeeRoleCreateNestedManyWithoutOrganizationInput
+  leaveTypes?: Prisma.LeaveCategoryCreateNestedManyWithoutOrganizationInput
+  employees?: Prisma.EmployeeCreateNestedManyWithoutOrganizationInput
+  affiliations?: Prisma.EmployeeLocationAffiliationCreateNestedManyWithoutOrganizationInput
+  shiftDefinitions?: Prisma.ShiftDefinitionCreateNestedManyWithoutOrganizationInput
+  staffingRequirements?: Prisma.StaffingRequirementCreateNestedManyWithoutOrganizationInput
+  rosterPatterns?: Prisma.RosterPatternCreateNestedManyWithoutOrganizationInput
+  patternItems?: Prisma.PatternItemCreateNestedManyWithoutOrganizationInput
+  assignedPatterns?: Prisma.AssignedPatternCreateNestedManyWithoutOrganizationInput
+  leaveRequests?: Prisma.LeaveRequestCreateNestedManyWithoutOrganizationInput
+  shiftAdvertisements?: Prisma.ShiftAdvertisementCreateNestedManyWithoutOrganizationInput
+  shiftClaims?: Prisma.ShiftClaimCreateNestedManyWithoutOrganizationInput
+  employeeAvailabilities?: Prisma.EmployeeAvailabilityCreateNestedManyWithoutOrganizationInput
+  managementRoles?: Prisma.ManagementRoleCreateNestedManyWithoutOrganizationInput
+}
+
+export type OrganizationUncheckedCreateWithoutShiftInstancesInput = {
+  id?: string
+  name: string
+  settings?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  archivedAt?: Date | string | null
+  createdAt?: Date | string
+  departments?: Prisma.DepartmentUncheckedCreateNestedManyWithoutOrganizationInput
+  locations?: Prisma.LocationUncheckedCreateNestedManyWithoutOrganizationInput
+  roles?: Prisma.EmployeeRoleUncheckedCreateNestedManyWithoutOrganizationInput
+  leaveTypes?: Prisma.LeaveCategoryUncheckedCreateNestedManyWithoutOrganizationInput
+  employees?: Prisma.EmployeeUncheckedCreateNestedManyWithoutOrganizationInput
+  affiliations?: Prisma.EmployeeLocationAffiliationUncheckedCreateNestedManyWithoutOrganizationInput
+  shiftDefinitions?: Prisma.ShiftDefinitionUncheckedCreateNestedManyWithoutOrganizationInput
+  staffingRequirements?: Prisma.StaffingRequirementUncheckedCreateNestedManyWithoutOrganizationInput
+  rosterPatterns?: Prisma.RosterPatternUncheckedCreateNestedManyWithoutOrganizationInput
+  patternItems?: Prisma.PatternItemUncheckedCreateNestedManyWithoutOrganizationInput
+  assignedPatterns?: Prisma.AssignedPatternUncheckedCreateNestedManyWithoutOrganizationInput
+  leaveRequests?: Prisma.LeaveRequestUncheckedCreateNestedManyWithoutOrganizationInput
+  shiftAdvertisements?: Prisma.ShiftAdvertisementUncheckedCreateNestedManyWithoutOrganizationInput
+  shiftClaims?: Prisma.ShiftClaimUncheckedCreateNestedManyWithoutOrganizationInput
+  employeeAvailabilities?: Prisma.EmployeeAvailabilityUncheckedCreateNestedManyWithoutOrganizationInput
+  managementRoles?: Prisma.ManagementRoleUncheckedCreateNestedManyWithoutOrganizationInput
+}
+
+export type OrganizationCreateOrConnectWithoutShiftInstancesInput = {
+  where: Prisma.OrganizationWhereUniqueInput
+  create: Prisma.XOR<Prisma.OrganizationCreateWithoutShiftInstancesInput, Prisma.OrganizationUncheckedCreateWithoutShiftInstancesInput>
+}
+
+export type OrganizationUpsertWithoutShiftInstancesInput = {
+  update: Prisma.XOR<Prisma.OrganizationUpdateWithoutShiftInstancesInput, Prisma.OrganizationUncheckedUpdateWithoutShiftInstancesInput>
+  create: Prisma.XOR<Prisma.OrganizationCreateWithoutShiftInstancesInput, Prisma.OrganizationUncheckedCreateWithoutShiftInstancesInput>
+  where?: Prisma.OrganizationWhereInput
+}
+
+export type OrganizationUpdateToOneWithWhereWithoutShiftInstancesInput = {
+  where?: Prisma.OrganizationWhereInput
+  data: Prisma.XOR<Prisma.OrganizationUpdateWithoutShiftInstancesInput, Prisma.OrganizationUncheckedUpdateWithoutShiftInstancesInput>
+}
+
+export type OrganizationUpdateWithoutShiftInstancesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  settings?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  departments?: Prisma.DepartmentUpdateManyWithoutOrganizationNestedInput
+  locations?: Prisma.LocationUpdateManyWithoutOrganizationNestedInput
+  roles?: Prisma.EmployeeRoleUpdateManyWithoutOrganizationNestedInput
+  leaveTypes?: Prisma.LeaveCategoryUpdateManyWithoutOrganizationNestedInput
+  employees?: Prisma.EmployeeUpdateManyWithoutOrganizationNestedInput
+  affiliations?: Prisma.EmployeeLocationAffiliationUpdateManyWithoutOrganizationNestedInput
+  shiftDefinitions?: Prisma.ShiftDefinitionUpdateManyWithoutOrganizationNestedInput
+  staffingRequirements?: Prisma.StaffingRequirementUpdateManyWithoutOrganizationNestedInput
+  rosterPatterns?: Prisma.RosterPatternUpdateManyWithoutOrganizationNestedInput
+  patternItems?: Prisma.PatternItemUpdateManyWithoutOrganizationNestedInput
+  assignedPatterns?: Prisma.AssignedPatternUpdateManyWithoutOrganizationNestedInput
+  leaveRequests?: Prisma.LeaveRequestUpdateManyWithoutOrganizationNestedInput
+  shiftAdvertisements?: Prisma.ShiftAdvertisementUpdateManyWithoutOrganizationNestedInput
+  shiftClaims?: Prisma.ShiftClaimUpdateManyWithoutOrganizationNestedInput
+  employeeAvailabilities?: Prisma.EmployeeAvailabilityUpdateManyWithoutOrganizationNestedInput
+  managementRoles?: Prisma.ManagementRoleUpdateManyWithoutOrganizationNestedInput
+}
+
+export type OrganizationUncheckedUpdateWithoutShiftInstancesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  settings?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  departments?: Prisma.DepartmentUncheckedUpdateManyWithoutOrganizationNestedInput
+  locations?: Prisma.LocationUncheckedUpdateManyWithoutOrganizationNestedInput
+  roles?: Prisma.EmployeeRoleUncheckedUpdateManyWithoutOrganizationNestedInput
+  leaveTypes?: Prisma.LeaveCategoryUncheckedUpdateManyWithoutOrganizationNestedInput
+  employees?: Prisma.EmployeeUncheckedUpdateManyWithoutOrganizationNestedInput
+  affiliations?: Prisma.EmployeeLocationAffiliationUncheckedUpdateManyWithoutOrganizationNestedInput
+  shiftDefinitions?: Prisma.ShiftDefinitionUncheckedUpdateManyWithoutOrganizationNestedInput
+  staffingRequirements?: Prisma.StaffingRequirementUncheckedUpdateManyWithoutOrganizationNestedInput
+  rosterPatterns?: Prisma.RosterPatternUncheckedUpdateManyWithoutOrganizationNestedInput
+  patternItems?: Prisma.PatternItemUncheckedUpdateManyWithoutOrganizationNestedInput
+  assignedPatterns?: Prisma.AssignedPatternUncheckedUpdateManyWithoutOrganizationNestedInput
+  leaveRequests?: Prisma.LeaveRequestUncheckedUpdateManyWithoutOrganizationNestedInput
+  shiftAdvertisements?: Prisma.ShiftAdvertisementUncheckedUpdateManyWithoutOrganizationNestedInput
+  shiftClaims?: Prisma.ShiftClaimUncheckedUpdateManyWithoutOrganizationNestedInput
+  employeeAvailabilities?: Prisma.EmployeeAvailabilityUncheckedUpdateManyWithoutOrganizationNestedInput
+  managementRoles?: Prisma.ManagementRoleUncheckedUpdateManyWithoutOrganizationNestedInput
+}
+
+export type OrganizationCreateWithoutLeaveRequestsInput = {
+  id?: string
+  name: string
+  settings?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  archivedAt?: Date | string | null
+  createdAt?: Date | string
+  departments?: Prisma.DepartmentCreateNestedManyWithoutOrganizationInput
+  locations?: Prisma.LocationCreateNestedManyWithoutOrganizationInput
+  roles?: Prisma.EmployeeRoleCreateNestedManyWithoutOrganizationInput
+  leaveTypes?: Prisma.LeaveCategoryCreateNestedManyWithoutOrganizationInput
+  employees?: Prisma.EmployeeCreateNestedManyWithoutOrganizationInput
+  affiliations?: Prisma.EmployeeLocationAffiliationCreateNestedManyWithoutOrganizationInput
+  shiftDefinitions?: Prisma.ShiftDefinitionCreateNestedManyWithoutOrganizationInput
+  staffingRequirements?: Prisma.StaffingRequirementCreateNestedManyWithoutOrganizationInput
+  rosterPatterns?: Prisma.RosterPatternCreateNestedManyWithoutOrganizationInput
+  patternItems?: Prisma.PatternItemCreateNestedManyWithoutOrganizationInput
+  assignedPatterns?: Prisma.AssignedPatternCreateNestedManyWithoutOrganizationInput
+  shiftInstances?: Prisma.ShiftInstanceCreateNestedManyWithoutOrganizationInput
+  shiftAdvertisements?: Prisma.ShiftAdvertisementCreateNestedManyWithoutOrganizationInput
+  shiftClaims?: Prisma.ShiftClaimCreateNestedManyWithoutOrganizationInput
+  employeeAvailabilities?: Prisma.EmployeeAvailabilityCreateNestedManyWithoutOrganizationInput
+  managementRoles?: Prisma.ManagementRoleCreateNestedManyWithoutOrganizationInput
+}
+
+export type OrganizationUncheckedCreateWithoutLeaveRequestsInput = {
+  id?: string
+  name: string
+  settings?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  archivedAt?: Date | string | null
+  createdAt?: Date | string
+  departments?: Prisma.DepartmentUncheckedCreateNestedManyWithoutOrganizationInput
+  locations?: Prisma.LocationUncheckedCreateNestedManyWithoutOrganizationInput
+  roles?: Prisma.EmployeeRoleUncheckedCreateNestedManyWithoutOrganizationInput
+  leaveTypes?: Prisma.LeaveCategoryUncheckedCreateNestedManyWithoutOrganizationInput
+  employees?: Prisma.EmployeeUncheckedCreateNestedManyWithoutOrganizationInput
+  affiliations?: Prisma.EmployeeLocationAffiliationUncheckedCreateNestedManyWithoutOrganizationInput
+  shiftDefinitions?: Prisma.ShiftDefinitionUncheckedCreateNestedManyWithoutOrganizationInput
+  staffingRequirements?: Prisma.StaffingRequirementUncheckedCreateNestedManyWithoutOrganizationInput
+  rosterPatterns?: Prisma.RosterPatternUncheckedCreateNestedManyWithoutOrganizationInput
+  patternItems?: Prisma.PatternItemUncheckedCreateNestedManyWithoutOrganizationInput
+  assignedPatterns?: Prisma.AssignedPatternUncheckedCreateNestedManyWithoutOrganizationInput
+  shiftInstances?: Prisma.ShiftInstanceUncheckedCreateNestedManyWithoutOrganizationInput
+  shiftAdvertisements?: Prisma.ShiftAdvertisementUncheckedCreateNestedManyWithoutOrganizationInput
+  shiftClaims?: Prisma.ShiftClaimUncheckedCreateNestedManyWithoutOrganizationInput
+  employeeAvailabilities?: Prisma.EmployeeAvailabilityUncheckedCreateNestedManyWithoutOrganizationInput
+  managementRoles?: Prisma.ManagementRoleUncheckedCreateNestedManyWithoutOrganizationInput
+}
+
+export type OrganizationCreateOrConnectWithoutLeaveRequestsInput = {
+  where: Prisma.OrganizationWhereUniqueInput
+  create: Prisma.XOR<Prisma.OrganizationCreateWithoutLeaveRequestsInput, Prisma.OrganizationUncheckedCreateWithoutLeaveRequestsInput>
+}
+
+export type OrganizationUpsertWithoutLeaveRequestsInput = {
+  update: Prisma.XOR<Prisma.OrganizationUpdateWithoutLeaveRequestsInput, Prisma.OrganizationUncheckedUpdateWithoutLeaveRequestsInput>
+  create: Prisma.XOR<Prisma.OrganizationCreateWithoutLeaveRequestsInput, Prisma.OrganizationUncheckedCreateWithoutLeaveRequestsInput>
+  where?: Prisma.OrganizationWhereInput
+}
+
+export type OrganizationUpdateToOneWithWhereWithoutLeaveRequestsInput = {
+  where?: Prisma.OrganizationWhereInput
+  data: Prisma.XOR<Prisma.OrganizationUpdateWithoutLeaveRequestsInput, Prisma.OrganizationUncheckedUpdateWithoutLeaveRequestsInput>
+}
+
+export type OrganizationUpdateWithoutLeaveRequestsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  settings?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  departments?: Prisma.DepartmentUpdateManyWithoutOrganizationNestedInput
+  locations?: Prisma.LocationUpdateManyWithoutOrganizationNestedInput
+  roles?: Prisma.EmployeeRoleUpdateManyWithoutOrganizationNestedInput
+  leaveTypes?: Prisma.LeaveCategoryUpdateManyWithoutOrganizationNestedInput
+  employees?: Prisma.EmployeeUpdateManyWithoutOrganizationNestedInput
+  affiliations?: Prisma.EmployeeLocationAffiliationUpdateManyWithoutOrganizationNestedInput
+  shiftDefinitions?: Prisma.ShiftDefinitionUpdateManyWithoutOrganizationNestedInput
+  staffingRequirements?: Prisma.StaffingRequirementUpdateManyWithoutOrganizationNestedInput
+  rosterPatterns?: Prisma.RosterPatternUpdateManyWithoutOrganizationNestedInput
+  patternItems?: Prisma.PatternItemUpdateManyWithoutOrganizationNestedInput
+  assignedPatterns?: Prisma.AssignedPatternUpdateManyWithoutOrganizationNestedInput
+  shiftInstances?: Prisma.ShiftInstanceUpdateManyWithoutOrganizationNestedInput
+  shiftAdvertisements?: Prisma.ShiftAdvertisementUpdateManyWithoutOrganizationNestedInput
+  shiftClaims?: Prisma.ShiftClaimUpdateManyWithoutOrganizationNestedInput
+  employeeAvailabilities?: Prisma.EmployeeAvailabilityUpdateManyWithoutOrganizationNestedInput
+  managementRoles?: Prisma.ManagementRoleUpdateManyWithoutOrganizationNestedInput
+}
+
+export type OrganizationUncheckedUpdateWithoutLeaveRequestsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  settings?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  departments?: Prisma.DepartmentUncheckedUpdateManyWithoutOrganizationNestedInput
+  locations?: Prisma.LocationUncheckedUpdateManyWithoutOrganizationNestedInput
+  roles?: Prisma.EmployeeRoleUncheckedUpdateManyWithoutOrganizationNestedInput
+  leaveTypes?: Prisma.LeaveCategoryUncheckedUpdateManyWithoutOrganizationNestedInput
+  employees?: Prisma.EmployeeUncheckedUpdateManyWithoutOrganizationNestedInput
+  affiliations?: Prisma.EmployeeLocationAffiliationUncheckedUpdateManyWithoutOrganizationNestedInput
+  shiftDefinitions?: Prisma.ShiftDefinitionUncheckedUpdateManyWithoutOrganizationNestedInput
+  staffingRequirements?: Prisma.StaffingRequirementUncheckedUpdateManyWithoutOrganizationNestedInput
+  rosterPatterns?: Prisma.RosterPatternUncheckedUpdateManyWithoutOrganizationNestedInput
+  patternItems?: Prisma.PatternItemUncheckedUpdateManyWithoutOrganizationNestedInput
+  assignedPatterns?: Prisma.AssignedPatternUncheckedUpdateManyWithoutOrganizationNestedInput
+  shiftInstances?: Prisma.ShiftInstanceUncheckedUpdateManyWithoutOrganizationNestedInput
+  shiftAdvertisements?: Prisma.ShiftAdvertisementUncheckedUpdateManyWithoutOrganizationNestedInput
+  shiftClaims?: Prisma.ShiftClaimUncheckedUpdateManyWithoutOrganizationNestedInput
+  employeeAvailabilities?: Prisma.EmployeeAvailabilityUncheckedUpdateManyWithoutOrganizationNestedInput
+  managementRoles?: Prisma.ManagementRoleUncheckedUpdateManyWithoutOrganizationNestedInput
+}
+
+export type OrganizationCreateWithoutShiftAdvertisementsInput = {
+  id?: string
+  name: string
+  settings?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  archivedAt?: Date | string | null
+  createdAt?: Date | string
+  departments?: Prisma.DepartmentCreateNestedManyWithoutOrganizationInput
+  locations?: Prisma.LocationCreateNestedManyWithoutOrganizationInput
+  roles?: Prisma.EmployeeRoleCreateNestedManyWithoutOrganizationInput
+  leaveTypes?: Prisma.LeaveCategoryCreateNestedManyWithoutOrganizationInput
+  employees?: Prisma.EmployeeCreateNestedManyWithoutOrganizationInput
+  affiliations?: Prisma.EmployeeLocationAffiliationCreateNestedManyWithoutOrganizationInput
+  shiftDefinitions?: Prisma.ShiftDefinitionCreateNestedManyWithoutOrganizationInput
+  staffingRequirements?: Prisma.StaffingRequirementCreateNestedManyWithoutOrganizationInput
+  rosterPatterns?: Prisma.RosterPatternCreateNestedManyWithoutOrganizationInput
+  patternItems?: Prisma.PatternItemCreateNestedManyWithoutOrganizationInput
+  assignedPatterns?: Prisma.AssignedPatternCreateNestedManyWithoutOrganizationInput
+  shiftInstances?: Prisma.ShiftInstanceCreateNestedManyWithoutOrganizationInput
+  leaveRequests?: Prisma.LeaveRequestCreateNestedManyWithoutOrganizationInput
+  shiftClaims?: Prisma.ShiftClaimCreateNestedManyWithoutOrganizationInput
+  employeeAvailabilities?: Prisma.EmployeeAvailabilityCreateNestedManyWithoutOrganizationInput
+  managementRoles?: Prisma.ManagementRoleCreateNestedManyWithoutOrganizationInput
+}
+
+export type OrganizationUncheckedCreateWithoutShiftAdvertisementsInput = {
+  id?: string
+  name: string
+  settings?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  archivedAt?: Date | string | null
+  createdAt?: Date | string
+  departments?: Prisma.DepartmentUncheckedCreateNestedManyWithoutOrganizationInput
+  locations?: Prisma.LocationUncheckedCreateNestedManyWithoutOrganizationInput
+  roles?: Prisma.EmployeeRoleUncheckedCreateNestedManyWithoutOrganizationInput
+  leaveTypes?: Prisma.LeaveCategoryUncheckedCreateNestedManyWithoutOrganizationInput
+  employees?: Prisma.EmployeeUncheckedCreateNestedManyWithoutOrganizationInput
+  affiliations?: Prisma.EmployeeLocationAffiliationUncheckedCreateNestedManyWithoutOrganizationInput
+  shiftDefinitions?: Prisma.ShiftDefinitionUncheckedCreateNestedManyWithoutOrganizationInput
+  staffingRequirements?: Prisma.StaffingRequirementUncheckedCreateNestedManyWithoutOrganizationInput
+  rosterPatterns?: Prisma.RosterPatternUncheckedCreateNestedManyWithoutOrganizationInput
+  patternItems?: Prisma.PatternItemUncheckedCreateNestedManyWithoutOrganizationInput
+  assignedPatterns?: Prisma.AssignedPatternUncheckedCreateNestedManyWithoutOrganizationInput
+  shiftInstances?: Prisma.ShiftInstanceUncheckedCreateNestedManyWithoutOrganizationInput
+  leaveRequests?: Prisma.LeaveRequestUncheckedCreateNestedManyWithoutOrganizationInput
+  shiftClaims?: Prisma.ShiftClaimUncheckedCreateNestedManyWithoutOrganizationInput
+  employeeAvailabilities?: Prisma.EmployeeAvailabilityUncheckedCreateNestedManyWithoutOrganizationInput
+  managementRoles?: Prisma.ManagementRoleUncheckedCreateNestedManyWithoutOrganizationInput
+}
+
+export type OrganizationCreateOrConnectWithoutShiftAdvertisementsInput = {
+  where: Prisma.OrganizationWhereUniqueInput
+  create: Prisma.XOR<Prisma.OrganizationCreateWithoutShiftAdvertisementsInput, Prisma.OrganizationUncheckedCreateWithoutShiftAdvertisementsInput>
+}
+
+export type OrganizationUpsertWithoutShiftAdvertisementsInput = {
+  update: Prisma.XOR<Prisma.OrganizationUpdateWithoutShiftAdvertisementsInput, Prisma.OrganizationUncheckedUpdateWithoutShiftAdvertisementsInput>
+  create: Prisma.XOR<Prisma.OrganizationCreateWithoutShiftAdvertisementsInput, Prisma.OrganizationUncheckedCreateWithoutShiftAdvertisementsInput>
+  where?: Prisma.OrganizationWhereInput
+}
+
+export type OrganizationUpdateToOneWithWhereWithoutShiftAdvertisementsInput = {
+  where?: Prisma.OrganizationWhereInput
+  data: Prisma.XOR<Prisma.OrganizationUpdateWithoutShiftAdvertisementsInput, Prisma.OrganizationUncheckedUpdateWithoutShiftAdvertisementsInput>
+}
+
+export type OrganizationUpdateWithoutShiftAdvertisementsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  settings?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  departments?: Prisma.DepartmentUpdateManyWithoutOrganizationNestedInput
+  locations?: Prisma.LocationUpdateManyWithoutOrganizationNestedInput
+  roles?: Prisma.EmployeeRoleUpdateManyWithoutOrganizationNestedInput
+  leaveTypes?: Prisma.LeaveCategoryUpdateManyWithoutOrganizationNestedInput
+  employees?: Prisma.EmployeeUpdateManyWithoutOrganizationNestedInput
+  affiliations?: Prisma.EmployeeLocationAffiliationUpdateManyWithoutOrganizationNestedInput
+  shiftDefinitions?: Prisma.ShiftDefinitionUpdateManyWithoutOrganizationNestedInput
+  staffingRequirements?: Prisma.StaffingRequirementUpdateManyWithoutOrganizationNestedInput
+  rosterPatterns?: Prisma.RosterPatternUpdateManyWithoutOrganizationNestedInput
+  patternItems?: Prisma.PatternItemUpdateManyWithoutOrganizationNestedInput
+  assignedPatterns?: Prisma.AssignedPatternUpdateManyWithoutOrganizationNestedInput
+  shiftInstances?: Prisma.ShiftInstanceUpdateManyWithoutOrganizationNestedInput
+  leaveRequests?: Prisma.LeaveRequestUpdateManyWithoutOrganizationNestedInput
+  shiftClaims?: Prisma.ShiftClaimUpdateManyWithoutOrganizationNestedInput
+  employeeAvailabilities?: Prisma.EmployeeAvailabilityUpdateManyWithoutOrganizationNestedInput
+  managementRoles?: Prisma.ManagementRoleUpdateManyWithoutOrganizationNestedInput
+}
+
+export type OrganizationUncheckedUpdateWithoutShiftAdvertisementsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  settings?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  departments?: Prisma.DepartmentUncheckedUpdateManyWithoutOrganizationNestedInput
+  locations?: Prisma.LocationUncheckedUpdateManyWithoutOrganizationNestedInput
+  roles?: Prisma.EmployeeRoleUncheckedUpdateManyWithoutOrganizationNestedInput
+  leaveTypes?: Prisma.LeaveCategoryUncheckedUpdateManyWithoutOrganizationNestedInput
+  employees?: Prisma.EmployeeUncheckedUpdateManyWithoutOrganizationNestedInput
+  affiliations?: Prisma.EmployeeLocationAffiliationUncheckedUpdateManyWithoutOrganizationNestedInput
+  shiftDefinitions?: Prisma.ShiftDefinitionUncheckedUpdateManyWithoutOrganizationNestedInput
+  staffingRequirements?: Prisma.StaffingRequirementUncheckedUpdateManyWithoutOrganizationNestedInput
+  rosterPatterns?: Prisma.RosterPatternUncheckedUpdateManyWithoutOrganizationNestedInput
+  patternItems?: Prisma.PatternItemUncheckedUpdateManyWithoutOrganizationNestedInput
+  assignedPatterns?: Prisma.AssignedPatternUncheckedUpdateManyWithoutOrganizationNestedInput
+  shiftInstances?: Prisma.ShiftInstanceUncheckedUpdateManyWithoutOrganizationNestedInput
+  leaveRequests?: Prisma.LeaveRequestUncheckedUpdateManyWithoutOrganizationNestedInput
+  shiftClaims?: Prisma.ShiftClaimUncheckedUpdateManyWithoutOrganizationNestedInput
+  employeeAvailabilities?: Prisma.EmployeeAvailabilityUncheckedUpdateManyWithoutOrganizationNestedInput
+  managementRoles?: Prisma.ManagementRoleUncheckedUpdateManyWithoutOrganizationNestedInput
+}
+
+export type OrganizationCreateWithoutShiftClaimsInput = {
+  id?: string
+  name: string
+  settings?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  archivedAt?: Date | string | null
+  createdAt?: Date | string
+  departments?: Prisma.DepartmentCreateNestedManyWithoutOrganizationInput
+  locations?: Prisma.LocationCreateNestedManyWithoutOrganizationInput
+  roles?: Prisma.EmployeeRoleCreateNestedManyWithoutOrganizationInput
+  leaveTypes?: Prisma.LeaveCategoryCreateNestedManyWithoutOrganizationInput
+  employees?: Prisma.EmployeeCreateNestedManyWithoutOrganizationInput
+  affiliations?: Prisma.EmployeeLocationAffiliationCreateNestedManyWithoutOrganizationInput
+  shiftDefinitions?: Prisma.ShiftDefinitionCreateNestedManyWithoutOrganizationInput
+  staffingRequirements?: Prisma.StaffingRequirementCreateNestedManyWithoutOrganizationInput
+  rosterPatterns?: Prisma.RosterPatternCreateNestedManyWithoutOrganizationInput
+  patternItems?: Prisma.PatternItemCreateNestedManyWithoutOrganizationInput
+  assignedPatterns?: Prisma.AssignedPatternCreateNestedManyWithoutOrganizationInput
+  shiftInstances?: Prisma.ShiftInstanceCreateNestedManyWithoutOrganizationInput
+  leaveRequests?: Prisma.LeaveRequestCreateNestedManyWithoutOrganizationInput
+  shiftAdvertisements?: Prisma.ShiftAdvertisementCreateNestedManyWithoutOrganizationInput
+  employeeAvailabilities?: Prisma.EmployeeAvailabilityCreateNestedManyWithoutOrganizationInput
+  managementRoles?: Prisma.ManagementRoleCreateNestedManyWithoutOrganizationInput
+}
+
+export type OrganizationUncheckedCreateWithoutShiftClaimsInput = {
+  id?: string
+  name: string
+  settings?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  archivedAt?: Date | string | null
+  createdAt?: Date | string
+  departments?: Prisma.DepartmentUncheckedCreateNestedManyWithoutOrganizationInput
+  locations?: Prisma.LocationUncheckedCreateNestedManyWithoutOrganizationInput
+  roles?: Prisma.EmployeeRoleUncheckedCreateNestedManyWithoutOrganizationInput
+  leaveTypes?: Prisma.LeaveCategoryUncheckedCreateNestedManyWithoutOrganizationInput
+  employees?: Prisma.EmployeeUncheckedCreateNestedManyWithoutOrganizationInput
+  affiliations?: Prisma.EmployeeLocationAffiliationUncheckedCreateNestedManyWithoutOrganizationInput
+  shiftDefinitions?: Prisma.ShiftDefinitionUncheckedCreateNestedManyWithoutOrganizationInput
+  staffingRequirements?: Prisma.StaffingRequirementUncheckedCreateNestedManyWithoutOrganizationInput
+  rosterPatterns?: Prisma.RosterPatternUncheckedCreateNestedManyWithoutOrganizationInput
+  patternItems?: Prisma.PatternItemUncheckedCreateNestedManyWithoutOrganizationInput
+  assignedPatterns?: Prisma.AssignedPatternUncheckedCreateNestedManyWithoutOrganizationInput
+  shiftInstances?: Prisma.ShiftInstanceUncheckedCreateNestedManyWithoutOrganizationInput
+  leaveRequests?: Prisma.LeaveRequestUncheckedCreateNestedManyWithoutOrganizationInput
+  shiftAdvertisements?: Prisma.ShiftAdvertisementUncheckedCreateNestedManyWithoutOrganizationInput
+  employeeAvailabilities?: Prisma.EmployeeAvailabilityUncheckedCreateNestedManyWithoutOrganizationInput
+  managementRoles?: Prisma.ManagementRoleUncheckedCreateNestedManyWithoutOrganizationInput
+}
+
+export type OrganizationCreateOrConnectWithoutShiftClaimsInput = {
+  where: Prisma.OrganizationWhereUniqueInput
+  create: Prisma.XOR<Prisma.OrganizationCreateWithoutShiftClaimsInput, Prisma.OrganizationUncheckedCreateWithoutShiftClaimsInput>
+}
+
+export type OrganizationUpsertWithoutShiftClaimsInput = {
+  update: Prisma.XOR<Prisma.OrganizationUpdateWithoutShiftClaimsInput, Prisma.OrganizationUncheckedUpdateWithoutShiftClaimsInput>
+  create: Prisma.XOR<Prisma.OrganizationCreateWithoutShiftClaimsInput, Prisma.OrganizationUncheckedCreateWithoutShiftClaimsInput>
+  where?: Prisma.OrganizationWhereInput
+}
+
+export type OrganizationUpdateToOneWithWhereWithoutShiftClaimsInput = {
+  where?: Prisma.OrganizationWhereInput
+  data: Prisma.XOR<Prisma.OrganizationUpdateWithoutShiftClaimsInput, Prisma.OrganizationUncheckedUpdateWithoutShiftClaimsInput>
+}
+
+export type OrganizationUpdateWithoutShiftClaimsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  settings?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  departments?: Prisma.DepartmentUpdateManyWithoutOrganizationNestedInput
+  locations?: Prisma.LocationUpdateManyWithoutOrganizationNestedInput
+  roles?: Prisma.EmployeeRoleUpdateManyWithoutOrganizationNestedInput
+  leaveTypes?: Prisma.LeaveCategoryUpdateManyWithoutOrganizationNestedInput
+  employees?: Prisma.EmployeeUpdateManyWithoutOrganizationNestedInput
+  affiliations?: Prisma.EmployeeLocationAffiliationUpdateManyWithoutOrganizationNestedInput
+  shiftDefinitions?: Prisma.ShiftDefinitionUpdateManyWithoutOrganizationNestedInput
+  staffingRequirements?: Prisma.StaffingRequirementUpdateManyWithoutOrganizationNestedInput
+  rosterPatterns?: Prisma.RosterPatternUpdateManyWithoutOrganizationNestedInput
+  patternItems?: Prisma.PatternItemUpdateManyWithoutOrganizationNestedInput
+  assignedPatterns?: Prisma.AssignedPatternUpdateManyWithoutOrganizationNestedInput
+  shiftInstances?: Prisma.ShiftInstanceUpdateManyWithoutOrganizationNestedInput
+  leaveRequests?: Prisma.LeaveRequestUpdateManyWithoutOrganizationNestedInput
+  shiftAdvertisements?: Prisma.ShiftAdvertisementUpdateManyWithoutOrganizationNestedInput
+  employeeAvailabilities?: Prisma.EmployeeAvailabilityUpdateManyWithoutOrganizationNestedInput
+  managementRoles?: Prisma.ManagementRoleUpdateManyWithoutOrganizationNestedInput
+}
+
+export type OrganizationUncheckedUpdateWithoutShiftClaimsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  settings?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  departments?: Prisma.DepartmentUncheckedUpdateManyWithoutOrganizationNestedInput
+  locations?: Prisma.LocationUncheckedUpdateManyWithoutOrganizationNestedInput
+  roles?: Prisma.EmployeeRoleUncheckedUpdateManyWithoutOrganizationNestedInput
+  leaveTypes?: Prisma.LeaveCategoryUncheckedUpdateManyWithoutOrganizationNestedInput
+  employees?: Prisma.EmployeeUncheckedUpdateManyWithoutOrganizationNestedInput
+  affiliations?: Prisma.EmployeeLocationAffiliationUncheckedUpdateManyWithoutOrganizationNestedInput
+  shiftDefinitions?: Prisma.ShiftDefinitionUncheckedUpdateManyWithoutOrganizationNestedInput
+  staffingRequirements?: Prisma.StaffingRequirementUncheckedUpdateManyWithoutOrganizationNestedInput
+  rosterPatterns?: Prisma.RosterPatternUncheckedUpdateManyWithoutOrganizationNestedInput
+  patternItems?: Prisma.PatternItemUncheckedUpdateManyWithoutOrganizationNestedInput
+  assignedPatterns?: Prisma.AssignedPatternUncheckedUpdateManyWithoutOrganizationNestedInput
+  shiftInstances?: Prisma.ShiftInstanceUncheckedUpdateManyWithoutOrganizationNestedInput
+  leaveRequests?: Prisma.LeaveRequestUncheckedUpdateManyWithoutOrganizationNestedInput
+  shiftAdvertisements?: Prisma.ShiftAdvertisementUncheckedUpdateManyWithoutOrganizationNestedInput
+  employeeAvailabilities?: Prisma.EmployeeAvailabilityUncheckedUpdateManyWithoutOrganizationNestedInput
+  managementRoles?: Prisma.ManagementRoleUncheckedUpdateManyWithoutOrganizationNestedInput
+}
+
+export type OrganizationCreateWithoutEmployeeAvailabilitiesInput = {
+  id?: string
+  name: string
+  settings?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  archivedAt?: Date | string | null
+  createdAt?: Date | string
+  departments?: Prisma.DepartmentCreateNestedManyWithoutOrganizationInput
+  locations?: Prisma.LocationCreateNestedManyWithoutOrganizationInput
+  roles?: Prisma.EmployeeRoleCreateNestedManyWithoutOrganizationInput
+  leaveTypes?: Prisma.LeaveCategoryCreateNestedManyWithoutOrganizationInput
+  employees?: Prisma.EmployeeCreateNestedManyWithoutOrganizationInput
+  affiliations?: Prisma.EmployeeLocationAffiliationCreateNestedManyWithoutOrganizationInput
+  shiftDefinitions?: Prisma.ShiftDefinitionCreateNestedManyWithoutOrganizationInput
+  staffingRequirements?: Prisma.StaffingRequirementCreateNestedManyWithoutOrganizationInput
+  rosterPatterns?: Prisma.RosterPatternCreateNestedManyWithoutOrganizationInput
+  patternItems?: Prisma.PatternItemCreateNestedManyWithoutOrganizationInput
+  assignedPatterns?: Prisma.AssignedPatternCreateNestedManyWithoutOrganizationInput
+  shiftInstances?: Prisma.ShiftInstanceCreateNestedManyWithoutOrganizationInput
+  leaveRequests?: Prisma.LeaveRequestCreateNestedManyWithoutOrganizationInput
+  shiftAdvertisements?: Prisma.ShiftAdvertisementCreateNestedManyWithoutOrganizationInput
+  shiftClaims?: Prisma.ShiftClaimCreateNestedManyWithoutOrganizationInput
+  managementRoles?: Prisma.ManagementRoleCreateNestedManyWithoutOrganizationInput
+}
+
+export type OrganizationUncheckedCreateWithoutEmployeeAvailabilitiesInput = {
+  id?: string
+  name: string
+  settings?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  archivedAt?: Date | string | null
+  createdAt?: Date | string
+  departments?: Prisma.DepartmentUncheckedCreateNestedManyWithoutOrganizationInput
+  locations?: Prisma.LocationUncheckedCreateNestedManyWithoutOrganizationInput
+  roles?: Prisma.EmployeeRoleUncheckedCreateNestedManyWithoutOrganizationInput
+  leaveTypes?: Prisma.LeaveCategoryUncheckedCreateNestedManyWithoutOrganizationInput
+  employees?: Prisma.EmployeeUncheckedCreateNestedManyWithoutOrganizationInput
+  affiliations?: Prisma.EmployeeLocationAffiliationUncheckedCreateNestedManyWithoutOrganizationInput
+  shiftDefinitions?: Prisma.ShiftDefinitionUncheckedCreateNestedManyWithoutOrganizationInput
+  staffingRequirements?: Prisma.StaffingRequirementUncheckedCreateNestedManyWithoutOrganizationInput
+  rosterPatterns?: Prisma.RosterPatternUncheckedCreateNestedManyWithoutOrganizationInput
+  patternItems?: Prisma.PatternItemUncheckedCreateNestedManyWithoutOrganizationInput
+  assignedPatterns?: Prisma.AssignedPatternUncheckedCreateNestedManyWithoutOrganizationInput
+  shiftInstances?: Prisma.ShiftInstanceUncheckedCreateNestedManyWithoutOrganizationInput
+  leaveRequests?: Prisma.LeaveRequestUncheckedCreateNestedManyWithoutOrganizationInput
+  shiftAdvertisements?: Prisma.ShiftAdvertisementUncheckedCreateNestedManyWithoutOrganizationInput
+  shiftClaims?: Prisma.ShiftClaimUncheckedCreateNestedManyWithoutOrganizationInput
+  managementRoles?: Prisma.ManagementRoleUncheckedCreateNestedManyWithoutOrganizationInput
+}
+
+export type OrganizationCreateOrConnectWithoutEmployeeAvailabilitiesInput = {
+  where: Prisma.OrganizationWhereUniqueInput
+  create: Prisma.XOR<Prisma.OrganizationCreateWithoutEmployeeAvailabilitiesInput, Prisma.OrganizationUncheckedCreateWithoutEmployeeAvailabilitiesInput>
+}
+
+export type OrganizationUpsertWithoutEmployeeAvailabilitiesInput = {
+  update: Prisma.XOR<Prisma.OrganizationUpdateWithoutEmployeeAvailabilitiesInput, Prisma.OrganizationUncheckedUpdateWithoutEmployeeAvailabilitiesInput>
+  create: Prisma.XOR<Prisma.OrganizationCreateWithoutEmployeeAvailabilitiesInput, Prisma.OrganizationUncheckedCreateWithoutEmployeeAvailabilitiesInput>
+  where?: Prisma.OrganizationWhereInput
+}
+
+export type OrganizationUpdateToOneWithWhereWithoutEmployeeAvailabilitiesInput = {
+  where?: Prisma.OrganizationWhereInput
+  data: Prisma.XOR<Prisma.OrganizationUpdateWithoutEmployeeAvailabilitiesInput, Prisma.OrganizationUncheckedUpdateWithoutEmployeeAvailabilitiesInput>
+}
+
+export type OrganizationUpdateWithoutEmployeeAvailabilitiesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  settings?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  departments?: Prisma.DepartmentUpdateManyWithoutOrganizationNestedInput
+  locations?: Prisma.LocationUpdateManyWithoutOrganizationNestedInput
+  roles?: Prisma.EmployeeRoleUpdateManyWithoutOrganizationNestedInput
+  leaveTypes?: Prisma.LeaveCategoryUpdateManyWithoutOrganizationNestedInput
+  employees?: Prisma.EmployeeUpdateManyWithoutOrganizationNestedInput
+  affiliations?: Prisma.EmployeeLocationAffiliationUpdateManyWithoutOrganizationNestedInput
+  shiftDefinitions?: Prisma.ShiftDefinitionUpdateManyWithoutOrganizationNestedInput
+  staffingRequirements?: Prisma.StaffingRequirementUpdateManyWithoutOrganizationNestedInput
+  rosterPatterns?: Prisma.RosterPatternUpdateManyWithoutOrganizationNestedInput
+  patternItems?: Prisma.PatternItemUpdateManyWithoutOrganizationNestedInput
+  assignedPatterns?: Prisma.AssignedPatternUpdateManyWithoutOrganizationNestedInput
+  shiftInstances?: Prisma.ShiftInstanceUpdateManyWithoutOrganizationNestedInput
+  leaveRequests?: Prisma.LeaveRequestUpdateManyWithoutOrganizationNestedInput
+  shiftAdvertisements?: Prisma.ShiftAdvertisementUpdateManyWithoutOrganizationNestedInput
+  shiftClaims?: Prisma.ShiftClaimUpdateManyWithoutOrganizationNestedInput
+  managementRoles?: Prisma.ManagementRoleUpdateManyWithoutOrganizationNestedInput
+}
+
+export type OrganizationUncheckedUpdateWithoutEmployeeAvailabilitiesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  settings?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  departments?: Prisma.DepartmentUncheckedUpdateManyWithoutOrganizationNestedInput
+  locations?: Prisma.LocationUncheckedUpdateManyWithoutOrganizationNestedInput
+  roles?: Prisma.EmployeeRoleUncheckedUpdateManyWithoutOrganizationNestedInput
+  leaveTypes?: Prisma.LeaveCategoryUncheckedUpdateManyWithoutOrganizationNestedInput
+  employees?: Prisma.EmployeeUncheckedUpdateManyWithoutOrganizationNestedInput
+  affiliations?: Prisma.EmployeeLocationAffiliationUncheckedUpdateManyWithoutOrganizationNestedInput
+  shiftDefinitions?: Prisma.ShiftDefinitionUncheckedUpdateManyWithoutOrganizationNestedInput
+  staffingRequirements?: Prisma.StaffingRequirementUncheckedUpdateManyWithoutOrganizationNestedInput
+  rosterPatterns?: Prisma.RosterPatternUncheckedUpdateManyWithoutOrganizationNestedInput
+  patternItems?: Prisma.PatternItemUncheckedUpdateManyWithoutOrganizationNestedInput
+  assignedPatterns?: Prisma.AssignedPatternUncheckedUpdateManyWithoutOrganizationNestedInput
+  shiftInstances?: Prisma.ShiftInstanceUncheckedUpdateManyWithoutOrganizationNestedInput
+  leaveRequests?: Prisma.LeaveRequestUncheckedUpdateManyWithoutOrganizationNestedInput
+  shiftAdvertisements?: Prisma.ShiftAdvertisementUncheckedUpdateManyWithoutOrganizationNestedInput
+  shiftClaims?: Prisma.ShiftClaimUncheckedUpdateManyWithoutOrganizationNestedInput
+  managementRoles?: Prisma.ManagementRoleUncheckedUpdateManyWithoutOrganizationNestedInput
 }
 
 
@@ -915,20 +2572,42 @@ export type OrganizationUncheckedUpdateManyWithoutAdminsInput = {
 
 export type OrganizationCountOutputType = {
   departments: number
+  locations: number
   roles: number
   leaveTypes: number
   employees: number
-  audits: number
-  admins: number
+  affiliations: number
+  shiftDefinitions: number
+  staffingRequirements: number
+  rosterPatterns: number
+  patternItems: number
+  assignedPatterns: number
+  shiftInstances: number
+  leaveRequests: number
+  shiftAdvertisements: number
+  shiftClaims: number
+  employeeAvailabilities: number
+  managementRoles: number
 }
 
 export type OrganizationCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   departments?: boolean | OrganizationCountOutputTypeCountDepartmentsArgs
+  locations?: boolean | OrganizationCountOutputTypeCountLocationsArgs
   roles?: boolean | OrganizationCountOutputTypeCountRolesArgs
   leaveTypes?: boolean | OrganizationCountOutputTypeCountLeaveTypesArgs
   employees?: boolean | OrganizationCountOutputTypeCountEmployeesArgs
-  audits?: boolean | OrganizationCountOutputTypeCountAuditsArgs
-  admins?: boolean | OrganizationCountOutputTypeCountAdminsArgs
+  affiliations?: boolean | OrganizationCountOutputTypeCountAffiliationsArgs
+  shiftDefinitions?: boolean | OrganizationCountOutputTypeCountShiftDefinitionsArgs
+  staffingRequirements?: boolean | OrganizationCountOutputTypeCountStaffingRequirementsArgs
+  rosterPatterns?: boolean | OrganizationCountOutputTypeCountRosterPatternsArgs
+  patternItems?: boolean | OrganizationCountOutputTypeCountPatternItemsArgs
+  assignedPatterns?: boolean | OrganizationCountOutputTypeCountAssignedPatternsArgs
+  shiftInstances?: boolean | OrganizationCountOutputTypeCountShiftInstancesArgs
+  leaveRequests?: boolean | OrganizationCountOutputTypeCountLeaveRequestsArgs
+  shiftAdvertisements?: boolean | OrganizationCountOutputTypeCountShiftAdvertisementsArgs
+  shiftClaims?: boolean | OrganizationCountOutputTypeCountShiftClaimsArgs
+  employeeAvailabilities?: boolean | OrganizationCountOutputTypeCountEmployeeAvailabilitiesArgs
+  managementRoles?: boolean | OrganizationCountOutputTypeCountManagementRolesArgs
 }
 
 /**
@@ -946,6 +2625,13 @@ export type OrganizationCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types
  */
 export type OrganizationCountOutputTypeCountDepartmentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.DepartmentWhereInput
+}
+
+/**
+ * OrganizationCountOutputType without action
+ */
+export type OrganizationCountOutputTypeCountLocationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.LocationWhereInput
 }
 
 /**
@@ -972,15 +2658,85 @@ export type OrganizationCountOutputTypeCountEmployeesArgs<ExtArgs extends runtim
 /**
  * OrganizationCountOutputType without action
  */
-export type OrganizationCountOutputTypeCountAuditsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.AuditLogWhereInput
+export type OrganizationCountOutputTypeCountAffiliationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.EmployeeLocationAffiliationWhereInput
 }
 
 /**
  * OrganizationCountOutputType without action
  */
-export type OrganizationCountOutputTypeCountAdminsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.EmployeeWhereInput
+export type OrganizationCountOutputTypeCountShiftDefinitionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ShiftDefinitionWhereInput
+}
+
+/**
+ * OrganizationCountOutputType without action
+ */
+export type OrganizationCountOutputTypeCountStaffingRequirementsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.StaffingRequirementWhereInput
+}
+
+/**
+ * OrganizationCountOutputType without action
+ */
+export type OrganizationCountOutputTypeCountRosterPatternsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.RosterPatternWhereInput
+}
+
+/**
+ * OrganizationCountOutputType without action
+ */
+export type OrganizationCountOutputTypeCountPatternItemsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.PatternItemWhereInput
+}
+
+/**
+ * OrganizationCountOutputType without action
+ */
+export type OrganizationCountOutputTypeCountAssignedPatternsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.AssignedPatternWhereInput
+}
+
+/**
+ * OrganizationCountOutputType without action
+ */
+export type OrganizationCountOutputTypeCountShiftInstancesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ShiftInstanceWhereInput
+}
+
+/**
+ * OrganizationCountOutputType without action
+ */
+export type OrganizationCountOutputTypeCountLeaveRequestsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.LeaveRequestWhereInput
+}
+
+/**
+ * OrganizationCountOutputType without action
+ */
+export type OrganizationCountOutputTypeCountShiftAdvertisementsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ShiftAdvertisementWhereInput
+}
+
+/**
+ * OrganizationCountOutputType without action
+ */
+export type OrganizationCountOutputTypeCountShiftClaimsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ShiftClaimWhereInput
+}
+
+/**
+ * OrganizationCountOutputType without action
+ */
+export type OrganizationCountOutputTypeCountEmployeeAvailabilitiesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.EmployeeAvailabilityWhereInput
+}
+
+/**
+ * OrganizationCountOutputType without action
+ */
+export type OrganizationCountOutputTypeCountManagementRolesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ManagementRoleWhereInput
 }
 
 
@@ -991,11 +2747,22 @@ export type OrganizationSelect<ExtArgs extends runtime.Types.Extensions.Internal
   archivedAt?: boolean
   createdAt?: boolean
   departments?: boolean | Prisma.Organization$departmentsArgs<ExtArgs>
+  locations?: boolean | Prisma.Organization$locationsArgs<ExtArgs>
   roles?: boolean | Prisma.Organization$rolesArgs<ExtArgs>
   leaveTypes?: boolean | Prisma.Organization$leaveTypesArgs<ExtArgs>
   employees?: boolean | Prisma.Organization$employeesArgs<ExtArgs>
-  audits?: boolean | Prisma.Organization$auditsArgs<ExtArgs>
-  admins?: boolean | Prisma.Organization$adminsArgs<ExtArgs>
+  affiliations?: boolean | Prisma.Organization$affiliationsArgs<ExtArgs>
+  shiftDefinitions?: boolean | Prisma.Organization$shiftDefinitionsArgs<ExtArgs>
+  staffingRequirements?: boolean | Prisma.Organization$staffingRequirementsArgs<ExtArgs>
+  rosterPatterns?: boolean | Prisma.Organization$rosterPatternsArgs<ExtArgs>
+  patternItems?: boolean | Prisma.Organization$patternItemsArgs<ExtArgs>
+  assignedPatterns?: boolean | Prisma.Organization$assignedPatternsArgs<ExtArgs>
+  shiftInstances?: boolean | Prisma.Organization$shiftInstancesArgs<ExtArgs>
+  leaveRequests?: boolean | Prisma.Organization$leaveRequestsArgs<ExtArgs>
+  shiftAdvertisements?: boolean | Prisma.Organization$shiftAdvertisementsArgs<ExtArgs>
+  shiftClaims?: boolean | Prisma.Organization$shiftClaimsArgs<ExtArgs>
+  employeeAvailabilities?: boolean | Prisma.Organization$employeeAvailabilitiesArgs<ExtArgs>
+  managementRoles?: boolean | Prisma.Organization$managementRolesArgs<ExtArgs>
   _count?: boolean | Prisma.OrganizationCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["organization"]>
 
@@ -1026,11 +2793,22 @@ export type OrganizationSelectScalar = {
 export type OrganizationOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "settings" | "archivedAt" | "createdAt", ExtArgs["result"]["organization"]>
 export type OrganizationInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   departments?: boolean | Prisma.Organization$departmentsArgs<ExtArgs>
+  locations?: boolean | Prisma.Organization$locationsArgs<ExtArgs>
   roles?: boolean | Prisma.Organization$rolesArgs<ExtArgs>
   leaveTypes?: boolean | Prisma.Organization$leaveTypesArgs<ExtArgs>
   employees?: boolean | Prisma.Organization$employeesArgs<ExtArgs>
-  audits?: boolean | Prisma.Organization$auditsArgs<ExtArgs>
-  admins?: boolean | Prisma.Organization$adminsArgs<ExtArgs>
+  affiliations?: boolean | Prisma.Organization$affiliationsArgs<ExtArgs>
+  shiftDefinitions?: boolean | Prisma.Organization$shiftDefinitionsArgs<ExtArgs>
+  staffingRequirements?: boolean | Prisma.Organization$staffingRequirementsArgs<ExtArgs>
+  rosterPatterns?: boolean | Prisma.Organization$rosterPatternsArgs<ExtArgs>
+  patternItems?: boolean | Prisma.Organization$patternItemsArgs<ExtArgs>
+  assignedPatterns?: boolean | Prisma.Organization$assignedPatternsArgs<ExtArgs>
+  shiftInstances?: boolean | Prisma.Organization$shiftInstancesArgs<ExtArgs>
+  leaveRequests?: boolean | Prisma.Organization$leaveRequestsArgs<ExtArgs>
+  shiftAdvertisements?: boolean | Prisma.Organization$shiftAdvertisementsArgs<ExtArgs>
+  shiftClaims?: boolean | Prisma.Organization$shiftClaimsArgs<ExtArgs>
+  employeeAvailabilities?: boolean | Prisma.Organization$employeeAvailabilitiesArgs<ExtArgs>
+  managementRoles?: boolean | Prisma.Organization$managementRolesArgs<ExtArgs>
   _count?: boolean | Prisma.OrganizationCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type OrganizationIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -1040,11 +2818,22 @@ export type $OrganizationPayload<ExtArgs extends runtime.Types.Extensions.Intern
   name: "Organization"
   objects: {
     departments: Prisma.$DepartmentPayload<ExtArgs>[]
+    locations: Prisma.$LocationPayload<ExtArgs>[]
     roles: Prisma.$EmployeeRolePayload<ExtArgs>[]
     leaveTypes: Prisma.$LeaveCategoryPayload<ExtArgs>[]
     employees: Prisma.$EmployeePayload<ExtArgs>[]
-    audits: Prisma.$AuditLogPayload<ExtArgs>[]
-    admins: Prisma.$EmployeePayload<ExtArgs>[]
+    affiliations: Prisma.$EmployeeLocationAffiliationPayload<ExtArgs>[]
+    shiftDefinitions: Prisma.$ShiftDefinitionPayload<ExtArgs>[]
+    staffingRequirements: Prisma.$StaffingRequirementPayload<ExtArgs>[]
+    rosterPatterns: Prisma.$RosterPatternPayload<ExtArgs>[]
+    patternItems: Prisma.$PatternItemPayload<ExtArgs>[]
+    assignedPatterns: Prisma.$AssignedPatternPayload<ExtArgs>[]
+    shiftInstances: Prisma.$ShiftInstancePayload<ExtArgs>[]
+    leaveRequests: Prisma.$LeaveRequestPayload<ExtArgs>[]
+    shiftAdvertisements: Prisma.$ShiftAdvertisementPayload<ExtArgs>[]
+    shiftClaims: Prisma.$ShiftClaimPayload<ExtArgs>[]
+    employeeAvailabilities: Prisma.$EmployeeAvailabilityPayload<ExtArgs>[]
+    managementRoles: Prisma.$ManagementRolePayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1447,11 +3236,22 @@ readonly fields: OrganizationFieldRefs;
 export interface Prisma__OrganizationClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   departments<T extends Prisma.Organization$departmentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organization$departmentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$DepartmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  locations<T extends Prisma.Organization$locationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organization$locationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$LocationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   roles<T extends Prisma.Organization$rolesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organization$rolesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$EmployeeRolePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   leaveTypes<T extends Prisma.Organization$leaveTypesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organization$leaveTypesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$LeaveCategoryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   employees<T extends Prisma.Organization$employeesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organization$employeesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$EmployeePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  audits<T extends Prisma.Organization$auditsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organization$auditsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AuditLogPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  admins<T extends Prisma.Organization$adminsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organization$adminsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$EmployeePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  affiliations<T extends Prisma.Organization$affiliationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organization$affiliationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$EmployeeLocationAffiliationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  shiftDefinitions<T extends Prisma.Organization$shiftDefinitionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organization$shiftDefinitionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ShiftDefinitionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  staffingRequirements<T extends Prisma.Organization$staffingRequirementsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organization$staffingRequirementsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$StaffingRequirementPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  rosterPatterns<T extends Prisma.Organization$rosterPatternsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organization$rosterPatternsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$RosterPatternPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  patternItems<T extends Prisma.Organization$patternItemsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organization$patternItemsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PatternItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  assignedPatterns<T extends Prisma.Organization$assignedPatternsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organization$assignedPatternsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AssignedPatternPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  shiftInstances<T extends Prisma.Organization$shiftInstancesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organization$shiftInstancesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ShiftInstancePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  leaveRequests<T extends Prisma.Organization$leaveRequestsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organization$leaveRequestsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$LeaveRequestPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  shiftAdvertisements<T extends Prisma.Organization$shiftAdvertisementsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organization$shiftAdvertisementsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ShiftAdvertisementPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  shiftClaims<T extends Prisma.Organization$shiftClaimsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organization$shiftClaimsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ShiftClaimPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  employeeAvailabilities<T extends Prisma.Organization$employeeAvailabilitiesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organization$employeeAvailabilitiesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$EmployeeAvailabilityPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  managementRoles<T extends Prisma.Organization$managementRolesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organization$managementRolesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ManagementRolePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1898,6 +3698,30 @@ export type Organization$departmentsArgs<ExtArgs extends runtime.Types.Extension
 }
 
 /**
+ * Organization.locations
+ */
+export type Organization$locationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Location
+   */
+  select?: Prisma.LocationSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Location
+   */
+  omit?: Prisma.LocationOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.LocationInclude<ExtArgs> | null
+  where?: Prisma.LocationWhereInput
+  orderBy?: Prisma.LocationOrderByWithRelationInput | Prisma.LocationOrderByWithRelationInput[]
+  cursor?: Prisma.LocationWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.LocationScalarFieldEnum | Prisma.LocationScalarFieldEnum[]
+}
+
+/**
  * Organization.roles
  */
 export type Organization$rolesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1970,51 +3794,291 @@ export type Organization$employeesArgs<ExtArgs extends runtime.Types.Extensions.
 }
 
 /**
- * Organization.audits
+ * Organization.affiliations
  */
-export type Organization$auditsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type Organization$affiliationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the AuditLog
+   * Select specific fields to fetch from the EmployeeLocationAffiliation
    */
-  select?: Prisma.AuditLogSelect<ExtArgs> | null
+  select?: Prisma.EmployeeLocationAffiliationSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the AuditLog
+   * Omit specific fields from the EmployeeLocationAffiliation
    */
-  omit?: Prisma.AuditLogOmit<ExtArgs> | null
+  omit?: Prisma.EmployeeLocationAffiliationOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.AuditLogInclude<ExtArgs> | null
-  where?: Prisma.AuditLogWhereInput
-  orderBy?: Prisma.AuditLogOrderByWithRelationInput | Prisma.AuditLogOrderByWithRelationInput[]
-  cursor?: Prisma.AuditLogWhereUniqueInput
+  include?: Prisma.EmployeeLocationAffiliationInclude<ExtArgs> | null
+  where?: Prisma.EmployeeLocationAffiliationWhereInput
+  orderBy?: Prisma.EmployeeLocationAffiliationOrderByWithRelationInput | Prisma.EmployeeLocationAffiliationOrderByWithRelationInput[]
+  cursor?: Prisma.EmployeeLocationAffiliationWhereUniqueInput
   take?: number
   skip?: number
-  distinct?: Prisma.AuditLogScalarFieldEnum | Prisma.AuditLogScalarFieldEnum[]
+  distinct?: Prisma.EmployeeLocationAffiliationScalarFieldEnum | Prisma.EmployeeLocationAffiliationScalarFieldEnum[]
 }
 
 /**
- * Organization.admins
+ * Organization.shiftDefinitions
  */
-export type Organization$adminsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type Organization$shiftDefinitionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the Employee
+   * Select specific fields to fetch from the ShiftDefinition
    */
-  select?: Prisma.EmployeeSelect<ExtArgs> | null
+  select?: Prisma.ShiftDefinitionSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the Employee
+   * Omit specific fields from the ShiftDefinition
    */
-  omit?: Prisma.EmployeeOmit<ExtArgs> | null
+  omit?: Prisma.ShiftDefinitionOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.EmployeeInclude<ExtArgs> | null
-  where?: Prisma.EmployeeWhereInput
-  orderBy?: Prisma.EmployeeOrderByWithRelationInput | Prisma.EmployeeOrderByWithRelationInput[]
-  cursor?: Prisma.EmployeeWhereUniqueInput
+  include?: Prisma.ShiftDefinitionInclude<ExtArgs> | null
+  where?: Prisma.ShiftDefinitionWhereInput
+  orderBy?: Prisma.ShiftDefinitionOrderByWithRelationInput | Prisma.ShiftDefinitionOrderByWithRelationInput[]
+  cursor?: Prisma.ShiftDefinitionWhereUniqueInput
   take?: number
   skip?: number
-  distinct?: Prisma.EmployeeScalarFieldEnum | Prisma.EmployeeScalarFieldEnum[]
+  distinct?: Prisma.ShiftDefinitionScalarFieldEnum | Prisma.ShiftDefinitionScalarFieldEnum[]
+}
+
+/**
+ * Organization.staffingRequirements
+ */
+export type Organization$staffingRequirementsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the StaffingRequirement
+   */
+  select?: Prisma.StaffingRequirementSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the StaffingRequirement
+   */
+  omit?: Prisma.StaffingRequirementOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.StaffingRequirementInclude<ExtArgs> | null
+  where?: Prisma.StaffingRequirementWhereInput
+  orderBy?: Prisma.StaffingRequirementOrderByWithRelationInput | Prisma.StaffingRequirementOrderByWithRelationInput[]
+  cursor?: Prisma.StaffingRequirementWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.StaffingRequirementScalarFieldEnum | Prisma.StaffingRequirementScalarFieldEnum[]
+}
+
+/**
+ * Organization.rosterPatterns
+ */
+export type Organization$rosterPatternsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the RosterPattern
+   */
+  select?: Prisma.RosterPatternSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the RosterPattern
+   */
+  omit?: Prisma.RosterPatternOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.RosterPatternInclude<ExtArgs> | null
+  where?: Prisma.RosterPatternWhereInput
+  orderBy?: Prisma.RosterPatternOrderByWithRelationInput | Prisma.RosterPatternOrderByWithRelationInput[]
+  cursor?: Prisma.RosterPatternWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.RosterPatternScalarFieldEnum | Prisma.RosterPatternScalarFieldEnum[]
+}
+
+/**
+ * Organization.patternItems
+ */
+export type Organization$patternItemsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the PatternItem
+   */
+  select?: Prisma.PatternItemSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the PatternItem
+   */
+  omit?: Prisma.PatternItemOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.PatternItemInclude<ExtArgs> | null
+  where?: Prisma.PatternItemWhereInput
+  orderBy?: Prisma.PatternItemOrderByWithRelationInput | Prisma.PatternItemOrderByWithRelationInput[]
+  cursor?: Prisma.PatternItemWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.PatternItemScalarFieldEnum | Prisma.PatternItemScalarFieldEnum[]
+}
+
+/**
+ * Organization.assignedPatterns
+ */
+export type Organization$assignedPatternsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the AssignedPattern
+   */
+  select?: Prisma.AssignedPatternSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the AssignedPattern
+   */
+  omit?: Prisma.AssignedPatternOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.AssignedPatternInclude<ExtArgs> | null
+  where?: Prisma.AssignedPatternWhereInput
+  orderBy?: Prisma.AssignedPatternOrderByWithRelationInput | Prisma.AssignedPatternOrderByWithRelationInput[]
+  cursor?: Prisma.AssignedPatternWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.AssignedPatternScalarFieldEnum | Prisma.AssignedPatternScalarFieldEnum[]
+}
+
+/**
+ * Organization.shiftInstances
+ */
+export type Organization$shiftInstancesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ShiftInstance
+   */
+  select?: Prisma.ShiftInstanceSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the ShiftInstance
+   */
+  omit?: Prisma.ShiftInstanceOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ShiftInstanceInclude<ExtArgs> | null
+  where?: Prisma.ShiftInstanceWhereInput
+  orderBy?: Prisma.ShiftInstanceOrderByWithRelationInput | Prisma.ShiftInstanceOrderByWithRelationInput[]
+  cursor?: Prisma.ShiftInstanceWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ShiftInstanceScalarFieldEnum | Prisma.ShiftInstanceScalarFieldEnum[]
+}
+
+/**
+ * Organization.leaveRequests
+ */
+export type Organization$leaveRequestsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the LeaveRequest
+   */
+  select?: Prisma.LeaveRequestSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the LeaveRequest
+   */
+  omit?: Prisma.LeaveRequestOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.LeaveRequestInclude<ExtArgs> | null
+  where?: Prisma.LeaveRequestWhereInput
+  orderBy?: Prisma.LeaveRequestOrderByWithRelationInput | Prisma.LeaveRequestOrderByWithRelationInput[]
+  cursor?: Prisma.LeaveRequestWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.LeaveRequestScalarFieldEnum | Prisma.LeaveRequestScalarFieldEnum[]
+}
+
+/**
+ * Organization.shiftAdvertisements
+ */
+export type Organization$shiftAdvertisementsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ShiftAdvertisement
+   */
+  select?: Prisma.ShiftAdvertisementSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the ShiftAdvertisement
+   */
+  omit?: Prisma.ShiftAdvertisementOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ShiftAdvertisementInclude<ExtArgs> | null
+  where?: Prisma.ShiftAdvertisementWhereInput
+  orderBy?: Prisma.ShiftAdvertisementOrderByWithRelationInput | Prisma.ShiftAdvertisementOrderByWithRelationInput[]
+  cursor?: Prisma.ShiftAdvertisementWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ShiftAdvertisementScalarFieldEnum | Prisma.ShiftAdvertisementScalarFieldEnum[]
+}
+
+/**
+ * Organization.shiftClaims
+ */
+export type Organization$shiftClaimsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ShiftClaim
+   */
+  select?: Prisma.ShiftClaimSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the ShiftClaim
+   */
+  omit?: Prisma.ShiftClaimOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ShiftClaimInclude<ExtArgs> | null
+  where?: Prisma.ShiftClaimWhereInput
+  orderBy?: Prisma.ShiftClaimOrderByWithRelationInput | Prisma.ShiftClaimOrderByWithRelationInput[]
+  cursor?: Prisma.ShiftClaimWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ShiftClaimScalarFieldEnum | Prisma.ShiftClaimScalarFieldEnum[]
+}
+
+/**
+ * Organization.employeeAvailabilities
+ */
+export type Organization$employeeAvailabilitiesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the EmployeeAvailability
+   */
+  select?: Prisma.EmployeeAvailabilitySelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the EmployeeAvailability
+   */
+  omit?: Prisma.EmployeeAvailabilityOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.EmployeeAvailabilityInclude<ExtArgs> | null
+  where?: Prisma.EmployeeAvailabilityWhereInput
+  orderBy?: Prisma.EmployeeAvailabilityOrderByWithRelationInput | Prisma.EmployeeAvailabilityOrderByWithRelationInput[]
+  cursor?: Prisma.EmployeeAvailabilityWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.EmployeeAvailabilityScalarFieldEnum | Prisma.EmployeeAvailabilityScalarFieldEnum[]
+}
+
+/**
+ * Organization.managementRoles
+ */
+export type Organization$managementRolesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ManagementRole
+   */
+  select?: Prisma.ManagementRoleSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the ManagementRole
+   */
+  omit?: Prisma.ManagementRoleOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ManagementRoleInclude<ExtArgs> | null
+  where?: Prisma.ManagementRoleWhereInput
+  orderBy?: Prisma.ManagementRoleOrderByWithRelationInput | Prisma.ManagementRoleOrderByWithRelationInput[]
+  cursor?: Prisma.ManagementRoleWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ManagementRoleScalarFieldEnum | Prisma.ManagementRoleScalarFieldEnum[]
 }
 
 /**

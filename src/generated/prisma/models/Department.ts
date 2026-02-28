@@ -175,10 +175,10 @@ export type DepartmentWhereInput = {
   name?: Prisma.StringFilter<"Department"> | string
   archivedAt?: Prisma.DateTimeNullableFilter<"Department"> | Date | string | null
   organization?: Prisma.XOR<Prisma.OrganizationScalarRelationFilter, Prisma.OrganizationWhereInput>
-  wards?: Prisma.WardListRelationFilter
-  managers?: Prisma.EmployeeListRelationFilter
-  homeStaff?: Prisma.EmployeeListRelationFilter
+  locations?: Prisma.LocationListRelationFilter
+  managers?: Prisma.ManagementRoleListRelationFilter
   sharedShiftTypes?: Prisma.ShiftDefinitionListRelationFilter
+  sharedPatterns?: Prisma.RosterPatternListRelationFilter
 }
 
 export type DepartmentOrderByWithRelationInput = {
@@ -187,10 +187,10 @@ export type DepartmentOrderByWithRelationInput = {
   name?: Prisma.SortOrder
   archivedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   organization?: Prisma.OrganizationOrderByWithRelationInput
-  wards?: Prisma.WardOrderByRelationAggregateInput
-  managers?: Prisma.EmployeeOrderByRelationAggregateInput
-  homeStaff?: Prisma.EmployeeOrderByRelationAggregateInput
+  locations?: Prisma.LocationOrderByRelationAggregateInput
+  managers?: Prisma.ManagementRoleOrderByRelationAggregateInput
   sharedShiftTypes?: Prisma.ShiftDefinitionOrderByRelationAggregateInput
+  sharedPatterns?: Prisma.RosterPatternOrderByRelationAggregateInput
 }
 
 export type DepartmentWhereUniqueInput = Prisma.AtLeast<{
@@ -202,10 +202,10 @@ export type DepartmentWhereUniqueInput = Prisma.AtLeast<{
   name?: Prisma.StringFilter<"Department"> | string
   archivedAt?: Prisma.DateTimeNullableFilter<"Department"> | Date | string | null
   organization?: Prisma.XOR<Prisma.OrganizationScalarRelationFilter, Prisma.OrganizationWhereInput>
-  wards?: Prisma.WardListRelationFilter
-  managers?: Prisma.EmployeeListRelationFilter
-  homeStaff?: Prisma.EmployeeListRelationFilter
+  locations?: Prisma.LocationListRelationFilter
+  managers?: Prisma.ManagementRoleListRelationFilter
   sharedShiftTypes?: Prisma.ShiftDefinitionListRelationFilter
+  sharedPatterns?: Prisma.RosterPatternListRelationFilter
 }, "id">
 
 export type DepartmentOrderByWithAggregationInput = {
@@ -233,10 +233,10 @@ export type DepartmentCreateInput = {
   name: string
   archivedAt?: Date | string | null
   organization: Prisma.OrganizationCreateNestedOneWithoutDepartmentsInput
-  wards?: Prisma.WardCreateNestedManyWithoutDepartmentInput
-  managers?: Prisma.EmployeeCreateNestedManyWithoutManagedDepartmentsInput
-  homeStaff?: Prisma.EmployeeCreateNestedManyWithoutHomeDepartmentInput
+  locations?: Prisma.LocationCreateNestedManyWithoutDepartmentInput
+  managers?: Prisma.ManagementRoleCreateNestedManyWithoutDepartmentInput
   sharedShiftTypes?: Prisma.ShiftDefinitionCreateNestedManyWithoutDepartmentInput
+  sharedPatterns?: Prisma.RosterPatternCreateNestedManyWithoutDepartmentInput
 }
 
 export type DepartmentUncheckedCreateInput = {
@@ -244,10 +244,10 @@ export type DepartmentUncheckedCreateInput = {
   organizationId: string
   name: string
   archivedAt?: Date | string | null
-  wards?: Prisma.WardUncheckedCreateNestedManyWithoutDepartmentInput
-  managers?: Prisma.EmployeeUncheckedCreateNestedManyWithoutManagedDepartmentsInput
-  homeStaff?: Prisma.EmployeeUncheckedCreateNestedManyWithoutHomeDepartmentInput
+  locations?: Prisma.LocationUncheckedCreateNestedManyWithoutDepartmentInput
+  managers?: Prisma.ManagementRoleUncheckedCreateNestedManyWithoutDepartmentInput
   sharedShiftTypes?: Prisma.ShiftDefinitionUncheckedCreateNestedManyWithoutDepartmentInput
+  sharedPatterns?: Prisma.RosterPatternUncheckedCreateNestedManyWithoutDepartmentInput
 }
 
 export type DepartmentUpdateInput = {
@@ -255,10 +255,10 @@ export type DepartmentUpdateInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutDepartmentsNestedInput
-  wards?: Prisma.WardUpdateManyWithoutDepartmentNestedInput
-  managers?: Prisma.EmployeeUpdateManyWithoutManagedDepartmentsNestedInput
-  homeStaff?: Prisma.EmployeeUpdateManyWithoutHomeDepartmentNestedInput
+  locations?: Prisma.LocationUpdateManyWithoutDepartmentNestedInput
+  managers?: Prisma.ManagementRoleUpdateManyWithoutDepartmentNestedInput
   sharedShiftTypes?: Prisma.ShiftDefinitionUpdateManyWithoutDepartmentNestedInput
+  sharedPatterns?: Prisma.RosterPatternUpdateManyWithoutDepartmentNestedInput
 }
 
 export type DepartmentUncheckedUpdateInput = {
@@ -266,10 +266,10 @@ export type DepartmentUncheckedUpdateInput = {
   organizationId?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  wards?: Prisma.WardUncheckedUpdateManyWithoutDepartmentNestedInput
-  managers?: Prisma.EmployeeUncheckedUpdateManyWithoutManagedDepartmentsNestedInput
-  homeStaff?: Prisma.EmployeeUncheckedUpdateManyWithoutHomeDepartmentNestedInput
+  locations?: Prisma.LocationUncheckedUpdateManyWithoutDepartmentNestedInput
+  managers?: Prisma.ManagementRoleUncheckedUpdateManyWithoutDepartmentNestedInput
   sharedShiftTypes?: Prisma.ShiftDefinitionUncheckedUpdateManyWithoutDepartmentNestedInput
+  sharedPatterns?: Prisma.RosterPatternUncheckedUpdateManyWithoutDepartmentNestedInput
 }
 
 export type DepartmentCreateManyInput = {
@@ -375,72 +375,34 @@ export type DepartmentUncheckedUpdateManyWithoutOrganizationNestedInput = {
   deleteMany?: Prisma.DepartmentScalarWhereInput | Prisma.DepartmentScalarWhereInput[]
 }
 
-export type DepartmentCreateNestedOneWithoutWardsInput = {
-  create?: Prisma.XOR<Prisma.DepartmentCreateWithoutWardsInput, Prisma.DepartmentUncheckedCreateWithoutWardsInput>
-  connectOrCreate?: Prisma.DepartmentCreateOrConnectWithoutWardsInput
+export type DepartmentCreateNestedOneWithoutLocationsInput = {
+  create?: Prisma.XOR<Prisma.DepartmentCreateWithoutLocationsInput, Prisma.DepartmentUncheckedCreateWithoutLocationsInput>
+  connectOrCreate?: Prisma.DepartmentCreateOrConnectWithoutLocationsInput
   connect?: Prisma.DepartmentWhereUniqueInput
 }
 
-export type DepartmentUpdateOneRequiredWithoutWardsNestedInput = {
-  create?: Prisma.XOR<Prisma.DepartmentCreateWithoutWardsInput, Prisma.DepartmentUncheckedCreateWithoutWardsInput>
-  connectOrCreate?: Prisma.DepartmentCreateOrConnectWithoutWardsInput
-  upsert?: Prisma.DepartmentUpsertWithoutWardsInput
+export type DepartmentUpdateOneRequiredWithoutLocationsNestedInput = {
+  create?: Prisma.XOR<Prisma.DepartmentCreateWithoutLocationsInput, Prisma.DepartmentUncheckedCreateWithoutLocationsInput>
+  connectOrCreate?: Prisma.DepartmentCreateOrConnectWithoutLocationsInput
+  upsert?: Prisma.DepartmentUpsertWithoutLocationsInput
   connect?: Prisma.DepartmentWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.DepartmentUpdateToOneWithWhereWithoutWardsInput, Prisma.DepartmentUpdateWithoutWardsInput>, Prisma.DepartmentUncheckedUpdateWithoutWardsInput>
+  update?: Prisma.XOR<Prisma.XOR<Prisma.DepartmentUpdateToOneWithWhereWithoutLocationsInput, Prisma.DepartmentUpdateWithoutLocationsInput>, Prisma.DepartmentUncheckedUpdateWithoutLocationsInput>
 }
 
-export type DepartmentCreateNestedOneWithoutHomeStaffInput = {
-  create?: Prisma.XOR<Prisma.DepartmentCreateWithoutHomeStaffInput, Prisma.DepartmentUncheckedCreateWithoutHomeStaffInput>
-  connectOrCreate?: Prisma.DepartmentCreateOrConnectWithoutHomeStaffInput
+export type DepartmentCreateNestedOneWithoutManagersInput = {
+  create?: Prisma.XOR<Prisma.DepartmentCreateWithoutManagersInput, Prisma.DepartmentUncheckedCreateWithoutManagersInput>
+  connectOrCreate?: Prisma.DepartmentCreateOrConnectWithoutManagersInput
   connect?: Prisma.DepartmentWhereUniqueInput
 }
 
-export type DepartmentCreateNestedManyWithoutManagersInput = {
-  create?: Prisma.XOR<Prisma.DepartmentCreateWithoutManagersInput, Prisma.DepartmentUncheckedCreateWithoutManagersInput> | Prisma.DepartmentCreateWithoutManagersInput[] | Prisma.DepartmentUncheckedCreateWithoutManagersInput[]
-  connectOrCreate?: Prisma.DepartmentCreateOrConnectWithoutManagersInput | Prisma.DepartmentCreateOrConnectWithoutManagersInput[]
-  connect?: Prisma.DepartmentWhereUniqueInput | Prisma.DepartmentWhereUniqueInput[]
-}
-
-export type DepartmentUncheckedCreateNestedManyWithoutManagersInput = {
-  create?: Prisma.XOR<Prisma.DepartmentCreateWithoutManagersInput, Prisma.DepartmentUncheckedCreateWithoutManagersInput> | Prisma.DepartmentCreateWithoutManagersInput[] | Prisma.DepartmentUncheckedCreateWithoutManagersInput[]
-  connectOrCreate?: Prisma.DepartmentCreateOrConnectWithoutManagersInput | Prisma.DepartmentCreateOrConnectWithoutManagersInput[]
-  connect?: Prisma.DepartmentWhereUniqueInput | Prisma.DepartmentWhereUniqueInput[]
-}
-
-export type DepartmentUpdateOneWithoutHomeStaffNestedInput = {
-  create?: Prisma.XOR<Prisma.DepartmentCreateWithoutHomeStaffInput, Prisma.DepartmentUncheckedCreateWithoutHomeStaffInput>
-  connectOrCreate?: Prisma.DepartmentCreateOrConnectWithoutHomeStaffInput
-  upsert?: Prisma.DepartmentUpsertWithoutHomeStaffInput
+export type DepartmentUpdateOneWithoutManagersNestedInput = {
+  create?: Prisma.XOR<Prisma.DepartmentCreateWithoutManagersInput, Prisma.DepartmentUncheckedCreateWithoutManagersInput>
+  connectOrCreate?: Prisma.DepartmentCreateOrConnectWithoutManagersInput
+  upsert?: Prisma.DepartmentUpsertWithoutManagersInput
   disconnect?: Prisma.DepartmentWhereInput | boolean
   delete?: Prisma.DepartmentWhereInput | boolean
   connect?: Prisma.DepartmentWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.DepartmentUpdateToOneWithWhereWithoutHomeStaffInput, Prisma.DepartmentUpdateWithoutHomeStaffInput>, Prisma.DepartmentUncheckedUpdateWithoutHomeStaffInput>
-}
-
-export type DepartmentUpdateManyWithoutManagersNestedInput = {
-  create?: Prisma.XOR<Prisma.DepartmentCreateWithoutManagersInput, Prisma.DepartmentUncheckedCreateWithoutManagersInput> | Prisma.DepartmentCreateWithoutManagersInput[] | Prisma.DepartmentUncheckedCreateWithoutManagersInput[]
-  connectOrCreate?: Prisma.DepartmentCreateOrConnectWithoutManagersInput | Prisma.DepartmentCreateOrConnectWithoutManagersInput[]
-  upsert?: Prisma.DepartmentUpsertWithWhereUniqueWithoutManagersInput | Prisma.DepartmentUpsertWithWhereUniqueWithoutManagersInput[]
-  set?: Prisma.DepartmentWhereUniqueInput | Prisma.DepartmentWhereUniqueInput[]
-  disconnect?: Prisma.DepartmentWhereUniqueInput | Prisma.DepartmentWhereUniqueInput[]
-  delete?: Prisma.DepartmentWhereUniqueInput | Prisma.DepartmentWhereUniqueInput[]
-  connect?: Prisma.DepartmentWhereUniqueInput | Prisma.DepartmentWhereUniqueInput[]
-  update?: Prisma.DepartmentUpdateWithWhereUniqueWithoutManagersInput | Prisma.DepartmentUpdateWithWhereUniqueWithoutManagersInput[]
-  updateMany?: Prisma.DepartmentUpdateManyWithWhereWithoutManagersInput | Prisma.DepartmentUpdateManyWithWhereWithoutManagersInput[]
-  deleteMany?: Prisma.DepartmentScalarWhereInput | Prisma.DepartmentScalarWhereInput[]
-}
-
-export type DepartmentUncheckedUpdateManyWithoutManagersNestedInput = {
-  create?: Prisma.XOR<Prisma.DepartmentCreateWithoutManagersInput, Prisma.DepartmentUncheckedCreateWithoutManagersInput> | Prisma.DepartmentCreateWithoutManagersInput[] | Prisma.DepartmentUncheckedCreateWithoutManagersInput[]
-  connectOrCreate?: Prisma.DepartmentCreateOrConnectWithoutManagersInput | Prisma.DepartmentCreateOrConnectWithoutManagersInput[]
-  upsert?: Prisma.DepartmentUpsertWithWhereUniqueWithoutManagersInput | Prisma.DepartmentUpsertWithWhereUniqueWithoutManagersInput[]
-  set?: Prisma.DepartmentWhereUniqueInput | Prisma.DepartmentWhereUniqueInput[]
-  disconnect?: Prisma.DepartmentWhereUniqueInput | Prisma.DepartmentWhereUniqueInput[]
-  delete?: Prisma.DepartmentWhereUniqueInput | Prisma.DepartmentWhereUniqueInput[]
-  connect?: Prisma.DepartmentWhereUniqueInput | Prisma.DepartmentWhereUniqueInput[]
-  update?: Prisma.DepartmentUpdateWithWhereUniqueWithoutManagersInput | Prisma.DepartmentUpdateWithWhereUniqueWithoutManagersInput[]
-  updateMany?: Prisma.DepartmentUpdateManyWithWhereWithoutManagersInput | Prisma.DepartmentUpdateManyWithWhereWithoutManagersInput[]
-  deleteMany?: Prisma.DepartmentScalarWhereInput | Prisma.DepartmentScalarWhereInput[]
+  update?: Prisma.XOR<Prisma.XOR<Prisma.DepartmentUpdateToOneWithWhereWithoutManagersInput, Prisma.DepartmentUpdateWithoutManagersInput>, Prisma.DepartmentUncheckedUpdateWithoutManagersInput>
 }
 
 export type DepartmentCreateNestedOneWithoutSharedShiftTypesInput = {
@@ -459,24 +421,40 @@ export type DepartmentUpdateOneWithoutSharedShiftTypesNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.DepartmentUpdateToOneWithWhereWithoutSharedShiftTypesInput, Prisma.DepartmentUpdateWithoutSharedShiftTypesInput>, Prisma.DepartmentUncheckedUpdateWithoutSharedShiftTypesInput>
 }
 
+export type DepartmentCreateNestedOneWithoutSharedPatternsInput = {
+  create?: Prisma.XOR<Prisma.DepartmentCreateWithoutSharedPatternsInput, Prisma.DepartmentUncheckedCreateWithoutSharedPatternsInput>
+  connectOrCreate?: Prisma.DepartmentCreateOrConnectWithoutSharedPatternsInput
+  connect?: Prisma.DepartmentWhereUniqueInput
+}
+
+export type DepartmentUpdateOneWithoutSharedPatternsNestedInput = {
+  create?: Prisma.XOR<Prisma.DepartmentCreateWithoutSharedPatternsInput, Prisma.DepartmentUncheckedCreateWithoutSharedPatternsInput>
+  connectOrCreate?: Prisma.DepartmentCreateOrConnectWithoutSharedPatternsInput
+  upsert?: Prisma.DepartmentUpsertWithoutSharedPatternsInput
+  disconnect?: Prisma.DepartmentWhereInput | boolean
+  delete?: Prisma.DepartmentWhereInput | boolean
+  connect?: Prisma.DepartmentWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.DepartmentUpdateToOneWithWhereWithoutSharedPatternsInput, Prisma.DepartmentUpdateWithoutSharedPatternsInput>, Prisma.DepartmentUncheckedUpdateWithoutSharedPatternsInput>
+}
+
 export type DepartmentCreateWithoutOrganizationInput = {
   id?: string
   name: string
   archivedAt?: Date | string | null
-  wards?: Prisma.WardCreateNestedManyWithoutDepartmentInput
-  managers?: Prisma.EmployeeCreateNestedManyWithoutManagedDepartmentsInput
-  homeStaff?: Prisma.EmployeeCreateNestedManyWithoutHomeDepartmentInput
+  locations?: Prisma.LocationCreateNestedManyWithoutDepartmentInput
+  managers?: Prisma.ManagementRoleCreateNestedManyWithoutDepartmentInput
   sharedShiftTypes?: Prisma.ShiftDefinitionCreateNestedManyWithoutDepartmentInput
+  sharedPatterns?: Prisma.RosterPatternCreateNestedManyWithoutDepartmentInput
 }
 
 export type DepartmentUncheckedCreateWithoutOrganizationInput = {
   id?: string
   name: string
   archivedAt?: Date | string | null
-  wards?: Prisma.WardUncheckedCreateNestedManyWithoutDepartmentInput
-  managers?: Prisma.EmployeeUncheckedCreateNestedManyWithoutManagedDepartmentsInput
-  homeStaff?: Prisma.EmployeeUncheckedCreateNestedManyWithoutHomeDepartmentInput
+  locations?: Prisma.LocationUncheckedCreateNestedManyWithoutDepartmentInput
+  managers?: Prisma.ManagementRoleUncheckedCreateNestedManyWithoutDepartmentInput
   sharedShiftTypes?: Prisma.ShiftDefinitionUncheckedCreateNestedManyWithoutDepartmentInput
+  sharedPatterns?: Prisma.RosterPatternUncheckedCreateNestedManyWithoutDepartmentInput
 }
 
 export type DepartmentCreateOrConnectWithoutOrganizationInput = {
@@ -515,85 +493,60 @@ export type DepartmentScalarWhereInput = {
   archivedAt?: Prisma.DateTimeNullableFilter<"Department"> | Date | string | null
 }
 
-export type DepartmentCreateWithoutWardsInput = {
+export type DepartmentCreateWithoutLocationsInput = {
   id?: string
   name: string
   archivedAt?: Date | string | null
   organization: Prisma.OrganizationCreateNestedOneWithoutDepartmentsInput
-  managers?: Prisma.EmployeeCreateNestedManyWithoutManagedDepartmentsInput
-  homeStaff?: Prisma.EmployeeCreateNestedManyWithoutHomeDepartmentInput
+  managers?: Prisma.ManagementRoleCreateNestedManyWithoutDepartmentInput
   sharedShiftTypes?: Prisma.ShiftDefinitionCreateNestedManyWithoutDepartmentInput
+  sharedPatterns?: Prisma.RosterPatternCreateNestedManyWithoutDepartmentInput
 }
 
-export type DepartmentUncheckedCreateWithoutWardsInput = {
+export type DepartmentUncheckedCreateWithoutLocationsInput = {
   id?: string
   organizationId: string
   name: string
   archivedAt?: Date | string | null
-  managers?: Prisma.EmployeeUncheckedCreateNestedManyWithoutManagedDepartmentsInput
-  homeStaff?: Prisma.EmployeeUncheckedCreateNestedManyWithoutHomeDepartmentInput
+  managers?: Prisma.ManagementRoleUncheckedCreateNestedManyWithoutDepartmentInput
   sharedShiftTypes?: Prisma.ShiftDefinitionUncheckedCreateNestedManyWithoutDepartmentInput
+  sharedPatterns?: Prisma.RosterPatternUncheckedCreateNestedManyWithoutDepartmentInput
 }
 
-export type DepartmentCreateOrConnectWithoutWardsInput = {
+export type DepartmentCreateOrConnectWithoutLocationsInput = {
   where: Prisma.DepartmentWhereUniqueInput
-  create: Prisma.XOR<Prisma.DepartmentCreateWithoutWardsInput, Prisma.DepartmentUncheckedCreateWithoutWardsInput>
+  create: Prisma.XOR<Prisma.DepartmentCreateWithoutLocationsInput, Prisma.DepartmentUncheckedCreateWithoutLocationsInput>
 }
 
-export type DepartmentUpsertWithoutWardsInput = {
-  update: Prisma.XOR<Prisma.DepartmentUpdateWithoutWardsInput, Prisma.DepartmentUncheckedUpdateWithoutWardsInput>
-  create: Prisma.XOR<Prisma.DepartmentCreateWithoutWardsInput, Prisma.DepartmentUncheckedCreateWithoutWardsInput>
+export type DepartmentUpsertWithoutLocationsInput = {
+  update: Prisma.XOR<Prisma.DepartmentUpdateWithoutLocationsInput, Prisma.DepartmentUncheckedUpdateWithoutLocationsInput>
+  create: Prisma.XOR<Prisma.DepartmentCreateWithoutLocationsInput, Prisma.DepartmentUncheckedCreateWithoutLocationsInput>
   where?: Prisma.DepartmentWhereInput
 }
 
-export type DepartmentUpdateToOneWithWhereWithoutWardsInput = {
+export type DepartmentUpdateToOneWithWhereWithoutLocationsInput = {
   where?: Prisma.DepartmentWhereInput
-  data: Prisma.XOR<Prisma.DepartmentUpdateWithoutWardsInput, Prisma.DepartmentUncheckedUpdateWithoutWardsInput>
+  data: Prisma.XOR<Prisma.DepartmentUpdateWithoutLocationsInput, Prisma.DepartmentUncheckedUpdateWithoutLocationsInput>
 }
 
-export type DepartmentUpdateWithoutWardsInput = {
+export type DepartmentUpdateWithoutLocationsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutDepartmentsNestedInput
-  managers?: Prisma.EmployeeUpdateManyWithoutManagedDepartmentsNestedInput
-  homeStaff?: Prisma.EmployeeUpdateManyWithoutHomeDepartmentNestedInput
+  managers?: Prisma.ManagementRoleUpdateManyWithoutDepartmentNestedInput
   sharedShiftTypes?: Prisma.ShiftDefinitionUpdateManyWithoutDepartmentNestedInput
+  sharedPatterns?: Prisma.RosterPatternUpdateManyWithoutDepartmentNestedInput
 }
 
-export type DepartmentUncheckedUpdateWithoutWardsInput = {
+export type DepartmentUncheckedUpdateWithoutLocationsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   organizationId?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  managers?: Prisma.EmployeeUncheckedUpdateManyWithoutManagedDepartmentsNestedInput
-  homeStaff?: Prisma.EmployeeUncheckedUpdateManyWithoutHomeDepartmentNestedInput
+  managers?: Prisma.ManagementRoleUncheckedUpdateManyWithoutDepartmentNestedInput
   sharedShiftTypes?: Prisma.ShiftDefinitionUncheckedUpdateManyWithoutDepartmentNestedInput
-}
-
-export type DepartmentCreateWithoutHomeStaffInput = {
-  id?: string
-  name: string
-  archivedAt?: Date | string | null
-  organization: Prisma.OrganizationCreateNestedOneWithoutDepartmentsInput
-  wards?: Prisma.WardCreateNestedManyWithoutDepartmentInput
-  managers?: Prisma.EmployeeCreateNestedManyWithoutManagedDepartmentsInput
-  sharedShiftTypes?: Prisma.ShiftDefinitionCreateNestedManyWithoutDepartmentInput
-}
-
-export type DepartmentUncheckedCreateWithoutHomeStaffInput = {
-  id?: string
-  organizationId: string
-  name: string
-  archivedAt?: Date | string | null
-  wards?: Prisma.WardUncheckedCreateNestedManyWithoutDepartmentInput
-  managers?: Prisma.EmployeeUncheckedCreateNestedManyWithoutManagedDepartmentsInput
-  sharedShiftTypes?: Prisma.ShiftDefinitionUncheckedCreateNestedManyWithoutDepartmentInput
-}
-
-export type DepartmentCreateOrConnectWithoutHomeStaffInput = {
-  where: Prisma.DepartmentWhereUniqueInput
-  create: Prisma.XOR<Prisma.DepartmentCreateWithoutHomeStaffInput, Prisma.DepartmentUncheckedCreateWithoutHomeStaffInput>
+  sharedPatterns?: Prisma.RosterPatternUncheckedUpdateManyWithoutDepartmentNestedInput
 }
 
 export type DepartmentCreateWithoutManagersInput = {
@@ -601,9 +554,9 @@ export type DepartmentCreateWithoutManagersInput = {
   name: string
   archivedAt?: Date | string | null
   organization: Prisma.OrganizationCreateNestedOneWithoutDepartmentsInput
-  wards?: Prisma.WardCreateNestedManyWithoutDepartmentInput
-  homeStaff?: Prisma.EmployeeCreateNestedManyWithoutHomeDepartmentInput
+  locations?: Prisma.LocationCreateNestedManyWithoutDepartmentInput
   sharedShiftTypes?: Prisma.ShiftDefinitionCreateNestedManyWithoutDepartmentInput
+  sharedPatterns?: Prisma.RosterPatternCreateNestedManyWithoutDepartmentInput
 }
 
 export type DepartmentUncheckedCreateWithoutManagersInput = {
@@ -611,9 +564,9 @@ export type DepartmentUncheckedCreateWithoutManagersInput = {
   organizationId: string
   name: string
   archivedAt?: Date | string | null
-  wards?: Prisma.WardUncheckedCreateNestedManyWithoutDepartmentInput
-  homeStaff?: Prisma.EmployeeUncheckedCreateNestedManyWithoutHomeDepartmentInput
+  locations?: Prisma.LocationUncheckedCreateNestedManyWithoutDepartmentInput
   sharedShiftTypes?: Prisma.ShiftDefinitionUncheckedCreateNestedManyWithoutDepartmentInput
+  sharedPatterns?: Prisma.RosterPatternUncheckedCreateNestedManyWithoutDepartmentInput
 }
 
 export type DepartmentCreateOrConnectWithoutManagersInput = {
@@ -621,51 +574,35 @@ export type DepartmentCreateOrConnectWithoutManagersInput = {
   create: Prisma.XOR<Prisma.DepartmentCreateWithoutManagersInput, Prisma.DepartmentUncheckedCreateWithoutManagersInput>
 }
 
-export type DepartmentUpsertWithoutHomeStaffInput = {
-  update: Prisma.XOR<Prisma.DepartmentUpdateWithoutHomeStaffInput, Prisma.DepartmentUncheckedUpdateWithoutHomeStaffInput>
-  create: Prisma.XOR<Prisma.DepartmentCreateWithoutHomeStaffInput, Prisma.DepartmentUncheckedCreateWithoutHomeStaffInput>
+export type DepartmentUpsertWithoutManagersInput = {
+  update: Prisma.XOR<Prisma.DepartmentUpdateWithoutManagersInput, Prisma.DepartmentUncheckedUpdateWithoutManagersInput>
+  create: Prisma.XOR<Prisma.DepartmentCreateWithoutManagersInput, Prisma.DepartmentUncheckedCreateWithoutManagersInput>
   where?: Prisma.DepartmentWhereInput
 }
 
-export type DepartmentUpdateToOneWithWhereWithoutHomeStaffInput = {
+export type DepartmentUpdateToOneWithWhereWithoutManagersInput = {
   where?: Prisma.DepartmentWhereInput
-  data: Prisma.XOR<Prisma.DepartmentUpdateWithoutHomeStaffInput, Prisma.DepartmentUncheckedUpdateWithoutHomeStaffInput>
+  data: Prisma.XOR<Prisma.DepartmentUpdateWithoutManagersInput, Prisma.DepartmentUncheckedUpdateWithoutManagersInput>
 }
 
-export type DepartmentUpdateWithoutHomeStaffInput = {
+export type DepartmentUpdateWithoutManagersInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutDepartmentsNestedInput
-  wards?: Prisma.WardUpdateManyWithoutDepartmentNestedInput
-  managers?: Prisma.EmployeeUpdateManyWithoutManagedDepartmentsNestedInput
+  locations?: Prisma.LocationUpdateManyWithoutDepartmentNestedInput
   sharedShiftTypes?: Prisma.ShiftDefinitionUpdateManyWithoutDepartmentNestedInput
+  sharedPatterns?: Prisma.RosterPatternUpdateManyWithoutDepartmentNestedInput
 }
 
-export type DepartmentUncheckedUpdateWithoutHomeStaffInput = {
+export type DepartmentUncheckedUpdateWithoutManagersInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   organizationId?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  wards?: Prisma.WardUncheckedUpdateManyWithoutDepartmentNestedInput
-  managers?: Prisma.EmployeeUncheckedUpdateManyWithoutManagedDepartmentsNestedInput
+  locations?: Prisma.LocationUncheckedUpdateManyWithoutDepartmentNestedInput
   sharedShiftTypes?: Prisma.ShiftDefinitionUncheckedUpdateManyWithoutDepartmentNestedInput
-}
-
-export type DepartmentUpsertWithWhereUniqueWithoutManagersInput = {
-  where: Prisma.DepartmentWhereUniqueInput
-  update: Prisma.XOR<Prisma.DepartmentUpdateWithoutManagersInput, Prisma.DepartmentUncheckedUpdateWithoutManagersInput>
-  create: Prisma.XOR<Prisma.DepartmentCreateWithoutManagersInput, Prisma.DepartmentUncheckedCreateWithoutManagersInput>
-}
-
-export type DepartmentUpdateWithWhereUniqueWithoutManagersInput = {
-  where: Prisma.DepartmentWhereUniqueInput
-  data: Prisma.XOR<Prisma.DepartmentUpdateWithoutManagersInput, Prisma.DepartmentUncheckedUpdateWithoutManagersInput>
-}
-
-export type DepartmentUpdateManyWithWhereWithoutManagersInput = {
-  where: Prisma.DepartmentScalarWhereInput
-  data: Prisma.XOR<Prisma.DepartmentUpdateManyMutationInput, Prisma.DepartmentUncheckedUpdateManyWithoutManagersInput>
+  sharedPatterns?: Prisma.RosterPatternUncheckedUpdateManyWithoutDepartmentNestedInput
 }
 
 export type DepartmentCreateWithoutSharedShiftTypesInput = {
@@ -673,9 +610,9 @@ export type DepartmentCreateWithoutSharedShiftTypesInput = {
   name: string
   archivedAt?: Date | string | null
   organization: Prisma.OrganizationCreateNestedOneWithoutDepartmentsInput
-  wards?: Prisma.WardCreateNestedManyWithoutDepartmentInput
-  managers?: Prisma.EmployeeCreateNestedManyWithoutManagedDepartmentsInput
-  homeStaff?: Prisma.EmployeeCreateNestedManyWithoutHomeDepartmentInput
+  locations?: Prisma.LocationCreateNestedManyWithoutDepartmentInput
+  managers?: Prisma.ManagementRoleCreateNestedManyWithoutDepartmentInput
+  sharedPatterns?: Prisma.RosterPatternCreateNestedManyWithoutDepartmentInput
 }
 
 export type DepartmentUncheckedCreateWithoutSharedShiftTypesInput = {
@@ -683,9 +620,9 @@ export type DepartmentUncheckedCreateWithoutSharedShiftTypesInput = {
   organizationId: string
   name: string
   archivedAt?: Date | string | null
-  wards?: Prisma.WardUncheckedCreateNestedManyWithoutDepartmentInput
-  managers?: Prisma.EmployeeUncheckedCreateNestedManyWithoutManagedDepartmentsInput
-  homeStaff?: Prisma.EmployeeUncheckedCreateNestedManyWithoutHomeDepartmentInput
+  locations?: Prisma.LocationUncheckedCreateNestedManyWithoutDepartmentInput
+  managers?: Prisma.ManagementRoleUncheckedCreateNestedManyWithoutDepartmentInput
+  sharedPatterns?: Prisma.RosterPatternUncheckedCreateNestedManyWithoutDepartmentInput
 }
 
 export type DepartmentCreateOrConnectWithoutSharedShiftTypesInput = {
@@ -709,9 +646,9 @@ export type DepartmentUpdateWithoutSharedShiftTypesInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutDepartmentsNestedInput
-  wards?: Prisma.WardUpdateManyWithoutDepartmentNestedInput
-  managers?: Prisma.EmployeeUpdateManyWithoutManagedDepartmentsNestedInput
-  homeStaff?: Prisma.EmployeeUpdateManyWithoutHomeDepartmentNestedInput
+  locations?: Prisma.LocationUpdateManyWithoutDepartmentNestedInput
+  managers?: Prisma.ManagementRoleUpdateManyWithoutDepartmentNestedInput
+  sharedPatterns?: Prisma.RosterPatternUpdateManyWithoutDepartmentNestedInput
 }
 
 export type DepartmentUncheckedUpdateWithoutSharedShiftTypesInput = {
@@ -719,9 +656,65 @@ export type DepartmentUncheckedUpdateWithoutSharedShiftTypesInput = {
   organizationId?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  wards?: Prisma.WardUncheckedUpdateManyWithoutDepartmentNestedInput
-  managers?: Prisma.EmployeeUncheckedUpdateManyWithoutManagedDepartmentsNestedInput
-  homeStaff?: Prisma.EmployeeUncheckedUpdateManyWithoutHomeDepartmentNestedInput
+  locations?: Prisma.LocationUncheckedUpdateManyWithoutDepartmentNestedInput
+  managers?: Prisma.ManagementRoleUncheckedUpdateManyWithoutDepartmentNestedInput
+  sharedPatterns?: Prisma.RosterPatternUncheckedUpdateManyWithoutDepartmentNestedInput
+}
+
+export type DepartmentCreateWithoutSharedPatternsInput = {
+  id?: string
+  name: string
+  archivedAt?: Date | string | null
+  organization: Prisma.OrganizationCreateNestedOneWithoutDepartmentsInput
+  locations?: Prisma.LocationCreateNestedManyWithoutDepartmentInput
+  managers?: Prisma.ManagementRoleCreateNestedManyWithoutDepartmentInput
+  sharedShiftTypes?: Prisma.ShiftDefinitionCreateNestedManyWithoutDepartmentInput
+}
+
+export type DepartmentUncheckedCreateWithoutSharedPatternsInput = {
+  id?: string
+  organizationId: string
+  name: string
+  archivedAt?: Date | string | null
+  locations?: Prisma.LocationUncheckedCreateNestedManyWithoutDepartmentInput
+  managers?: Prisma.ManagementRoleUncheckedCreateNestedManyWithoutDepartmentInput
+  sharedShiftTypes?: Prisma.ShiftDefinitionUncheckedCreateNestedManyWithoutDepartmentInput
+}
+
+export type DepartmentCreateOrConnectWithoutSharedPatternsInput = {
+  where: Prisma.DepartmentWhereUniqueInput
+  create: Prisma.XOR<Prisma.DepartmentCreateWithoutSharedPatternsInput, Prisma.DepartmentUncheckedCreateWithoutSharedPatternsInput>
+}
+
+export type DepartmentUpsertWithoutSharedPatternsInput = {
+  update: Prisma.XOR<Prisma.DepartmentUpdateWithoutSharedPatternsInput, Prisma.DepartmentUncheckedUpdateWithoutSharedPatternsInput>
+  create: Prisma.XOR<Prisma.DepartmentCreateWithoutSharedPatternsInput, Prisma.DepartmentUncheckedCreateWithoutSharedPatternsInput>
+  where?: Prisma.DepartmentWhereInput
+}
+
+export type DepartmentUpdateToOneWithWhereWithoutSharedPatternsInput = {
+  where?: Prisma.DepartmentWhereInput
+  data: Prisma.XOR<Prisma.DepartmentUpdateWithoutSharedPatternsInput, Prisma.DepartmentUncheckedUpdateWithoutSharedPatternsInput>
+}
+
+export type DepartmentUpdateWithoutSharedPatternsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  organization?: Prisma.OrganizationUpdateOneRequiredWithoutDepartmentsNestedInput
+  locations?: Prisma.LocationUpdateManyWithoutDepartmentNestedInput
+  managers?: Prisma.ManagementRoleUpdateManyWithoutDepartmentNestedInput
+  sharedShiftTypes?: Prisma.ShiftDefinitionUpdateManyWithoutDepartmentNestedInput
+}
+
+export type DepartmentUncheckedUpdateWithoutSharedPatternsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  organizationId?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  locations?: Prisma.LocationUncheckedUpdateManyWithoutDepartmentNestedInput
+  managers?: Prisma.ManagementRoleUncheckedUpdateManyWithoutDepartmentNestedInput
+  sharedShiftTypes?: Prisma.ShiftDefinitionUncheckedUpdateManyWithoutDepartmentNestedInput
 }
 
 export type DepartmentCreateManyOrganizationInput = {
@@ -734,51 +727,24 @@ export type DepartmentUpdateWithoutOrganizationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  wards?: Prisma.WardUpdateManyWithoutDepartmentNestedInput
-  managers?: Prisma.EmployeeUpdateManyWithoutManagedDepartmentsNestedInput
-  homeStaff?: Prisma.EmployeeUpdateManyWithoutHomeDepartmentNestedInput
+  locations?: Prisma.LocationUpdateManyWithoutDepartmentNestedInput
+  managers?: Prisma.ManagementRoleUpdateManyWithoutDepartmentNestedInput
   sharedShiftTypes?: Prisma.ShiftDefinitionUpdateManyWithoutDepartmentNestedInput
+  sharedPatterns?: Prisma.RosterPatternUpdateManyWithoutDepartmentNestedInput
 }
 
 export type DepartmentUncheckedUpdateWithoutOrganizationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  wards?: Prisma.WardUncheckedUpdateManyWithoutDepartmentNestedInput
-  managers?: Prisma.EmployeeUncheckedUpdateManyWithoutManagedDepartmentsNestedInput
-  homeStaff?: Prisma.EmployeeUncheckedUpdateManyWithoutHomeDepartmentNestedInput
+  locations?: Prisma.LocationUncheckedUpdateManyWithoutDepartmentNestedInput
+  managers?: Prisma.ManagementRoleUncheckedUpdateManyWithoutDepartmentNestedInput
   sharedShiftTypes?: Prisma.ShiftDefinitionUncheckedUpdateManyWithoutDepartmentNestedInput
+  sharedPatterns?: Prisma.RosterPatternUncheckedUpdateManyWithoutDepartmentNestedInput
 }
 
 export type DepartmentUncheckedUpdateManyWithoutOrganizationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-}
-
-export type DepartmentUpdateWithoutManagersInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  organization?: Prisma.OrganizationUpdateOneRequiredWithoutDepartmentsNestedInput
-  wards?: Prisma.WardUpdateManyWithoutDepartmentNestedInput
-  homeStaff?: Prisma.EmployeeUpdateManyWithoutHomeDepartmentNestedInput
-  sharedShiftTypes?: Prisma.ShiftDefinitionUpdateManyWithoutDepartmentNestedInput
-}
-
-export type DepartmentUncheckedUpdateWithoutManagersInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  organizationId?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  wards?: Prisma.WardUncheckedUpdateManyWithoutDepartmentNestedInput
-  homeStaff?: Prisma.EmployeeUncheckedUpdateManyWithoutHomeDepartmentNestedInput
-  sharedShiftTypes?: Prisma.ShiftDefinitionUncheckedUpdateManyWithoutDepartmentNestedInput
-}
-
-export type DepartmentUncheckedUpdateManyWithoutManagersInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  organizationId?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
@@ -789,17 +755,17 @@ export type DepartmentUncheckedUpdateManyWithoutManagersInput = {
  */
 
 export type DepartmentCountOutputType = {
-  wards: number
+  locations: number
   managers: number
-  homeStaff: number
   sharedShiftTypes: number
+  sharedPatterns: number
 }
 
 export type DepartmentCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  wards?: boolean | DepartmentCountOutputTypeCountWardsArgs
+  locations?: boolean | DepartmentCountOutputTypeCountLocationsArgs
   managers?: boolean | DepartmentCountOutputTypeCountManagersArgs
-  homeStaff?: boolean | DepartmentCountOutputTypeCountHomeStaffArgs
   sharedShiftTypes?: boolean | DepartmentCountOutputTypeCountSharedShiftTypesArgs
+  sharedPatterns?: boolean | DepartmentCountOutputTypeCountSharedPatternsArgs
 }
 
 /**
@@ -815,22 +781,15 @@ export type DepartmentCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.E
 /**
  * DepartmentCountOutputType without action
  */
-export type DepartmentCountOutputTypeCountWardsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.WardWhereInput
+export type DepartmentCountOutputTypeCountLocationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.LocationWhereInput
 }
 
 /**
  * DepartmentCountOutputType without action
  */
 export type DepartmentCountOutputTypeCountManagersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.EmployeeWhereInput
-}
-
-/**
- * DepartmentCountOutputType without action
- */
-export type DepartmentCountOutputTypeCountHomeStaffArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.EmployeeWhereInput
+  where?: Prisma.ManagementRoleWhereInput
 }
 
 /**
@@ -840,6 +799,13 @@ export type DepartmentCountOutputTypeCountSharedShiftTypesArgs<ExtArgs extends r
   where?: Prisma.ShiftDefinitionWhereInput
 }
 
+/**
+ * DepartmentCountOutputType without action
+ */
+export type DepartmentCountOutputTypeCountSharedPatternsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.RosterPatternWhereInput
+}
+
 
 export type DepartmentSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -847,10 +813,10 @@ export type DepartmentSelect<ExtArgs extends runtime.Types.Extensions.InternalAr
   name?: boolean
   archivedAt?: boolean
   organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
-  wards?: boolean | Prisma.Department$wardsArgs<ExtArgs>
+  locations?: boolean | Prisma.Department$locationsArgs<ExtArgs>
   managers?: boolean | Prisma.Department$managersArgs<ExtArgs>
-  homeStaff?: boolean | Prisma.Department$homeStaffArgs<ExtArgs>
   sharedShiftTypes?: boolean | Prisma.Department$sharedShiftTypesArgs<ExtArgs>
+  sharedPatterns?: boolean | Prisma.Department$sharedPatternsArgs<ExtArgs>
   _count?: boolean | Prisma.DepartmentCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["department"]>
 
@@ -880,10 +846,10 @@ export type DepartmentSelectScalar = {
 export type DepartmentOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "organizationId" | "name" | "archivedAt", ExtArgs["result"]["department"]>
 export type DepartmentInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
-  wards?: boolean | Prisma.Department$wardsArgs<ExtArgs>
+  locations?: boolean | Prisma.Department$locationsArgs<ExtArgs>
   managers?: boolean | Prisma.Department$managersArgs<ExtArgs>
-  homeStaff?: boolean | Prisma.Department$homeStaffArgs<ExtArgs>
   sharedShiftTypes?: boolean | Prisma.Department$sharedShiftTypesArgs<ExtArgs>
+  sharedPatterns?: boolean | Prisma.Department$sharedPatternsArgs<ExtArgs>
   _count?: boolean | Prisma.DepartmentCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type DepartmentIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -897,10 +863,10 @@ export type $DepartmentPayload<ExtArgs extends runtime.Types.Extensions.Internal
   name: "Department"
   objects: {
     organization: Prisma.$OrganizationPayload<ExtArgs>
-    wards: Prisma.$WardPayload<ExtArgs>[]
-    managers: Prisma.$EmployeePayload<ExtArgs>[]
-    homeStaff: Prisma.$EmployeePayload<ExtArgs>[]
+    locations: Prisma.$LocationPayload<ExtArgs>[]
+    managers: Prisma.$ManagementRolePayload<ExtArgs>[]
     sharedShiftTypes: Prisma.$ShiftDefinitionPayload<ExtArgs>[]
+    sharedPatterns: Prisma.$RosterPatternPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1302,10 +1268,10 @@ readonly fields: DepartmentFieldRefs;
 export interface Prisma__DepartmentClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   organization<T extends Prisma.OrganizationDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.OrganizationDefaultArgs<ExtArgs>>): Prisma.Prisma__OrganizationClient<runtime.Types.Result.GetResult<Prisma.$OrganizationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-  wards<T extends Prisma.Department$wardsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Department$wardsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$WardPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  managers<T extends Prisma.Department$managersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Department$managersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$EmployeePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  homeStaff<T extends Prisma.Department$homeStaffArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Department$homeStaffArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$EmployeePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  locations<T extends Prisma.Department$locationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Department$locationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$LocationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  managers<T extends Prisma.Department$managersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Department$managersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ManagementRolePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   sharedShiftTypes<T extends Prisma.Department$sharedShiftTypesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Department$sharedShiftTypesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ShiftDefinitionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  sharedPatterns<T extends Prisma.Department$sharedPatternsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Department$sharedPatternsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$RosterPatternPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1735,27 +1701,27 @@ export type DepartmentDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.In
 }
 
 /**
- * Department.wards
+ * Department.locations
  */
-export type Department$wardsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type Department$locationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the Ward
+   * Select specific fields to fetch from the Location
    */
-  select?: Prisma.WardSelect<ExtArgs> | null
+  select?: Prisma.LocationSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the Ward
+   * Omit specific fields from the Location
    */
-  omit?: Prisma.WardOmit<ExtArgs> | null
+  omit?: Prisma.LocationOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.WardInclude<ExtArgs> | null
-  where?: Prisma.WardWhereInput
-  orderBy?: Prisma.WardOrderByWithRelationInput | Prisma.WardOrderByWithRelationInput[]
-  cursor?: Prisma.WardWhereUniqueInput
+  include?: Prisma.LocationInclude<ExtArgs> | null
+  where?: Prisma.LocationWhereInput
+  orderBy?: Prisma.LocationOrderByWithRelationInput | Prisma.LocationOrderByWithRelationInput[]
+  cursor?: Prisma.LocationWhereUniqueInput
   take?: number
   skip?: number
-  distinct?: Prisma.WardScalarFieldEnum | Prisma.WardScalarFieldEnum[]
+  distinct?: Prisma.LocationScalarFieldEnum | Prisma.LocationScalarFieldEnum[]
 }
 
 /**
@@ -1763,47 +1729,23 @@ export type Department$wardsArgs<ExtArgs extends runtime.Types.Extensions.Intern
  */
 export type Department$managersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the Employee
+   * Select specific fields to fetch from the ManagementRole
    */
-  select?: Prisma.EmployeeSelect<ExtArgs> | null
+  select?: Prisma.ManagementRoleSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the Employee
+   * Omit specific fields from the ManagementRole
    */
-  omit?: Prisma.EmployeeOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.EmployeeInclude<ExtArgs> | null
-  where?: Prisma.EmployeeWhereInput
-  orderBy?: Prisma.EmployeeOrderByWithRelationInput | Prisma.EmployeeOrderByWithRelationInput[]
-  cursor?: Prisma.EmployeeWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.EmployeeScalarFieldEnum | Prisma.EmployeeScalarFieldEnum[]
-}
-
-/**
- * Department.homeStaff
- */
-export type Department$homeStaffArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the Employee
-   */
-  select?: Prisma.EmployeeSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the Employee
-   */
-  omit?: Prisma.EmployeeOmit<ExtArgs> | null
+  omit?: Prisma.ManagementRoleOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.EmployeeInclude<ExtArgs> | null
-  where?: Prisma.EmployeeWhereInput
-  orderBy?: Prisma.EmployeeOrderByWithRelationInput | Prisma.EmployeeOrderByWithRelationInput[]
-  cursor?: Prisma.EmployeeWhereUniqueInput
+  include?: Prisma.ManagementRoleInclude<ExtArgs> | null
+  where?: Prisma.ManagementRoleWhereInput
+  orderBy?: Prisma.ManagementRoleOrderByWithRelationInput | Prisma.ManagementRoleOrderByWithRelationInput[]
+  cursor?: Prisma.ManagementRoleWhereUniqueInput
   take?: number
   skip?: number
-  distinct?: Prisma.EmployeeScalarFieldEnum | Prisma.EmployeeScalarFieldEnum[]
+  distinct?: Prisma.ManagementRoleScalarFieldEnum | Prisma.ManagementRoleScalarFieldEnum[]
 }
 
 /**
@@ -1828,6 +1770,30 @@ export type Department$sharedShiftTypesArgs<ExtArgs extends runtime.Types.Extens
   take?: number
   skip?: number
   distinct?: Prisma.ShiftDefinitionScalarFieldEnum | Prisma.ShiftDefinitionScalarFieldEnum[]
+}
+
+/**
+ * Department.sharedPatterns
+ */
+export type Department$sharedPatternsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the RosterPattern
+   */
+  select?: Prisma.RosterPatternSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the RosterPattern
+   */
+  omit?: Prisma.RosterPatternOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.RosterPatternInclude<ExtArgs> | null
+  where?: Prisma.RosterPatternWhereInput
+  orderBy?: Prisma.RosterPatternOrderByWithRelationInput | Prisma.RosterPatternOrderByWithRelationInput[]
+  cursor?: Prisma.RosterPatternWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.RosterPatternScalarFieldEnum | Prisma.RosterPatternScalarFieldEnum[]
 }
 
 /**

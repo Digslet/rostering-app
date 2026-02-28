@@ -26,6 +26,7 @@ export type AggregateShiftClaim = {
 
 export type ShiftClaimMinAggregateOutputType = {
   id: string | null
+  organizationId: string | null
   shiftAdvertisementId: string | null
   employeeId: string | null
   targetManagerId: string | null
@@ -37,6 +38,7 @@ export type ShiftClaimMinAggregateOutputType = {
 
 export type ShiftClaimMaxAggregateOutputType = {
   id: string | null
+  organizationId: string | null
   shiftAdvertisementId: string | null
   employeeId: string | null
   targetManagerId: string | null
@@ -48,6 +50,7 @@ export type ShiftClaimMaxAggregateOutputType = {
 
 export type ShiftClaimCountAggregateOutputType = {
   id: number
+  organizationId: number
   shiftAdvertisementId: number
   employeeId: number
   targetManagerId: number
@@ -61,6 +64,7 @@ export type ShiftClaimCountAggregateOutputType = {
 
 export type ShiftClaimMinAggregateInputType = {
   id?: true
+  organizationId?: true
   shiftAdvertisementId?: true
   employeeId?: true
   targetManagerId?: true
@@ -72,6 +76,7 @@ export type ShiftClaimMinAggregateInputType = {
 
 export type ShiftClaimMaxAggregateInputType = {
   id?: true
+  organizationId?: true
   shiftAdvertisementId?: true
   employeeId?: true
   targetManagerId?: true
@@ -83,6 +88,7 @@ export type ShiftClaimMaxAggregateInputType = {
 
 export type ShiftClaimCountAggregateInputType = {
   id?: true
+  organizationId?: true
   shiftAdvertisementId?: true
   employeeId?: true
   targetManagerId?: true
@@ -167,6 +173,7 @@ export type ShiftClaimGroupByArgs<ExtArgs extends runtime.Types.Extensions.Inter
 
 export type ShiftClaimGroupByOutputType = {
   id: string
+  organizationId: string
   shiftAdvertisementId: string
   employeeId: string
   targetManagerId: string | null
@@ -199,6 +206,7 @@ export type ShiftClaimWhereInput = {
   OR?: Prisma.ShiftClaimWhereInput[]
   NOT?: Prisma.ShiftClaimWhereInput | Prisma.ShiftClaimWhereInput[]
   id?: Prisma.StringFilter<"ShiftClaim"> | string
+  organizationId?: Prisma.StringFilter<"ShiftClaim"> | string
   shiftAdvertisementId?: Prisma.StringFilter<"ShiftClaim"> | string
   employeeId?: Prisma.StringFilter<"ShiftClaim"> | string
   targetManagerId?: Prisma.StringNullableFilter<"ShiftClaim"> | string | null
@@ -210,10 +218,12 @@ export type ShiftClaimWhereInput = {
   employee?: Prisma.XOR<Prisma.EmployeeScalarRelationFilter, Prisma.EmployeeWhereInput>
   targetManager?: Prisma.XOR<Prisma.EmployeeNullableScalarRelationFilter, Prisma.EmployeeWhereInput> | null
   homeManager?: Prisma.XOR<Prisma.EmployeeNullableScalarRelationFilter, Prisma.EmployeeWhereInput> | null
+  organization?: Prisma.XOR<Prisma.OrganizationScalarRelationFilter, Prisma.OrganizationWhereInput>
 }
 
 export type ShiftClaimOrderByWithRelationInput = {
   id?: Prisma.SortOrder
+  organizationId?: Prisma.SortOrder
   shiftAdvertisementId?: Prisma.SortOrder
   employeeId?: Prisma.SortOrder
   targetManagerId?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -225,6 +235,7 @@ export type ShiftClaimOrderByWithRelationInput = {
   employee?: Prisma.EmployeeOrderByWithRelationInput
   targetManager?: Prisma.EmployeeOrderByWithRelationInput
   homeManager?: Prisma.EmployeeOrderByWithRelationInput
+  organization?: Prisma.OrganizationOrderByWithRelationInput
 }
 
 export type ShiftClaimWhereUniqueInput = Prisma.AtLeast<{
@@ -233,6 +244,7 @@ export type ShiftClaimWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.ShiftClaimWhereInput | Prisma.ShiftClaimWhereInput[]
   OR?: Prisma.ShiftClaimWhereInput[]
   NOT?: Prisma.ShiftClaimWhereInput | Prisma.ShiftClaimWhereInput[]
+  organizationId?: Prisma.StringFilter<"ShiftClaim"> | string
   shiftAdvertisementId?: Prisma.StringFilter<"ShiftClaim"> | string
   employeeId?: Prisma.StringFilter<"ShiftClaim"> | string
   targetManagerId?: Prisma.StringNullableFilter<"ShiftClaim"> | string | null
@@ -244,10 +256,12 @@ export type ShiftClaimWhereUniqueInput = Prisma.AtLeast<{
   employee?: Prisma.XOR<Prisma.EmployeeScalarRelationFilter, Prisma.EmployeeWhereInput>
   targetManager?: Prisma.XOR<Prisma.EmployeeNullableScalarRelationFilter, Prisma.EmployeeWhereInput> | null
   homeManager?: Prisma.XOR<Prisma.EmployeeNullableScalarRelationFilter, Prisma.EmployeeWhereInput> | null
+  organization?: Prisma.XOR<Prisma.OrganizationScalarRelationFilter, Prisma.OrganizationWhereInput>
 }, "id" | "shiftAdvertisementId_employeeId">
 
 export type ShiftClaimOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
+  organizationId?: Prisma.SortOrder
   shiftAdvertisementId?: Prisma.SortOrder
   employeeId?: Prisma.SortOrder
   targetManagerId?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -265,6 +279,7 @@ export type ShiftClaimScalarWhereWithAggregatesInput = {
   OR?: Prisma.ShiftClaimScalarWhereWithAggregatesInput[]
   NOT?: Prisma.ShiftClaimScalarWhereWithAggregatesInput | Prisma.ShiftClaimScalarWhereWithAggregatesInput[]
   id?: Prisma.StringWithAggregatesFilter<"ShiftClaim"> | string
+  organizationId?: Prisma.StringWithAggregatesFilter<"ShiftClaim"> | string
   shiftAdvertisementId?: Prisma.StringWithAggregatesFilter<"ShiftClaim"> | string
   employeeId?: Prisma.StringWithAggregatesFilter<"ShiftClaim"> | string
   targetManagerId?: Prisma.StringNullableWithAggregatesFilter<"ShiftClaim"> | string | null
@@ -283,10 +298,12 @@ export type ShiftClaimCreateInput = {
   employee: Prisma.EmployeeCreateNestedOneWithoutShiftClaimsInput
   targetManager?: Prisma.EmployeeCreateNestedOneWithoutTargetManagerClaimsInput
   homeManager?: Prisma.EmployeeCreateNestedOneWithoutHomeManagerClaimsInput
+  organization: Prisma.OrganizationCreateNestedOneWithoutShiftClaimsInput
 }
 
 export type ShiftClaimUncheckedCreateInput = {
   id?: string
+  organizationId: string
   shiftAdvertisementId: string
   employeeId: string
   targetManagerId?: string | null
@@ -305,10 +322,12 @@ export type ShiftClaimUpdateInput = {
   employee?: Prisma.EmployeeUpdateOneRequiredWithoutShiftClaimsNestedInput
   targetManager?: Prisma.EmployeeUpdateOneWithoutTargetManagerClaimsNestedInput
   homeManager?: Prisma.EmployeeUpdateOneWithoutHomeManagerClaimsNestedInput
+  organization?: Prisma.OrganizationUpdateOneRequiredWithoutShiftClaimsNestedInput
 }
 
 export type ShiftClaimUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  organizationId?: Prisma.StringFieldUpdateOperationsInput | string
   shiftAdvertisementId?: Prisma.StringFieldUpdateOperationsInput | string
   employeeId?: Prisma.StringFieldUpdateOperationsInput | string
   targetManagerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -320,6 +339,7 @@ export type ShiftClaimUncheckedUpdateInput = {
 
 export type ShiftClaimCreateManyInput = {
   id?: string
+  organizationId: string
   shiftAdvertisementId: string
   employeeId: string
   targetManagerId?: string | null
@@ -338,6 +358,7 @@ export type ShiftClaimUpdateManyMutationInput = {
 
 export type ShiftClaimUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  organizationId?: Prisma.StringFieldUpdateOperationsInput | string
   shiftAdvertisementId?: Prisma.StringFieldUpdateOperationsInput | string
   employeeId?: Prisma.StringFieldUpdateOperationsInput | string
   targetManagerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -364,6 +385,7 @@ export type ShiftClaimShiftAdvertisementIdEmployeeIdCompoundUniqueInput = {
 
 export type ShiftClaimCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  organizationId?: Prisma.SortOrder
   shiftAdvertisementId?: Prisma.SortOrder
   employeeId?: Prisma.SortOrder
   targetManagerId?: Prisma.SortOrder
@@ -375,6 +397,7 @@ export type ShiftClaimCountOrderByAggregateInput = {
 
 export type ShiftClaimMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  organizationId?: Prisma.SortOrder
   shiftAdvertisementId?: Prisma.SortOrder
   employeeId?: Prisma.SortOrder
   targetManagerId?: Prisma.SortOrder
@@ -386,6 +409,7 @@ export type ShiftClaimMaxOrderByAggregateInput = {
 
 export type ShiftClaimMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  organizationId?: Prisma.SortOrder
   shiftAdvertisementId?: Prisma.SortOrder
   employeeId?: Prisma.SortOrder
   targetManagerId?: Prisma.SortOrder
@@ -393,6 +417,48 @@ export type ShiftClaimMinOrderByAggregateInput = {
   status?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+}
+
+export type ShiftClaimCreateNestedManyWithoutOrganizationInput = {
+  create?: Prisma.XOR<Prisma.ShiftClaimCreateWithoutOrganizationInput, Prisma.ShiftClaimUncheckedCreateWithoutOrganizationInput> | Prisma.ShiftClaimCreateWithoutOrganizationInput[] | Prisma.ShiftClaimUncheckedCreateWithoutOrganizationInput[]
+  connectOrCreate?: Prisma.ShiftClaimCreateOrConnectWithoutOrganizationInput | Prisma.ShiftClaimCreateOrConnectWithoutOrganizationInput[]
+  createMany?: Prisma.ShiftClaimCreateManyOrganizationInputEnvelope
+  connect?: Prisma.ShiftClaimWhereUniqueInput | Prisma.ShiftClaimWhereUniqueInput[]
+}
+
+export type ShiftClaimUncheckedCreateNestedManyWithoutOrganizationInput = {
+  create?: Prisma.XOR<Prisma.ShiftClaimCreateWithoutOrganizationInput, Prisma.ShiftClaimUncheckedCreateWithoutOrganizationInput> | Prisma.ShiftClaimCreateWithoutOrganizationInput[] | Prisma.ShiftClaimUncheckedCreateWithoutOrganizationInput[]
+  connectOrCreate?: Prisma.ShiftClaimCreateOrConnectWithoutOrganizationInput | Prisma.ShiftClaimCreateOrConnectWithoutOrganizationInput[]
+  createMany?: Prisma.ShiftClaimCreateManyOrganizationInputEnvelope
+  connect?: Prisma.ShiftClaimWhereUniqueInput | Prisma.ShiftClaimWhereUniqueInput[]
+}
+
+export type ShiftClaimUpdateManyWithoutOrganizationNestedInput = {
+  create?: Prisma.XOR<Prisma.ShiftClaimCreateWithoutOrganizationInput, Prisma.ShiftClaimUncheckedCreateWithoutOrganizationInput> | Prisma.ShiftClaimCreateWithoutOrganizationInput[] | Prisma.ShiftClaimUncheckedCreateWithoutOrganizationInput[]
+  connectOrCreate?: Prisma.ShiftClaimCreateOrConnectWithoutOrganizationInput | Prisma.ShiftClaimCreateOrConnectWithoutOrganizationInput[]
+  upsert?: Prisma.ShiftClaimUpsertWithWhereUniqueWithoutOrganizationInput | Prisma.ShiftClaimUpsertWithWhereUniqueWithoutOrganizationInput[]
+  createMany?: Prisma.ShiftClaimCreateManyOrganizationInputEnvelope
+  set?: Prisma.ShiftClaimWhereUniqueInput | Prisma.ShiftClaimWhereUniqueInput[]
+  disconnect?: Prisma.ShiftClaimWhereUniqueInput | Prisma.ShiftClaimWhereUniqueInput[]
+  delete?: Prisma.ShiftClaimWhereUniqueInput | Prisma.ShiftClaimWhereUniqueInput[]
+  connect?: Prisma.ShiftClaimWhereUniqueInput | Prisma.ShiftClaimWhereUniqueInput[]
+  update?: Prisma.ShiftClaimUpdateWithWhereUniqueWithoutOrganizationInput | Prisma.ShiftClaimUpdateWithWhereUniqueWithoutOrganizationInput[]
+  updateMany?: Prisma.ShiftClaimUpdateManyWithWhereWithoutOrganizationInput | Prisma.ShiftClaimUpdateManyWithWhereWithoutOrganizationInput[]
+  deleteMany?: Prisma.ShiftClaimScalarWhereInput | Prisma.ShiftClaimScalarWhereInput[]
+}
+
+export type ShiftClaimUncheckedUpdateManyWithoutOrganizationNestedInput = {
+  create?: Prisma.XOR<Prisma.ShiftClaimCreateWithoutOrganizationInput, Prisma.ShiftClaimUncheckedCreateWithoutOrganizationInput> | Prisma.ShiftClaimCreateWithoutOrganizationInput[] | Prisma.ShiftClaimUncheckedCreateWithoutOrganizationInput[]
+  connectOrCreate?: Prisma.ShiftClaimCreateOrConnectWithoutOrganizationInput | Prisma.ShiftClaimCreateOrConnectWithoutOrganizationInput[]
+  upsert?: Prisma.ShiftClaimUpsertWithWhereUniqueWithoutOrganizationInput | Prisma.ShiftClaimUpsertWithWhereUniqueWithoutOrganizationInput[]
+  createMany?: Prisma.ShiftClaimCreateManyOrganizationInputEnvelope
+  set?: Prisma.ShiftClaimWhereUniqueInput | Prisma.ShiftClaimWhereUniqueInput[]
+  disconnect?: Prisma.ShiftClaimWhereUniqueInput | Prisma.ShiftClaimWhereUniqueInput[]
+  delete?: Prisma.ShiftClaimWhereUniqueInput | Prisma.ShiftClaimWhereUniqueInput[]
+  connect?: Prisma.ShiftClaimWhereUniqueInput | Prisma.ShiftClaimWhereUniqueInput[]
+  update?: Prisma.ShiftClaimUpdateWithWhereUniqueWithoutOrganizationInput | Prisma.ShiftClaimUpdateWithWhereUniqueWithoutOrganizationInput[]
+  updateMany?: Prisma.ShiftClaimUpdateManyWithWhereWithoutOrganizationInput | Prisma.ShiftClaimUpdateManyWithWhereWithoutOrganizationInput[]
+  deleteMany?: Prisma.ShiftClaimScalarWhereInput | Prisma.ShiftClaimScalarWhereInput[]
 }
 
 export type ShiftClaimCreateNestedManyWithoutEmployeeInput = {
@@ -567,6 +633,69 @@ export type EnumClaimStatusFieldUpdateOperationsInput = {
   set?: $Enums.ClaimStatus
 }
 
+export type ShiftClaimCreateWithoutOrganizationInput = {
+  id?: string
+  status?: $Enums.ClaimStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  advertisement: Prisma.ShiftAdvertisementCreateNestedOneWithoutClaimsInput
+  employee: Prisma.EmployeeCreateNestedOneWithoutShiftClaimsInput
+  targetManager?: Prisma.EmployeeCreateNestedOneWithoutTargetManagerClaimsInput
+  homeManager?: Prisma.EmployeeCreateNestedOneWithoutHomeManagerClaimsInput
+}
+
+export type ShiftClaimUncheckedCreateWithoutOrganizationInput = {
+  id?: string
+  shiftAdvertisementId: string
+  employeeId: string
+  targetManagerId?: string | null
+  homeManagerId?: string | null
+  status?: $Enums.ClaimStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type ShiftClaimCreateOrConnectWithoutOrganizationInput = {
+  where: Prisma.ShiftClaimWhereUniqueInput
+  create: Prisma.XOR<Prisma.ShiftClaimCreateWithoutOrganizationInput, Prisma.ShiftClaimUncheckedCreateWithoutOrganizationInput>
+}
+
+export type ShiftClaimCreateManyOrganizationInputEnvelope = {
+  data: Prisma.ShiftClaimCreateManyOrganizationInput | Prisma.ShiftClaimCreateManyOrganizationInput[]
+  skipDuplicates?: boolean
+}
+
+export type ShiftClaimUpsertWithWhereUniqueWithoutOrganizationInput = {
+  where: Prisma.ShiftClaimWhereUniqueInput
+  update: Prisma.XOR<Prisma.ShiftClaimUpdateWithoutOrganizationInput, Prisma.ShiftClaimUncheckedUpdateWithoutOrganizationInput>
+  create: Prisma.XOR<Prisma.ShiftClaimCreateWithoutOrganizationInput, Prisma.ShiftClaimUncheckedCreateWithoutOrganizationInput>
+}
+
+export type ShiftClaimUpdateWithWhereUniqueWithoutOrganizationInput = {
+  where: Prisma.ShiftClaimWhereUniqueInput
+  data: Prisma.XOR<Prisma.ShiftClaimUpdateWithoutOrganizationInput, Prisma.ShiftClaimUncheckedUpdateWithoutOrganizationInput>
+}
+
+export type ShiftClaimUpdateManyWithWhereWithoutOrganizationInput = {
+  where: Prisma.ShiftClaimScalarWhereInput
+  data: Prisma.XOR<Prisma.ShiftClaimUpdateManyMutationInput, Prisma.ShiftClaimUncheckedUpdateManyWithoutOrganizationInput>
+}
+
+export type ShiftClaimScalarWhereInput = {
+  AND?: Prisma.ShiftClaimScalarWhereInput | Prisma.ShiftClaimScalarWhereInput[]
+  OR?: Prisma.ShiftClaimScalarWhereInput[]
+  NOT?: Prisma.ShiftClaimScalarWhereInput | Prisma.ShiftClaimScalarWhereInput[]
+  id?: Prisma.StringFilter<"ShiftClaim"> | string
+  organizationId?: Prisma.StringFilter<"ShiftClaim"> | string
+  shiftAdvertisementId?: Prisma.StringFilter<"ShiftClaim"> | string
+  employeeId?: Prisma.StringFilter<"ShiftClaim"> | string
+  targetManagerId?: Prisma.StringNullableFilter<"ShiftClaim"> | string | null
+  homeManagerId?: Prisma.StringNullableFilter<"ShiftClaim"> | string | null
+  status?: Prisma.EnumClaimStatusFilter<"ShiftClaim"> | $Enums.ClaimStatus
+  createdAt?: Prisma.DateTimeFilter<"ShiftClaim"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"ShiftClaim"> | Date | string
+}
+
 export type ShiftClaimCreateWithoutEmployeeInput = {
   id?: string
   status?: $Enums.ClaimStatus
@@ -575,10 +704,12 @@ export type ShiftClaimCreateWithoutEmployeeInput = {
   advertisement: Prisma.ShiftAdvertisementCreateNestedOneWithoutClaimsInput
   targetManager?: Prisma.EmployeeCreateNestedOneWithoutTargetManagerClaimsInput
   homeManager?: Prisma.EmployeeCreateNestedOneWithoutHomeManagerClaimsInput
+  organization: Prisma.OrganizationCreateNestedOneWithoutShiftClaimsInput
 }
 
 export type ShiftClaimUncheckedCreateWithoutEmployeeInput = {
   id?: string
+  organizationId: string
   shiftAdvertisementId: string
   targetManagerId?: string | null
   homeManagerId?: string | null
@@ -605,10 +736,12 @@ export type ShiftClaimCreateWithoutTargetManagerInput = {
   advertisement: Prisma.ShiftAdvertisementCreateNestedOneWithoutClaimsInput
   employee: Prisma.EmployeeCreateNestedOneWithoutShiftClaimsInput
   homeManager?: Prisma.EmployeeCreateNestedOneWithoutHomeManagerClaimsInput
+  organization: Prisma.OrganizationCreateNestedOneWithoutShiftClaimsInput
 }
 
 export type ShiftClaimUncheckedCreateWithoutTargetManagerInput = {
   id?: string
+  organizationId: string
   shiftAdvertisementId: string
   employeeId: string
   homeManagerId?: string | null
@@ -635,10 +768,12 @@ export type ShiftClaimCreateWithoutHomeManagerInput = {
   advertisement: Prisma.ShiftAdvertisementCreateNestedOneWithoutClaimsInput
   employee: Prisma.EmployeeCreateNestedOneWithoutShiftClaimsInput
   targetManager?: Prisma.EmployeeCreateNestedOneWithoutTargetManagerClaimsInput
+  organization: Prisma.OrganizationCreateNestedOneWithoutShiftClaimsInput
 }
 
 export type ShiftClaimUncheckedCreateWithoutHomeManagerInput = {
   id?: string
+  organizationId: string
   shiftAdvertisementId: string
   employeeId: string
   targetManagerId?: string | null
@@ -671,20 +806,6 @@ export type ShiftClaimUpdateWithWhereUniqueWithoutEmployeeInput = {
 export type ShiftClaimUpdateManyWithWhereWithoutEmployeeInput = {
   where: Prisma.ShiftClaimScalarWhereInput
   data: Prisma.XOR<Prisma.ShiftClaimUpdateManyMutationInput, Prisma.ShiftClaimUncheckedUpdateManyWithoutEmployeeInput>
-}
-
-export type ShiftClaimScalarWhereInput = {
-  AND?: Prisma.ShiftClaimScalarWhereInput | Prisma.ShiftClaimScalarWhereInput[]
-  OR?: Prisma.ShiftClaimScalarWhereInput[]
-  NOT?: Prisma.ShiftClaimScalarWhereInput | Prisma.ShiftClaimScalarWhereInput[]
-  id?: Prisma.StringFilter<"ShiftClaim"> | string
-  shiftAdvertisementId?: Prisma.StringFilter<"ShiftClaim"> | string
-  employeeId?: Prisma.StringFilter<"ShiftClaim"> | string
-  targetManagerId?: Prisma.StringNullableFilter<"ShiftClaim"> | string | null
-  homeManagerId?: Prisma.StringNullableFilter<"ShiftClaim"> | string | null
-  status?: Prisma.EnumClaimStatusFilter<"ShiftClaim"> | $Enums.ClaimStatus
-  createdAt?: Prisma.DateTimeFilter<"ShiftClaim"> | Date | string
-  updatedAt?: Prisma.DateTimeFilter<"ShiftClaim"> | Date | string
 }
 
 export type ShiftClaimUpsertWithWhereUniqueWithoutTargetManagerInput = {
@@ -727,10 +848,12 @@ export type ShiftClaimCreateWithoutAdvertisementInput = {
   employee: Prisma.EmployeeCreateNestedOneWithoutShiftClaimsInput
   targetManager?: Prisma.EmployeeCreateNestedOneWithoutTargetManagerClaimsInput
   homeManager?: Prisma.EmployeeCreateNestedOneWithoutHomeManagerClaimsInput
+  organization: Prisma.OrganizationCreateNestedOneWithoutShiftClaimsInput
 }
 
 export type ShiftClaimUncheckedCreateWithoutAdvertisementInput = {
   id?: string
+  organizationId: string
   employeeId: string
   targetManagerId?: string | null
   homeManagerId?: string | null
@@ -765,8 +888,53 @@ export type ShiftClaimUpdateManyWithWhereWithoutAdvertisementInput = {
   data: Prisma.XOR<Prisma.ShiftClaimUpdateManyMutationInput, Prisma.ShiftClaimUncheckedUpdateManyWithoutAdvertisementInput>
 }
 
+export type ShiftClaimCreateManyOrganizationInput = {
+  id?: string
+  shiftAdvertisementId: string
+  employeeId: string
+  targetManagerId?: string | null
+  homeManagerId?: string | null
+  status?: $Enums.ClaimStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type ShiftClaimUpdateWithoutOrganizationInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumClaimStatusFieldUpdateOperationsInput | $Enums.ClaimStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  advertisement?: Prisma.ShiftAdvertisementUpdateOneRequiredWithoutClaimsNestedInput
+  employee?: Prisma.EmployeeUpdateOneRequiredWithoutShiftClaimsNestedInput
+  targetManager?: Prisma.EmployeeUpdateOneWithoutTargetManagerClaimsNestedInput
+  homeManager?: Prisma.EmployeeUpdateOneWithoutHomeManagerClaimsNestedInput
+}
+
+export type ShiftClaimUncheckedUpdateWithoutOrganizationInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  shiftAdvertisementId?: Prisma.StringFieldUpdateOperationsInput | string
+  employeeId?: Prisma.StringFieldUpdateOperationsInput | string
+  targetManagerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  homeManagerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumClaimStatusFieldUpdateOperationsInput | $Enums.ClaimStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type ShiftClaimUncheckedUpdateManyWithoutOrganizationInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  shiftAdvertisementId?: Prisma.StringFieldUpdateOperationsInput | string
+  employeeId?: Prisma.StringFieldUpdateOperationsInput | string
+  targetManagerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  homeManagerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumClaimStatusFieldUpdateOperationsInput | $Enums.ClaimStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
 export type ShiftClaimCreateManyEmployeeInput = {
   id?: string
+  organizationId: string
   shiftAdvertisementId: string
   targetManagerId?: string | null
   homeManagerId?: string | null
@@ -777,6 +945,7 @@ export type ShiftClaimCreateManyEmployeeInput = {
 
 export type ShiftClaimCreateManyTargetManagerInput = {
   id?: string
+  organizationId: string
   shiftAdvertisementId: string
   employeeId: string
   homeManagerId?: string | null
@@ -787,6 +956,7 @@ export type ShiftClaimCreateManyTargetManagerInput = {
 
 export type ShiftClaimCreateManyHomeManagerInput = {
   id?: string
+  organizationId: string
   shiftAdvertisementId: string
   employeeId: string
   targetManagerId?: string | null
@@ -803,10 +973,12 @@ export type ShiftClaimUpdateWithoutEmployeeInput = {
   advertisement?: Prisma.ShiftAdvertisementUpdateOneRequiredWithoutClaimsNestedInput
   targetManager?: Prisma.EmployeeUpdateOneWithoutTargetManagerClaimsNestedInput
   homeManager?: Prisma.EmployeeUpdateOneWithoutHomeManagerClaimsNestedInput
+  organization?: Prisma.OrganizationUpdateOneRequiredWithoutShiftClaimsNestedInput
 }
 
 export type ShiftClaimUncheckedUpdateWithoutEmployeeInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  organizationId?: Prisma.StringFieldUpdateOperationsInput | string
   shiftAdvertisementId?: Prisma.StringFieldUpdateOperationsInput | string
   targetManagerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   homeManagerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -817,6 +989,7 @@ export type ShiftClaimUncheckedUpdateWithoutEmployeeInput = {
 
 export type ShiftClaimUncheckedUpdateManyWithoutEmployeeInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  organizationId?: Prisma.StringFieldUpdateOperationsInput | string
   shiftAdvertisementId?: Prisma.StringFieldUpdateOperationsInput | string
   targetManagerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   homeManagerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -833,10 +1006,12 @@ export type ShiftClaimUpdateWithoutTargetManagerInput = {
   advertisement?: Prisma.ShiftAdvertisementUpdateOneRequiredWithoutClaimsNestedInput
   employee?: Prisma.EmployeeUpdateOneRequiredWithoutShiftClaimsNestedInput
   homeManager?: Prisma.EmployeeUpdateOneWithoutHomeManagerClaimsNestedInput
+  organization?: Prisma.OrganizationUpdateOneRequiredWithoutShiftClaimsNestedInput
 }
 
 export type ShiftClaimUncheckedUpdateWithoutTargetManagerInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  organizationId?: Prisma.StringFieldUpdateOperationsInput | string
   shiftAdvertisementId?: Prisma.StringFieldUpdateOperationsInput | string
   employeeId?: Prisma.StringFieldUpdateOperationsInput | string
   homeManagerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -847,6 +1022,7 @@ export type ShiftClaimUncheckedUpdateWithoutTargetManagerInput = {
 
 export type ShiftClaimUncheckedUpdateManyWithoutTargetManagerInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  organizationId?: Prisma.StringFieldUpdateOperationsInput | string
   shiftAdvertisementId?: Prisma.StringFieldUpdateOperationsInput | string
   employeeId?: Prisma.StringFieldUpdateOperationsInput | string
   homeManagerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -863,10 +1039,12 @@ export type ShiftClaimUpdateWithoutHomeManagerInput = {
   advertisement?: Prisma.ShiftAdvertisementUpdateOneRequiredWithoutClaimsNestedInput
   employee?: Prisma.EmployeeUpdateOneRequiredWithoutShiftClaimsNestedInput
   targetManager?: Prisma.EmployeeUpdateOneWithoutTargetManagerClaimsNestedInput
+  organization?: Prisma.OrganizationUpdateOneRequiredWithoutShiftClaimsNestedInput
 }
 
 export type ShiftClaimUncheckedUpdateWithoutHomeManagerInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  organizationId?: Prisma.StringFieldUpdateOperationsInput | string
   shiftAdvertisementId?: Prisma.StringFieldUpdateOperationsInput | string
   employeeId?: Prisma.StringFieldUpdateOperationsInput | string
   targetManagerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -877,6 +1055,7 @@ export type ShiftClaimUncheckedUpdateWithoutHomeManagerInput = {
 
 export type ShiftClaimUncheckedUpdateManyWithoutHomeManagerInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  organizationId?: Prisma.StringFieldUpdateOperationsInput | string
   shiftAdvertisementId?: Prisma.StringFieldUpdateOperationsInput | string
   employeeId?: Prisma.StringFieldUpdateOperationsInput | string
   targetManagerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -887,6 +1066,7 @@ export type ShiftClaimUncheckedUpdateManyWithoutHomeManagerInput = {
 
 export type ShiftClaimCreateManyAdvertisementInput = {
   id?: string
+  organizationId: string
   employeeId: string
   targetManagerId?: string | null
   homeManagerId?: string | null
@@ -903,10 +1083,12 @@ export type ShiftClaimUpdateWithoutAdvertisementInput = {
   employee?: Prisma.EmployeeUpdateOneRequiredWithoutShiftClaimsNestedInput
   targetManager?: Prisma.EmployeeUpdateOneWithoutTargetManagerClaimsNestedInput
   homeManager?: Prisma.EmployeeUpdateOneWithoutHomeManagerClaimsNestedInput
+  organization?: Prisma.OrganizationUpdateOneRequiredWithoutShiftClaimsNestedInput
 }
 
 export type ShiftClaimUncheckedUpdateWithoutAdvertisementInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  organizationId?: Prisma.StringFieldUpdateOperationsInput | string
   employeeId?: Prisma.StringFieldUpdateOperationsInput | string
   targetManagerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   homeManagerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -917,6 +1099,7 @@ export type ShiftClaimUncheckedUpdateWithoutAdvertisementInput = {
 
 export type ShiftClaimUncheckedUpdateManyWithoutAdvertisementInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  organizationId?: Prisma.StringFieldUpdateOperationsInput | string
   employeeId?: Prisma.StringFieldUpdateOperationsInput | string
   targetManagerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   homeManagerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -929,6 +1112,7 @@ export type ShiftClaimUncheckedUpdateManyWithoutAdvertisementInput = {
 
 export type ShiftClaimSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
+  organizationId?: boolean
   shiftAdvertisementId?: boolean
   employeeId?: boolean
   targetManagerId?: boolean
@@ -940,10 +1124,12 @@ export type ShiftClaimSelect<ExtArgs extends runtime.Types.Extensions.InternalAr
   employee?: boolean | Prisma.EmployeeDefaultArgs<ExtArgs>
   targetManager?: boolean | Prisma.ShiftClaim$targetManagerArgs<ExtArgs>
   homeManager?: boolean | Prisma.ShiftClaim$homeManagerArgs<ExtArgs>
+  organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["shiftClaim"]>
 
 export type ShiftClaimSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
+  organizationId?: boolean
   shiftAdvertisementId?: boolean
   employeeId?: boolean
   targetManagerId?: boolean
@@ -955,10 +1141,12 @@ export type ShiftClaimSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Ex
   employee?: boolean | Prisma.EmployeeDefaultArgs<ExtArgs>
   targetManager?: boolean | Prisma.ShiftClaim$targetManagerArgs<ExtArgs>
   homeManager?: boolean | Prisma.ShiftClaim$homeManagerArgs<ExtArgs>
+  organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["shiftClaim"]>
 
 export type ShiftClaimSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
+  organizationId?: boolean
   shiftAdvertisementId?: boolean
   employeeId?: boolean
   targetManagerId?: boolean
@@ -970,10 +1158,12 @@ export type ShiftClaimSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Ex
   employee?: boolean | Prisma.EmployeeDefaultArgs<ExtArgs>
   targetManager?: boolean | Prisma.ShiftClaim$targetManagerArgs<ExtArgs>
   homeManager?: boolean | Prisma.ShiftClaim$homeManagerArgs<ExtArgs>
+  organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["shiftClaim"]>
 
 export type ShiftClaimSelectScalar = {
   id?: boolean
+  organizationId?: boolean
   shiftAdvertisementId?: boolean
   employeeId?: boolean
   targetManagerId?: boolean
@@ -983,24 +1173,27 @@ export type ShiftClaimSelectScalar = {
   updatedAt?: boolean
 }
 
-export type ShiftClaimOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "shiftAdvertisementId" | "employeeId" | "targetManagerId" | "homeManagerId" | "status" | "createdAt" | "updatedAt", ExtArgs["result"]["shiftClaim"]>
+export type ShiftClaimOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "organizationId" | "shiftAdvertisementId" | "employeeId" | "targetManagerId" | "homeManagerId" | "status" | "createdAt" | "updatedAt", ExtArgs["result"]["shiftClaim"]>
 export type ShiftClaimInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   advertisement?: boolean | Prisma.ShiftAdvertisementDefaultArgs<ExtArgs>
   employee?: boolean | Prisma.EmployeeDefaultArgs<ExtArgs>
   targetManager?: boolean | Prisma.ShiftClaim$targetManagerArgs<ExtArgs>
   homeManager?: boolean | Prisma.ShiftClaim$homeManagerArgs<ExtArgs>
+  organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
 }
 export type ShiftClaimIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   advertisement?: boolean | Prisma.ShiftAdvertisementDefaultArgs<ExtArgs>
   employee?: boolean | Prisma.EmployeeDefaultArgs<ExtArgs>
   targetManager?: boolean | Prisma.ShiftClaim$targetManagerArgs<ExtArgs>
   homeManager?: boolean | Prisma.ShiftClaim$homeManagerArgs<ExtArgs>
+  organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
 }
 export type ShiftClaimIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   advertisement?: boolean | Prisma.ShiftAdvertisementDefaultArgs<ExtArgs>
   employee?: boolean | Prisma.EmployeeDefaultArgs<ExtArgs>
   targetManager?: boolean | Prisma.ShiftClaim$targetManagerArgs<ExtArgs>
   homeManager?: boolean | Prisma.ShiftClaim$homeManagerArgs<ExtArgs>
+  organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
 }
 
 export type $ShiftClaimPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1010,9 +1203,11 @@ export type $ShiftClaimPayload<ExtArgs extends runtime.Types.Extensions.Internal
     employee: Prisma.$EmployeePayload<ExtArgs>
     targetManager: Prisma.$EmployeePayload<ExtArgs> | null
     homeManager: Prisma.$EmployeePayload<ExtArgs> | null
+    organization: Prisma.$OrganizationPayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
+    organizationId: string
     shiftAdvertisementId: string
     employeeId: string
     targetManagerId: string | null
@@ -1418,6 +1613,7 @@ export interface Prisma__ShiftClaimClient<T, Null = never, ExtArgs extends runti
   employee<T extends Prisma.EmployeeDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.EmployeeDefaultArgs<ExtArgs>>): Prisma.Prisma__EmployeeClient<runtime.Types.Result.GetResult<Prisma.$EmployeePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   targetManager<T extends Prisma.ShiftClaim$targetManagerArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ShiftClaim$targetManagerArgs<ExtArgs>>): Prisma.Prisma__EmployeeClient<runtime.Types.Result.GetResult<Prisma.$EmployeePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   homeManager<T extends Prisma.ShiftClaim$homeManagerArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ShiftClaim$homeManagerArgs<ExtArgs>>): Prisma.Prisma__EmployeeClient<runtime.Types.Result.GetResult<Prisma.$EmployeePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  organization<T extends Prisma.OrganizationDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.OrganizationDefaultArgs<ExtArgs>>): Prisma.Prisma__OrganizationClient<runtime.Types.Result.GetResult<Prisma.$OrganizationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1448,6 +1644,7 @@ export interface Prisma__ShiftClaimClient<T, Null = never, ExtArgs extends runti
  */
 export interface ShiftClaimFieldRefs {
   readonly id: Prisma.FieldRef<"ShiftClaim", 'String'>
+  readonly organizationId: Prisma.FieldRef<"ShiftClaim", 'String'>
   readonly shiftAdvertisementId: Prisma.FieldRef<"ShiftClaim", 'String'>
   readonly employeeId: Prisma.FieldRef<"ShiftClaim", 'String'>
   readonly targetManagerId: Prisma.FieldRef<"ShiftClaim", 'String'>

@@ -26,6 +26,7 @@ export type AggregateAssignedPattern = {
 
 export type AssignedPatternMinAggregateOutputType = {
   id: string | null
+  organizationId: string | null
   employeeId: string | null
   patternId: string | null
   anchorDate: Date | null
@@ -35,6 +36,7 @@ export type AssignedPatternMinAggregateOutputType = {
 
 export type AssignedPatternMaxAggregateOutputType = {
   id: string | null
+  organizationId: string | null
   employeeId: string | null
   patternId: string | null
   anchorDate: Date | null
@@ -44,6 +46,7 @@ export type AssignedPatternMaxAggregateOutputType = {
 
 export type AssignedPatternCountAggregateOutputType = {
   id: number
+  organizationId: number
   employeeId: number
   patternId: number
   anchorDate: number
@@ -55,6 +58,7 @@ export type AssignedPatternCountAggregateOutputType = {
 
 export type AssignedPatternMinAggregateInputType = {
   id?: true
+  organizationId?: true
   employeeId?: true
   patternId?: true
   anchorDate?: true
@@ -64,6 +68,7 @@ export type AssignedPatternMinAggregateInputType = {
 
 export type AssignedPatternMaxAggregateInputType = {
   id?: true
+  organizationId?: true
   employeeId?: true
   patternId?: true
   anchorDate?: true
@@ -73,6 +78,7 @@ export type AssignedPatternMaxAggregateInputType = {
 
 export type AssignedPatternCountAggregateInputType = {
   id?: true
+  organizationId?: true
   employeeId?: true
   patternId?: true
   anchorDate?: true
@@ -155,6 +161,7 @@ export type AssignedPatternGroupByArgs<ExtArgs extends runtime.Types.Extensions.
 
 export type AssignedPatternGroupByOutputType = {
   id: string
+  organizationId: string
   employeeId: string
   patternId: string
   anchorDate: Date
@@ -185,22 +192,26 @@ export type AssignedPatternWhereInput = {
   OR?: Prisma.AssignedPatternWhereInput[]
   NOT?: Prisma.AssignedPatternWhereInput | Prisma.AssignedPatternWhereInput[]
   id?: Prisma.StringFilter<"AssignedPattern"> | string
+  organizationId?: Prisma.StringFilter<"AssignedPattern"> | string
   employeeId?: Prisma.StringFilter<"AssignedPattern"> | string
   patternId?: Prisma.StringFilter<"AssignedPattern"> | string
   anchorDate?: Prisma.DateTimeFilter<"AssignedPattern"> | Date | string
   startDate?: Prisma.DateTimeFilter<"AssignedPattern"> | Date | string
   endDate?: Prisma.DateTimeNullableFilter<"AssignedPattern"> | Date | string | null
+  organization?: Prisma.XOR<Prisma.OrganizationScalarRelationFilter, Prisma.OrganizationWhereInput>
   employee?: Prisma.XOR<Prisma.EmployeeScalarRelationFilter, Prisma.EmployeeWhereInput>
   pattern?: Prisma.XOR<Prisma.RosterPatternScalarRelationFilter, Prisma.RosterPatternWhereInput>
 }
 
 export type AssignedPatternOrderByWithRelationInput = {
   id?: Prisma.SortOrder
+  organizationId?: Prisma.SortOrder
   employeeId?: Prisma.SortOrder
   patternId?: Prisma.SortOrder
   anchorDate?: Prisma.SortOrder
   startDate?: Prisma.SortOrder
   endDate?: Prisma.SortOrderInput | Prisma.SortOrder
+  organization?: Prisma.OrganizationOrderByWithRelationInput
   employee?: Prisma.EmployeeOrderByWithRelationInput
   pattern?: Prisma.RosterPatternOrderByWithRelationInput
 }
@@ -210,17 +221,20 @@ export type AssignedPatternWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.AssignedPatternWhereInput | Prisma.AssignedPatternWhereInput[]
   OR?: Prisma.AssignedPatternWhereInput[]
   NOT?: Prisma.AssignedPatternWhereInput | Prisma.AssignedPatternWhereInput[]
+  organizationId?: Prisma.StringFilter<"AssignedPattern"> | string
   employeeId?: Prisma.StringFilter<"AssignedPattern"> | string
   patternId?: Prisma.StringFilter<"AssignedPattern"> | string
   anchorDate?: Prisma.DateTimeFilter<"AssignedPattern"> | Date | string
   startDate?: Prisma.DateTimeFilter<"AssignedPattern"> | Date | string
   endDate?: Prisma.DateTimeNullableFilter<"AssignedPattern"> | Date | string | null
+  organization?: Prisma.XOR<Prisma.OrganizationScalarRelationFilter, Prisma.OrganizationWhereInput>
   employee?: Prisma.XOR<Prisma.EmployeeScalarRelationFilter, Prisma.EmployeeWhereInput>
   pattern?: Prisma.XOR<Prisma.RosterPatternScalarRelationFilter, Prisma.RosterPatternWhereInput>
 }, "id">
 
 export type AssignedPatternOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
+  organizationId?: Prisma.SortOrder
   employeeId?: Prisma.SortOrder
   patternId?: Prisma.SortOrder
   anchorDate?: Prisma.SortOrder
@@ -236,6 +250,7 @@ export type AssignedPatternScalarWhereWithAggregatesInput = {
   OR?: Prisma.AssignedPatternScalarWhereWithAggregatesInput[]
   NOT?: Prisma.AssignedPatternScalarWhereWithAggregatesInput | Prisma.AssignedPatternScalarWhereWithAggregatesInput[]
   id?: Prisma.StringWithAggregatesFilter<"AssignedPattern"> | string
+  organizationId?: Prisma.StringWithAggregatesFilter<"AssignedPattern"> | string
   employeeId?: Prisma.StringWithAggregatesFilter<"AssignedPattern"> | string
   patternId?: Prisma.StringWithAggregatesFilter<"AssignedPattern"> | string
   anchorDate?: Prisma.DateTimeWithAggregatesFilter<"AssignedPattern"> | Date | string
@@ -248,12 +263,14 @@ export type AssignedPatternCreateInput = {
   anchorDate: Date | string
   startDate: Date | string
   endDate?: Date | string | null
+  organization: Prisma.OrganizationCreateNestedOneWithoutAssignedPatternsInput
   employee: Prisma.EmployeeCreateNestedOneWithoutAssignedPatternInput
   pattern: Prisma.RosterPatternCreateNestedOneWithoutAssigneesInput
 }
 
 export type AssignedPatternUncheckedCreateInput = {
   id?: string
+  organizationId: string
   employeeId: string
   patternId: string
   anchorDate: Date | string
@@ -266,12 +283,14 @@ export type AssignedPatternUpdateInput = {
   anchorDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  organization?: Prisma.OrganizationUpdateOneRequiredWithoutAssignedPatternsNestedInput
   employee?: Prisma.EmployeeUpdateOneRequiredWithoutAssignedPatternNestedInput
   pattern?: Prisma.RosterPatternUpdateOneRequiredWithoutAssigneesNestedInput
 }
 
 export type AssignedPatternUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  organizationId?: Prisma.StringFieldUpdateOperationsInput | string
   employeeId?: Prisma.StringFieldUpdateOperationsInput | string
   patternId?: Prisma.StringFieldUpdateOperationsInput | string
   anchorDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -281,6 +300,7 @@ export type AssignedPatternUncheckedUpdateInput = {
 
 export type AssignedPatternCreateManyInput = {
   id?: string
+  organizationId: string
   employeeId: string
   patternId: string
   anchorDate: Date | string
@@ -297,6 +317,7 @@ export type AssignedPatternUpdateManyMutationInput = {
 
 export type AssignedPatternUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  organizationId?: Prisma.StringFieldUpdateOperationsInput | string
   employeeId?: Prisma.StringFieldUpdateOperationsInput | string
   patternId?: Prisma.StringFieldUpdateOperationsInput | string
   anchorDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -316,6 +337,7 @@ export type AssignedPatternOrderByRelationAggregateInput = {
 
 export type AssignedPatternCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  organizationId?: Prisma.SortOrder
   employeeId?: Prisma.SortOrder
   patternId?: Prisma.SortOrder
   anchorDate?: Prisma.SortOrder
@@ -325,6 +347,7 @@ export type AssignedPatternCountOrderByAggregateInput = {
 
 export type AssignedPatternMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  organizationId?: Prisma.SortOrder
   employeeId?: Prisma.SortOrder
   patternId?: Prisma.SortOrder
   anchorDate?: Prisma.SortOrder
@@ -334,11 +357,54 @@ export type AssignedPatternMaxOrderByAggregateInput = {
 
 export type AssignedPatternMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  organizationId?: Prisma.SortOrder
   employeeId?: Prisma.SortOrder
   patternId?: Prisma.SortOrder
   anchorDate?: Prisma.SortOrder
   startDate?: Prisma.SortOrder
   endDate?: Prisma.SortOrder
+}
+
+export type AssignedPatternCreateNestedManyWithoutOrganizationInput = {
+  create?: Prisma.XOR<Prisma.AssignedPatternCreateWithoutOrganizationInput, Prisma.AssignedPatternUncheckedCreateWithoutOrganizationInput> | Prisma.AssignedPatternCreateWithoutOrganizationInput[] | Prisma.AssignedPatternUncheckedCreateWithoutOrganizationInput[]
+  connectOrCreate?: Prisma.AssignedPatternCreateOrConnectWithoutOrganizationInput | Prisma.AssignedPatternCreateOrConnectWithoutOrganizationInput[]
+  createMany?: Prisma.AssignedPatternCreateManyOrganizationInputEnvelope
+  connect?: Prisma.AssignedPatternWhereUniqueInput | Prisma.AssignedPatternWhereUniqueInput[]
+}
+
+export type AssignedPatternUncheckedCreateNestedManyWithoutOrganizationInput = {
+  create?: Prisma.XOR<Prisma.AssignedPatternCreateWithoutOrganizationInput, Prisma.AssignedPatternUncheckedCreateWithoutOrganizationInput> | Prisma.AssignedPatternCreateWithoutOrganizationInput[] | Prisma.AssignedPatternUncheckedCreateWithoutOrganizationInput[]
+  connectOrCreate?: Prisma.AssignedPatternCreateOrConnectWithoutOrganizationInput | Prisma.AssignedPatternCreateOrConnectWithoutOrganizationInput[]
+  createMany?: Prisma.AssignedPatternCreateManyOrganizationInputEnvelope
+  connect?: Prisma.AssignedPatternWhereUniqueInput | Prisma.AssignedPatternWhereUniqueInput[]
+}
+
+export type AssignedPatternUpdateManyWithoutOrganizationNestedInput = {
+  create?: Prisma.XOR<Prisma.AssignedPatternCreateWithoutOrganizationInput, Prisma.AssignedPatternUncheckedCreateWithoutOrganizationInput> | Prisma.AssignedPatternCreateWithoutOrganizationInput[] | Prisma.AssignedPatternUncheckedCreateWithoutOrganizationInput[]
+  connectOrCreate?: Prisma.AssignedPatternCreateOrConnectWithoutOrganizationInput | Prisma.AssignedPatternCreateOrConnectWithoutOrganizationInput[]
+  upsert?: Prisma.AssignedPatternUpsertWithWhereUniqueWithoutOrganizationInput | Prisma.AssignedPatternUpsertWithWhereUniqueWithoutOrganizationInput[]
+  createMany?: Prisma.AssignedPatternCreateManyOrganizationInputEnvelope
+  set?: Prisma.AssignedPatternWhereUniqueInput | Prisma.AssignedPatternWhereUniqueInput[]
+  disconnect?: Prisma.AssignedPatternWhereUniqueInput | Prisma.AssignedPatternWhereUniqueInput[]
+  delete?: Prisma.AssignedPatternWhereUniqueInput | Prisma.AssignedPatternWhereUniqueInput[]
+  connect?: Prisma.AssignedPatternWhereUniqueInput | Prisma.AssignedPatternWhereUniqueInput[]
+  update?: Prisma.AssignedPatternUpdateWithWhereUniqueWithoutOrganizationInput | Prisma.AssignedPatternUpdateWithWhereUniqueWithoutOrganizationInput[]
+  updateMany?: Prisma.AssignedPatternUpdateManyWithWhereWithoutOrganizationInput | Prisma.AssignedPatternUpdateManyWithWhereWithoutOrganizationInput[]
+  deleteMany?: Prisma.AssignedPatternScalarWhereInput | Prisma.AssignedPatternScalarWhereInput[]
+}
+
+export type AssignedPatternUncheckedUpdateManyWithoutOrganizationNestedInput = {
+  create?: Prisma.XOR<Prisma.AssignedPatternCreateWithoutOrganizationInput, Prisma.AssignedPatternUncheckedCreateWithoutOrganizationInput> | Prisma.AssignedPatternCreateWithoutOrganizationInput[] | Prisma.AssignedPatternUncheckedCreateWithoutOrganizationInput[]
+  connectOrCreate?: Prisma.AssignedPatternCreateOrConnectWithoutOrganizationInput | Prisma.AssignedPatternCreateOrConnectWithoutOrganizationInput[]
+  upsert?: Prisma.AssignedPatternUpsertWithWhereUniqueWithoutOrganizationInput | Prisma.AssignedPatternUpsertWithWhereUniqueWithoutOrganizationInput[]
+  createMany?: Prisma.AssignedPatternCreateManyOrganizationInputEnvelope
+  set?: Prisma.AssignedPatternWhereUniqueInput | Prisma.AssignedPatternWhereUniqueInput[]
+  disconnect?: Prisma.AssignedPatternWhereUniqueInput | Prisma.AssignedPatternWhereUniqueInput[]
+  delete?: Prisma.AssignedPatternWhereUniqueInput | Prisma.AssignedPatternWhereUniqueInput[]
+  connect?: Prisma.AssignedPatternWhereUniqueInput | Prisma.AssignedPatternWhereUniqueInput[]
+  update?: Prisma.AssignedPatternUpdateWithWhereUniqueWithoutOrganizationInput | Prisma.AssignedPatternUpdateWithWhereUniqueWithoutOrganizationInput[]
+  updateMany?: Prisma.AssignedPatternUpdateManyWithWhereWithoutOrganizationInput | Prisma.AssignedPatternUpdateManyWithWhereWithoutOrganizationInput[]
+  deleteMany?: Prisma.AssignedPatternScalarWhereInput | Prisma.AssignedPatternScalarWhereInput[]
 }
 
 export type AssignedPatternCreateNestedManyWithoutEmployeeInput = {
@@ -425,16 +491,75 @@ export type AssignedPatternUncheckedUpdateManyWithoutPatternNestedInput = {
   deleteMany?: Prisma.AssignedPatternScalarWhereInput | Prisma.AssignedPatternScalarWhereInput[]
 }
 
+export type AssignedPatternCreateWithoutOrganizationInput = {
+  id?: string
+  anchorDate: Date | string
+  startDate: Date | string
+  endDate?: Date | string | null
+  employee: Prisma.EmployeeCreateNestedOneWithoutAssignedPatternInput
+  pattern: Prisma.RosterPatternCreateNestedOneWithoutAssigneesInput
+}
+
+export type AssignedPatternUncheckedCreateWithoutOrganizationInput = {
+  id?: string
+  employeeId: string
+  patternId: string
+  anchorDate: Date | string
+  startDate: Date | string
+  endDate?: Date | string | null
+}
+
+export type AssignedPatternCreateOrConnectWithoutOrganizationInput = {
+  where: Prisma.AssignedPatternWhereUniqueInput
+  create: Prisma.XOR<Prisma.AssignedPatternCreateWithoutOrganizationInput, Prisma.AssignedPatternUncheckedCreateWithoutOrganizationInput>
+}
+
+export type AssignedPatternCreateManyOrganizationInputEnvelope = {
+  data: Prisma.AssignedPatternCreateManyOrganizationInput | Prisma.AssignedPatternCreateManyOrganizationInput[]
+  skipDuplicates?: boolean
+}
+
+export type AssignedPatternUpsertWithWhereUniqueWithoutOrganizationInput = {
+  where: Prisma.AssignedPatternWhereUniqueInput
+  update: Prisma.XOR<Prisma.AssignedPatternUpdateWithoutOrganizationInput, Prisma.AssignedPatternUncheckedUpdateWithoutOrganizationInput>
+  create: Prisma.XOR<Prisma.AssignedPatternCreateWithoutOrganizationInput, Prisma.AssignedPatternUncheckedCreateWithoutOrganizationInput>
+}
+
+export type AssignedPatternUpdateWithWhereUniqueWithoutOrganizationInput = {
+  where: Prisma.AssignedPatternWhereUniqueInput
+  data: Prisma.XOR<Prisma.AssignedPatternUpdateWithoutOrganizationInput, Prisma.AssignedPatternUncheckedUpdateWithoutOrganizationInput>
+}
+
+export type AssignedPatternUpdateManyWithWhereWithoutOrganizationInput = {
+  where: Prisma.AssignedPatternScalarWhereInput
+  data: Prisma.XOR<Prisma.AssignedPatternUpdateManyMutationInput, Prisma.AssignedPatternUncheckedUpdateManyWithoutOrganizationInput>
+}
+
+export type AssignedPatternScalarWhereInput = {
+  AND?: Prisma.AssignedPatternScalarWhereInput | Prisma.AssignedPatternScalarWhereInput[]
+  OR?: Prisma.AssignedPatternScalarWhereInput[]
+  NOT?: Prisma.AssignedPatternScalarWhereInput | Prisma.AssignedPatternScalarWhereInput[]
+  id?: Prisma.StringFilter<"AssignedPattern"> | string
+  organizationId?: Prisma.StringFilter<"AssignedPattern"> | string
+  employeeId?: Prisma.StringFilter<"AssignedPattern"> | string
+  patternId?: Prisma.StringFilter<"AssignedPattern"> | string
+  anchorDate?: Prisma.DateTimeFilter<"AssignedPattern"> | Date | string
+  startDate?: Prisma.DateTimeFilter<"AssignedPattern"> | Date | string
+  endDate?: Prisma.DateTimeNullableFilter<"AssignedPattern"> | Date | string | null
+}
+
 export type AssignedPatternCreateWithoutEmployeeInput = {
   id?: string
   anchorDate: Date | string
   startDate: Date | string
   endDate?: Date | string | null
+  organization: Prisma.OrganizationCreateNestedOneWithoutAssignedPatternsInput
   pattern: Prisma.RosterPatternCreateNestedOneWithoutAssigneesInput
 }
 
 export type AssignedPatternUncheckedCreateWithoutEmployeeInput = {
   id?: string
+  organizationId: string
   patternId: string
   anchorDate: Date | string
   startDate: Date | string
@@ -467,28 +592,18 @@ export type AssignedPatternUpdateManyWithWhereWithoutEmployeeInput = {
   data: Prisma.XOR<Prisma.AssignedPatternUpdateManyMutationInput, Prisma.AssignedPatternUncheckedUpdateManyWithoutEmployeeInput>
 }
 
-export type AssignedPatternScalarWhereInput = {
-  AND?: Prisma.AssignedPatternScalarWhereInput | Prisma.AssignedPatternScalarWhereInput[]
-  OR?: Prisma.AssignedPatternScalarWhereInput[]
-  NOT?: Prisma.AssignedPatternScalarWhereInput | Prisma.AssignedPatternScalarWhereInput[]
-  id?: Prisma.StringFilter<"AssignedPattern"> | string
-  employeeId?: Prisma.StringFilter<"AssignedPattern"> | string
-  patternId?: Prisma.StringFilter<"AssignedPattern"> | string
-  anchorDate?: Prisma.DateTimeFilter<"AssignedPattern"> | Date | string
-  startDate?: Prisma.DateTimeFilter<"AssignedPattern"> | Date | string
-  endDate?: Prisma.DateTimeNullableFilter<"AssignedPattern"> | Date | string | null
-}
-
 export type AssignedPatternCreateWithoutPatternInput = {
   id?: string
   anchorDate: Date | string
   startDate: Date | string
   endDate?: Date | string | null
+  organization: Prisma.OrganizationCreateNestedOneWithoutAssignedPatternsInput
   employee: Prisma.EmployeeCreateNestedOneWithoutAssignedPatternInput
 }
 
 export type AssignedPatternUncheckedCreateWithoutPatternInput = {
   id?: string
+  organizationId: string
   employeeId: string
   anchorDate: Date | string
   startDate: Date | string
@@ -521,8 +636,45 @@ export type AssignedPatternUpdateManyWithWhereWithoutPatternInput = {
   data: Prisma.XOR<Prisma.AssignedPatternUpdateManyMutationInput, Prisma.AssignedPatternUncheckedUpdateManyWithoutPatternInput>
 }
 
+export type AssignedPatternCreateManyOrganizationInput = {
+  id?: string
+  employeeId: string
+  patternId: string
+  anchorDate: Date | string
+  startDate: Date | string
+  endDate?: Date | string | null
+}
+
+export type AssignedPatternUpdateWithoutOrganizationInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  anchorDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  employee?: Prisma.EmployeeUpdateOneRequiredWithoutAssignedPatternNestedInput
+  pattern?: Prisma.RosterPatternUpdateOneRequiredWithoutAssigneesNestedInput
+}
+
+export type AssignedPatternUncheckedUpdateWithoutOrganizationInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  employeeId?: Prisma.StringFieldUpdateOperationsInput | string
+  patternId?: Prisma.StringFieldUpdateOperationsInput | string
+  anchorDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+}
+
+export type AssignedPatternUncheckedUpdateManyWithoutOrganizationInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  employeeId?: Prisma.StringFieldUpdateOperationsInput | string
+  patternId?: Prisma.StringFieldUpdateOperationsInput | string
+  anchorDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+}
+
 export type AssignedPatternCreateManyEmployeeInput = {
   id?: string
+  organizationId: string
   patternId: string
   anchorDate: Date | string
   startDate: Date | string
@@ -534,11 +686,13 @@ export type AssignedPatternUpdateWithoutEmployeeInput = {
   anchorDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  organization?: Prisma.OrganizationUpdateOneRequiredWithoutAssignedPatternsNestedInput
   pattern?: Prisma.RosterPatternUpdateOneRequiredWithoutAssigneesNestedInput
 }
 
 export type AssignedPatternUncheckedUpdateWithoutEmployeeInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  organizationId?: Prisma.StringFieldUpdateOperationsInput | string
   patternId?: Prisma.StringFieldUpdateOperationsInput | string
   anchorDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -547,6 +701,7 @@ export type AssignedPatternUncheckedUpdateWithoutEmployeeInput = {
 
 export type AssignedPatternUncheckedUpdateManyWithoutEmployeeInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  organizationId?: Prisma.StringFieldUpdateOperationsInput | string
   patternId?: Prisma.StringFieldUpdateOperationsInput | string
   anchorDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -555,6 +710,7 @@ export type AssignedPatternUncheckedUpdateManyWithoutEmployeeInput = {
 
 export type AssignedPatternCreateManyPatternInput = {
   id?: string
+  organizationId: string
   employeeId: string
   anchorDate: Date | string
   startDate: Date | string
@@ -566,11 +722,13 @@ export type AssignedPatternUpdateWithoutPatternInput = {
   anchorDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  organization?: Prisma.OrganizationUpdateOneRequiredWithoutAssignedPatternsNestedInput
   employee?: Prisma.EmployeeUpdateOneRequiredWithoutAssignedPatternNestedInput
 }
 
 export type AssignedPatternUncheckedUpdateWithoutPatternInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  organizationId?: Prisma.StringFieldUpdateOperationsInput | string
   employeeId?: Prisma.StringFieldUpdateOperationsInput | string
   anchorDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -579,6 +737,7 @@ export type AssignedPatternUncheckedUpdateWithoutPatternInput = {
 
 export type AssignedPatternUncheckedUpdateManyWithoutPatternInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  organizationId?: Prisma.StringFieldUpdateOperationsInput | string
   employeeId?: Prisma.StringFieldUpdateOperationsInput | string
   anchorDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -589,39 +748,46 @@ export type AssignedPatternUncheckedUpdateManyWithoutPatternInput = {
 
 export type AssignedPatternSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
+  organizationId?: boolean
   employeeId?: boolean
   patternId?: boolean
   anchorDate?: boolean
   startDate?: boolean
   endDate?: boolean
+  organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
   employee?: boolean | Prisma.EmployeeDefaultArgs<ExtArgs>
   pattern?: boolean | Prisma.RosterPatternDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["assignedPattern"]>
 
 export type AssignedPatternSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
+  organizationId?: boolean
   employeeId?: boolean
   patternId?: boolean
   anchorDate?: boolean
   startDate?: boolean
   endDate?: boolean
+  organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
   employee?: boolean | Prisma.EmployeeDefaultArgs<ExtArgs>
   pattern?: boolean | Prisma.RosterPatternDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["assignedPattern"]>
 
 export type AssignedPatternSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
+  organizationId?: boolean
   employeeId?: boolean
   patternId?: boolean
   anchorDate?: boolean
   startDate?: boolean
   endDate?: boolean
+  organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
   employee?: boolean | Prisma.EmployeeDefaultArgs<ExtArgs>
   pattern?: boolean | Prisma.RosterPatternDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["assignedPattern"]>
 
 export type AssignedPatternSelectScalar = {
   id?: boolean
+  organizationId?: boolean
   employeeId?: boolean
   patternId?: boolean
   anchorDate?: boolean
@@ -629,16 +795,19 @@ export type AssignedPatternSelectScalar = {
   endDate?: boolean
 }
 
-export type AssignedPatternOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "employeeId" | "patternId" | "anchorDate" | "startDate" | "endDate", ExtArgs["result"]["assignedPattern"]>
+export type AssignedPatternOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "organizationId" | "employeeId" | "patternId" | "anchorDate" | "startDate" | "endDate", ExtArgs["result"]["assignedPattern"]>
 export type AssignedPatternInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
   employee?: boolean | Prisma.EmployeeDefaultArgs<ExtArgs>
   pattern?: boolean | Prisma.RosterPatternDefaultArgs<ExtArgs>
 }
 export type AssignedPatternIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
   employee?: boolean | Prisma.EmployeeDefaultArgs<ExtArgs>
   pattern?: boolean | Prisma.RosterPatternDefaultArgs<ExtArgs>
 }
 export type AssignedPatternIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
   employee?: boolean | Prisma.EmployeeDefaultArgs<ExtArgs>
   pattern?: boolean | Prisma.RosterPatternDefaultArgs<ExtArgs>
 }
@@ -646,11 +815,13 @@ export type AssignedPatternIncludeUpdateManyAndReturn<ExtArgs extends runtime.Ty
 export type $AssignedPatternPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "AssignedPattern"
   objects: {
+    organization: Prisma.$OrganizationPayload<ExtArgs>
     employee: Prisma.$EmployeePayload<ExtArgs>
     pattern: Prisma.$RosterPatternPayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
+    organizationId: string
     employeeId: string
     patternId: string
     anchorDate: Date
@@ -1050,6 +1221,7 @@ readonly fields: AssignedPatternFieldRefs;
  */
 export interface Prisma__AssignedPatternClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
+  organization<T extends Prisma.OrganizationDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.OrganizationDefaultArgs<ExtArgs>>): Prisma.Prisma__OrganizationClient<runtime.Types.Result.GetResult<Prisma.$OrganizationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   employee<T extends Prisma.EmployeeDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.EmployeeDefaultArgs<ExtArgs>>): Prisma.Prisma__EmployeeClient<runtime.Types.Result.GetResult<Prisma.$EmployeePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   pattern<T extends Prisma.RosterPatternDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.RosterPatternDefaultArgs<ExtArgs>>): Prisma.Prisma__RosterPatternClient<runtime.Types.Result.GetResult<Prisma.$RosterPatternPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
@@ -1082,6 +1254,7 @@ export interface Prisma__AssignedPatternClient<T, Null = never, ExtArgs extends 
  */
 export interface AssignedPatternFieldRefs {
   readonly id: Prisma.FieldRef<"AssignedPattern", 'String'>
+  readonly organizationId: Prisma.FieldRef<"AssignedPattern", 'String'>
   readonly employeeId: Prisma.FieldRef<"AssignedPattern", 'String'>
   readonly patternId: Prisma.FieldRef<"AssignedPattern", 'String'>
   readonly anchorDate: Prisma.FieldRef<"AssignedPattern", 'DateTime'>

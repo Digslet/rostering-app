@@ -29,6 +29,7 @@ export type LeaveCategoryMinAggregateOutputType = {
   organizationId: string | null
   name: string | null
   isPaid: boolean | null
+  archivedAt: Date | null
 }
 
 export type LeaveCategoryMaxAggregateOutputType = {
@@ -36,6 +37,7 @@ export type LeaveCategoryMaxAggregateOutputType = {
   organizationId: string | null
   name: string | null
   isPaid: boolean | null
+  archivedAt: Date | null
 }
 
 export type LeaveCategoryCountAggregateOutputType = {
@@ -43,6 +45,7 @@ export type LeaveCategoryCountAggregateOutputType = {
   organizationId: number
   name: number
   isPaid: number
+  archivedAt: number
   _all: number
 }
 
@@ -52,6 +55,7 @@ export type LeaveCategoryMinAggregateInputType = {
   organizationId?: true
   name?: true
   isPaid?: true
+  archivedAt?: true
 }
 
 export type LeaveCategoryMaxAggregateInputType = {
@@ -59,6 +63,7 @@ export type LeaveCategoryMaxAggregateInputType = {
   organizationId?: true
   name?: true
   isPaid?: true
+  archivedAt?: true
 }
 
 export type LeaveCategoryCountAggregateInputType = {
@@ -66,6 +71,7 @@ export type LeaveCategoryCountAggregateInputType = {
   organizationId?: true
   name?: true
   isPaid?: true
+  archivedAt?: true
   _all?: true
 }
 
@@ -146,6 +152,7 @@ export type LeaveCategoryGroupByOutputType = {
   organizationId: string
   name: string
   isPaid: boolean
+  archivedAt: Date | null
   _count: LeaveCategoryCountAggregateOutputType | null
   _min: LeaveCategoryMinAggregateOutputType | null
   _max: LeaveCategoryMaxAggregateOutputType | null
@@ -174,9 +181,9 @@ export type LeaveCategoryWhereInput = {
   organizationId?: Prisma.StringFilter<"LeaveCategory"> | string
   name?: Prisma.StringFilter<"LeaveCategory"> | string
   isPaid?: Prisma.BoolFilter<"LeaveCategory"> | boolean
+  archivedAt?: Prisma.DateTimeNullableFilter<"LeaveCategory"> | Date | string | null
   organization?: Prisma.XOR<Prisma.OrganizationScalarRelationFilter, Prisma.OrganizationWhereInput>
   requests?: Prisma.LeaveRequestListRelationFilter
-  shifts?: Prisma.ShiftInstanceListRelationFilter
 }
 
 export type LeaveCategoryOrderByWithRelationInput = {
@@ -184,9 +191,9 @@ export type LeaveCategoryOrderByWithRelationInput = {
   organizationId?: Prisma.SortOrder
   name?: Prisma.SortOrder
   isPaid?: Prisma.SortOrder
+  archivedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   organization?: Prisma.OrganizationOrderByWithRelationInput
   requests?: Prisma.LeaveRequestOrderByRelationAggregateInput
-  shifts?: Prisma.ShiftInstanceOrderByRelationAggregateInput
 }
 
 export type LeaveCategoryWhereUniqueInput = Prisma.AtLeast<{
@@ -197,9 +204,9 @@ export type LeaveCategoryWhereUniqueInput = Prisma.AtLeast<{
   organizationId?: Prisma.StringFilter<"LeaveCategory"> | string
   name?: Prisma.StringFilter<"LeaveCategory"> | string
   isPaid?: Prisma.BoolFilter<"LeaveCategory"> | boolean
+  archivedAt?: Prisma.DateTimeNullableFilter<"LeaveCategory"> | Date | string | null
   organization?: Prisma.XOR<Prisma.OrganizationScalarRelationFilter, Prisma.OrganizationWhereInput>
   requests?: Prisma.LeaveRequestListRelationFilter
-  shifts?: Prisma.ShiftInstanceListRelationFilter
 }, "id">
 
 export type LeaveCategoryOrderByWithAggregationInput = {
@@ -207,6 +214,7 @@ export type LeaveCategoryOrderByWithAggregationInput = {
   organizationId?: Prisma.SortOrder
   name?: Prisma.SortOrder
   isPaid?: Prisma.SortOrder
+  archivedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.LeaveCategoryCountOrderByAggregateInput
   _max?: Prisma.LeaveCategoryMaxOrderByAggregateInput
   _min?: Prisma.LeaveCategoryMinOrderByAggregateInput
@@ -220,15 +228,16 @@ export type LeaveCategoryScalarWhereWithAggregatesInput = {
   organizationId?: Prisma.StringWithAggregatesFilter<"LeaveCategory"> | string
   name?: Prisma.StringWithAggregatesFilter<"LeaveCategory"> | string
   isPaid?: Prisma.BoolWithAggregatesFilter<"LeaveCategory"> | boolean
+  archivedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"LeaveCategory"> | Date | string | null
 }
 
 export type LeaveCategoryCreateInput = {
   id?: string
   name: string
   isPaid?: boolean
+  archivedAt?: Date | string | null
   organization: Prisma.OrganizationCreateNestedOneWithoutLeaveTypesInput
   requests?: Prisma.LeaveRequestCreateNestedManyWithoutCategoryInput
-  shifts?: Prisma.ShiftInstanceCreateNestedManyWithoutLeaveCategoryInput
 }
 
 export type LeaveCategoryUncheckedCreateInput = {
@@ -236,17 +245,17 @@ export type LeaveCategoryUncheckedCreateInput = {
   organizationId: string
   name: string
   isPaid?: boolean
+  archivedAt?: Date | string | null
   requests?: Prisma.LeaveRequestUncheckedCreateNestedManyWithoutCategoryInput
-  shifts?: Prisma.ShiftInstanceUncheckedCreateNestedManyWithoutLeaveCategoryInput
 }
 
 export type LeaveCategoryUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   isPaid?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutLeaveTypesNestedInput
   requests?: Prisma.LeaveRequestUpdateManyWithoutCategoryNestedInput
-  shifts?: Prisma.ShiftInstanceUpdateManyWithoutLeaveCategoryNestedInput
 }
 
 export type LeaveCategoryUncheckedUpdateInput = {
@@ -254,8 +263,8 @@ export type LeaveCategoryUncheckedUpdateInput = {
   organizationId?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   isPaid?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   requests?: Prisma.LeaveRequestUncheckedUpdateManyWithoutCategoryNestedInput
-  shifts?: Prisma.ShiftInstanceUncheckedUpdateManyWithoutLeaveCategoryNestedInput
 }
 
 export type LeaveCategoryCreateManyInput = {
@@ -263,12 +272,14 @@ export type LeaveCategoryCreateManyInput = {
   organizationId: string
   name: string
   isPaid?: boolean
+  archivedAt?: Date | string | null
 }
 
 export type LeaveCategoryUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   isPaid?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type LeaveCategoryUncheckedUpdateManyInput = {
@@ -276,6 +287,7 @@ export type LeaveCategoryUncheckedUpdateManyInput = {
   organizationId?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   isPaid?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type LeaveCategoryListRelationFilter = {
@@ -293,6 +305,7 @@ export type LeaveCategoryCountOrderByAggregateInput = {
   organizationId?: Prisma.SortOrder
   name?: Prisma.SortOrder
   isPaid?: Prisma.SortOrder
+  archivedAt?: Prisma.SortOrder
 }
 
 export type LeaveCategoryMaxOrderByAggregateInput = {
@@ -300,6 +313,7 @@ export type LeaveCategoryMaxOrderByAggregateInput = {
   organizationId?: Prisma.SortOrder
   name?: Prisma.SortOrder
   isPaid?: Prisma.SortOrder
+  archivedAt?: Prisma.SortOrder
 }
 
 export type LeaveCategoryMinOrderByAggregateInput = {
@@ -307,11 +321,7 @@ export type LeaveCategoryMinOrderByAggregateInput = {
   organizationId?: Prisma.SortOrder
   name?: Prisma.SortOrder
   isPaid?: Prisma.SortOrder
-}
-
-export type LeaveCategoryNullableScalarRelationFilter = {
-  is?: Prisma.LeaveCategoryWhereInput | null
-  isNot?: Prisma.LeaveCategoryWhereInput | null
+  archivedAt?: Prisma.SortOrder
 }
 
 export type LeaveCategoryScalarRelationFilter = {
@@ -361,26 +371,6 @@ export type LeaveCategoryUncheckedUpdateManyWithoutOrganizationNestedInput = {
   deleteMany?: Prisma.LeaveCategoryScalarWhereInput | Prisma.LeaveCategoryScalarWhereInput[]
 }
 
-export type BoolFieldUpdateOperationsInput = {
-  set?: boolean
-}
-
-export type LeaveCategoryCreateNestedOneWithoutShiftsInput = {
-  create?: Prisma.XOR<Prisma.LeaveCategoryCreateWithoutShiftsInput, Prisma.LeaveCategoryUncheckedCreateWithoutShiftsInput>
-  connectOrCreate?: Prisma.LeaveCategoryCreateOrConnectWithoutShiftsInput
-  connect?: Prisma.LeaveCategoryWhereUniqueInput
-}
-
-export type LeaveCategoryUpdateOneWithoutShiftsNestedInput = {
-  create?: Prisma.XOR<Prisma.LeaveCategoryCreateWithoutShiftsInput, Prisma.LeaveCategoryUncheckedCreateWithoutShiftsInput>
-  connectOrCreate?: Prisma.LeaveCategoryCreateOrConnectWithoutShiftsInput
-  upsert?: Prisma.LeaveCategoryUpsertWithoutShiftsInput
-  disconnect?: Prisma.LeaveCategoryWhereInput | boolean
-  delete?: Prisma.LeaveCategoryWhereInput | boolean
-  connect?: Prisma.LeaveCategoryWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.LeaveCategoryUpdateToOneWithWhereWithoutShiftsInput, Prisma.LeaveCategoryUpdateWithoutShiftsInput>, Prisma.LeaveCategoryUncheckedUpdateWithoutShiftsInput>
-}
-
 export type LeaveCategoryCreateNestedOneWithoutRequestsInput = {
   create?: Prisma.XOR<Prisma.LeaveCategoryCreateWithoutRequestsInput, Prisma.LeaveCategoryUncheckedCreateWithoutRequestsInput>
   connectOrCreate?: Prisma.LeaveCategoryCreateOrConnectWithoutRequestsInput
@@ -399,16 +389,16 @@ export type LeaveCategoryCreateWithoutOrganizationInput = {
   id?: string
   name: string
   isPaid?: boolean
+  archivedAt?: Date | string | null
   requests?: Prisma.LeaveRequestCreateNestedManyWithoutCategoryInput
-  shifts?: Prisma.ShiftInstanceCreateNestedManyWithoutLeaveCategoryInput
 }
 
 export type LeaveCategoryUncheckedCreateWithoutOrganizationInput = {
   id?: string
   name: string
   isPaid?: boolean
+  archivedAt?: Date | string | null
   requests?: Prisma.LeaveRequestUncheckedCreateNestedManyWithoutCategoryInput
-  shifts?: Prisma.ShiftInstanceUncheckedCreateNestedManyWithoutLeaveCategoryInput
 }
 
 export type LeaveCategoryCreateOrConnectWithoutOrganizationInput = {
@@ -445,62 +435,15 @@ export type LeaveCategoryScalarWhereInput = {
   organizationId?: Prisma.StringFilter<"LeaveCategory"> | string
   name?: Prisma.StringFilter<"LeaveCategory"> | string
   isPaid?: Prisma.BoolFilter<"LeaveCategory"> | boolean
-}
-
-export type LeaveCategoryCreateWithoutShiftsInput = {
-  id?: string
-  name: string
-  isPaid?: boolean
-  organization: Prisma.OrganizationCreateNestedOneWithoutLeaveTypesInput
-  requests?: Prisma.LeaveRequestCreateNestedManyWithoutCategoryInput
-}
-
-export type LeaveCategoryUncheckedCreateWithoutShiftsInput = {
-  id?: string
-  organizationId: string
-  name: string
-  isPaid?: boolean
-  requests?: Prisma.LeaveRequestUncheckedCreateNestedManyWithoutCategoryInput
-}
-
-export type LeaveCategoryCreateOrConnectWithoutShiftsInput = {
-  where: Prisma.LeaveCategoryWhereUniqueInput
-  create: Prisma.XOR<Prisma.LeaveCategoryCreateWithoutShiftsInput, Prisma.LeaveCategoryUncheckedCreateWithoutShiftsInput>
-}
-
-export type LeaveCategoryUpsertWithoutShiftsInput = {
-  update: Prisma.XOR<Prisma.LeaveCategoryUpdateWithoutShiftsInput, Prisma.LeaveCategoryUncheckedUpdateWithoutShiftsInput>
-  create: Prisma.XOR<Prisma.LeaveCategoryCreateWithoutShiftsInput, Prisma.LeaveCategoryUncheckedCreateWithoutShiftsInput>
-  where?: Prisma.LeaveCategoryWhereInput
-}
-
-export type LeaveCategoryUpdateToOneWithWhereWithoutShiftsInput = {
-  where?: Prisma.LeaveCategoryWhereInput
-  data: Prisma.XOR<Prisma.LeaveCategoryUpdateWithoutShiftsInput, Prisma.LeaveCategoryUncheckedUpdateWithoutShiftsInput>
-}
-
-export type LeaveCategoryUpdateWithoutShiftsInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  isPaid?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  organization?: Prisma.OrganizationUpdateOneRequiredWithoutLeaveTypesNestedInput
-  requests?: Prisma.LeaveRequestUpdateManyWithoutCategoryNestedInput
-}
-
-export type LeaveCategoryUncheckedUpdateWithoutShiftsInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  organizationId?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  isPaid?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  requests?: Prisma.LeaveRequestUncheckedUpdateManyWithoutCategoryNestedInput
+  archivedAt?: Prisma.DateTimeNullableFilter<"LeaveCategory"> | Date | string | null
 }
 
 export type LeaveCategoryCreateWithoutRequestsInput = {
   id?: string
   name: string
   isPaid?: boolean
+  archivedAt?: Date | string | null
   organization: Prisma.OrganizationCreateNestedOneWithoutLeaveTypesInput
-  shifts?: Prisma.ShiftInstanceCreateNestedManyWithoutLeaveCategoryInput
 }
 
 export type LeaveCategoryUncheckedCreateWithoutRequestsInput = {
@@ -508,7 +451,7 @@ export type LeaveCategoryUncheckedCreateWithoutRequestsInput = {
   organizationId: string
   name: string
   isPaid?: boolean
-  shifts?: Prisma.ShiftInstanceUncheckedCreateNestedManyWithoutLeaveCategoryInput
+  archivedAt?: Date | string | null
 }
 
 export type LeaveCategoryCreateOrConnectWithoutRequestsInput = {
@@ -531,8 +474,8 @@ export type LeaveCategoryUpdateWithoutRequestsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   isPaid?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutLeaveTypesNestedInput
-  shifts?: Prisma.ShiftInstanceUpdateManyWithoutLeaveCategoryNestedInput
 }
 
 export type LeaveCategoryUncheckedUpdateWithoutRequestsInput = {
@@ -540,35 +483,37 @@ export type LeaveCategoryUncheckedUpdateWithoutRequestsInput = {
   organizationId?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   isPaid?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  shifts?: Prisma.ShiftInstanceUncheckedUpdateManyWithoutLeaveCategoryNestedInput
+  archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type LeaveCategoryCreateManyOrganizationInput = {
   id?: string
   name: string
   isPaid?: boolean
+  archivedAt?: Date | string | null
 }
 
 export type LeaveCategoryUpdateWithoutOrganizationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   isPaid?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   requests?: Prisma.LeaveRequestUpdateManyWithoutCategoryNestedInput
-  shifts?: Prisma.ShiftInstanceUpdateManyWithoutLeaveCategoryNestedInput
 }
 
 export type LeaveCategoryUncheckedUpdateWithoutOrganizationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   isPaid?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   requests?: Prisma.LeaveRequestUncheckedUpdateManyWithoutCategoryNestedInput
-  shifts?: Prisma.ShiftInstanceUncheckedUpdateManyWithoutLeaveCategoryNestedInput
 }
 
 export type LeaveCategoryUncheckedUpdateManyWithoutOrganizationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   isPaid?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 
@@ -578,12 +523,10 @@ export type LeaveCategoryUncheckedUpdateManyWithoutOrganizationInput = {
 
 export type LeaveCategoryCountOutputType = {
   requests: number
-  shifts: number
 }
 
 export type LeaveCategoryCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   requests?: boolean | LeaveCategoryCountOutputTypeCountRequestsArgs
-  shifts?: boolean | LeaveCategoryCountOutputTypeCountShiftsArgs
 }
 
 /**
@@ -603,22 +546,15 @@ export type LeaveCategoryCountOutputTypeCountRequestsArgs<ExtArgs extends runtim
   where?: Prisma.LeaveRequestWhereInput
 }
 
-/**
- * LeaveCategoryCountOutputType without action
- */
-export type LeaveCategoryCountOutputTypeCountShiftsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.ShiftInstanceWhereInput
-}
-
 
 export type LeaveCategorySelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   organizationId?: boolean
   name?: boolean
   isPaid?: boolean
+  archivedAt?: boolean
   organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
   requests?: boolean | Prisma.LeaveCategory$requestsArgs<ExtArgs>
-  shifts?: boolean | Prisma.LeaveCategory$shiftsArgs<ExtArgs>
   _count?: boolean | Prisma.LeaveCategoryCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["leaveCategory"]>
 
@@ -627,6 +563,7 @@ export type LeaveCategorySelectCreateManyAndReturn<ExtArgs extends runtime.Types
   organizationId?: boolean
   name?: boolean
   isPaid?: boolean
+  archivedAt?: boolean
   organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["leaveCategory"]>
 
@@ -635,6 +572,7 @@ export type LeaveCategorySelectUpdateManyAndReturn<ExtArgs extends runtime.Types
   organizationId?: boolean
   name?: boolean
   isPaid?: boolean
+  archivedAt?: boolean
   organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["leaveCategory"]>
 
@@ -643,13 +581,13 @@ export type LeaveCategorySelectScalar = {
   organizationId?: boolean
   name?: boolean
   isPaid?: boolean
+  archivedAt?: boolean
 }
 
-export type LeaveCategoryOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "organizationId" | "name" | "isPaid", ExtArgs["result"]["leaveCategory"]>
+export type LeaveCategoryOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "organizationId" | "name" | "isPaid" | "archivedAt", ExtArgs["result"]["leaveCategory"]>
 export type LeaveCategoryInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
   requests?: boolean | Prisma.LeaveCategory$requestsArgs<ExtArgs>
-  shifts?: boolean | Prisma.LeaveCategory$shiftsArgs<ExtArgs>
   _count?: boolean | Prisma.LeaveCategoryCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type LeaveCategoryIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -664,13 +602,13 @@ export type $LeaveCategoryPayload<ExtArgs extends runtime.Types.Extensions.Inter
   objects: {
     organization: Prisma.$OrganizationPayload<ExtArgs>
     requests: Prisma.$LeaveRequestPayload<ExtArgs>[]
-    shifts: Prisma.$ShiftInstancePayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     organizationId: string
     name: string
     isPaid: boolean
+    archivedAt: Date | null
   }, ExtArgs["result"]["leaveCategory"]>
   composites: {}
 }
@@ -1067,7 +1005,6 @@ export interface Prisma__LeaveCategoryClient<T, Null = never, ExtArgs extends ru
   readonly [Symbol.toStringTag]: "PrismaPromise"
   organization<T extends Prisma.OrganizationDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.OrganizationDefaultArgs<ExtArgs>>): Prisma.Prisma__OrganizationClient<runtime.Types.Result.GetResult<Prisma.$OrganizationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   requests<T extends Prisma.LeaveCategory$requestsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.LeaveCategory$requestsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$LeaveRequestPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  shifts<T extends Prisma.LeaveCategory$shiftsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.LeaveCategory$shiftsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ShiftInstancePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1101,6 +1038,7 @@ export interface LeaveCategoryFieldRefs {
   readonly organizationId: Prisma.FieldRef<"LeaveCategory", 'String'>
   readonly name: Prisma.FieldRef<"LeaveCategory", 'String'>
   readonly isPaid: Prisma.FieldRef<"LeaveCategory", 'Boolean'>
+  readonly archivedAt: Prisma.FieldRef<"LeaveCategory", 'DateTime'>
 }
     
 
@@ -1518,30 +1456,6 @@ export type LeaveCategory$requestsArgs<ExtArgs extends runtime.Types.Extensions.
   take?: number
   skip?: number
   distinct?: Prisma.LeaveRequestScalarFieldEnum | Prisma.LeaveRequestScalarFieldEnum[]
-}
-
-/**
- * LeaveCategory.shifts
- */
-export type LeaveCategory$shiftsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the ShiftInstance
-   */
-  select?: Prisma.ShiftInstanceSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the ShiftInstance
-   */
-  omit?: Prisma.ShiftInstanceOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.ShiftInstanceInclude<ExtArgs> | null
-  where?: Prisma.ShiftInstanceWhereInput
-  orderBy?: Prisma.ShiftInstanceOrderByWithRelationInput | Prisma.ShiftInstanceOrderByWithRelationInput[]
-  cursor?: Prisma.ShiftInstanceWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.ShiftInstanceScalarFieldEnum | Prisma.ShiftInstanceScalarFieldEnum[]
 }
 
 /**

@@ -26,6 +26,7 @@ export type AggregateEmployeeAvailability = {
 
 export type EmployeeAvailabilityMinAggregateOutputType = {
   id: string | null
+  organizationId: string | null
   employeeId: string | null
   date: Date | null
   preference: string | null
@@ -33,6 +34,7 @@ export type EmployeeAvailabilityMinAggregateOutputType = {
 
 export type EmployeeAvailabilityMaxAggregateOutputType = {
   id: string | null
+  organizationId: string | null
   employeeId: string | null
   date: Date | null
   preference: string | null
@@ -40,6 +42,7 @@ export type EmployeeAvailabilityMaxAggregateOutputType = {
 
 export type EmployeeAvailabilityCountAggregateOutputType = {
   id: number
+  organizationId: number
   employeeId: number
   date: number
   preference: number
@@ -49,6 +52,7 @@ export type EmployeeAvailabilityCountAggregateOutputType = {
 
 export type EmployeeAvailabilityMinAggregateInputType = {
   id?: true
+  organizationId?: true
   employeeId?: true
   date?: true
   preference?: true
@@ -56,6 +60,7 @@ export type EmployeeAvailabilityMinAggregateInputType = {
 
 export type EmployeeAvailabilityMaxAggregateInputType = {
   id?: true
+  organizationId?: true
   employeeId?: true
   date?: true
   preference?: true
@@ -63,6 +68,7 @@ export type EmployeeAvailabilityMaxAggregateInputType = {
 
 export type EmployeeAvailabilityCountAggregateInputType = {
   id?: true
+  organizationId?: true
   employeeId?: true
   date?: true
   preference?: true
@@ -143,6 +149,7 @@ export type EmployeeAvailabilityGroupByArgs<ExtArgs extends runtime.Types.Extens
 
 export type EmployeeAvailabilityGroupByOutputType = {
   id: string
+  organizationId: string
   employeeId: string
   date: Date
   preference: string
@@ -171,20 +178,24 @@ export type EmployeeAvailabilityWhereInput = {
   OR?: Prisma.EmployeeAvailabilityWhereInput[]
   NOT?: Prisma.EmployeeAvailabilityWhereInput | Prisma.EmployeeAvailabilityWhereInput[]
   id?: Prisma.StringFilter<"EmployeeAvailability"> | string
+  organizationId?: Prisma.StringFilter<"EmployeeAvailability"> | string
   employeeId?: Prisma.StringFilter<"EmployeeAvailability"> | string
   date?: Prisma.DateTimeFilter<"EmployeeAvailability"> | Date | string
   preference?: Prisma.StringFilter<"EmployeeAvailability"> | string
   employee?: Prisma.XOR<Prisma.EmployeeScalarRelationFilter, Prisma.EmployeeWhereInput>
-  preferredWards?: Prisma.WardListRelationFilter
+  preferredLocations?: Prisma.LocationListRelationFilter
+  organization?: Prisma.XOR<Prisma.OrganizationScalarRelationFilter, Prisma.OrganizationWhereInput>
 }
 
 export type EmployeeAvailabilityOrderByWithRelationInput = {
   id?: Prisma.SortOrder
+  organizationId?: Prisma.SortOrder
   employeeId?: Prisma.SortOrder
   date?: Prisma.SortOrder
   preference?: Prisma.SortOrder
   employee?: Prisma.EmployeeOrderByWithRelationInput
-  preferredWards?: Prisma.WardOrderByRelationAggregateInput
+  preferredLocations?: Prisma.LocationOrderByRelationAggregateInput
+  organization?: Prisma.OrganizationOrderByWithRelationInput
 }
 
 export type EmployeeAvailabilityWhereUniqueInput = Prisma.AtLeast<{
@@ -192,15 +203,18 @@ export type EmployeeAvailabilityWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.EmployeeAvailabilityWhereInput | Prisma.EmployeeAvailabilityWhereInput[]
   OR?: Prisma.EmployeeAvailabilityWhereInput[]
   NOT?: Prisma.EmployeeAvailabilityWhereInput | Prisma.EmployeeAvailabilityWhereInput[]
+  organizationId?: Prisma.StringFilter<"EmployeeAvailability"> | string
   employeeId?: Prisma.StringFilter<"EmployeeAvailability"> | string
   date?: Prisma.DateTimeFilter<"EmployeeAvailability"> | Date | string
   preference?: Prisma.StringFilter<"EmployeeAvailability"> | string
   employee?: Prisma.XOR<Prisma.EmployeeScalarRelationFilter, Prisma.EmployeeWhereInput>
-  preferredWards?: Prisma.WardListRelationFilter
+  preferredLocations?: Prisma.LocationListRelationFilter
+  organization?: Prisma.XOR<Prisma.OrganizationScalarRelationFilter, Prisma.OrganizationWhereInput>
 }, "id">
 
 export type EmployeeAvailabilityOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
+  organizationId?: Prisma.SortOrder
   employeeId?: Prisma.SortOrder
   date?: Prisma.SortOrder
   preference?: Prisma.SortOrder
@@ -214,6 +228,7 @@ export type EmployeeAvailabilityScalarWhereWithAggregatesInput = {
   OR?: Prisma.EmployeeAvailabilityScalarWhereWithAggregatesInput[]
   NOT?: Prisma.EmployeeAvailabilityScalarWhereWithAggregatesInput | Prisma.EmployeeAvailabilityScalarWhereWithAggregatesInput[]
   id?: Prisma.StringWithAggregatesFilter<"EmployeeAvailability"> | string
+  organizationId?: Prisma.StringWithAggregatesFilter<"EmployeeAvailability"> | string
   employeeId?: Prisma.StringWithAggregatesFilter<"EmployeeAvailability"> | string
   date?: Prisma.DateTimeWithAggregatesFilter<"EmployeeAvailability"> | Date | string
   preference?: Prisma.StringWithAggregatesFilter<"EmployeeAvailability"> | string
@@ -224,15 +239,17 @@ export type EmployeeAvailabilityCreateInput = {
   date: Date | string
   preference?: string
   employee: Prisma.EmployeeCreateNestedOneWithoutAvailabilityInput
-  preferredWards?: Prisma.WardCreateNestedManyWithoutAvailabilityInput
+  preferredLocations?: Prisma.LocationCreateNestedManyWithoutAvailabilityInput
+  organization: Prisma.OrganizationCreateNestedOneWithoutEmployeeAvailabilitiesInput
 }
 
 export type EmployeeAvailabilityUncheckedCreateInput = {
   id?: string
+  organizationId: string
   employeeId: string
   date: Date | string
   preference?: string
-  preferredWards?: Prisma.WardUncheckedCreateNestedManyWithoutAvailabilityInput
+  preferredLocations?: Prisma.LocationUncheckedCreateNestedManyWithoutAvailabilityInput
 }
 
 export type EmployeeAvailabilityUpdateInput = {
@@ -240,19 +257,22 @@ export type EmployeeAvailabilityUpdateInput = {
   date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   preference?: Prisma.StringFieldUpdateOperationsInput | string
   employee?: Prisma.EmployeeUpdateOneRequiredWithoutAvailabilityNestedInput
-  preferredWards?: Prisma.WardUpdateManyWithoutAvailabilityNestedInput
+  preferredLocations?: Prisma.LocationUpdateManyWithoutAvailabilityNestedInput
+  organization?: Prisma.OrganizationUpdateOneRequiredWithoutEmployeeAvailabilitiesNestedInput
 }
 
 export type EmployeeAvailabilityUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  organizationId?: Prisma.StringFieldUpdateOperationsInput | string
   employeeId?: Prisma.StringFieldUpdateOperationsInput | string
   date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   preference?: Prisma.StringFieldUpdateOperationsInput | string
-  preferredWards?: Prisma.WardUncheckedUpdateManyWithoutAvailabilityNestedInput
+  preferredLocations?: Prisma.LocationUncheckedUpdateManyWithoutAvailabilityNestedInput
 }
 
 export type EmployeeAvailabilityCreateManyInput = {
   id?: string
+  organizationId: string
   employeeId: string
   date: Date | string
   preference?: string
@@ -266,6 +286,7 @@ export type EmployeeAvailabilityUpdateManyMutationInput = {
 
 export type EmployeeAvailabilityUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  organizationId?: Prisma.StringFieldUpdateOperationsInput | string
   employeeId?: Prisma.StringFieldUpdateOperationsInput | string
   date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   preference?: Prisma.StringFieldUpdateOperationsInput | string
@@ -283,6 +304,7 @@ export type EmployeeAvailabilityOrderByRelationAggregateInput = {
 
 export type EmployeeAvailabilityCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  organizationId?: Prisma.SortOrder
   employeeId?: Prisma.SortOrder
   date?: Prisma.SortOrder
   preference?: Prisma.SortOrder
@@ -290,6 +312,7 @@ export type EmployeeAvailabilityCountOrderByAggregateInput = {
 
 export type EmployeeAvailabilityMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  organizationId?: Prisma.SortOrder
   employeeId?: Prisma.SortOrder
   date?: Prisma.SortOrder
   preference?: Prisma.SortOrder
@@ -297,46 +320,89 @@ export type EmployeeAvailabilityMaxOrderByAggregateInput = {
 
 export type EmployeeAvailabilityMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  organizationId?: Prisma.SortOrder
   employeeId?: Prisma.SortOrder
   date?: Prisma.SortOrder
   preference?: Prisma.SortOrder
 }
 
-export type EmployeeAvailabilityCreateNestedManyWithoutPreferredWardsInput = {
-  create?: Prisma.XOR<Prisma.EmployeeAvailabilityCreateWithoutPreferredWardsInput, Prisma.EmployeeAvailabilityUncheckedCreateWithoutPreferredWardsInput> | Prisma.EmployeeAvailabilityCreateWithoutPreferredWardsInput[] | Prisma.EmployeeAvailabilityUncheckedCreateWithoutPreferredWardsInput[]
-  connectOrCreate?: Prisma.EmployeeAvailabilityCreateOrConnectWithoutPreferredWardsInput | Prisma.EmployeeAvailabilityCreateOrConnectWithoutPreferredWardsInput[]
+export type EmployeeAvailabilityCreateNestedManyWithoutOrganizationInput = {
+  create?: Prisma.XOR<Prisma.EmployeeAvailabilityCreateWithoutOrganizationInput, Prisma.EmployeeAvailabilityUncheckedCreateWithoutOrganizationInput> | Prisma.EmployeeAvailabilityCreateWithoutOrganizationInput[] | Prisma.EmployeeAvailabilityUncheckedCreateWithoutOrganizationInput[]
+  connectOrCreate?: Prisma.EmployeeAvailabilityCreateOrConnectWithoutOrganizationInput | Prisma.EmployeeAvailabilityCreateOrConnectWithoutOrganizationInput[]
+  createMany?: Prisma.EmployeeAvailabilityCreateManyOrganizationInputEnvelope
   connect?: Prisma.EmployeeAvailabilityWhereUniqueInput | Prisma.EmployeeAvailabilityWhereUniqueInput[]
 }
 
-export type EmployeeAvailabilityUncheckedCreateNestedManyWithoutPreferredWardsInput = {
-  create?: Prisma.XOR<Prisma.EmployeeAvailabilityCreateWithoutPreferredWardsInput, Prisma.EmployeeAvailabilityUncheckedCreateWithoutPreferredWardsInput> | Prisma.EmployeeAvailabilityCreateWithoutPreferredWardsInput[] | Prisma.EmployeeAvailabilityUncheckedCreateWithoutPreferredWardsInput[]
-  connectOrCreate?: Prisma.EmployeeAvailabilityCreateOrConnectWithoutPreferredWardsInput | Prisma.EmployeeAvailabilityCreateOrConnectWithoutPreferredWardsInput[]
+export type EmployeeAvailabilityUncheckedCreateNestedManyWithoutOrganizationInput = {
+  create?: Prisma.XOR<Prisma.EmployeeAvailabilityCreateWithoutOrganizationInput, Prisma.EmployeeAvailabilityUncheckedCreateWithoutOrganizationInput> | Prisma.EmployeeAvailabilityCreateWithoutOrganizationInput[] | Prisma.EmployeeAvailabilityUncheckedCreateWithoutOrganizationInput[]
+  connectOrCreate?: Prisma.EmployeeAvailabilityCreateOrConnectWithoutOrganizationInput | Prisma.EmployeeAvailabilityCreateOrConnectWithoutOrganizationInput[]
+  createMany?: Prisma.EmployeeAvailabilityCreateManyOrganizationInputEnvelope
   connect?: Prisma.EmployeeAvailabilityWhereUniqueInput | Prisma.EmployeeAvailabilityWhereUniqueInput[]
 }
 
-export type EmployeeAvailabilityUpdateManyWithoutPreferredWardsNestedInput = {
-  create?: Prisma.XOR<Prisma.EmployeeAvailabilityCreateWithoutPreferredWardsInput, Prisma.EmployeeAvailabilityUncheckedCreateWithoutPreferredWardsInput> | Prisma.EmployeeAvailabilityCreateWithoutPreferredWardsInput[] | Prisma.EmployeeAvailabilityUncheckedCreateWithoutPreferredWardsInput[]
-  connectOrCreate?: Prisma.EmployeeAvailabilityCreateOrConnectWithoutPreferredWardsInput | Prisma.EmployeeAvailabilityCreateOrConnectWithoutPreferredWardsInput[]
-  upsert?: Prisma.EmployeeAvailabilityUpsertWithWhereUniqueWithoutPreferredWardsInput | Prisma.EmployeeAvailabilityUpsertWithWhereUniqueWithoutPreferredWardsInput[]
+export type EmployeeAvailabilityUpdateManyWithoutOrganizationNestedInput = {
+  create?: Prisma.XOR<Prisma.EmployeeAvailabilityCreateWithoutOrganizationInput, Prisma.EmployeeAvailabilityUncheckedCreateWithoutOrganizationInput> | Prisma.EmployeeAvailabilityCreateWithoutOrganizationInput[] | Prisma.EmployeeAvailabilityUncheckedCreateWithoutOrganizationInput[]
+  connectOrCreate?: Prisma.EmployeeAvailabilityCreateOrConnectWithoutOrganizationInput | Prisma.EmployeeAvailabilityCreateOrConnectWithoutOrganizationInput[]
+  upsert?: Prisma.EmployeeAvailabilityUpsertWithWhereUniqueWithoutOrganizationInput | Prisma.EmployeeAvailabilityUpsertWithWhereUniqueWithoutOrganizationInput[]
+  createMany?: Prisma.EmployeeAvailabilityCreateManyOrganizationInputEnvelope
   set?: Prisma.EmployeeAvailabilityWhereUniqueInput | Prisma.EmployeeAvailabilityWhereUniqueInput[]
   disconnect?: Prisma.EmployeeAvailabilityWhereUniqueInput | Prisma.EmployeeAvailabilityWhereUniqueInput[]
   delete?: Prisma.EmployeeAvailabilityWhereUniqueInput | Prisma.EmployeeAvailabilityWhereUniqueInput[]
   connect?: Prisma.EmployeeAvailabilityWhereUniqueInput | Prisma.EmployeeAvailabilityWhereUniqueInput[]
-  update?: Prisma.EmployeeAvailabilityUpdateWithWhereUniqueWithoutPreferredWardsInput | Prisma.EmployeeAvailabilityUpdateWithWhereUniqueWithoutPreferredWardsInput[]
-  updateMany?: Prisma.EmployeeAvailabilityUpdateManyWithWhereWithoutPreferredWardsInput | Prisma.EmployeeAvailabilityUpdateManyWithWhereWithoutPreferredWardsInput[]
+  update?: Prisma.EmployeeAvailabilityUpdateWithWhereUniqueWithoutOrganizationInput | Prisma.EmployeeAvailabilityUpdateWithWhereUniqueWithoutOrganizationInput[]
+  updateMany?: Prisma.EmployeeAvailabilityUpdateManyWithWhereWithoutOrganizationInput | Prisma.EmployeeAvailabilityUpdateManyWithWhereWithoutOrganizationInput[]
   deleteMany?: Prisma.EmployeeAvailabilityScalarWhereInput | Prisma.EmployeeAvailabilityScalarWhereInput[]
 }
 
-export type EmployeeAvailabilityUncheckedUpdateManyWithoutPreferredWardsNestedInput = {
-  create?: Prisma.XOR<Prisma.EmployeeAvailabilityCreateWithoutPreferredWardsInput, Prisma.EmployeeAvailabilityUncheckedCreateWithoutPreferredWardsInput> | Prisma.EmployeeAvailabilityCreateWithoutPreferredWardsInput[] | Prisma.EmployeeAvailabilityUncheckedCreateWithoutPreferredWardsInput[]
-  connectOrCreate?: Prisma.EmployeeAvailabilityCreateOrConnectWithoutPreferredWardsInput | Prisma.EmployeeAvailabilityCreateOrConnectWithoutPreferredWardsInput[]
-  upsert?: Prisma.EmployeeAvailabilityUpsertWithWhereUniqueWithoutPreferredWardsInput | Prisma.EmployeeAvailabilityUpsertWithWhereUniqueWithoutPreferredWardsInput[]
+export type EmployeeAvailabilityUncheckedUpdateManyWithoutOrganizationNestedInput = {
+  create?: Prisma.XOR<Prisma.EmployeeAvailabilityCreateWithoutOrganizationInput, Prisma.EmployeeAvailabilityUncheckedCreateWithoutOrganizationInput> | Prisma.EmployeeAvailabilityCreateWithoutOrganizationInput[] | Prisma.EmployeeAvailabilityUncheckedCreateWithoutOrganizationInput[]
+  connectOrCreate?: Prisma.EmployeeAvailabilityCreateOrConnectWithoutOrganizationInput | Prisma.EmployeeAvailabilityCreateOrConnectWithoutOrganizationInput[]
+  upsert?: Prisma.EmployeeAvailabilityUpsertWithWhereUniqueWithoutOrganizationInput | Prisma.EmployeeAvailabilityUpsertWithWhereUniqueWithoutOrganizationInput[]
+  createMany?: Prisma.EmployeeAvailabilityCreateManyOrganizationInputEnvelope
   set?: Prisma.EmployeeAvailabilityWhereUniqueInput | Prisma.EmployeeAvailabilityWhereUniqueInput[]
   disconnect?: Prisma.EmployeeAvailabilityWhereUniqueInput | Prisma.EmployeeAvailabilityWhereUniqueInput[]
   delete?: Prisma.EmployeeAvailabilityWhereUniqueInput | Prisma.EmployeeAvailabilityWhereUniqueInput[]
   connect?: Prisma.EmployeeAvailabilityWhereUniqueInput | Prisma.EmployeeAvailabilityWhereUniqueInput[]
-  update?: Prisma.EmployeeAvailabilityUpdateWithWhereUniqueWithoutPreferredWardsInput | Prisma.EmployeeAvailabilityUpdateWithWhereUniqueWithoutPreferredWardsInput[]
-  updateMany?: Prisma.EmployeeAvailabilityUpdateManyWithWhereWithoutPreferredWardsInput | Prisma.EmployeeAvailabilityUpdateManyWithWhereWithoutPreferredWardsInput[]
+  update?: Prisma.EmployeeAvailabilityUpdateWithWhereUniqueWithoutOrganizationInput | Prisma.EmployeeAvailabilityUpdateWithWhereUniqueWithoutOrganizationInput[]
+  updateMany?: Prisma.EmployeeAvailabilityUpdateManyWithWhereWithoutOrganizationInput | Prisma.EmployeeAvailabilityUpdateManyWithWhereWithoutOrganizationInput[]
+  deleteMany?: Prisma.EmployeeAvailabilityScalarWhereInput | Prisma.EmployeeAvailabilityScalarWhereInput[]
+}
+
+export type EmployeeAvailabilityCreateNestedManyWithoutPreferredLocationsInput = {
+  create?: Prisma.XOR<Prisma.EmployeeAvailabilityCreateWithoutPreferredLocationsInput, Prisma.EmployeeAvailabilityUncheckedCreateWithoutPreferredLocationsInput> | Prisma.EmployeeAvailabilityCreateWithoutPreferredLocationsInput[] | Prisma.EmployeeAvailabilityUncheckedCreateWithoutPreferredLocationsInput[]
+  connectOrCreate?: Prisma.EmployeeAvailabilityCreateOrConnectWithoutPreferredLocationsInput | Prisma.EmployeeAvailabilityCreateOrConnectWithoutPreferredLocationsInput[]
+  connect?: Prisma.EmployeeAvailabilityWhereUniqueInput | Prisma.EmployeeAvailabilityWhereUniqueInput[]
+}
+
+export type EmployeeAvailabilityUncheckedCreateNestedManyWithoutPreferredLocationsInput = {
+  create?: Prisma.XOR<Prisma.EmployeeAvailabilityCreateWithoutPreferredLocationsInput, Prisma.EmployeeAvailabilityUncheckedCreateWithoutPreferredLocationsInput> | Prisma.EmployeeAvailabilityCreateWithoutPreferredLocationsInput[] | Prisma.EmployeeAvailabilityUncheckedCreateWithoutPreferredLocationsInput[]
+  connectOrCreate?: Prisma.EmployeeAvailabilityCreateOrConnectWithoutPreferredLocationsInput | Prisma.EmployeeAvailabilityCreateOrConnectWithoutPreferredLocationsInput[]
+  connect?: Prisma.EmployeeAvailabilityWhereUniqueInput | Prisma.EmployeeAvailabilityWhereUniqueInput[]
+}
+
+export type EmployeeAvailabilityUpdateManyWithoutPreferredLocationsNestedInput = {
+  create?: Prisma.XOR<Prisma.EmployeeAvailabilityCreateWithoutPreferredLocationsInput, Prisma.EmployeeAvailabilityUncheckedCreateWithoutPreferredLocationsInput> | Prisma.EmployeeAvailabilityCreateWithoutPreferredLocationsInput[] | Prisma.EmployeeAvailabilityUncheckedCreateWithoutPreferredLocationsInput[]
+  connectOrCreate?: Prisma.EmployeeAvailabilityCreateOrConnectWithoutPreferredLocationsInput | Prisma.EmployeeAvailabilityCreateOrConnectWithoutPreferredLocationsInput[]
+  upsert?: Prisma.EmployeeAvailabilityUpsertWithWhereUniqueWithoutPreferredLocationsInput | Prisma.EmployeeAvailabilityUpsertWithWhereUniqueWithoutPreferredLocationsInput[]
+  set?: Prisma.EmployeeAvailabilityWhereUniqueInput | Prisma.EmployeeAvailabilityWhereUniqueInput[]
+  disconnect?: Prisma.EmployeeAvailabilityWhereUniqueInput | Prisma.EmployeeAvailabilityWhereUniqueInput[]
+  delete?: Prisma.EmployeeAvailabilityWhereUniqueInput | Prisma.EmployeeAvailabilityWhereUniqueInput[]
+  connect?: Prisma.EmployeeAvailabilityWhereUniqueInput | Prisma.EmployeeAvailabilityWhereUniqueInput[]
+  update?: Prisma.EmployeeAvailabilityUpdateWithWhereUniqueWithoutPreferredLocationsInput | Prisma.EmployeeAvailabilityUpdateWithWhereUniqueWithoutPreferredLocationsInput[]
+  updateMany?: Prisma.EmployeeAvailabilityUpdateManyWithWhereWithoutPreferredLocationsInput | Prisma.EmployeeAvailabilityUpdateManyWithWhereWithoutPreferredLocationsInput[]
+  deleteMany?: Prisma.EmployeeAvailabilityScalarWhereInput | Prisma.EmployeeAvailabilityScalarWhereInput[]
+}
+
+export type EmployeeAvailabilityUncheckedUpdateManyWithoutPreferredLocationsNestedInput = {
+  create?: Prisma.XOR<Prisma.EmployeeAvailabilityCreateWithoutPreferredLocationsInput, Prisma.EmployeeAvailabilityUncheckedCreateWithoutPreferredLocationsInput> | Prisma.EmployeeAvailabilityCreateWithoutPreferredLocationsInput[] | Prisma.EmployeeAvailabilityUncheckedCreateWithoutPreferredLocationsInput[]
+  connectOrCreate?: Prisma.EmployeeAvailabilityCreateOrConnectWithoutPreferredLocationsInput | Prisma.EmployeeAvailabilityCreateOrConnectWithoutPreferredLocationsInput[]
+  upsert?: Prisma.EmployeeAvailabilityUpsertWithWhereUniqueWithoutPreferredLocationsInput | Prisma.EmployeeAvailabilityUpsertWithWhereUniqueWithoutPreferredLocationsInput[]
+  set?: Prisma.EmployeeAvailabilityWhereUniqueInput | Prisma.EmployeeAvailabilityWhereUniqueInput[]
+  disconnect?: Prisma.EmployeeAvailabilityWhereUniqueInput | Prisma.EmployeeAvailabilityWhereUniqueInput[]
+  delete?: Prisma.EmployeeAvailabilityWhereUniqueInput | Prisma.EmployeeAvailabilityWhereUniqueInput[]
+  connect?: Prisma.EmployeeAvailabilityWhereUniqueInput | Prisma.EmployeeAvailabilityWhereUniqueInput[]
+  update?: Prisma.EmployeeAvailabilityUpdateWithWhereUniqueWithoutPreferredLocationsInput | Prisma.EmployeeAvailabilityUpdateWithWhereUniqueWithoutPreferredLocationsInput[]
+  updateMany?: Prisma.EmployeeAvailabilityUpdateManyWithWhereWithoutPreferredLocationsInput | Prisma.EmployeeAvailabilityUpdateManyWithWhereWithoutPreferredLocationsInput[]
   deleteMany?: Prisma.EmployeeAvailabilityScalarWhereInput | Prisma.EmployeeAvailabilityScalarWhereInput[]
 }
 
@@ -382,39 +448,46 @@ export type EmployeeAvailabilityUncheckedUpdateManyWithoutEmployeeNestedInput = 
   deleteMany?: Prisma.EmployeeAvailabilityScalarWhereInput | Prisma.EmployeeAvailabilityScalarWhereInput[]
 }
 
-export type EmployeeAvailabilityCreateWithoutPreferredWardsInput = {
+export type EmployeeAvailabilityCreateWithoutOrganizationInput = {
   id?: string
   date: Date | string
   preference?: string
   employee: Prisma.EmployeeCreateNestedOneWithoutAvailabilityInput
+  preferredLocations?: Prisma.LocationCreateNestedManyWithoutAvailabilityInput
 }
 
-export type EmployeeAvailabilityUncheckedCreateWithoutPreferredWardsInput = {
+export type EmployeeAvailabilityUncheckedCreateWithoutOrganizationInput = {
   id?: string
   employeeId: string
   date: Date | string
   preference?: string
+  preferredLocations?: Prisma.LocationUncheckedCreateNestedManyWithoutAvailabilityInput
 }
 
-export type EmployeeAvailabilityCreateOrConnectWithoutPreferredWardsInput = {
+export type EmployeeAvailabilityCreateOrConnectWithoutOrganizationInput = {
   where: Prisma.EmployeeAvailabilityWhereUniqueInput
-  create: Prisma.XOR<Prisma.EmployeeAvailabilityCreateWithoutPreferredWardsInput, Prisma.EmployeeAvailabilityUncheckedCreateWithoutPreferredWardsInput>
+  create: Prisma.XOR<Prisma.EmployeeAvailabilityCreateWithoutOrganizationInput, Prisma.EmployeeAvailabilityUncheckedCreateWithoutOrganizationInput>
 }
 
-export type EmployeeAvailabilityUpsertWithWhereUniqueWithoutPreferredWardsInput = {
+export type EmployeeAvailabilityCreateManyOrganizationInputEnvelope = {
+  data: Prisma.EmployeeAvailabilityCreateManyOrganizationInput | Prisma.EmployeeAvailabilityCreateManyOrganizationInput[]
+  skipDuplicates?: boolean
+}
+
+export type EmployeeAvailabilityUpsertWithWhereUniqueWithoutOrganizationInput = {
   where: Prisma.EmployeeAvailabilityWhereUniqueInput
-  update: Prisma.XOR<Prisma.EmployeeAvailabilityUpdateWithoutPreferredWardsInput, Prisma.EmployeeAvailabilityUncheckedUpdateWithoutPreferredWardsInput>
-  create: Prisma.XOR<Prisma.EmployeeAvailabilityCreateWithoutPreferredWardsInput, Prisma.EmployeeAvailabilityUncheckedCreateWithoutPreferredWardsInput>
+  update: Prisma.XOR<Prisma.EmployeeAvailabilityUpdateWithoutOrganizationInput, Prisma.EmployeeAvailabilityUncheckedUpdateWithoutOrganizationInput>
+  create: Prisma.XOR<Prisma.EmployeeAvailabilityCreateWithoutOrganizationInput, Prisma.EmployeeAvailabilityUncheckedCreateWithoutOrganizationInput>
 }
 
-export type EmployeeAvailabilityUpdateWithWhereUniqueWithoutPreferredWardsInput = {
+export type EmployeeAvailabilityUpdateWithWhereUniqueWithoutOrganizationInput = {
   where: Prisma.EmployeeAvailabilityWhereUniqueInput
-  data: Prisma.XOR<Prisma.EmployeeAvailabilityUpdateWithoutPreferredWardsInput, Prisma.EmployeeAvailabilityUncheckedUpdateWithoutPreferredWardsInput>
+  data: Prisma.XOR<Prisma.EmployeeAvailabilityUpdateWithoutOrganizationInput, Prisma.EmployeeAvailabilityUncheckedUpdateWithoutOrganizationInput>
 }
 
-export type EmployeeAvailabilityUpdateManyWithWhereWithoutPreferredWardsInput = {
+export type EmployeeAvailabilityUpdateManyWithWhereWithoutOrganizationInput = {
   where: Prisma.EmployeeAvailabilityScalarWhereInput
-  data: Prisma.XOR<Prisma.EmployeeAvailabilityUpdateManyMutationInput, Prisma.EmployeeAvailabilityUncheckedUpdateManyWithoutPreferredWardsInput>
+  data: Prisma.XOR<Prisma.EmployeeAvailabilityUpdateManyMutationInput, Prisma.EmployeeAvailabilityUncheckedUpdateManyWithoutOrganizationInput>
 }
 
 export type EmployeeAvailabilityScalarWhereInput = {
@@ -422,23 +495,63 @@ export type EmployeeAvailabilityScalarWhereInput = {
   OR?: Prisma.EmployeeAvailabilityScalarWhereInput[]
   NOT?: Prisma.EmployeeAvailabilityScalarWhereInput | Prisma.EmployeeAvailabilityScalarWhereInput[]
   id?: Prisma.StringFilter<"EmployeeAvailability"> | string
+  organizationId?: Prisma.StringFilter<"EmployeeAvailability"> | string
   employeeId?: Prisma.StringFilter<"EmployeeAvailability"> | string
   date?: Prisma.DateTimeFilter<"EmployeeAvailability"> | Date | string
   preference?: Prisma.StringFilter<"EmployeeAvailability"> | string
+}
+
+export type EmployeeAvailabilityCreateWithoutPreferredLocationsInput = {
+  id?: string
+  date: Date | string
+  preference?: string
+  employee: Prisma.EmployeeCreateNestedOneWithoutAvailabilityInput
+  organization: Prisma.OrganizationCreateNestedOneWithoutEmployeeAvailabilitiesInput
+}
+
+export type EmployeeAvailabilityUncheckedCreateWithoutPreferredLocationsInput = {
+  id?: string
+  organizationId: string
+  employeeId: string
+  date: Date | string
+  preference?: string
+}
+
+export type EmployeeAvailabilityCreateOrConnectWithoutPreferredLocationsInput = {
+  where: Prisma.EmployeeAvailabilityWhereUniqueInput
+  create: Prisma.XOR<Prisma.EmployeeAvailabilityCreateWithoutPreferredLocationsInput, Prisma.EmployeeAvailabilityUncheckedCreateWithoutPreferredLocationsInput>
+}
+
+export type EmployeeAvailabilityUpsertWithWhereUniqueWithoutPreferredLocationsInput = {
+  where: Prisma.EmployeeAvailabilityWhereUniqueInput
+  update: Prisma.XOR<Prisma.EmployeeAvailabilityUpdateWithoutPreferredLocationsInput, Prisma.EmployeeAvailabilityUncheckedUpdateWithoutPreferredLocationsInput>
+  create: Prisma.XOR<Prisma.EmployeeAvailabilityCreateWithoutPreferredLocationsInput, Prisma.EmployeeAvailabilityUncheckedCreateWithoutPreferredLocationsInput>
+}
+
+export type EmployeeAvailabilityUpdateWithWhereUniqueWithoutPreferredLocationsInput = {
+  where: Prisma.EmployeeAvailabilityWhereUniqueInput
+  data: Prisma.XOR<Prisma.EmployeeAvailabilityUpdateWithoutPreferredLocationsInput, Prisma.EmployeeAvailabilityUncheckedUpdateWithoutPreferredLocationsInput>
+}
+
+export type EmployeeAvailabilityUpdateManyWithWhereWithoutPreferredLocationsInput = {
+  where: Prisma.EmployeeAvailabilityScalarWhereInput
+  data: Prisma.XOR<Prisma.EmployeeAvailabilityUpdateManyMutationInput, Prisma.EmployeeAvailabilityUncheckedUpdateManyWithoutPreferredLocationsInput>
 }
 
 export type EmployeeAvailabilityCreateWithoutEmployeeInput = {
   id?: string
   date: Date | string
   preference?: string
-  preferredWards?: Prisma.WardCreateNestedManyWithoutAvailabilityInput
+  preferredLocations?: Prisma.LocationCreateNestedManyWithoutAvailabilityInput
+  organization: Prisma.OrganizationCreateNestedOneWithoutEmployeeAvailabilitiesInput
 }
 
 export type EmployeeAvailabilityUncheckedCreateWithoutEmployeeInput = {
   id?: string
+  organizationId: string
   date: Date | string
   preference?: string
-  preferredWards?: Prisma.WardUncheckedCreateNestedManyWithoutAvailabilityInput
+  preferredLocations?: Prisma.LocationUncheckedCreateNestedManyWithoutAvailabilityInput
 }
 
 export type EmployeeAvailabilityCreateOrConnectWithoutEmployeeInput = {
@@ -467,22 +580,55 @@ export type EmployeeAvailabilityUpdateManyWithWhereWithoutEmployeeInput = {
   data: Prisma.XOR<Prisma.EmployeeAvailabilityUpdateManyMutationInput, Prisma.EmployeeAvailabilityUncheckedUpdateManyWithoutEmployeeInput>
 }
 
-export type EmployeeAvailabilityUpdateWithoutPreferredWardsInput = {
+export type EmployeeAvailabilityCreateManyOrganizationInput = {
+  id?: string
+  employeeId: string
+  date: Date | string
+  preference?: string
+}
+
+export type EmployeeAvailabilityUpdateWithoutOrganizationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   preference?: Prisma.StringFieldUpdateOperationsInput | string
   employee?: Prisma.EmployeeUpdateOneRequiredWithoutAvailabilityNestedInput
+  preferredLocations?: Prisma.LocationUpdateManyWithoutAvailabilityNestedInput
 }
 
-export type EmployeeAvailabilityUncheckedUpdateWithoutPreferredWardsInput = {
+export type EmployeeAvailabilityUncheckedUpdateWithoutOrganizationInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  employeeId?: Prisma.StringFieldUpdateOperationsInput | string
+  date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  preference?: Prisma.StringFieldUpdateOperationsInput | string
+  preferredLocations?: Prisma.LocationUncheckedUpdateManyWithoutAvailabilityNestedInput
+}
+
+export type EmployeeAvailabilityUncheckedUpdateManyWithoutOrganizationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   employeeId?: Prisma.StringFieldUpdateOperationsInput | string
   date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   preference?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
-export type EmployeeAvailabilityUncheckedUpdateManyWithoutPreferredWardsInput = {
+export type EmployeeAvailabilityUpdateWithoutPreferredLocationsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  preference?: Prisma.StringFieldUpdateOperationsInput | string
+  employee?: Prisma.EmployeeUpdateOneRequiredWithoutAvailabilityNestedInput
+  organization?: Prisma.OrganizationUpdateOneRequiredWithoutEmployeeAvailabilitiesNestedInput
+}
+
+export type EmployeeAvailabilityUncheckedUpdateWithoutPreferredLocationsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  organizationId?: Prisma.StringFieldUpdateOperationsInput | string
+  employeeId?: Prisma.StringFieldUpdateOperationsInput | string
+  date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  preference?: Prisma.StringFieldUpdateOperationsInput | string
+}
+
+export type EmployeeAvailabilityUncheckedUpdateManyWithoutPreferredLocationsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  organizationId?: Prisma.StringFieldUpdateOperationsInput | string
   employeeId?: Prisma.StringFieldUpdateOperationsInput | string
   date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   preference?: Prisma.StringFieldUpdateOperationsInput | string
@@ -490,6 +636,7 @@ export type EmployeeAvailabilityUncheckedUpdateManyWithoutPreferredWardsInput = 
 
 export type EmployeeAvailabilityCreateManyEmployeeInput = {
   id?: string
+  organizationId: string
   date: Date | string
   preference?: string
 }
@@ -498,18 +645,21 @@ export type EmployeeAvailabilityUpdateWithoutEmployeeInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   preference?: Prisma.StringFieldUpdateOperationsInput | string
-  preferredWards?: Prisma.WardUpdateManyWithoutAvailabilityNestedInput
+  preferredLocations?: Prisma.LocationUpdateManyWithoutAvailabilityNestedInput
+  organization?: Prisma.OrganizationUpdateOneRequiredWithoutEmployeeAvailabilitiesNestedInput
 }
 
 export type EmployeeAvailabilityUncheckedUpdateWithoutEmployeeInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  organizationId?: Prisma.StringFieldUpdateOperationsInput | string
   date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   preference?: Prisma.StringFieldUpdateOperationsInput | string
-  preferredWards?: Prisma.WardUncheckedUpdateManyWithoutAvailabilityNestedInput
+  preferredLocations?: Prisma.LocationUncheckedUpdateManyWithoutAvailabilityNestedInput
 }
 
 export type EmployeeAvailabilityUncheckedUpdateManyWithoutEmployeeInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  organizationId?: Prisma.StringFieldUpdateOperationsInput | string
   date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   preference?: Prisma.StringFieldUpdateOperationsInput | string
 }
@@ -520,11 +670,11 @@ export type EmployeeAvailabilityUncheckedUpdateManyWithoutEmployeeInput = {
  */
 
 export type EmployeeAvailabilityCountOutputType = {
-  preferredWards: number
+  preferredLocations: number
 }
 
 export type EmployeeAvailabilityCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  preferredWards?: boolean | EmployeeAvailabilityCountOutputTypeCountPreferredWardsArgs
+  preferredLocations?: boolean | EmployeeAvailabilityCountOutputTypeCountPreferredLocationsArgs
 }
 
 /**
@@ -540,65 +690,77 @@ export type EmployeeAvailabilityCountOutputTypeDefaultArgs<ExtArgs extends runti
 /**
  * EmployeeAvailabilityCountOutputType without action
  */
-export type EmployeeAvailabilityCountOutputTypeCountPreferredWardsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.WardWhereInput
+export type EmployeeAvailabilityCountOutputTypeCountPreferredLocationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.LocationWhereInput
 }
 
 
 export type EmployeeAvailabilitySelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
+  organizationId?: boolean
   employeeId?: boolean
   date?: boolean
   preference?: boolean
   employee?: boolean | Prisma.EmployeeDefaultArgs<ExtArgs>
-  preferredWards?: boolean | Prisma.EmployeeAvailability$preferredWardsArgs<ExtArgs>
+  preferredLocations?: boolean | Prisma.EmployeeAvailability$preferredLocationsArgs<ExtArgs>
+  organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
   _count?: boolean | Prisma.EmployeeAvailabilityCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["employeeAvailability"]>
 
 export type EmployeeAvailabilitySelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
+  organizationId?: boolean
   employeeId?: boolean
   date?: boolean
   preference?: boolean
   employee?: boolean | Prisma.EmployeeDefaultArgs<ExtArgs>
+  organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["employeeAvailability"]>
 
 export type EmployeeAvailabilitySelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
+  organizationId?: boolean
   employeeId?: boolean
   date?: boolean
   preference?: boolean
   employee?: boolean | Prisma.EmployeeDefaultArgs<ExtArgs>
+  organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["employeeAvailability"]>
 
 export type EmployeeAvailabilitySelectScalar = {
   id?: boolean
+  organizationId?: boolean
   employeeId?: boolean
   date?: boolean
   preference?: boolean
 }
 
-export type EmployeeAvailabilityOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "employeeId" | "date" | "preference", ExtArgs["result"]["employeeAvailability"]>
+export type EmployeeAvailabilityOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "organizationId" | "employeeId" | "date" | "preference", ExtArgs["result"]["employeeAvailability"]>
 export type EmployeeAvailabilityInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   employee?: boolean | Prisma.EmployeeDefaultArgs<ExtArgs>
-  preferredWards?: boolean | Prisma.EmployeeAvailability$preferredWardsArgs<ExtArgs>
+  preferredLocations?: boolean | Prisma.EmployeeAvailability$preferredLocationsArgs<ExtArgs>
+  organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
   _count?: boolean | Prisma.EmployeeAvailabilityCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type EmployeeAvailabilityIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   employee?: boolean | Prisma.EmployeeDefaultArgs<ExtArgs>
+  organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
 }
 export type EmployeeAvailabilityIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   employee?: boolean | Prisma.EmployeeDefaultArgs<ExtArgs>
+  organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
 }
 
 export type $EmployeeAvailabilityPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "EmployeeAvailability"
   objects: {
     employee: Prisma.$EmployeePayload<ExtArgs>
-    preferredWards: Prisma.$WardPayload<ExtArgs>[]
+    preferredLocations: Prisma.$LocationPayload<ExtArgs>[]
+    organization: Prisma.$OrganizationPayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
+    organizationId: string
     employeeId: string
     date: Date
     preference: string
@@ -997,7 +1159,8 @@ readonly fields: EmployeeAvailabilityFieldRefs;
 export interface Prisma__EmployeeAvailabilityClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   employee<T extends Prisma.EmployeeDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.EmployeeDefaultArgs<ExtArgs>>): Prisma.Prisma__EmployeeClient<runtime.Types.Result.GetResult<Prisma.$EmployeePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-  preferredWards<T extends Prisma.EmployeeAvailability$preferredWardsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.EmployeeAvailability$preferredWardsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$WardPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  preferredLocations<T extends Prisma.EmployeeAvailability$preferredLocationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.EmployeeAvailability$preferredLocationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$LocationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  organization<T extends Prisma.OrganizationDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.OrganizationDefaultArgs<ExtArgs>>): Prisma.Prisma__OrganizationClient<runtime.Types.Result.GetResult<Prisma.$OrganizationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1028,6 +1191,7 @@ export interface Prisma__EmployeeAvailabilityClient<T, Null = never, ExtArgs ext
  */
 export interface EmployeeAvailabilityFieldRefs {
   readonly id: Prisma.FieldRef<"EmployeeAvailability", 'String'>
+  readonly organizationId: Prisma.FieldRef<"EmployeeAvailability", 'String'>
   readonly employeeId: Prisma.FieldRef<"EmployeeAvailability", 'String'>
   readonly date: Prisma.FieldRef<"EmployeeAvailability", 'DateTime'>
   readonly preference: Prisma.FieldRef<"EmployeeAvailability", 'String'>
@@ -1427,27 +1591,27 @@ export type EmployeeAvailabilityDeleteManyArgs<ExtArgs extends runtime.Types.Ext
 }
 
 /**
- * EmployeeAvailability.preferredWards
+ * EmployeeAvailability.preferredLocations
  */
-export type EmployeeAvailability$preferredWardsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type EmployeeAvailability$preferredLocationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the Ward
+   * Select specific fields to fetch from the Location
    */
-  select?: Prisma.WardSelect<ExtArgs> | null
+  select?: Prisma.LocationSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the Ward
+   * Omit specific fields from the Location
    */
-  omit?: Prisma.WardOmit<ExtArgs> | null
+  omit?: Prisma.LocationOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.WardInclude<ExtArgs> | null
-  where?: Prisma.WardWhereInput
-  orderBy?: Prisma.WardOrderByWithRelationInput | Prisma.WardOrderByWithRelationInput[]
-  cursor?: Prisma.WardWhereUniqueInput
+  include?: Prisma.LocationInclude<ExtArgs> | null
+  where?: Prisma.LocationWhereInput
+  orderBy?: Prisma.LocationOrderByWithRelationInput | Prisma.LocationOrderByWithRelationInput[]
+  cursor?: Prisma.LocationWhereUniqueInput
   take?: number
   skip?: number
-  distinct?: Prisma.WardScalarFieldEnum | Prisma.WardScalarFieldEnum[]
+  distinct?: Prisma.LocationScalarFieldEnum | Prisma.LocationScalarFieldEnum[]
 }
 
 /**

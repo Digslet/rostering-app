@@ -8,10 +8,13 @@
  *
  * 🟢 You can import this file directly.
  */
+export type * from './models/User.ts'
 export type * from './models/Organization.ts'
 export type * from './models/Department.ts'
-export type * from './models/Ward.ts'
+export type * from './models/Location.ts'
 export type * from './models/Employee.ts'
+export type * from './models/EmployeeLocationAffiliation.ts'
+export type * from './models/ManagementRole.ts'
 export type * from './models/EmployeeRole.ts'
 export type * from './models/ShiftDefinition.ts'
 export type * from './models/StaffingRequirement.ts'

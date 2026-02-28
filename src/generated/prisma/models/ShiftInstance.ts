@@ -27,43 +27,40 @@ export type AggregateShiftInstance = {
 export type ShiftInstanceMinAggregateOutputType = {
   id: string | null
   organizationId: string | null
-  wardId: string | null
+  locationId: string | null
   employeeId: string | null
-  date: Date | null
-  shiftDefinitionId: string | null
   startTime: Date | null
   endTime: Date | null
+  shiftDefinitionId: string | null
   status: $Enums.ShiftStatus | null
   isManual: boolean | null
-  leaveCategoryId: string | null
+  archivedAt: Date | null
 }
 
 export type ShiftInstanceMaxAggregateOutputType = {
   id: string | null
   organizationId: string | null
-  wardId: string | null
+  locationId: string | null
   employeeId: string | null
-  date: Date | null
-  shiftDefinitionId: string | null
   startTime: Date | null
   endTime: Date | null
+  shiftDefinitionId: string | null
   status: $Enums.ShiftStatus | null
   isManual: boolean | null
-  leaveCategoryId: string | null
+  archivedAt: Date | null
 }
 
 export type ShiftInstanceCountAggregateOutputType = {
   id: number
   organizationId: number
-  wardId: number
+  locationId: number
   employeeId: number
-  date: number
-  shiftDefinitionId: number
   startTime: number
   endTime: number
+  shiftDefinitionId: number
   status: number
   isManual: number
-  leaveCategoryId: number
+  archivedAt: number
   _all: number
 }
 
@@ -71,43 +68,40 @@ export type ShiftInstanceCountAggregateOutputType = {
 export type ShiftInstanceMinAggregateInputType = {
   id?: true
   organizationId?: true
-  wardId?: true
+  locationId?: true
   employeeId?: true
-  date?: true
-  shiftDefinitionId?: true
   startTime?: true
   endTime?: true
+  shiftDefinitionId?: true
   status?: true
   isManual?: true
-  leaveCategoryId?: true
+  archivedAt?: true
 }
 
 export type ShiftInstanceMaxAggregateInputType = {
   id?: true
   organizationId?: true
-  wardId?: true
+  locationId?: true
   employeeId?: true
-  date?: true
-  shiftDefinitionId?: true
   startTime?: true
   endTime?: true
+  shiftDefinitionId?: true
   status?: true
   isManual?: true
-  leaveCategoryId?: true
+  archivedAt?: true
 }
 
 export type ShiftInstanceCountAggregateInputType = {
   id?: true
   organizationId?: true
-  wardId?: true
+  locationId?: true
   employeeId?: true
-  date?: true
-  shiftDefinitionId?: true
   startTime?: true
   endTime?: true
+  shiftDefinitionId?: true
   status?: true
   isManual?: true
-  leaveCategoryId?: true
+  archivedAt?: true
   _all?: true
 }
 
@@ -186,15 +180,14 @@ export type ShiftInstanceGroupByArgs<ExtArgs extends runtime.Types.Extensions.In
 export type ShiftInstanceGroupByOutputType = {
   id: string
   organizationId: string
-  wardId: string
+  locationId: string
   employeeId: string | null
-  date: Date
-  shiftDefinitionId: string | null
   startTime: Date
   endTime: Date
+  shiftDefinitionId: string | null
   status: $Enums.ShiftStatus
   isManual: boolean
-  leaveCategoryId: string | null
+  archivedAt: Date | null
   _count: ShiftInstanceCountAggregateOutputType | null
   _min: ShiftInstanceMinAggregateOutputType | null
   _max: ShiftInstanceMaxAggregateOutputType | null
@@ -221,18 +214,17 @@ export type ShiftInstanceWhereInput = {
   NOT?: Prisma.ShiftInstanceWhereInput | Prisma.ShiftInstanceWhereInput[]
   id?: Prisma.StringFilter<"ShiftInstance"> | string
   organizationId?: Prisma.StringFilter<"ShiftInstance"> | string
-  wardId?: Prisma.StringFilter<"ShiftInstance"> | string
+  locationId?: Prisma.StringFilter<"ShiftInstance"> | string
   employeeId?: Prisma.StringNullableFilter<"ShiftInstance"> | string | null
-  date?: Prisma.DateTimeFilter<"ShiftInstance"> | Date | string
-  shiftDefinitionId?: Prisma.StringNullableFilter<"ShiftInstance"> | string | null
   startTime?: Prisma.DateTimeFilter<"ShiftInstance"> | Date | string
   endTime?: Prisma.DateTimeFilter<"ShiftInstance"> | Date | string
+  shiftDefinitionId?: Prisma.StringNullableFilter<"ShiftInstance"> | string | null
   status?: Prisma.EnumShiftStatusFilter<"ShiftInstance"> | $Enums.ShiftStatus
   isManual?: Prisma.BoolFilter<"ShiftInstance"> | boolean
-  leaveCategoryId?: Prisma.StringNullableFilter<"ShiftInstance"> | string | null
+  archivedAt?: Prisma.DateTimeNullableFilter<"ShiftInstance"> | Date | string | null
   shiftDefinition?: Prisma.XOR<Prisma.ShiftDefinitionNullableScalarRelationFilter, Prisma.ShiftDefinitionWhereInput> | null
-  leaveCategory?: Prisma.XOR<Prisma.LeaveCategoryNullableScalarRelationFilter, Prisma.LeaveCategoryWhereInput> | null
-  ward?: Prisma.XOR<Prisma.WardScalarRelationFilter, Prisma.WardWhereInput>
+  organization?: Prisma.XOR<Prisma.OrganizationScalarRelationFilter, Prisma.OrganizationWhereInput>
+  location?: Prisma.XOR<Prisma.LocationScalarRelationFilter, Prisma.LocationWhereInput>
   employee?: Prisma.XOR<Prisma.EmployeeNullableScalarRelationFilter, Prisma.EmployeeWhereInput> | null
   advertisement?: Prisma.XOR<Prisma.ShiftAdvertisementNullableScalarRelationFilter, Prisma.ShiftAdvertisementWhereInput> | null
 }
@@ -240,18 +232,17 @@ export type ShiftInstanceWhereInput = {
 export type ShiftInstanceOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   organizationId?: Prisma.SortOrder
-  wardId?: Prisma.SortOrder
+  locationId?: Prisma.SortOrder
   employeeId?: Prisma.SortOrderInput | Prisma.SortOrder
-  date?: Prisma.SortOrder
-  shiftDefinitionId?: Prisma.SortOrderInput | Prisma.SortOrder
   startTime?: Prisma.SortOrder
   endTime?: Prisma.SortOrder
+  shiftDefinitionId?: Prisma.SortOrderInput | Prisma.SortOrder
   status?: Prisma.SortOrder
   isManual?: Prisma.SortOrder
-  leaveCategoryId?: Prisma.SortOrderInput | Prisma.SortOrder
+  archivedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   shiftDefinition?: Prisma.ShiftDefinitionOrderByWithRelationInput
-  leaveCategory?: Prisma.LeaveCategoryOrderByWithRelationInput
-  ward?: Prisma.WardOrderByWithRelationInput
+  organization?: Prisma.OrganizationOrderByWithRelationInput
+  location?: Prisma.LocationOrderByWithRelationInput
   employee?: Prisma.EmployeeOrderByWithRelationInput
   advertisement?: Prisma.ShiftAdvertisementOrderByWithRelationInput
 }
@@ -262,18 +253,17 @@ export type ShiftInstanceWhereUniqueInput = Prisma.AtLeast<{
   OR?: Prisma.ShiftInstanceWhereInput[]
   NOT?: Prisma.ShiftInstanceWhereInput | Prisma.ShiftInstanceWhereInput[]
   organizationId?: Prisma.StringFilter<"ShiftInstance"> | string
-  wardId?: Prisma.StringFilter<"ShiftInstance"> | string
+  locationId?: Prisma.StringFilter<"ShiftInstance"> | string
   employeeId?: Prisma.StringNullableFilter<"ShiftInstance"> | string | null
-  date?: Prisma.DateTimeFilter<"ShiftInstance"> | Date | string
-  shiftDefinitionId?: Prisma.StringNullableFilter<"ShiftInstance"> | string | null
   startTime?: Prisma.DateTimeFilter<"ShiftInstance"> | Date | string
   endTime?: Prisma.DateTimeFilter<"ShiftInstance"> | Date | string
+  shiftDefinitionId?: Prisma.StringNullableFilter<"ShiftInstance"> | string | null
   status?: Prisma.EnumShiftStatusFilter<"ShiftInstance"> | $Enums.ShiftStatus
   isManual?: Prisma.BoolFilter<"ShiftInstance"> | boolean
-  leaveCategoryId?: Prisma.StringNullableFilter<"ShiftInstance"> | string | null
+  archivedAt?: Prisma.DateTimeNullableFilter<"ShiftInstance"> | Date | string | null
   shiftDefinition?: Prisma.XOR<Prisma.ShiftDefinitionNullableScalarRelationFilter, Prisma.ShiftDefinitionWhereInput> | null
-  leaveCategory?: Prisma.XOR<Prisma.LeaveCategoryNullableScalarRelationFilter, Prisma.LeaveCategoryWhereInput> | null
-  ward?: Prisma.XOR<Prisma.WardScalarRelationFilter, Prisma.WardWhereInput>
+  organization?: Prisma.XOR<Prisma.OrganizationScalarRelationFilter, Prisma.OrganizationWhereInput>
+  location?: Prisma.XOR<Prisma.LocationScalarRelationFilter, Prisma.LocationWhereInput>
   employee?: Prisma.XOR<Prisma.EmployeeNullableScalarRelationFilter, Prisma.EmployeeWhereInput> | null
   advertisement?: Prisma.XOR<Prisma.ShiftAdvertisementNullableScalarRelationFilter, Prisma.ShiftAdvertisementWhereInput> | null
 }, "id">
@@ -281,15 +271,14 @@ export type ShiftInstanceWhereUniqueInput = Prisma.AtLeast<{
 export type ShiftInstanceOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   organizationId?: Prisma.SortOrder
-  wardId?: Prisma.SortOrder
+  locationId?: Prisma.SortOrder
   employeeId?: Prisma.SortOrderInput | Prisma.SortOrder
-  date?: Prisma.SortOrder
-  shiftDefinitionId?: Prisma.SortOrderInput | Prisma.SortOrder
   startTime?: Prisma.SortOrder
   endTime?: Prisma.SortOrder
+  shiftDefinitionId?: Prisma.SortOrderInput | Prisma.SortOrder
   status?: Prisma.SortOrder
   isManual?: Prisma.SortOrder
-  leaveCategoryId?: Prisma.SortOrderInput | Prisma.SortOrder
+  archivedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.ShiftInstanceCountOrderByAggregateInput
   _max?: Prisma.ShiftInstanceMaxOrderByAggregateInput
   _min?: Prisma.ShiftInstanceMinOrderByAggregateInput
@@ -301,28 +290,26 @@ export type ShiftInstanceScalarWhereWithAggregatesInput = {
   NOT?: Prisma.ShiftInstanceScalarWhereWithAggregatesInput | Prisma.ShiftInstanceScalarWhereWithAggregatesInput[]
   id?: Prisma.StringWithAggregatesFilter<"ShiftInstance"> | string
   organizationId?: Prisma.StringWithAggregatesFilter<"ShiftInstance"> | string
-  wardId?: Prisma.StringWithAggregatesFilter<"ShiftInstance"> | string
+  locationId?: Prisma.StringWithAggregatesFilter<"ShiftInstance"> | string
   employeeId?: Prisma.StringNullableWithAggregatesFilter<"ShiftInstance"> | string | null
-  date?: Prisma.DateTimeWithAggregatesFilter<"ShiftInstance"> | Date | string
-  shiftDefinitionId?: Prisma.StringNullableWithAggregatesFilter<"ShiftInstance"> | string | null
   startTime?: Prisma.DateTimeWithAggregatesFilter<"ShiftInstance"> | Date | string
   endTime?: Prisma.DateTimeWithAggregatesFilter<"ShiftInstance"> | Date | string
+  shiftDefinitionId?: Prisma.StringNullableWithAggregatesFilter<"ShiftInstance"> | string | null
   status?: Prisma.EnumShiftStatusWithAggregatesFilter<"ShiftInstance"> | $Enums.ShiftStatus
   isManual?: Prisma.BoolWithAggregatesFilter<"ShiftInstance"> | boolean
-  leaveCategoryId?: Prisma.StringNullableWithAggregatesFilter<"ShiftInstance"> | string | null
+  archivedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"ShiftInstance"> | Date | string | null
 }
 
 export type ShiftInstanceCreateInput = {
   id?: string
-  organizationId: string
-  date: Date | string
   startTime: Date | string
   endTime: Date | string
   status?: $Enums.ShiftStatus
   isManual?: boolean
+  archivedAt?: Date | string | null
   shiftDefinition?: Prisma.ShiftDefinitionCreateNestedOneWithoutShiftsInput
-  leaveCategory?: Prisma.LeaveCategoryCreateNestedOneWithoutShiftsInput
-  ward: Prisma.WardCreateNestedOneWithoutRostersInput
+  organization: Prisma.OrganizationCreateNestedOneWithoutShiftInstancesInput
+  location: Prisma.LocationCreateNestedOneWithoutRostersInput
   employee?: Prisma.EmployeeCreateNestedOneWithoutShiftsInput
   advertisement?: Prisma.ShiftAdvertisementCreateNestedOneWithoutShiftInstanceInput
 }
@@ -330,29 +317,27 @@ export type ShiftInstanceCreateInput = {
 export type ShiftInstanceUncheckedCreateInput = {
   id?: string
   organizationId: string
-  wardId: string
+  locationId: string
   employeeId?: string | null
-  date: Date | string
-  shiftDefinitionId?: string | null
   startTime: Date | string
   endTime: Date | string
+  shiftDefinitionId?: string | null
   status?: $Enums.ShiftStatus
   isManual?: boolean
-  leaveCategoryId?: string | null
+  archivedAt?: Date | string | null
   advertisement?: Prisma.ShiftAdvertisementUncheckedCreateNestedOneWithoutShiftInstanceInput
 }
 
 export type ShiftInstanceUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  organizationId?: Prisma.StringFieldUpdateOperationsInput | string
-  date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   startTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   endTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   status?: Prisma.EnumShiftStatusFieldUpdateOperationsInput | $Enums.ShiftStatus
   isManual?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   shiftDefinition?: Prisma.ShiftDefinitionUpdateOneWithoutShiftsNestedInput
-  leaveCategory?: Prisma.LeaveCategoryUpdateOneWithoutShiftsNestedInput
-  ward?: Prisma.WardUpdateOneRequiredWithoutRostersNestedInput
+  organization?: Prisma.OrganizationUpdateOneRequiredWithoutShiftInstancesNestedInput
+  location?: Prisma.LocationUpdateOneRequiredWithoutRostersNestedInput
   employee?: Prisma.EmployeeUpdateOneWithoutShiftsNestedInput
   advertisement?: Prisma.ShiftAdvertisementUpdateOneWithoutShiftInstanceNestedInput
 }
@@ -360,54 +345,50 @@ export type ShiftInstanceUpdateInput = {
 export type ShiftInstanceUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   organizationId?: Prisma.StringFieldUpdateOperationsInput | string
-  wardId?: Prisma.StringFieldUpdateOperationsInput | string
+  locationId?: Prisma.StringFieldUpdateOperationsInput | string
   employeeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  shiftDefinitionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   startTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   endTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  shiftDefinitionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumShiftStatusFieldUpdateOperationsInput | $Enums.ShiftStatus
   isManual?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  leaveCategoryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   advertisement?: Prisma.ShiftAdvertisementUncheckedUpdateOneWithoutShiftInstanceNestedInput
 }
 
 export type ShiftInstanceCreateManyInput = {
   id?: string
   organizationId: string
-  wardId: string
+  locationId: string
   employeeId?: string | null
-  date: Date | string
-  shiftDefinitionId?: string | null
   startTime: Date | string
   endTime: Date | string
+  shiftDefinitionId?: string | null
   status?: $Enums.ShiftStatus
   isManual?: boolean
-  leaveCategoryId?: string | null
+  archivedAt?: Date | string | null
 }
 
 export type ShiftInstanceUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  organizationId?: Prisma.StringFieldUpdateOperationsInput | string
-  date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   startTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   endTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   status?: Prisma.EnumShiftStatusFieldUpdateOperationsInput | $Enums.ShiftStatus
   isManual?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type ShiftInstanceUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   organizationId?: Prisma.StringFieldUpdateOperationsInput | string
-  wardId?: Prisma.StringFieldUpdateOperationsInput | string
+  locationId?: Prisma.StringFieldUpdateOperationsInput | string
   employeeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  shiftDefinitionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   startTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   endTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  shiftDefinitionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumShiftStatusFieldUpdateOperationsInput | $Enums.ShiftStatus
   isManual?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  leaveCategoryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type ShiftInstanceListRelationFilter = {
@@ -423,43 +404,40 @@ export type ShiftInstanceOrderByRelationAggregateInput = {
 export type ShiftInstanceCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   organizationId?: Prisma.SortOrder
-  wardId?: Prisma.SortOrder
+  locationId?: Prisma.SortOrder
   employeeId?: Prisma.SortOrder
-  date?: Prisma.SortOrder
-  shiftDefinitionId?: Prisma.SortOrder
   startTime?: Prisma.SortOrder
   endTime?: Prisma.SortOrder
+  shiftDefinitionId?: Prisma.SortOrder
   status?: Prisma.SortOrder
   isManual?: Prisma.SortOrder
-  leaveCategoryId?: Prisma.SortOrder
+  archivedAt?: Prisma.SortOrder
 }
 
 export type ShiftInstanceMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   organizationId?: Prisma.SortOrder
-  wardId?: Prisma.SortOrder
+  locationId?: Prisma.SortOrder
   employeeId?: Prisma.SortOrder
-  date?: Prisma.SortOrder
-  shiftDefinitionId?: Prisma.SortOrder
   startTime?: Prisma.SortOrder
   endTime?: Prisma.SortOrder
+  shiftDefinitionId?: Prisma.SortOrder
   status?: Prisma.SortOrder
   isManual?: Prisma.SortOrder
-  leaveCategoryId?: Prisma.SortOrder
+  archivedAt?: Prisma.SortOrder
 }
 
 export type ShiftInstanceMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   organizationId?: Prisma.SortOrder
-  wardId?: Prisma.SortOrder
+  locationId?: Prisma.SortOrder
   employeeId?: Prisma.SortOrder
-  date?: Prisma.SortOrder
-  shiftDefinitionId?: Prisma.SortOrder
   startTime?: Prisma.SortOrder
   endTime?: Prisma.SortOrder
+  shiftDefinitionId?: Prisma.SortOrder
   status?: Prisma.SortOrder
   isManual?: Prisma.SortOrder
-  leaveCategoryId?: Prisma.SortOrder
+  archivedAt?: Prisma.SortOrder
 }
 
 export type ShiftInstanceScalarRelationFilter = {
@@ -467,45 +445,87 @@ export type ShiftInstanceScalarRelationFilter = {
   isNot?: Prisma.ShiftInstanceWhereInput
 }
 
-export type ShiftInstanceCreateNestedManyWithoutWardInput = {
-  create?: Prisma.XOR<Prisma.ShiftInstanceCreateWithoutWardInput, Prisma.ShiftInstanceUncheckedCreateWithoutWardInput> | Prisma.ShiftInstanceCreateWithoutWardInput[] | Prisma.ShiftInstanceUncheckedCreateWithoutWardInput[]
-  connectOrCreate?: Prisma.ShiftInstanceCreateOrConnectWithoutWardInput | Prisma.ShiftInstanceCreateOrConnectWithoutWardInput[]
-  createMany?: Prisma.ShiftInstanceCreateManyWardInputEnvelope
+export type ShiftInstanceCreateNestedManyWithoutOrganizationInput = {
+  create?: Prisma.XOR<Prisma.ShiftInstanceCreateWithoutOrganizationInput, Prisma.ShiftInstanceUncheckedCreateWithoutOrganizationInput> | Prisma.ShiftInstanceCreateWithoutOrganizationInput[] | Prisma.ShiftInstanceUncheckedCreateWithoutOrganizationInput[]
+  connectOrCreate?: Prisma.ShiftInstanceCreateOrConnectWithoutOrganizationInput | Prisma.ShiftInstanceCreateOrConnectWithoutOrganizationInput[]
+  createMany?: Prisma.ShiftInstanceCreateManyOrganizationInputEnvelope
   connect?: Prisma.ShiftInstanceWhereUniqueInput | Prisma.ShiftInstanceWhereUniqueInput[]
 }
 
-export type ShiftInstanceUncheckedCreateNestedManyWithoutWardInput = {
-  create?: Prisma.XOR<Prisma.ShiftInstanceCreateWithoutWardInput, Prisma.ShiftInstanceUncheckedCreateWithoutWardInput> | Prisma.ShiftInstanceCreateWithoutWardInput[] | Prisma.ShiftInstanceUncheckedCreateWithoutWardInput[]
-  connectOrCreate?: Prisma.ShiftInstanceCreateOrConnectWithoutWardInput | Prisma.ShiftInstanceCreateOrConnectWithoutWardInput[]
-  createMany?: Prisma.ShiftInstanceCreateManyWardInputEnvelope
+export type ShiftInstanceUncheckedCreateNestedManyWithoutOrganizationInput = {
+  create?: Prisma.XOR<Prisma.ShiftInstanceCreateWithoutOrganizationInput, Prisma.ShiftInstanceUncheckedCreateWithoutOrganizationInput> | Prisma.ShiftInstanceCreateWithoutOrganizationInput[] | Prisma.ShiftInstanceUncheckedCreateWithoutOrganizationInput[]
+  connectOrCreate?: Prisma.ShiftInstanceCreateOrConnectWithoutOrganizationInput | Prisma.ShiftInstanceCreateOrConnectWithoutOrganizationInput[]
+  createMany?: Prisma.ShiftInstanceCreateManyOrganizationInputEnvelope
   connect?: Prisma.ShiftInstanceWhereUniqueInput | Prisma.ShiftInstanceWhereUniqueInput[]
 }
 
-export type ShiftInstanceUpdateManyWithoutWardNestedInput = {
-  create?: Prisma.XOR<Prisma.ShiftInstanceCreateWithoutWardInput, Prisma.ShiftInstanceUncheckedCreateWithoutWardInput> | Prisma.ShiftInstanceCreateWithoutWardInput[] | Prisma.ShiftInstanceUncheckedCreateWithoutWardInput[]
-  connectOrCreate?: Prisma.ShiftInstanceCreateOrConnectWithoutWardInput | Prisma.ShiftInstanceCreateOrConnectWithoutWardInput[]
-  upsert?: Prisma.ShiftInstanceUpsertWithWhereUniqueWithoutWardInput | Prisma.ShiftInstanceUpsertWithWhereUniqueWithoutWardInput[]
-  createMany?: Prisma.ShiftInstanceCreateManyWardInputEnvelope
+export type ShiftInstanceUpdateManyWithoutOrganizationNestedInput = {
+  create?: Prisma.XOR<Prisma.ShiftInstanceCreateWithoutOrganizationInput, Prisma.ShiftInstanceUncheckedCreateWithoutOrganizationInput> | Prisma.ShiftInstanceCreateWithoutOrganizationInput[] | Prisma.ShiftInstanceUncheckedCreateWithoutOrganizationInput[]
+  connectOrCreate?: Prisma.ShiftInstanceCreateOrConnectWithoutOrganizationInput | Prisma.ShiftInstanceCreateOrConnectWithoutOrganizationInput[]
+  upsert?: Prisma.ShiftInstanceUpsertWithWhereUniqueWithoutOrganizationInput | Prisma.ShiftInstanceUpsertWithWhereUniqueWithoutOrganizationInput[]
+  createMany?: Prisma.ShiftInstanceCreateManyOrganizationInputEnvelope
   set?: Prisma.ShiftInstanceWhereUniqueInput | Prisma.ShiftInstanceWhereUniqueInput[]
   disconnect?: Prisma.ShiftInstanceWhereUniqueInput | Prisma.ShiftInstanceWhereUniqueInput[]
   delete?: Prisma.ShiftInstanceWhereUniqueInput | Prisma.ShiftInstanceWhereUniqueInput[]
   connect?: Prisma.ShiftInstanceWhereUniqueInput | Prisma.ShiftInstanceWhereUniqueInput[]
-  update?: Prisma.ShiftInstanceUpdateWithWhereUniqueWithoutWardInput | Prisma.ShiftInstanceUpdateWithWhereUniqueWithoutWardInput[]
-  updateMany?: Prisma.ShiftInstanceUpdateManyWithWhereWithoutWardInput | Prisma.ShiftInstanceUpdateManyWithWhereWithoutWardInput[]
+  update?: Prisma.ShiftInstanceUpdateWithWhereUniqueWithoutOrganizationInput | Prisma.ShiftInstanceUpdateWithWhereUniqueWithoutOrganizationInput[]
+  updateMany?: Prisma.ShiftInstanceUpdateManyWithWhereWithoutOrganizationInput | Prisma.ShiftInstanceUpdateManyWithWhereWithoutOrganizationInput[]
   deleteMany?: Prisma.ShiftInstanceScalarWhereInput | Prisma.ShiftInstanceScalarWhereInput[]
 }
 
-export type ShiftInstanceUncheckedUpdateManyWithoutWardNestedInput = {
-  create?: Prisma.XOR<Prisma.ShiftInstanceCreateWithoutWardInput, Prisma.ShiftInstanceUncheckedCreateWithoutWardInput> | Prisma.ShiftInstanceCreateWithoutWardInput[] | Prisma.ShiftInstanceUncheckedCreateWithoutWardInput[]
-  connectOrCreate?: Prisma.ShiftInstanceCreateOrConnectWithoutWardInput | Prisma.ShiftInstanceCreateOrConnectWithoutWardInput[]
-  upsert?: Prisma.ShiftInstanceUpsertWithWhereUniqueWithoutWardInput | Prisma.ShiftInstanceUpsertWithWhereUniqueWithoutWardInput[]
-  createMany?: Prisma.ShiftInstanceCreateManyWardInputEnvelope
+export type ShiftInstanceUncheckedUpdateManyWithoutOrganizationNestedInput = {
+  create?: Prisma.XOR<Prisma.ShiftInstanceCreateWithoutOrganizationInput, Prisma.ShiftInstanceUncheckedCreateWithoutOrganizationInput> | Prisma.ShiftInstanceCreateWithoutOrganizationInput[] | Prisma.ShiftInstanceUncheckedCreateWithoutOrganizationInput[]
+  connectOrCreate?: Prisma.ShiftInstanceCreateOrConnectWithoutOrganizationInput | Prisma.ShiftInstanceCreateOrConnectWithoutOrganizationInput[]
+  upsert?: Prisma.ShiftInstanceUpsertWithWhereUniqueWithoutOrganizationInput | Prisma.ShiftInstanceUpsertWithWhereUniqueWithoutOrganizationInput[]
+  createMany?: Prisma.ShiftInstanceCreateManyOrganizationInputEnvelope
   set?: Prisma.ShiftInstanceWhereUniqueInput | Prisma.ShiftInstanceWhereUniqueInput[]
   disconnect?: Prisma.ShiftInstanceWhereUniqueInput | Prisma.ShiftInstanceWhereUniqueInput[]
   delete?: Prisma.ShiftInstanceWhereUniqueInput | Prisma.ShiftInstanceWhereUniqueInput[]
   connect?: Prisma.ShiftInstanceWhereUniqueInput | Prisma.ShiftInstanceWhereUniqueInput[]
-  update?: Prisma.ShiftInstanceUpdateWithWhereUniqueWithoutWardInput | Prisma.ShiftInstanceUpdateWithWhereUniqueWithoutWardInput[]
-  updateMany?: Prisma.ShiftInstanceUpdateManyWithWhereWithoutWardInput | Prisma.ShiftInstanceUpdateManyWithWhereWithoutWardInput[]
+  update?: Prisma.ShiftInstanceUpdateWithWhereUniqueWithoutOrganizationInput | Prisma.ShiftInstanceUpdateWithWhereUniqueWithoutOrganizationInput[]
+  updateMany?: Prisma.ShiftInstanceUpdateManyWithWhereWithoutOrganizationInput | Prisma.ShiftInstanceUpdateManyWithWhereWithoutOrganizationInput[]
+  deleteMany?: Prisma.ShiftInstanceScalarWhereInput | Prisma.ShiftInstanceScalarWhereInput[]
+}
+
+export type ShiftInstanceCreateNestedManyWithoutLocationInput = {
+  create?: Prisma.XOR<Prisma.ShiftInstanceCreateWithoutLocationInput, Prisma.ShiftInstanceUncheckedCreateWithoutLocationInput> | Prisma.ShiftInstanceCreateWithoutLocationInput[] | Prisma.ShiftInstanceUncheckedCreateWithoutLocationInput[]
+  connectOrCreate?: Prisma.ShiftInstanceCreateOrConnectWithoutLocationInput | Prisma.ShiftInstanceCreateOrConnectWithoutLocationInput[]
+  createMany?: Prisma.ShiftInstanceCreateManyLocationInputEnvelope
+  connect?: Prisma.ShiftInstanceWhereUniqueInput | Prisma.ShiftInstanceWhereUniqueInput[]
+}
+
+export type ShiftInstanceUncheckedCreateNestedManyWithoutLocationInput = {
+  create?: Prisma.XOR<Prisma.ShiftInstanceCreateWithoutLocationInput, Prisma.ShiftInstanceUncheckedCreateWithoutLocationInput> | Prisma.ShiftInstanceCreateWithoutLocationInput[] | Prisma.ShiftInstanceUncheckedCreateWithoutLocationInput[]
+  connectOrCreate?: Prisma.ShiftInstanceCreateOrConnectWithoutLocationInput | Prisma.ShiftInstanceCreateOrConnectWithoutLocationInput[]
+  createMany?: Prisma.ShiftInstanceCreateManyLocationInputEnvelope
+  connect?: Prisma.ShiftInstanceWhereUniqueInput | Prisma.ShiftInstanceWhereUniqueInput[]
+}
+
+export type ShiftInstanceUpdateManyWithoutLocationNestedInput = {
+  create?: Prisma.XOR<Prisma.ShiftInstanceCreateWithoutLocationInput, Prisma.ShiftInstanceUncheckedCreateWithoutLocationInput> | Prisma.ShiftInstanceCreateWithoutLocationInput[] | Prisma.ShiftInstanceUncheckedCreateWithoutLocationInput[]
+  connectOrCreate?: Prisma.ShiftInstanceCreateOrConnectWithoutLocationInput | Prisma.ShiftInstanceCreateOrConnectWithoutLocationInput[]
+  upsert?: Prisma.ShiftInstanceUpsertWithWhereUniqueWithoutLocationInput | Prisma.ShiftInstanceUpsertWithWhereUniqueWithoutLocationInput[]
+  createMany?: Prisma.ShiftInstanceCreateManyLocationInputEnvelope
+  set?: Prisma.ShiftInstanceWhereUniqueInput | Prisma.ShiftInstanceWhereUniqueInput[]
+  disconnect?: Prisma.ShiftInstanceWhereUniqueInput | Prisma.ShiftInstanceWhereUniqueInput[]
+  delete?: Prisma.ShiftInstanceWhereUniqueInput | Prisma.ShiftInstanceWhereUniqueInput[]
+  connect?: Prisma.ShiftInstanceWhereUniqueInput | Prisma.ShiftInstanceWhereUniqueInput[]
+  update?: Prisma.ShiftInstanceUpdateWithWhereUniqueWithoutLocationInput | Prisma.ShiftInstanceUpdateWithWhereUniqueWithoutLocationInput[]
+  updateMany?: Prisma.ShiftInstanceUpdateManyWithWhereWithoutLocationInput | Prisma.ShiftInstanceUpdateManyWithWhereWithoutLocationInput[]
+  deleteMany?: Prisma.ShiftInstanceScalarWhereInput | Prisma.ShiftInstanceScalarWhereInput[]
+}
+
+export type ShiftInstanceUncheckedUpdateManyWithoutLocationNestedInput = {
+  create?: Prisma.XOR<Prisma.ShiftInstanceCreateWithoutLocationInput, Prisma.ShiftInstanceUncheckedCreateWithoutLocationInput> | Prisma.ShiftInstanceCreateWithoutLocationInput[] | Prisma.ShiftInstanceUncheckedCreateWithoutLocationInput[]
+  connectOrCreate?: Prisma.ShiftInstanceCreateOrConnectWithoutLocationInput | Prisma.ShiftInstanceCreateOrConnectWithoutLocationInput[]
+  upsert?: Prisma.ShiftInstanceUpsertWithWhereUniqueWithoutLocationInput | Prisma.ShiftInstanceUpsertWithWhereUniqueWithoutLocationInput[]
+  createMany?: Prisma.ShiftInstanceCreateManyLocationInputEnvelope
+  set?: Prisma.ShiftInstanceWhereUniqueInput | Prisma.ShiftInstanceWhereUniqueInput[]
+  disconnect?: Prisma.ShiftInstanceWhereUniqueInput | Prisma.ShiftInstanceWhereUniqueInput[]
+  delete?: Prisma.ShiftInstanceWhereUniqueInput | Prisma.ShiftInstanceWhereUniqueInput[]
+  connect?: Prisma.ShiftInstanceWhereUniqueInput | Prisma.ShiftInstanceWhereUniqueInput[]
+  update?: Prisma.ShiftInstanceUpdateWithWhereUniqueWithoutLocationInput | Prisma.ShiftInstanceUpdateWithWhereUniqueWithoutLocationInput[]
+  updateMany?: Prisma.ShiftInstanceUpdateManyWithWhereWithoutLocationInput | Prisma.ShiftInstanceUpdateManyWithWhereWithoutLocationInput[]
   deleteMany?: Prisma.ShiftInstanceScalarWhereInput | Prisma.ShiftInstanceScalarWhereInput[]
 }
 
@@ -593,48 +613,6 @@ export type ShiftInstanceUncheckedUpdateManyWithoutShiftDefinitionNestedInput = 
   deleteMany?: Prisma.ShiftInstanceScalarWhereInput | Prisma.ShiftInstanceScalarWhereInput[]
 }
 
-export type ShiftInstanceCreateNestedManyWithoutLeaveCategoryInput = {
-  create?: Prisma.XOR<Prisma.ShiftInstanceCreateWithoutLeaveCategoryInput, Prisma.ShiftInstanceUncheckedCreateWithoutLeaveCategoryInput> | Prisma.ShiftInstanceCreateWithoutLeaveCategoryInput[] | Prisma.ShiftInstanceUncheckedCreateWithoutLeaveCategoryInput[]
-  connectOrCreate?: Prisma.ShiftInstanceCreateOrConnectWithoutLeaveCategoryInput | Prisma.ShiftInstanceCreateOrConnectWithoutLeaveCategoryInput[]
-  createMany?: Prisma.ShiftInstanceCreateManyLeaveCategoryInputEnvelope
-  connect?: Prisma.ShiftInstanceWhereUniqueInput | Prisma.ShiftInstanceWhereUniqueInput[]
-}
-
-export type ShiftInstanceUncheckedCreateNestedManyWithoutLeaveCategoryInput = {
-  create?: Prisma.XOR<Prisma.ShiftInstanceCreateWithoutLeaveCategoryInput, Prisma.ShiftInstanceUncheckedCreateWithoutLeaveCategoryInput> | Prisma.ShiftInstanceCreateWithoutLeaveCategoryInput[] | Prisma.ShiftInstanceUncheckedCreateWithoutLeaveCategoryInput[]
-  connectOrCreate?: Prisma.ShiftInstanceCreateOrConnectWithoutLeaveCategoryInput | Prisma.ShiftInstanceCreateOrConnectWithoutLeaveCategoryInput[]
-  createMany?: Prisma.ShiftInstanceCreateManyLeaveCategoryInputEnvelope
-  connect?: Prisma.ShiftInstanceWhereUniqueInput | Prisma.ShiftInstanceWhereUniqueInput[]
-}
-
-export type ShiftInstanceUpdateManyWithoutLeaveCategoryNestedInput = {
-  create?: Prisma.XOR<Prisma.ShiftInstanceCreateWithoutLeaveCategoryInput, Prisma.ShiftInstanceUncheckedCreateWithoutLeaveCategoryInput> | Prisma.ShiftInstanceCreateWithoutLeaveCategoryInput[] | Prisma.ShiftInstanceUncheckedCreateWithoutLeaveCategoryInput[]
-  connectOrCreate?: Prisma.ShiftInstanceCreateOrConnectWithoutLeaveCategoryInput | Prisma.ShiftInstanceCreateOrConnectWithoutLeaveCategoryInput[]
-  upsert?: Prisma.ShiftInstanceUpsertWithWhereUniqueWithoutLeaveCategoryInput | Prisma.ShiftInstanceUpsertWithWhereUniqueWithoutLeaveCategoryInput[]
-  createMany?: Prisma.ShiftInstanceCreateManyLeaveCategoryInputEnvelope
-  set?: Prisma.ShiftInstanceWhereUniqueInput | Prisma.ShiftInstanceWhereUniqueInput[]
-  disconnect?: Prisma.ShiftInstanceWhereUniqueInput | Prisma.ShiftInstanceWhereUniqueInput[]
-  delete?: Prisma.ShiftInstanceWhereUniqueInput | Prisma.ShiftInstanceWhereUniqueInput[]
-  connect?: Prisma.ShiftInstanceWhereUniqueInput | Prisma.ShiftInstanceWhereUniqueInput[]
-  update?: Prisma.ShiftInstanceUpdateWithWhereUniqueWithoutLeaveCategoryInput | Prisma.ShiftInstanceUpdateWithWhereUniqueWithoutLeaveCategoryInput[]
-  updateMany?: Prisma.ShiftInstanceUpdateManyWithWhereWithoutLeaveCategoryInput | Prisma.ShiftInstanceUpdateManyWithWhereWithoutLeaveCategoryInput[]
-  deleteMany?: Prisma.ShiftInstanceScalarWhereInput | Prisma.ShiftInstanceScalarWhereInput[]
-}
-
-export type ShiftInstanceUncheckedUpdateManyWithoutLeaveCategoryNestedInput = {
-  create?: Prisma.XOR<Prisma.ShiftInstanceCreateWithoutLeaveCategoryInput, Prisma.ShiftInstanceUncheckedCreateWithoutLeaveCategoryInput> | Prisma.ShiftInstanceCreateWithoutLeaveCategoryInput[] | Prisma.ShiftInstanceUncheckedCreateWithoutLeaveCategoryInput[]
-  connectOrCreate?: Prisma.ShiftInstanceCreateOrConnectWithoutLeaveCategoryInput | Prisma.ShiftInstanceCreateOrConnectWithoutLeaveCategoryInput[]
-  upsert?: Prisma.ShiftInstanceUpsertWithWhereUniqueWithoutLeaveCategoryInput | Prisma.ShiftInstanceUpsertWithWhereUniqueWithoutLeaveCategoryInput[]
-  createMany?: Prisma.ShiftInstanceCreateManyLeaveCategoryInputEnvelope
-  set?: Prisma.ShiftInstanceWhereUniqueInput | Prisma.ShiftInstanceWhereUniqueInput[]
-  disconnect?: Prisma.ShiftInstanceWhereUniqueInput | Prisma.ShiftInstanceWhereUniqueInput[]
-  delete?: Prisma.ShiftInstanceWhereUniqueInput | Prisma.ShiftInstanceWhereUniqueInput[]
-  connect?: Prisma.ShiftInstanceWhereUniqueInput | Prisma.ShiftInstanceWhereUniqueInput[]
-  update?: Prisma.ShiftInstanceUpdateWithWhereUniqueWithoutLeaveCategoryInput | Prisma.ShiftInstanceUpdateWithWhereUniqueWithoutLeaveCategoryInput[]
-  updateMany?: Prisma.ShiftInstanceUpdateManyWithWhereWithoutLeaveCategoryInput | Prisma.ShiftInstanceUpdateManyWithWhereWithoutLeaveCategoryInput[]
-  deleteMany?: Prisma.ShiftInstanceScalarWhereInput | Prisma.ShiftInstanceScalarWhereInput[]
-}
-
 export type EnumShiftStatusFieldUpdateOperationsInput = {
   set?: $Enums.ShiftStatus
 }
@@ -653,58 +631,56 @@ export type ShiftInstanceUpdateOneRequiredWithoutAdvertisementNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.ShiftInstanceUpdateToOneWithWhereWithoutAdvertisementInput, Prisma.ShiftInstanceUpdateWithoutAdvertisementInput>, Prisma.ShiftInstanceUncheckedUpdateWithoutAdvertisementInput>
 }
 
-export type ShiftInstanceCreateWithoutWardInput = {
+export type ShiftInstanceCreateWithoutOrganizationInput = {
   id?: string
-  organizationId: string
-  date: Date | string
   startTime: Date | string
   endTime: Date | string
   status?: $Enums.ShiftStatus
   isManual?: boolean
+  archivedAt?: Date | string | null
   shiftDefinition?: Prisma.ShiftDefinitionCreateNestedOneWithoutShiftsInput
-  leaveCategory?: Prisma.LeaveCategoryCreateNestedOneWithoutShiftsInput
+  location: Prisma.LocationCreateNestedOneWithoutRostersInput
   employee?: Prisma.EmployeeCreateNestedOneWithoutShiftsInput
   advertisement?: Prisma.ShiftAdvertisementCreateNestedOneWithoutShiftInstanceInput
 }
 
-export type ShiftInstanceUncheckedCreateWithoutWardInput = {
+export type ShiftInstanceUncheckedCreateWithoutOrganizationInput = {
   id?: string
-  organizationId: string
+  locationId: string
   employeeId?: string | null
-  date: Date | string
-  shiftDefinitionId?: string | null
   startTime: Date | string
   endTime: Date | string
+  shiftDefinitionId?: string | null
   status?: $Enums.ShiftStatus
   isManual?: boolean
-  leaveCategoryId?: string | null
+  archivedAt?: Date | string | null
   advertisement?: Prisma.ShiftAdvertisementUncheckedCreateNestedOneWithoutShiftInstanceInput
 }
 
-export type ShiftInstanceCreateOrConnectWithoutWardInput = {
+export type ShiftInstanceCreateOrConnectWithoutOrganizationInput = {
   where: Prisma.ShiftInstanceWhereUniqueInput
-  create: Prisma.XOR<Prisma.ShiftInstanceCreateWithoutWardInput, Prisma.ShiftInstanceUncheckedCreateWithoutWardInput>
+  create: Prisma.XOR<Prisma.ShiftInstanceCreateWithoutOrganizationInput, Prisma.ShiftInstanceUncheckedCreateWithoutOrganizationInput>
 }
 
-export type ShiftInstanceCreateManyWardInputEnvelope = {
-  data: Prisma.ShiftInstanceCreateManyWardInput | Prisma.ShiftInstanceCreateManyWardInput[]
+export type ShiftInstanceCreateManyOrganizationInputEnvelope = {
+  data: Prisma.ShiftInstanceCreateManyOrganizationInput | Prisma.ShiftInstanceCreateManyOrganizationInput[]
   skipDuplicates?: boolean
 }
 
-export type ShiftInstanceUpsertWithWhereUniqueWithoutWardInput = {
+export type ShiftInstanceUpsertWithWhereUniqueWithoutOrganizationInput = {
   where: Prisma.ShiftInstanceWhereUniqueInput
-  update: Prisma.XOR<Prisma.ShiftInstanceUpdateWithoutWardInput, Prisma.ShiftInstanceUncheckedUpdateWithoutWardInput>
-  create: Prisma.XOR<Prisma.ShiftInstanceCreateWithoutWardInput, Prisma.ShiftInstanceUncheckedCreateWithoutWardInput>
+  update: Prisma.XOR<Prisma.ShiftInstanceUpdateWithoutOrganizationInput, Prisma.ShiftInstanceUncheckedUpdateWithoutOrganizationInput>
+  create: Prisma.XOR<Prisma.ShiftInstanceCreateWithoutOrganizationInput, Prisma.ShiftInstanceUncheckedCreateWithoutOrganizationInput>
 }
 
-export type ShiftInstanceUpdateWithWhereUniqueWithoutWardInput = {
+export type ShiftInstanceUpdateWithWhereUniqueWithoutOrganizationInput = {
   where: Prisma.ShiftInstanceWhereUniqueInput
-  data: Prisma.XOR<Prisma.ShiftInstanceUpdateWithoutWardInput, Prisma.ShiftInstanceUncheckedUpdateWithoutWardInput>
+  data: Prisma.XOR<Prisma.ShiftInstanceUpdateWithoutOrganizationInput, Prisma.ShiftInstanceUncheckedUpdateWithoutOrganizationInput>
 }
 
-export type ShiftInstanceUpdateManyWithWhereWithoutWardInput = {
+export type ShiftInstanceUpdateManyWithWhereWithoutOrganizationInput = {
   where: Prisma.ShiftInstanceScalarWhereInput
-  data: Prisma.XOR<Prisma.ShiftInstanceUpdateManyMutationInput, Prisma.ShiftInstanceUncheckedUpdateManyWithoutWardInput>
+  data: Prisma.XOR<Prisma.ShiftInstanceUpdateManyMutationInput, Prisma.ShiftInstanceUncheckedUpdateManyWithoutOrganizationInput>
 }
 
 export type ShiftInstanceScalarWhereInput = {
@@ -713,42 +689,91 @@ export type ShiftInstanceScalarWhereInput = {
   NOT?: Prisma.ShiftInstanceScalarWhereInput | Prisma.ShiftInstanceScalarWhereInput[]
   id?: Prisma.StringFilter<"ShiftInstance"> | string
   organizationId?: Prisma.StringFilter<"ShiftInstance"> | string
-  wardId?: Prisma.StringFilter<"ShiftInstance"> | string
+  locationId?: Prisma.StringFilter<"ShiftInstance"> | string
   employeeId?: Prisma.StringNullableFilter<"ShiftInstance"> | string | null
-  date?: Prisma.DateTimeFilter<"ShiftInstance"> | Date | string
-  shiftDefinitionId?: Prisma.StringNullableFilter<"ShiftInstance"> | string | null
   startTime?: Prisma.DateTimeFilter<"ShiftInstance"> | Date | string
   endTime?: Prisma.DateTimeFilter<"ShiftInstance"> | Date | string
+  shiftDefinitionId?: Prisma.StringNullableFilter<"ShiftInstance"> | string | null
   status?: Prisma.EnumShiftStatusFilter<"ShiftInstance"> | $Enums.ShiftStatus
   isManual?: Prisma.BoolFilter<"ShiftInstance"> | boolean
-  leaveCategoryId?: Prisma.StringNullableFilter<"ShiftInstance"> | string | null
+  archivedAt?: Prisma.DateTimeNullableFilter<"ShiftInstance"> | Date | string | null
 }
 
-export type ShiftInstanceCreateWithoutEmployeeInput = {
+export type ShiftInstanceCreateWithoutLocationInput = {
   id?: string
-  organizationId: string
-  date: Date | string
   startTime: Date | string
   endTime: Date | string
   status?: $Enums.ShiftStatus
   isManual?: boolean
+  archivedAt?: Date | string | null
   shiftDefinition?: Prisma.ShiftDefinitionCreateNestedOneWithoutShiftsInput
-  leaveCategory?: Prisma.LeaveCategoryCreateNestedOneWithoutShiftsInput
-  ward: Prisma.WardCreateNestedOneWithoutRostersInput
+  organization: Prisma.OrganizationCreateNestedOneWithoutShiftInstancesInput
+  employee?: Prisma.EmployeeCreateNestedOneWithoutShiftsInput
+  advertisement?: Prisma.ShiftAdvertisementCreateNestedOneWithoutShiftInstanceInput
+}
+
+export type ShiftInstanceUncheckedCreateWithoutLocationInput = {
+  id?: string
+  organizationId: string
+  employeeId?: string | null
+  startTime: Date | string
+  endTime: Date | string
+  shiftDefinitionId?: string | null
+  status?: $Enums.ShiftStatus
+  isManual?: boolean
+  archivedAt?: Date | string | null
+  advertisement?: Prisma.ShiftAdvertisementUncheckedCreateNestedOneWithoutShiftInstanceInput
+}
+
+export type ShiftInstanceCreateOrConnectWithoutLocationInput = {
+  where: Prisma.ShiftInstanceWhereUniqueInput
+  create: Prisma.XOR<Prisma.ShiftInstanceCreateWithoutLocationInput, Prisma.ShiftInstanceUncheckedCreateWithoutLocationInput>
+}
+
+export type ShiftInstanceCreateManyLocationInputEnvelope = {
+  data: Prisma.ShiftInstanceCreateManyLocationInput | Prisma.ShiftInstanceCreateManyLocationInput[]
+  skipDuplicates?: boolean
+}
+
+export type ShiftInstanceUpsertWithWhereUniqueWithoutLocationInput = {
+  where: Prisma.ShiftInstanceWhereUniqueInput
+  update: Prisma.XOR<Prisma.ShiftInstanceUpdateWithoutLocationInput, Prisma.ShiftInstanceUncheckedUpdateWithoutLocationInput>
+  create: Prisma.XOR<Prisma.ShiftInstanceCreateWithoutLocationInput, Prisma.ShiftInstanceUncheckedCreateWithoutLocationInput>
+}
+
+export type ShiftInstanceUpdateWithWhereUniqueWithoutLocationInput = {
+  where: Prisma.ShiftInstanceWhereUniqueInput
+  data: Prisma.XOR<Prisma.ShiftInstanceUpdateWithoutLocationInput, Prisma.ShiftInstanceUncheckedUpdateWithoutLocationInput>
+}
+
+export type ShiftInstanceUpdateManyWithWhereWithoutLocationInput = {
+  where: Prisma.ShiftInstanceScalarWhereInput
+  data: Prisma.XOR<Prisma.ShiftInstanceUpdateManyMutationInput, Prisma.ShiftInstanceUncheckedUpdateManyWithoutLocationInput>
+}
+
+export type ShiftInstanceCreateWithoutEmployeeInput = {
+  id?: string
+  startTime: Date | string
+  endTime: Date | string
+  status?: $Enums.ShiftStatus
+  isManual?: boolean
+  archivedAt?: Date | string | null
+  shiftDefinition?: Prisma.ShiftDefinitionCreateNestedOneWithoutShiftsInput
+  organization: Prisma.OrganizationCreateNestedOneWithoutShiftInstancesInput
+  location: Prisma.LocationCreateNestedOneWithoutRostersInput
   advertisement?: Prisma.ShiftAdvertisementCreateNestedOneWithoutShiftInstanceInput
 }
 
 export type ShiftInstanceUncheckedCreateWithoutEmployeeInput = {
   id?: string
   organizationId: string
-  wardId: string
-  date: Date | string
-  shiftDefinitionId?: string | null
+  locationId: string
   startTime: Date | string
   endTime: Date | string
+  shiftDefinitionId?: string | null
   status?: $Enums.ShiftStatus
   isManual?: boolean
-  leaveCategoryId?: string | null
+  archivedAt?: Date | string | null
   advertisement?: Prisma.ShiftAdvertisementUncheckedCreateNestedOneWithoutShiftInstanceInput
 }
 
@@ -780,14 +805,13 @@ export type ShiftInstanceUpdateManyWithWhereWithoutEmployeeInput = {
 
 export type ShiftInstanceCreateWithoutShiftDefinitionInput = {
   id?: string
-  organizationId: string
-  date: Date | string
   startTime: Date | string
   endTime: Date | string
   status?: $Enums.ShiftStatus
   isManual?: boolean
-  leaveCategory?: Prisma.LeaveCategoryCreateNestedOneWithoutShiftsInput
-  ward: Prisma.WardCreateNestedOneWithoutRostersInput
+  archivedAt?: Date | string | null
+  organization: Prisma.OrganizationCreateNestedOneWithoutShiftInstancesInput
+  location: Prisma.LocationCreateNestedOneWithoutRostersInput
   employee?: Prisma.EmployeeCreateNestedOneWithoutShiftsInput
   advertisement?: Prisma.ShiftAdvertisementCreateNestedOneWithoutShiftInstanceInput
 }
@@ -795,14 +819,13 @@ export type ShiftInstanceCreateWithoutShiftDefinitionInput = {
 export type ShiftInstanceUncheckedCreateWithoutShiftDefinitionInput = {
   id?: string
   organizationId: string
-  wardId: string
+  locationId: string
   employeeId?: string | null
-  date: Date | string
   startTime: Date | string
   endTime: Date | string
   status?: $Enums.ShiftStatus
   isManual?: boolean
-  leaveCategoryId?: string | null
+  archivedAt?: Date | string | null
   advertisement?: Prisma.ShiftAdvertisementUncheckedCreateNestedOneWithoutShiftInstanceInput
 }
 
@@ -832,86 +855,30 @@ export type ShiftInstanceUpdateManyWithWhereWithoutShiftDefinitionInput = {
   data: Prisma.XOR<Prisma.ShiftInstanceUpdateManyMutationInput, Prisma.ShiftInstanceUncheckedUpdateManyWithoutShiftDefinitionInput>
 }
 
-export type ShiftInstanceCreateWithoutLeaveCategoryInput = {
-  id?: string
-  organizationId: string
-  date: Date | string
-  startTime: Date | string
-  endTime: Date | string
-  status?: $Enums.ShiftStatus
-  isManual?: boolean
-  shiftDefinition?: Prisma.ShiftDefinitionCreateNestedOneWithoutShiftsInput
-  ward: Prisma.WardCreateNestedOneWithoutRostersInput
-  employee?: Prisma.EmployeeCreateNestedOneWithoutShiftsInput
-  advertisement?: Prisma.ShiftAdvertisementCreateNestedOneWithoutShiftInstanceInput
-}
-
-export type ShiftInstanceUncheckedCreateWithoutLeaveCategoryInput = {
-  id?: string
-  organizationId: string
-  wardId: string
-  employeeId?: string | null
-  date: Date | string
-  shiftDefinitionId?: string | null
-  startTime: Date | string
-  endTime: Date | string
-  status?: $Enums.ShiftStatus
-  isManual?: boolean
-  advertisement?: Prisma.ShiftAdvertisementUncheckedCreateNestedOneWithoutShiftInstanceInput
-}
-
-export type ShiftInstanceCreateOrConnectWithoutLeaveCategoryInput = {
-  where: Prisma.ShiftInstanceWhereUniqueInput
-  create: Prisma.XOR<Prisma.ShiftInstanceCreateWithoutLeaveCategoryInput, Prisma.ShiftInstanceUncheckedCreateWithoutLeaveCategoryInput>
-}
-
-export type ShiftInstanceCreateManyLeaveCategoryInputEnvelope = {
-  data: Prisma.ShiftInstanceCreateManyLeaveCategoryInput | Prisma.ShiftInstanceCreateManyLeaveCategoryInput[]
-  skipDuplicates?: boolean
-}
-
-export type ShiftInstanceUpsertWithWhereUniqueWithoutLeaveCategoryInput = {
-  where: Prisma.ShiftInstanceWhereUniqueInput
-  update: Prisma.XOR<Prisma.ShiftInstanceUpdateWithoutLeaveCategoryInput, Prisma.ShiftInstanceUncheckedUpdateWithoutLeaveCategoryInput>
-  create: Prisma.XOR<Prisma.ShiftInstanceCreateWithoutLeaveCategoryInput, Prisma.ShiftInstanceUncheckedCreateWithoutLeaveCategoryInput>
-}
-
-export type ShiftInstanceUpdateWithWhereUniqueWithoutLeaveCategoryInput = {
-  where: Prisma.ShiftInstanceWhereUniqueInput
-  data: Prisma.XOR<Prisma.ShiftInstanceUpdateWithoutLeaveCategoryInput, Prisma.ShiftInstanceUncheckedUpdateWithoutLeaveCategoryInput>
-}
-
-export type ShiftInstanceUpdateManyWithWhereWithoutLeaveCategoryInput = {
-  where: Prisma.ShiftInstanceScalarWhereInput
-  data: Prisma.XOR<Prisma.ShiftInstanceUpdateManyMutationInput, Prisma.ShiftInstanceUncheckedUpdateManyWithoutLeaveCategoryInput>
-}
-
 export type ShiftInstanceCreateWithoutAdvertisementInput = {
   id?: string
-  organizationId: string
-  date: Date | string
   startTime: Date | string
   endTime: Date | string
   status?: $Enums.ShiftStatus
   isManual?: boolean
+  archivedAt?: Date | string | null
   shiftDefinition?: Prisma.ShiftDefinitionCreateNestedOneWithoutShiftsInput
-  leaveCategory?: Prisma.LeaveCategoryCreateNestedOneWithoutShiftsInput
-  ward: Prisma.WardCreateNestedOneWithoutRostersInput
+  organization: Prisma.OrganizationCreateNestedOneWithoutShiftInstancesInput
+  location: Prisma.LocationCreateNestedOneWithoutRostersInput
   employee?: Prisma.EmployeeCreateNestedOneWithoutShiftsInput
 }
 
 export type ShiftInstanceUncheckedCreateWithoutAdvertisementInput = {
   id?: string
   organizationId: string
-  wardId: string
+  locationId: string
   employeeId?: string | null
-  date: Date | string
-  shiftDefinitionId?: string | null
   startTime: Date | string
   endTime: Date | string
+  shiftDefinitionId?: string | null
   status?: $Enums.ShiftStatus
   isManual?: boolean
-  leaveCategoryId?: string | null
+  archivedAt?: Date | string | null
 }
 
 export type ShiftInstanceCreateOrConnectWithoutAdvertisementInput = {
@@ -932,163 +899,201 @@ export type ShiftInstanceUpdateToOneWithWhereWithoutAdvertisementInput = {
 
 export type ShiftInstanceUpdateWithoutAdvertisementInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  organizationId?: Prisma.StringFieldUpdateOperationsInput | string
-  date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   startTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   endTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   status?: Prisma.EnumShiftStatusFieldUpdateOperationsInput | $Enums.ShiftStatus
   isManual?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   shiftDefinition?: Prisma.ShiftDefinitionUpdateOneWithoutShiftsNestedInput
-  leaveCategory?: Prisma.LeaveCategoryUpdateOneWithoutShiftsNestedInput
-  ward?: Prisma.WardUpdateOneRequiredWithoutRostersNestedInput
+  organization?: Prisma.OrganizationUpdateOneRequiredWithoutShiftInstancesNestedInput
+  location?: Prisma.LocationUpdateOneRequiredWithoutRostersNestedInput
   employee?: Prisma.EmployeeUpdateOneWithoutShiftsNestedInput
 }
 
 export type ShiftInstanceUncheckedUpdateWithoutAdvertisementInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   organizationId?: Prisma.StringFieldUpdateOperationsInput | string
-  wardId?: Prisma.StringFieldUpdateOperationsInput | string
+  locationId?: Prisma.StringFieldUpdateOperationsInput | string
   employeeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  shiftDefinitionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   startTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   endTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  shiftDefinitionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumShiftStatusFieldUpdateOperationsInput | $Enums.ShiftStatus
   isManual?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  leaveCategoryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
-export type ShiftInstanceCreateManyWardInput = {
+export type ShiftInstanceCreateManyOrganizationInput = {
   id?: string
-  organizationId: string
+  locationId: string
   employeeId?: string | null
-  date: Date | string
-  shiftDefinitionId?: string | null
   startTime: Date | string
   endTime: Date | string
+  shiftDefinitionId?: string | null
   status?: $Enums.ShiftStatus
   isManual?: boolean
-  leaveCategoryId?: string | null
+  archivedAt?: Date | string | null
 }
 
-export type ShiftInstanceUpdateWithoutWardInput = {
+export type ShiftInstanceUpdateWithoutOrganizationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  organizationId?: Prisma.StringFieldUpdateOperationsInput | string
-  date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   startTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   endTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   status?: Prisma.EnumShiftStatusFieldUpdateOperationsInput | $Enums.ShiftStatus
   isManual?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   shiftDefinition?: Prisma.ShiftDefinitionUpdateOneWithoutShiftsNestedInput
-  leaveCategory?: Prisma.LeaveCategoryUpdateOneWithoutShiftsNestedInput
+  location?: Prisma.LocationUpdateOneRequiredWithoutRostersNestedInput
   employee?: Prisma.EmployeeUpdateOneWithoutShiftsNestedInput
   advertisement?: Prisma.ShiftAdvertisementUpdateOneWithoutShiftInstanceNestedInput
 }
 
-export type ShiftInstanceUncheckedUpdateWithoutWardInput = {
+export type ShiftInstanceUncheckedUpdateWithoutOrganizationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  organizationId?: Prisma.StringFieldUpdateOperationsInput | string
+  locationId?: Prisma.StringFieldUpdateOperationsInput | string
   employeeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  shiftDefinitionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   startTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   endTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  shiftDefinitionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumShiftStatusFieldUpdateOperationsInput | $Enums.ShiftStatus
   isManual?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  leaveCategoryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   advertisement?: Prisma.ShiftAdvertisementUncheckedUpdateOneWithoutShiftInstanceNestedInput
 }
 
-export type ShiftInstanceUncheckedUpdateManyWithoutWardInput = {
+export type ShiftInstanceUncheckedUpdateManyWithoutOrganizationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  organizationId?: Prisma.StringFieldUpdateOperationsInput | string
+  locationId?: Prisma.StringFieldUpdateOperationsInput | string
   employeeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  startTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  endTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   shiftDefinitionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumShiftStatusFieldUpdateOperationsInput | $Enums.ShiftStatus
+  isManual?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+}
+
+export type ShiftInstanceCreateManyLocationInput = {
+  id?: string
+  organizationId: string
+  employeeId?: string | null
+  startTime: Date | string
+  endTime: Date | string
+  shiftDefinitionId?: string | null
+  status?: $Enums.ShiftStatus
+  isManual?: boolean
+  archivedAt?: Date | string | null
+}
+
+export type ShiftInstanceUpdateWithoutLocationInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   startTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   endTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   status?: Prisma.EnumShiftStatusFieldUpdateOperationsInput | $Enums.ShiftStatus
   isManual?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  leaveCategoryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  shiftDefinition?: Prisma.ShiftDefinitionUpdateOneWithoutShiftsNestedInput
+  organization?: Prisma.OrganizationUpdateOneRequiredWithoutShiftInstancesNestedInput
+  employee?: Prisma.EmployeeUpdateOneWithoutShiftsNestedInput
+  advertisement?: Prisma.ShiftAdvertisementUpdateOneWithoutShiftInstanceNestedInput
+}
+
+export type ShiftInstanceUncheckedUpdateWithoutLocationInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  organizationId?: Prisma.StringFieldUpdateOperationsInput | string
+  employeeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  startTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  endTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  shiftDefinitionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumShiftStatusFieldUpdateOperationsInput | $Enums.ShiftStatus
+  isManual?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  advertisement?: Prisma.ShiftAdvertisementUncheckedUpdateOneWithoutShiftInstanceNestedInput
+}
+
+export type ShiftInstanceUncheckedUpdateManyWithoutLocationInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  organizationId?: Prisma.StringFieldUpdateOperationsInput | string
+  employeeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  startTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  endTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  shiftDefinitionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumShiftStatusFieldUpdateOperationsInput | $Enums.ShiftStatus
+  isManual?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type ShiftInstanceCreateManyEmployeeInput = {
   id?: string
   organizationId: string
-  wardId: string
-  date: Date | string
-  shiftDefinitionId?: string | null
+  locationId: string
   startTime: Date | string
   endTime: Date | string
+  shiftDefinitionId?: string | null
   status?: $Enums.ShiftStatus
   isManual?: boolean
-  leaveCategoryId?: string | null
+  archivedAt?: Date | string | null
 }
 
 export type ShiftInstanceUpdateWithoutEmployeeInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  organizationId?: Prisma.StringFieldUpdateOperationsInput | string
-  date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   startTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   endTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   status?: Prisma.EnumShiftStatusFieldUpdateOperationsInput | $Enums.ShiftStatus
   isManual?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   shiftDefinition?: Prisma.ShiftDefinitionUpdateOneWithoutShiftsNestedInput
-  leaveCategory?: Prisma.LeaveCategoryUpdateOneWithoutShiftsNestedInput
-  ward?: Prisma.WardUpdateOneRequiredWithoutRostersNestedInput
+  organization?: Prisma.OrganizationUpdateOneRequiredWithoutShiftInstancesNestedInput
+  location?: Prisma.LocationUpdateOneRequiredWithoutRostersNestedInput
   advertisement?: Prisma.ShiftAdvertisementUpdateOneWithoutShiftInstanceNestedInput
 }
 
 export type ShiftInstanceUncheckedUpdateWithoutEmployeeInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   organizationId?: Prisma.StringFieldUpdateOperationsInput | string
-  wardId?: Prisma.StringFieldUpdateOperationsInput | string
-  date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  shiftDefinitionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  locationId?: Prisma.StringFieldUpdateOperationsInput | string
   startTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   endTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  shiftDefinitionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumShiftStatusFieldUpdateOperationsInput | $Enums.ShiftStatus
   isManual?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  leaveCategoryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   advertisement?: Prisma.ShiftAdvertisementUncheckedUpdateOneWithoutShiftInstanceNestedInput
 }
 
 export type ShiftInstanceUncheckedUpdateManyWithoutEmployeeInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   organizationId?: Prisma.StringFieldUpdateOperationsInput | string
-  wardId?: Prisma.StringFieldUpdateOperationsInput | string
-  date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  shiftDefinitionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  locationId?: Prisma.StringFieldUpdateOperationsInput | string
   startTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   endTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  shiftDefinitionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumShiftStatusFieldUpdateOperationsInput | $Enums.ShiftStatus
   isManual?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  leaveCategoryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type ShiftInstanceCreateManyShiftDefinitionInput = {
   id?: string
   organizationId: string
-  wardId: string
+  locationId: string
   employeeId?: string | null
-  date: Date | string
   startTime: Date | string
   endTime: Date | string
   status?: $Enums.ShiftStatus
   isManual?: boolean
-  leaveCategoryId?: string | null
+  archivedAt?: Date | string | null
 }
 
 export type ShiftInstanceUpdateWithoutShiftDefinitionInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  organizationId?: Prisma.StringFieldUpdateOperationsInput | string
-  date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   startTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   endTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   status?: Prisma.EnumShiftStatusFieldUpdateOperationsInput | $Enums.ShiftStatus
   isManual?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  leaveCategory?: Prisma.LeaveCategoryUpdateOneWithoutShiftsNestedInput
-  ward?: Prisma.WardUpdateOneRequiredWithoutRostersNestedInput
+  archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  organization?: Prisma.OrganizationUpdateOneRequiredWithoutShiftInstancesNestedInput
+  location?: Prisma.LocationUpdateOneRequiredWithoutRostersNestedInput
   employee?: Prisma.EmployeeUpdateOneWithoutShiftsNestedInput
   advertisement?: Prisma.ShiftAdvertisementUpdateOneWithoutShiftInstanceNestedInput
 }
@@ -1096,82 +1101,26 @@ export type ShiftInstanceUpdateWithoutShiftDefinitionInput = {
 export type ShiftInstanceUncheckedUpdateWithoutShiftDefinitionInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   organizationId?: Prisma.StringFieldUpdateOperationsInput | string
-  wardId?: Prisma.StringFieldUpdateOperationsInput | string
+  locationId?: Prisma.StringFieldUpdateOperationsInput | string
   employeeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   startTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   endTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   status?: Prisma.EnumShiftStatusFieldUpdateOperationsInput | $Enums.ShiftStatus
   isManual?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  leaveCategoryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   advertisement?: Prisma.ShiftAdvertisementUncheckedUpdateOneWithoutShiftInstanceNestedInput
 }
 
 export type ShiftInstanceUncheckedUpdateManyWithoutShiftDefinitionInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   organizationId?: Prisma.StringFieldUpdateOperationsInput | string
-  wardId?: Prisma.StringFieldUpdateOperationsInput | string
+  locationId?: Prisma.StringFieldUpdateOperationsInput | string
   employeeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   startTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   endTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   status?: Prisma.EnumShiftStatusFieldUpdateOperationsInput | $Enums.ShiftStatus
   isManual?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  leaveCategoryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-}
-
-export type ShiftInstanceCreateManyLeaveCategoryInput = {
-  id?: string
-  organizationId: string
-  wardId: string
-  employeeId?: string | null
-  date: Date | string
-  shiftDefinitionId?: string | null
-  startTime: Date | string
-  endTime: Date | string
-  status?: $Enums.ShiftStatus
-  isManual?: boolean
-}
-
-export type ShiftInstanceUpdateWithoutLeaveCategoryInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  organizationId?: Prisma.StringFieldUpdateOperationsInput | string
-  date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  startTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  endTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  status?: Prisma.EnumShiftStatusFieldUpdateOperationsInput | $Enums.ShiftStatus
-  isManual?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  shiftDefinition?: Prisma.ShiftDefinitionUpdateOneWithoutShiftsNestedInput
-  ward?: Prisma.WardUpdateOneRequiredWithoutRostersNestedInput
-  employee?: Prisma.EmployeeUpdateOneWithoutShiftsNestedInput
-  advertisement?: Prisma.ShiftAdvertisementUpdateOneWithoutShiftInstanceNestedInput
-}
-
-export type ShiftInstanceUncheckedUpdateWithoutLeaveCategoryInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  organizationId?: Prisma.StringFieldUpdateOperationsInput | string
-  wardId?: Prisma.StringFieldUpdateOperationsInput | string
-  employeeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  shiftDefinitionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  startTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  endTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  status?: Prisma.EnumShiftStatusFieldUpdateOperationsInput | $Enums.ShiftStatus
-  isManual?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  advertisement?: Prisma.ShiftAdvertisementUncheckedUpdateOneWithoutShiftInstanceNestedInput
-}
-
-export type ShiftInstanceUncheckedUpdateManyWithoutLeaveCategoryInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  organizationId?: Prisma.StringFieldUpdateOperationsInput | string
-  wardId?: Prisma.StringFieldUpdateOperationsInput | string
-  employeeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  shiftDefinitionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  startTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  endTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  status?: Prisma.EnumShiftStatusFieldUpdateOperationsInput | $Enums.ShiftStatus
-  isManual?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 
@@ -1179,18 +1128,17 @@ export type ShiftInstanceUncheckedUpdateManyWithoutLeaveCategoryInput = {
 export type ShiftInstanceSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   organizationId?: boolean
-  wardId?: boolean
+  locationId?: boolean
   employeeId?: boolean
-  date?: boolean
-  shiftDefinitionId?: boolean
   startTime?: boolean
   endTime?: boolean
+  shiftDefinitionId?: boolean
   status?: boolean
   isManual?: boolean
-  leaveCategoryId?: boolean
+  archivedAt?: boolean
   shiftDefinition?: boolean | Prisma.ShiftInstance$shiftDefinitionArgs<ExtArgs>
-  leaveCategory?: boolean | Prisma.ShiftInstance$leaveCategoryArgs<ExtArgs>
-  ward?: boolean | Prisma.WardDefaultArgs<ExtArgs>
+  organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
+  location?: boolean | Prisma.LocationDefaultArgs<ExtArgs>
   employee?: boolean | Prisma.ShiftInstance$employeeArgs<ExtArgs>
   advertisement?: boolean | Prisma.ShiftInstance$advertisementArgs<ExtArgs>
 }, ExtArgs["result"]["shiftInstance"]>
@@ -1198,71 +1146,68 @@ export type ShiftInstanceSelect<ExtArgs extends runtime.Types.Extensions.Interna
 export type ShiftInstanceSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   organizationId?: boolean
-  wardId?: boolean
+  locationId?: boolean
   employeeId?: boolean
-  date?: boolean
-  shiftDefinitionId?: boolean
   startTime?: boolean
   endTime?: boolean
+  shiftDefinitionId?: boolean
   status?: boolean
   isManual?: boolean
-  leaveCategoryId?: boolean
+  archivedAt?: boolean
   shiftDefinition?: boolean | Prisma.ShiftInstance$shiftDefinitionArgs<ExtArgs>
-  leaveCategory?: boolean | Prisma.ShiftInstance$leaveCategoryArgs<ExtArgs>
-  ward?: boolean | Prisma.WardDefaultArgs<ExtArgs>
+  organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
+  location?: boolean | Prisma.LocationDefaultArgs<ExtArgs>
   employee?: boolean | Prisma.ShiftInstance$employeeArgs<ExtArgs>
 }, ExtArgs["result"]["shiftInstance"]>
 
 export type ShiftInstanceSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   organizationId?: boolean
-  wardId?: boolean
+  locationId?: boolean
   employeeId?: boolean
-  date?: boolean
-  shiftDefinitionId?: boolean
   startTime?: boolean
   endTime?: boolean
+  shiftDefinitionId?: boolean
   status?: boolean
   isManual?: boolean
-  leaveCategoryId?: boolean
+  archivedAt?: boolean
   shiftDefinition?: boolean | Prisma.ShiftInstance$shiftDefinitionArgs<ExtArgs>
-  leaveCategory?: boolean | Prisma.ShiftInstance$leaveCategoryArgs<ExtArgs>
-  ward?: boolean | Prisma.WardDefaultArgs<ExtArgs>
+  organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
+  location?: boolean | Prisma.LocationDefaultArgs<ExtArgs>
   employee?: boolean | Prisma.ShiftInstance$employeeArgs<ExtArgs>
 }, ExtArgs["result"]["shiftInstance"]>
 
 export type ShiftInstanceSelectScalar = {
   id?: boolean
   organizationId?: boolean
-  wardId?: boolean
+  locationId?: boolean
   employeeId?: boolean
-  date?: boolean
-  shiftDefinitionId?: boolean
   startTime?: boolean
   endTime?: boolean
+  shiftDefinitionId?: boolean
   status?: boolean
   isManual?: boolean
-  leaveCategoryId?: boolean
+  archivedAt?: boolean
 }
 
-export type ShiftInstanceOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "organizationId" | "wardId" | "employeeId" | "date" | "shiftDefinitionId" | "startTime" | "endTime" | "status" | "isManual" | "leaveCategoryId", ExtArgs["result"]["shiftInstance"]>
+export type ShiftInstanceOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "organizationId" | "locationId" | "employeeId" | "startTime" | "endTime" | "shiftDefinitionId" | "status" | "isManual" | "archivedAt", ExtArgs["result"]["shiftInstance"]>
 export type ShiftInstanceInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   shiftDefinition?: boolean | Prisma.ShiftInstance$shiftDefinitionArgs<ExtArgs>
-  leaveCategory?: boolean | Prisma.ShiftInstance$leaveCategoryArgs<ExtArgs>
-  ward?: boolean | Prisma.WardDefaultArgs<ExtArgs>
+  organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
+  location?: boolean | Prisma.LocationDefaultArgs<ExtArgs>
   employee?: boolean | Prisma.ShiftInstance$employeeArgs<ExtArgs>
   advertisement?: boolean | Prisma.ShiftInstance$advertisementArgs<ExtArgs>
 }
 export type ShiftInstanceIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   shiftDefinition?: boolean | Prisma.ShiftInstance$shiftDefinitionArgs<ExtArgs>
-  leaveCategory?: boolean | Prisma.ShiftInstance$leaveCategoryArgs<ExtArgs>
-  ward?: boolean | Prisma.WardDefaultArgs<ExtArgs>
+  organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
+  location?: boolean | Prisma.LocationDefaultArgs<ExtArgs>
   employee?: boolean | Prisma.ShiftInstance$employeeArgs<ExtArgs>
 }
 export type ShiftInstanceIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   shiftDefinition?: boolean | Prisma.ShiftInstance$shiftDefinitionArgs<ExtArgs>
-  leaveCategory?: boolean | Prisma.ShiftInstance$leaveCategoryArgs<ExtArgs>
-  ward?: boolean | Prisma.WardDefaultArgs<ExtArgs>
+  organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
+  location?: boolean | Prisma.LocationDefaultArgs<ExtArgs>
   employee?: boolean | Prisma.ShiftInstance$employeeArgs<ExtArgs>
 }
 
@@ -1270,23 +1215,22 @@ export type $ShiftInstancePayload<ExtArgs extends runtime.Types.Extensions.Inter
   name: "ShiftInstance"
   objects: {
     shiftDefinition: Prisma.$ShiftDefinitionPayload<ExtArgs> | null
-    leaveCategory: Prisma.$LeaveCategoryPayload<ExtArgs> | null
-    ward: Prisma.$WardPayload<ExtArgs>
+    organization: Prisma.$OrganizationPayload<ExtArgs>
+    location: Prisma.$LocationPayload<ExtArgs>
     employee: Prisma.$EmployeePayload<ExtArgs> | null
     advertisement: Prisma.$ShiftAdvertisementPayload<ExtArgs> | null
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     organizationId: string
-    wardId: string
+    locationId: string
     employeeId: string | null
-    date: Date
-    shiftDefinitionId: string | null
     startTime: Date
     endTime: Date
+    shiftDefinitionId: string | null
     status: $Enums.ShiftStatus
     isManual: boolean
-    leaveCategoryId: string | null
+    archivedAt: Date | null
   }, ExtArgs["result"]["shiftInstance"]>
   composites: {}
 }
@@ -1682,8 +1626,8 @@ readonly fields: ShiftInstanceFieldRefs;
 export interface Prisma__ShiftInstanceClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   shiftDefinition<T extends Prisma.ShiftInstance$shiftDefinitionArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ShiftInstance$shiftDefinitionArgs<ExtArgs>>): Prisma.Prisma__ShiftDefinitionClient<runtime.Types.Result.GetResult<Prisma.$ShiftDefinitionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-  leaveCategory<T extends Prisma.ShiftInstance$leaveCategoryArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ShiftInstance$leaveCategoryArgs<ExtArgs>>): Prisma.Prisma__LeaveCategoryClient<runtime.Types.Result.GetResult<Prisma.$LeaveCategoryPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-  ward<T extends Prisma.WardDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.WardDefaultArgs<ExtArgs>>): Prisma.Prisma__WardClient<runtime.Types.Result.GetResult<Prisma.$WardPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  organization<T extends Prisma.OrganizationDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.OrganizationDefaultArgs<ExtArgs>>): Prisma.Prisma__OrganizationClient<runtime.Types.Result.GetResult<Prisma.$OrganizationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  location<T extends Prisma.LocationDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.LocationDefaultArgs<ExtArgs>>): Prisma.Prisma__LocationClient<runtime.Types.Result.GetResult<Prisma.$LocationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   employee<T extends Prisma.ShiftInstance$employeeArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ShiftInstance$employeeArgs<ExtArgs>>): Prisma.Prisma__EmployeeClient<runtime.Types.Result.GetResult<Prisma.$EmployeePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   advertisement<T extends Prisma.ShiftInstance$advertisementArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ShiftInstance$advertisementArgs<ExtArgs>>): Prisma.Prisma__ShiftAdvertisementClient<runtime.Types.Result.GetResult<Prisma.$ShiftAdvertisementPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   /**
@@ -1717,15 +1661,14 @@ export interface Prisma__ShiftInstanceClient<T, Null = never, ExtArgs extends ru
 export interface ShiftInstanceFieldRefs {
   readonly id: Prisma.FieldRef<"ShiftInstance", 'String'>
   readonly organizationId: Prisma.FieldRef<"ShiftInstance", 'String'>
-  readonly wardId: Prisma.FieldRef<"ShiftInstance", 'String'>
+  readonly locationId: Prisma.FieldRef<"ShiftInstance", 'String'>
   readonly employeeId: Prisma.FieldRef<"ShiftInstance", 'String'>
-  readonly date: Prisma.FieldRef<"ShiftInstance", 'DateTime'>
-  readonly shiftDefinitionId: Prisma.FieldRef<"ShiftInstance", 'String'>
   readonly startTime: Prisma.FieldRef<"ShiftInstance", 'DateTime'>
   readonly endTime: Prisma.FieldRef<"ShiftInstance", 'DateTime'>
+  readonly shiftDefinitionId: Prisma.FieldRef<"ShiftInstance", 'String'>
   readonly status: Prisma.FieldRef<"ShiftInstance", 'ShiftStatus'>
   readonly isManual: Prisma.FieldRef<"ShiftInstance", 'Boolean'>
-  readonly leaveCategoryId: Prisma.FieldRef<"ShiftInstance", 'String'>
+  readonly archivedAt: Prisma.FieldRef<"ShiftInstance", 'DateTime'>
 }
     
 
@@ -2138,25 +2081,6 @@ export type ShiftInstance$shiftDefinitionArgs<ExtArgs extends runtime.Types.Exte
    */
   include?: Prisma.ShiftDefinitionInclude<ExtArgs> | null
   where?: Prisma.ShiftDefinitionWhereInput
-}
-
-/**
- * ShiftInstance.leaveCategory
- */
-export type ShiftInstance$leaveCategoryArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the LeaveCategory
-   */
-  select?: Prisma.LeaveCategorySelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the LeaveCategory
-   */
-  omit?: Prisma.LeaveCategoryOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.LeaveCategoryInclude<ExtArgs> | null
-  where?: Prisma.LeaveCategoryWhereInput
 }
 
 /**

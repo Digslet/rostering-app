@@ -384,10 +384,13 @@ type FieldRefInputType<Model, FieldType> = Model extends never ? never : FieldRe
 
 
 export const ModelName = {
+  User: 'User',
   Organization: 'Organization',
   Department: 'Department',
-  Ward: 'Ward',
+  Location: 'Location',
   Employee: 'Employee',
+  EmployeeLocationAffiliation: 'EmployeeLocationAffiliation',
+  ManagementRole: 'ManagementRole',
   EmployeeRole: 'EmployeeRole',
   ShiftDefinition: 'ShiftDefinition',
   StaffingRequirement: 'StaffingRequirement',
@@ -416,10 +419,84 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "organization" | "department" | "ward" | "employee" | "employeeRole" | "shiftDefinition" | "staffingRequirement" | "leaveCategory" | "rosterPattern" | "patternItem" | "assignedPattern" | "shiftInstance" | "leaveRequest" | "shiftAdvertisement" | "shiftClaim" | "employeeAvailability" | "auditLog"
+    modelProps: "user" | "organization" | "department" | "location" | "employee" | "employeeLocationAffiliation" | "managementRole" | "employeeRole" | "shiftDefinition" | "staffingRequirement" | "leaveCategory" | "rosterPattern" | "patternItem" | "assignedPattern" | "shiftInstance" | "leaveRequest" | "shiftAdvertisement" | "shiftClaim" | "employeeAvailability" | "auditLog"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
+    User: {
+      payload: Prisma.$UserPayload<ExtArgs>
+      fields: Prisma.UserFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.UserFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.UserFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserPayload>
+        }
+        findFirst: {
+          args: Prisma.UserFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.UserFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserPayload>
+        }
+        findMany: {
+          args: Prisma.UserFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserPayload>[]
+        }
+        create: {
+          args: Prisma.UserCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserPayload>
+        }
+        createMany: {
+          args: Prisma.UserCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.UserCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserPayload>[]
+        }
+        delete: {
+          args: Prisma.UserDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserPayload>
+        }
+        update: {
+          args: Prisma.UserUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserPayload>
+        }
+        deleteMany: {
+          args: Prisma.UserDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.UserUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.UserUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserPayload>[]
+        }
+        upsert: {
+          args: Prisma.UserUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserPayload>
+        }
+        aggregate: {
+          args: Prisma.UserAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateUser>
+        }
+        groupBy: {
+          args: Prisma.UserGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.UserGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.UserCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.UserCountAggregateOutputType> | number
+        }
+      }
+    }
     Organization: {
       payload: Prisma.$OrganizationPayload<ExtArgs>
       fields: Prisma.OrganizationFieldRefs
@@ -568,77 +645,77 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
-    Ward: {
-      payload: Prisma.$WardPayload<ExtArgs>
-      fields: Prisma.WardFieldRefs
+    Location: {
+      payload: Prisma.$LocationPayload<ExtArgs>
+      fields: Prisma.LocationFieldRefs
       operations: {
         findUnique: {
-          args: Prisma.WardFindUniqueArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$WardPayload> | null
+          args: Prisma.LocationFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LocationPayload> | null
         }
         findUniqueOrThrow: {
-          args: Prisma.WardFindUniqueOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$WardPayload>
+          args: Prisma.LocationFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LocationPayload>
         }
         findFirst: {
-          args: Prisma.WardFindFirstArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$WardPayload> | null
+          args: Prisma.LocationFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LocationPayload> | null
         }
         findFirstOrThrow: {
-          args: Prisma.WardFindFirstOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$WardPayload>
+          args: Prisma.LocationFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LocationPayload>
         }
         findMany: {
-          args: Prisma.WardFindManyArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$WardPayload>[]
+          args: Prisma.LocationFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LocationPayload>[]
         }
         create: {
-          args: Prisma.WardCreateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$WardPayload>
+          args: Prisma.LocationCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LocationPayload>
         }
         createMany: {
-          args: Prisma.WardCreateManyArgs<ExtArgs>
+          args: Prisma.LocationCreateManyArgs<ExtArgs>
           result: BatchPayload
         }
         createManyAndReturn: {
-          args: Prisma.WardCreateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$WardPayload>[]
+          args: Prisma.LocationCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LocationPayload>[]
         }
         delete: {
-          args: Prisma.WardDeleteArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$WardPayload>
+          args: Prisma.LocationDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LocationPayload>
         }
         update: {
-          args: Prisma.WardUpdateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$WardPayload>
+          args: Prisma.LocationUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LocationPayload>
         }
         deleteMany: {
-          args: Prisma.WardDeleteManyArgs<ExtArgs>
+          args: Prisma.LocationDeleteManyArgs<ExtArgs>
           result: BatchPayload
         }
         updateMany: {
-          args: Prisma.WardUpdateManyArgs<ExtArgs>
+          args: Prisma.LocationUpdateManyArgs<ExtArgs>
           result: BatchPayload
         }
         updateManyAndReturn: {
-          args: Prisma.WardUpdateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$WardPayload>[]
+          args: Prisma.LocationUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LocationPayload>[]
         }
         upsert: {
-          args: Prisma.WardUpsertArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$WardPayload>
+          args: Prisma.LocationUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LocationPayload>
         }
         aggregate: {
-          args: Prisma.WardAggregateArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.AggregateWard>
+          args: Prisma.LocationAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateLocation>
         }
         groupBy: {
-          args: Prisma.WardGroupByArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.WardGroupByOutputType>[]
+          args: Prisma.LocationGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.LocationGroupByOutputType>[]
         }
         count: {
-          args: Prisma.WardCountArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.WardCountAggregateOutputType> | number
+          args: Prisma.LocationCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.LocationCountAggregateOutputType> | number
         }
       }
     }
@@ -713,6 +790,154 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         count: {
           args: Prisma.EmployeeCountArgs<ExtArgs>
           result: runtime.Types.Utils.Optional<Prisma.EmployeeCountAggregateOutputType> | number
+        }
+      }
+    }
+    EmployeeLocationAffiliation: {
+      payload: Prisma.$EmployeeLocationAffiliationPayload<ExtArgs>
+      fields: Prisma.EmployeeLocationAffiliationFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.EmployeeLocationAffiliationFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EmployeeLocationAffiliationPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.EmployeeLocationAffiliationFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EmployeeLocationAffiliationPayload>
+        }
+        findFirst: {
+          args: Prisma.EmployeeLocationAffiliationFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EmployeeLocationAffiliationPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.EmployeeLocationAffiliationFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EmployeeLocationAffiliationPayload>
+        }
+        findMany: {
+          args: Prisma.EmployeeLocationAffiliationFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EmployeeLocationAffiliationPayload>[]
+        }
+        create: {
+          args: Prisma.EmployeeLocationAffiliationCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EmployeeLocationAffiliationPayload>
+        }
+        createMany: {
+          args: Prisma.EmployeeLocationAffiliationCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.EmployeeLocationAffiliationCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EmployeeLocationAffiliationPayload>[]
+        }
+        delete: {
+          args: Prisma.EmployeeLocationAffiliationDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EmployeeLocationAffiliationPayload>
+        }
+        update: {
+          args: Prisma.EmployeeLocationAffiliationUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EmployeeLocationAffiliationPayload>
+        }
+        deleteMany: {
+          args: Prisma.EmployeeLocationAffiliationDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.EmployeeLocationAffiliationUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.EmployeeLocationAffiliationUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EmployeeLocationAffiliationPayload>[]
+        }
+        upsert: {
+          args: Prisma.EmployeeLocationAffiliationUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EmployeeLocationAffiliationPayload>
+        }
+        aggregate: {
+          args: Prisma.EmployeeLocationAffiliationAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateEmployeeLocationAffiliation>
+        }
+        groupBy: {
+          args: Prisma.EmployeeLocationAffiliationGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.EmployeeLocationAffiliationGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.EmployeeLocationAffiliationCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.EmployeeLocationAffiliationCountAggregateOutputType> | number
+        }
+      }
+    }
+    ManagementRole: {
+      payload: Prisma.$ManagementRolePayload<ExtArgs>
+      fields: Prisma.ManagementRoleFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.ManagementRoleFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ManagementRolePayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.ManagementRoleFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ManagementRolePayload>
+        }
+        findFirst: {
+          args: Prisma.ManagementRoleFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ManagementRolePayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.ManagementRoleFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ManagementRolePayload>
+        }
+        findMany: {
+          args: Prisma.ManagementRoleFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ManagementRolePayload>[]
+        }
+        create: {
+          args: Prisma.ManagementRoleCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ManagementRolePayload>
+        }
+        createMany: {
+          args: Prisma.ManagementRoleCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.ManagementRoleCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ManagementRolePayload>[]
+        }
+        delete: {
+          args: Prisma.ManagementRoleDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ManagementRolePayload>
+        }
+        update: {
+          args: Prisma.ManagementRoleUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ManagementRolePayload>
+        }
+        deleteMany: {
+          args: Prisma.ManagementRoleDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.ManagementRoleUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.ManagementRoleUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ManagementRolePayload>[]
+        }
+        upsert: {
+          args: Prisma.ManagementRoleUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ManagementRolePayload>
+        }
+        aggregate: {
+          args: Prisma.ManagementRoleAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateManagementRole>
+        }
+        groupBy: {
+          args: Prisma.ManagementRoleGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ManagementRoleGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.ManagementRoleCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ManagementRoleCountAggregateOutputType> | number
         }
       }
     }
@@ -1717,6 +1942,18 @@ export const TransactionIsolationLevel = runtime.makeStrictEnum({
 export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof typeof TransactionIsolationLevel]
 
 
+export const UserScalarFieldEnum = {
+  id: 'id',
+  email: 'email',
+  firstName: 'firstName',
+  lastName: 'lastName',
+  createdAt: 'createdAt',
+  archivedAt: 'archivedAt'
+} as const
+
+export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
+
+
 export const OrganizationScalarFieldEnum = {
   id: 'id',
   name: 'name',
@@ -1738,14 +1975,16 @@ export const DepartmentScalarFieldEnum = {
 export type DepartmentScalarFieldEnum = (typeof DepartmentScalarFieldEnum)[keyof typeof DepartmentScalarFieldEnum]
 
 
-export const WardScalarFieldEnum = {
+export const LocationScalarFieldEnum = {
   id: 'id',
+  organizationId: 'organizationId',
   departmentId: 'departmentId',
   name: 'name',
+  timezone: 'timezone',
   archivedAt: 'archivedAt'
 } as const
 
-export type WardScalarFieldEnum = (typeof WardScalarFieldEnum)[keyof typeof WardScalarFieldEnum]
+export type LocationScalarFieldEnum = (typeof LocationScalarFieldEnum)[keyof typeof LocationScalarFieldEnum]
 
 
 export const EmployeeScalarFieldEnum = {
@@ -1756,19 +1995,42 @@ export const EmployeeScalarFieldEnum = {
   lastName: 'lastName',
   email: 'email',
   archivedAt: 'archivedAt',
-  accessLevel: 'accessLevel',
-  roleId: 'roleId',
-  homeDepartmentId: 'homeDepartmentId',
-  homeWardId: 'homeWardId'
+  roleId: 'roleId'
 } as const
 
 export type EmployeeScalarFieldEnum = (typeof EmployeeScalarFieldEnum)[keyof typeof EmployeeScalarFieldEnum]
 
 
+export const EmployeeLocationAffiliationScalarFieldEnum = {
+  id: 'id',
+  organizationId: 'organizationId',
+  employeeId: 'employeeId',
+  locationId: 'locationId',
+  isPrimary: 'isPrimary',
+  archivedAt: 'archivedAt'
+} as const
+
+export type EmployeeLocationAffiliationScalarFieldEnum = (typeof EmployeeLocationAffiliationScalarFieldEnum)[keyof typeof EmployeeLocationAffiliationScalarFieldEnum]
+
+
+export const ManagementRoleScalarFieldEnum = {
+  id: 'id',
+  employeeId: 'employeeId',
+  organizationId: 'organizationId',
+  departmentId: 'departmentId',
+  locationId: 'locationId',
+  level: 'level',
+  archivedAt: 'archivedAt'
+} as const
+
+export type ManagementRoleScalarFieldEnum = (typeof ManagementRoleScalarFieldEnum)[keyof typeof ManagementRoleScalarFieldEnum]
+
+
 export const EmployeeRoleScalarFieldEnum = {
   id: 'id',
   organizationId: 'organizationId',
-  name: 'name'
+  name: 'name',
+  archivedAt: 'archivedAt'
 } as const
 
 export type EmployeeRoleScalarFieldEnum = (typeof EmployeeRoleScalarFieldEnum)[keyof typeof EmployeeRoleScalarFieldEnum]
@@ -1776,12 +2038,13 @@ export type EmployeeRoleScalarFieldEnum = (typeof EmployeeRoleScalarFieldEnum)[k
 
 export const ShiftDefinitionScalarFieldEnum = {
   id: 'id',
-  archivedAt: 'archivedAt',
+  organizationId: 'organizationId',
   departmentId: 'departmentId',
-  wardId: 'wardId',
+  locationId: 'locationId',
+  archivedAt: 'archivedAt',
   name: 'name',
-  startTime: 'startTime',
-  endTime: 'endTime',
+  startTimeMinutes: 'startTimeMinutes',
+  durationMinutes: 'durationMinutes',
   colorCode: 'colorCode'
 } as const
 
@@ -1790,7 +2053,8 @@ export type ShiftDefinitionScalarFieldEnum = (typeof ShiftDefinitionScalarFieldE
 
 export const StaffingRequirementScalarFieldEnum = {
   id: 'id',
-  wardId: 'wardId',
+  organizationId: 'organizationId',
+  locationId: 'locationId',
   shiftDefinitionId: 'shiftDefinitionId',
   roleId: 'roleId',
   minCount: 'minCount',
@@ -1804,7 +2068,8 @@ export const LeaveCategoryScalarFieldEnum = {
   id: 'id',
   organizationId: 'organizationId',
   name: 'name',
-  isPaid: 'isPaid'
+  isPaid: 'isPaid',
+  archivedAt: 'archivedAt'
 } as const
 
 export type LeaveCategoryScalarFieldEnum = (typeof LeaveCategoryScalarFieldEnum)[keyof typeof LeaveCategoryScalarFieldEnum]
@@ -1812,7 +2077,9 @@ export type LeaveCategoryScalarFieldEnum = (typeof LeaveCategoryScalarFieldEnum)
 
 export const RosterPatternScalarFieldEnum = {
   id: 'id',
-  wardId: 'wardId',
+  organizationId: 'organizationId',
+  departmentId: 'departmentId',
+  locationId: 'locationId',
   name: 'name',
   cycleLength: 'cycleLength'
 } as const
@@ -1822,6 +2089,7 @@ export type RosterPatternScalarFieldEnum = (typeof RosterPatternScalarFieldEnum)
 
 export const PatternItemScalarFieldEnum = {
   id: 'id',
+  organizationId: 'organizationId',
   patternId: 'patternId',
   dayOffset: 'dayOffset',
   shiftDefinitionId: 'shiftDefinitionId'
@@ -1832,6 +2100,7 @@ export type PatternItemScalarFieldEnum = (typeof PatternItemScalarFieldEnum)[key
 
 export const AssignedPatternScalarFieldEnum = {
   id: 'id',
+  organizationId: 'organizationId',
   employeeId: 'employeeId',
   patternId: 'patternId',
   anchorDate: 'anchorDate',
@@ -1845,15 +2114,14 @@ export type AssignedPatternScalarFieldEnum = (typeof AssignedPatternScalarFieldE
 export const ShiftInstanceScalarFieldEnum = {
   id: 'id',
   organizationId: 'organizationId',
-  wardId: 'wardId',
+  locationId: 'locationId',
   employeeId: 'employeeId',
-  date: 'date',
-  shiftDefinitionId: 'shiftDefinitionId',
   startTime: 'startTime',
   endTime: 'endTime',
+  shiftDefinitionId: 'shiftDefinitionId',
   status: 'status',
   isManual: 'isManual',
-  leaveCategoryId: 'leaveCategoryId'
+  archivedAt: 'archivedAt'
 } as const
 
 export type ShiftInstanceScalarFieldEnum = (typeof ShiftInstanceScalarFieldEnum)[keyof typeof ShiftInstanceScalarFieldEnum]
@@ -1861,6 +2129,7 @@ export type ShiftInstanceScalarFieldEnum = (typeof ShiftInstanceScalarFieldEnum)
 
 export const LeaveRequestScalarFieldEnum = {
   id: 'id',
+  organizationId: 'organizationId',
   employeeId: 'employeeId',
   categoryId: 'categoryId',
   startDate: 'startDate',
@@ -1874,10 +2143,8 @@ export type LeaveRequestScalarFieldEnum = (typeof LeaveRequestScalarFieldEnum)[k
 export const ShiftAdvertisementScalarFieldEnum = {
   id: 'id',
   organizationId: 'organizationId',
-  wardId: 'wardId',
+  locationId: 'locationId',
   shiftInstanceId: 'shiftInstanceId',
-  date: 'date',
-  shiftDefinitionId: 'shiftDefinitionId',
   status: 'status',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
@@ -1888,6 +2155,7 @@ export type ShiftAdvertisementScalarFieldEnum = (typeof ShiftAdvertisementScalar
 
 export const ShiftClaimScalarFieldEnum = {
   id: 'id',
+  organizationId: 'organizationId',
   shiftAdvertisementId: 'shiftAdvertisementId',
   employeeId: 'employeeId',
   targetManagerId: 'targetManagerId',
@@ -1902,6 +2170,7 @@ export type ShiftClaimScalarFieldEnum = (typeof ShiftClaimScalarFieldEnum)[keyof
 
 export const EmployeeAvailabilityScalarFieldEnum = {
   id: 'id',
+  organizationId: 'organizationId',
   employeeId: 'employeeId',
   date: 'date',
   preference: 'preference'
@@ -1946,6 +2215,14 @@ export const QueryMode = {
 export type QueryMode = (typeof QueryMode)[keyof typeof QueryMode]
 
 
+export const NullsOrder = {
+  first: 'first',
+  last: 'last'
+} as const
+
+export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
+
+
 export const JsonNullValueFilter = {
   DbNull: DbNull,
   JsonNull: JsonNull,
@@ -1953,14 +2230,6 @@ export const JsonNullValueFilter = {
 } as const
 
 export type JsonNullValueFilter = (typeof JsonNullValueFilter)[keyof typeof JsonNullValueFilter]
-
-
-export const NullsOrder = {
-  first: 'first',
-  last: 'last'
-} as const
-
-export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
 
 
 
@@ -1984,20 +2253,6 @@ export type ListStringFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaMod
 
 
 /**
- * Reference to a field of type 'Json'
- */
-export type JsonFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Json'>
-    
-
-
-/**
- * Reference to a field of type 'QueryMode'
- */
-export type EnumQueryModeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'QueryMode'>
-    
-
-
-/**
  * Reference to a field of type 'DateTime'
  */
 export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime'>
@@ -2012,16 +2267,37 @@ export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaM
 
 
 /**
- * Reference to a field of type 'AccessLevel'
+ * Reference to a field of type 'Json'
  */
-export type EnumAccessLevelFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'AccessLevel'>
+export type JsonFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Json'>
     
 
 
 /**
- * Reference to a field of type 'AccessLevel[]'
+ * Reference to a field of type 'QueryMode'
  */
-export type ListEnumAccessLevelFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'AccessLevel[]'>
+export type EnumQueryModeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'QueryMode'>
+    
+
+
+/**
+ * Reference to a field of type 'Boolean'
+ */
+export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
+    
+
+
+/**
+ * Reference to a field of type 'ManagerLevel'
+ */
+export type EnumManagerLevelFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ManagerLevel'>
+    
+
+
+/**
+ * Reference to a field of type 'ManagerLevel[]'
+ */
+export type ListEnumManagerLevelFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ManagerLevel[]'>
     
 
 
@@ -2036,13 +2312,6 @@ export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'In
  * Reference to a field of type 'Int[]'
  */
 export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
-    
-
-
-/**
- * Reference to a field of type 'Boolean'
- */
-export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
     
 
 
@@ -2210,10 +2479,13 @@ export type PrismaClientOptions = ({
   comments?: runtime.SqlCommenterPlugin[]
 }
 export type GlobalOmitConfig = {
+  user?: Prisma.UserOmit
   organization?: Prisma.OrganizationOmit
   department?: Prisma.DepartmentOmit
-  ward?: Prisma.WardOmit
+  location?: Prisma.LocationOmit
   employee?: Prisma.EmployeeOmit
+  employeeLocationAffiliation?: Prisma.EmployeeLocationAffiliationOmit
+  managementRole?: Prisma.ManagementRoleOmit
   employeeRole?: Prisma.EmployeeRoleOmit
   shiftDefinition?: Prisma.ShiftDefinitionOmit
   staffingRequirement?: Prisma.StaffingRequirementOmit

@@ -36,6 +36,7 @@ export type PatternItemSumAggregateOutputType = {
 
 export type PatternItemMinAggregateOutputType = {
   id: string | null
+  organizationId: string | null
   patternId: string | null
   dayOffset: number | null
   shiftDefinitionId: string | null
@@ -43,6 +44,7 @@ export type PatternItemMinAggregateOutputType = {
 
 export type PatternItemMaxAggregateOutputType = {
   id: string | null
+  organizationId: string | null
   patternId: string | null
   dayOffset: number | null
   shiftDefinitionId: string | null
@@ -50,6 +52,7 @@ export type PatternItemMaxAggregateOutputType = {
 
 export type PatternItemCountAggregateOutputType = {
   id: number
+  organizationId: number
   patternId: number
   dayOffset: number
   shiftDefinitionId: number
@@ -67,6 +70,7 @@ export type PatternItemSumAggregateInputType = {
 
 export type PatternItemMinAggregateInputType = {
   id?: true
+  organizationId?: true
   patternId?: true
   dayOffset?: true
   shiftDefinitionId?: true
@@ -74,6 +78,7 @@ export type PatternItemMinAggregateInputType = {
 
 export type PatternItemMaxAggregateInputType = {
   id?: true
+  organizationId?: true
   patternId?: true
   dayOffset?: true
   shiftDefinitionId?: true
@@ -81,6 +86,7 @@ export type PatternItemMaxAggregateInputType = {
 
 export type PatternItemCountAggregateInputType = {
   id?: true
+  organizationId?: true
   patternId?: true
   dayOffset?: true
   shiftDefinitionId?: true
@@ -175,6 +181,7 @@ export type PatternItemGroupByArgs<ExtArgs extends runtime.Types.Extensions.Inte
 
 export type PatternItemGroupByOutputType = {
   id: string
+  organizationId: string
   patternId: string
   dayOffset: number
   shiftDefinitionId: string
@@ -205,18 +212,22 @@ export type PatternItemWhereInput = {
   OR?: Prisma.PatternItemWhereInput[]
   NOT?: Prisma.PatternItemWhereInput | Prisma.PatternItemWhereInput[]
   id?: Prisma.StringFilter<"PatternItem"> | string
+  organizationId?: Prisma.StringFilter<"PatternItem"> | string
   patternId?: Prisma.StringFilter<"PatternItem"> | string
   dayOffset?: Prisma.IntFilter<"PatternItem"> | number
   shiftDefinitionId?: Prisma.StringFilter<"PatternItem"> | string
+  organization?: Prisma.XOR<Prisma.OrganizationScalarRelationFilter, Prisma.OrganizationWhereInput>
   shiftDefinition?: Prisma.XOR<Prisma.ShiftDefinitionScalarRelationFilter, Prisma.ShiftDefinitionWhereInput>
   pattern?: Prisma.XOR<Prisma.RosterPatternScalarRelationFilter, Prisma.RosterPatternWhereInput>
 }
 
 export type PatternItemOrderByWithRelationInput = {
   id?: Prisma.SortOrder
+  organizationId?: Prisma.SortOrder
   patternId?: Prisma.SortOrder
   dayOffset?: Prisma.SortOrder
   shiftDefinitionId?: Prisma.SortOrder
+  organization?: Prisma.OrganizationOrderByWithRelationInput
   shiftDefinition?: Prisma.ShiftDefinitionOrderByWithRelationInput
   pattern?: Prisma.RosterPatternOrderByWithRelationInput
 }
@@ -226,15 +237,18 @@ export type PatternItemWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.PatternItemWhereInput | Prisma.PatternItemWhereInput[]
   OR?: Prisma.PatternItemWhereInput[]
   NOT?: Prisma.PatternItemWhereInput | Prisma.PatternItemWhereInput[]
+  organizationId?: Prisma.StringFilter<"PatternItem"> | string
   patternId?: Prisma.StringFilter<"PatternItem"> | string
   dayOffset?: Prisma.IntFilter<"PatternItem"> | number
   shiftDefinitionId?: Prisma.StringFilter<"PatternItem"> | string
+  organization?: Prisma.XOR<Prisma.OrganizationScalarRelationFilter, Prisma.OrganizationWhereInput>
   shiftDefinition?: Prisma.XOR<Prisma.ShiftDefinitionScalarRelationFilter, Prisma.ShiftDefinitionWhereInput>
   pattern?: Prisma.XOR<Prisma.RosterPatternScalarRelationFilter, Prisma.RosterPatternWhereInput>
 }, "id">
 
 export type PatternItemOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
+  organizationId?: Prisma.SortOrder
   patternId?: Prisma.SortOrder
   dayOffset?: Prisma.SortOrder
   shiftDefinitionId?: Prisma.SortOrder
@@ -250,6 +264,7 @@ export type PatternItemScalarWhereWithAggregatesInput = {
   OR?: Prisma.PatternItemScalarWhereWithAggregatesInput[]
   NOT?: Prisma.PatternItemScalarWhereWithAggregatesInput | Prisma.PatternItemScalarWhereWithAggregatesInput[]
   id?: Prisma.StringWithAggregatesFilter<"PatternItem"> | string
+  organizationId?: Prisma.StringWithAggregatesFilter<"PatternItem"> | string
   patternId?: Prisma.StringWithAggregatesFilter<"PatternItem"> | string
   dayOffset?: Prisma.IntWithAggregatesFilter<"PatternItem"> | number
   shiftDefinitionId?: Prisma.StringWithAggregatesFilter<"PatternItem"> | string
@@ -258,12 +273,14 @@ export type PatternItemScalarWhereWithAggregatesInput = {
 export type PatternItemCreateInput = {
   id?: string
   dayOffset: number
+  organization: Prisma.OrganizationCreateNestedOneWithoutPatternItemsInput
   shiftDefinition: Prisma.ShiftDefinitionCreateNestedOneWithoutPatternItemsInput
   pattern: Prisma.RosterPatternCreateNestedOneWithoutItemsInput
 }
 
 export type PatternItemUncheckedCreateInput = {
   id?: string
+  organizationId: string
   patternId: string
   dayOffset: number
   shiftDefinitionId: string
@@ -272,12 +289,14 @@ export type PatternItemUncheckedCreateInput = {
 export type PatternItemUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   dayOffset?: Prisma.IntFieldUpdateOperationsInput | number
+  organization?: Prisma.OrganizationUpdateOneRequiredWithoutPatternItemsNestedInput
   shiftDefinition?: Prisma.ShiftDefinitionUpdateOneRequiredWithoutPatternItemsNestedInput
   pattern?: Prisma.RosterPatternUpdateOneRequiredWithoutItemsNestedInput
 }
 
 export type PatternItemUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  organizationId?: Prisma.StringFieldUpdateOperationsInput | string
   patternId?: Prisma.StringFieldUpdateOperationsInput | string
   dayOffset?: Prisma.IntFieldUpdateOperationsInput | number
   shiftDefinitionId?: Prisma.StringFieldUpdateOperationsInput | string
@@ -285,6 +304,7 @@ export type PatternItemUncheckedUpdateInput = {
 
 export type PatternItemCreateManyInput = {
   id?: string
+  organizationId: string
   patternId: string
   dayOffset: number
   shiftDefinitionId: string
@@ -297,6 +317,7 @@ export type PatternItemUpdateManyMutationInput = {
 
 export type PatternItemUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  organizationId?: Prisma.StringFieldUpdateOperationsInput | string
   patternId?: Prisma.StringFieldUpdateOperationsInput | string
   dayOffset?: Prisma.IntFieldUpdateOperationsInput | number
   shiftDefinitionId?: Prisma.StringFieldUpdateOperationsInput | string
@@ -314,6 +335,7 @@ export type PatternItemOrderByRelationAggregateInput = {
 
 export type PatternItemCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  organizationId?: Prisma.SortOrder
   patternId?: Prisma.SortOrder
   dayOffset?: Prisma.SortOrder
   shiftDefinitionId?: Prisma.SortOrder
@@ -325,6 +347,7 @@ export type PatternItemAvgOrderByAggregateInput = {
 
 export type PatternItemMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  organizationId?: Prisma.SortOrder
   patternId?: Prisma.SortOrder
   dayOffset?: Prisma.SortOrder
   shiftDefinitionId?: Prisma.SortOrder
@@ -332,6 +355,7 @@ export type PatternItemMaxOrderByAggregateInput = {
 
 export type PatternItemMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  organizationId?: Prisma.SortOrder
   patternId?: Prisma.SortOrder
   dayOffset?: Prisma.SortOrder
   shiftDefinitionId?: Prisma.SortOrder
@@ -339,6 +363,48 @@ export type PatternItemMinOrderByAggregateInput = {
 
 export type PatternItemSumOrderByAggregateInput = {
   dayOffset?: Prisma.SortOrder
+}
+
+export type PatternItemCreateNestedManyWithoutOrganizationInput = {
+  create?: Prisma.XOR<Prisma.PatternItemCreateWithoutOrganizationInput, Prisma.PatternItemUncheckedCreateWithoutOrganizationInput> | Prisma.PatternItemCreateWithoutOrganizationInput[] | Prisma.PatternItemUncheckedCreateWithoutOrganizationInput[]
+  connectOrCreate?: Prisma.PatternItemCreateOrConnectWithoutOrganizationInput | Prisma.PatternItemCreateOrConnectWithoutOrganizationInput[]
+  createMany?: Prisma.PatternItemCreateManyOrganizationInputEnvelope
+  connect?: Prisma.PatternItemWhereUniqueInput | Prisma.PatternItemWhereUniqueInput[]
+}
+
+export type PatternItemUncheckedCreateNestedManyWithoutOrganizationInput = {
+  create?: Prisma.XOR<Prisma.PatternItemCreateWithoutOrganizationInput, Prisma.PatternItemUncheckedCreateWithoutOrganizationInput> | Prisma.PatternItemCreateWithoutOrganizationInput[] | Prisma.PatternItemUncheckedCreateWithoutOrganizationInput[]
+  connectOrCreate?: Prisma.PatternItemCreateOrConnectWithoutOrganizationInput | Prisma.PatternItemCreateOrConnectWithoutOrganizationInput[]
+  createMany?: Prisma.PatternItemCreateManyOrganizationInputEnvelope
+  connect?: Prisma.PatternItemWhereUniqueInput | Prisma.PatternItemWhereUniqueInput[]
+}
+
+export type PatternItemUpdateManyWithoutOrganizationNestedInput = {
+  create?: Prisma.XOR<Prisma.PatternItemCreateWithoutOrganizationInput, Prisma.PatternItemUncheckedCreateWithoutOrganizationInput> | Prisma.PatternItemCreateWithoutOrganizationInput[] | Prisma.PatternItemUncheckedCreateWithoutOrganizationInput[]
+  connectOrCreate?: Prisma.PatternItemCreateOrConnectWithoutOrganizationInput | Prisma.PatternItemCreateOrConnectWithoutOrganizationInput[]
+  upsert?: Prisma.PatternItemUpsertWithWhereUniqueWithoutOrganizationInput | Prisma.PatternItemUpsertWithWhereUniqueWithoutOrganizationInput[]
+  createMany?: Prisma.PatternItemCreateManyOrganizationInputEnvelope
+  set?: Prisma.PatternItemWhereUniqueInput | Prisma.PatternItemWhereUniqueInput[]
+  disconnect?: Prisma.PatternItemWhereUniqueInput | Prisma.PatternItemWhereUniqueInput[]
+  delete?: Prisma.PatternItemWhereUniqueInput | Prisma.PatternItemWhereUniqueInput[]
+  connect?: Prisma.PatternItemWhereUniqueInput | Prisma.PatternItemWhereUniqueInput[]
+  update?: Prisma.PatternItemUpdateWithWhereUniqueWithoutOrganizationInput | Prisma.PatternItemUpdateWithWhereUniqueWithoutOrganizationInput[]
+  updateMany?: Prisma.PatternItemUpdateManyWithWhereWithoutOrganizationInput | Prisma.PatternItemUpdateManyWithWhereWithoutOrganizationInput[]
+  deleteMany?: Prisma.PatternItemScalarWhereInput | Prisma.PatternItemScalarWhereInput[]
+}
+
+export type PatternItemUncheckedUpdateManyWithoutOrganizationNestedInput = {
+  create?: Prisma.XOR<Prisma.PatternItemCreateWithoutOrganizationInput, Prisma.PatternItemUncheckedCreateWithoutOrganizationInput> | Prisma.PatternItemCreateWithoutOrganizationInput[] | Prisma.PatternItemUncheckedCreateWithoutOrganizationInput[]
+  connectOrCreate?: Prisma.PatternItemCreateOrConnectWithoutOrganizationInput | Prisma.PatternItemCreateOrConnectWithoutOrganizationInput[]
+  upsert?: Prisma.PatternItemUpsertWithWhereUniqueWithoutOrganizationInput | Prisma.PatternItemUpsertWithWhereUniqueWithoutOrganizationInput[]
+  createMany?: Prisma.PatternItemCreateManyOrganizationInputEnvelope
+  set?: Prisma.PatternItemWhereUniqueInput | Prisma.PatternItemWhereUniqueInput[]
+  disconnect?: Prisma.PatternItemWhereUniqueInput | Prisma.PatternItemWhereUniqueInput[]
+  delete?: Prisma.PatternItemWhereUniqueInput | Prisma.PatternItemWhereUniqueInput[]
+  connect?: Prisma.PatternItemWhereUniqueInput | Prisma.PatternItemWhereUniqueInput[]
+  update?: Prisma.PatternItemUpdateWithWhereUniqueWithoutOrganizationInput | Prisma.PatternItemUpdateWithWhereUniqueWithoutOrganizationInput[]
+  updateMany?: Prisma.PatternItemUpdateManyWithWhereWithoutOrganizationInput | Prisma.PatternItemUpdateManyWithWhereWithoutOrganizationInput[]
+  deleteMany?: Prisma.PatternItemScalarWhereInput | Prisma.PatternItemScalarWhereInput[]
 }
 
 export type PatternItemCreateNestedManyWithoutShiftDefinitionInput = {
@@ -425,14 +491,67 @@ export type PatternItemUncheckedUpdateManyWithoutPatternNestedInput = {
   deleteMany?: Prisma.PatternItemScalarWhereInput | Prisma.PatternItemScalarWhereInput[]
 }
 
+export type PatternItemCreateWithoutOrganizationInput = {
+  id?: string
+  dayOffset: number
+  shiftDefinition: Prisma.ShiftDefinitionCreateNestedOneWithoutPatternItemsInput
+  pattern: Prisma.RosterPatternCreateNestedOneWithoutItemsInput
+}
+
+export type PatternItemUncheckedCreateWithoutOrganizationInput = {
+  id?: string
+  patternId: string
+  dayOffset: number
+  shiftDefinitionId: string
+}
+
+export type PatternItemCreateOrConnectWithoutOrganizationInput = {
+  where: Prisma.PatternItemWhereUniqueInput
+  create: Prisma.XOR<Prisma.PatternItemCreateWithoutOrganizationInput, Prisma.PatternItemUncheckedCreateWithoutOrganizationInput>
+}
+
+export type PatternItemCreateManyOrganizationInputEnvelope = {
+  data: Prisma.PatternItemCreateManyOrganizationInput | Prisma.PatternItemCreateManyOrganizationInput[]
+  skipDuplicates?: boolean
+}
+
+export type PatternItemUpsertWithWhereUniqueWithoutOrganizationInput = {
+  where: Prisma.PatternItemWhereUniqueInput
+  update: Prisma.XOR<Prisma.PatternItemUpdateWithoutOrganizationInput, Prisma.PatternItemUncheckedUpdateWithoutOrganizationInput>
+  create: Prisma.XOR<Prisma.PatternItemCreateWithoutOrganizationInput, Prisma.PatternItemUncheckedCreateWithoutOrganizationInput>
+}
+
+export type PatternItemUpdateWithWhereUniqueWithoutOrganizationInput = {
+  where: Prisma.PatternItemWhereUniqueInput
+  data: Prisma.XOR<Prisma.PatternItemUpdateWithoutOrganizationInput, Prisma.PatternItemUncheckedUpdateWithoutOrganizationInput>
+}
+
+export type PatternItemUpdateManyWithWhereWithoutOrganizationInput = {
+  where: Prisma.PatternItemScalarWhereInput
+  data: Prisma.XOR<Prisma.PatternItemUpdateManyMutationInput, Prisma.PatternItemUncheckedUpdateManyWithoutOrganizationInput>
+}
+
+export type PatternItemScalarWhereInput = {
+  AND?: Prisma.PatternItemScalarWhereInput | Prisma.PatternItemScalarWhereInput[]
+  OR?: Prisma.PatternItemScalarWhereInput[]
+  NOT?: Prisma.PatternItemScalarWhereInput | Prisma.PatternItemScalarWhereInput[]
+  id?: Prisma.StringFilter<"PatternItem"> | string
+  organizationId?: Prisma.StringFilter<"PatternItem"> | string
+  patternId?: Prisma.StringFilter<"PatternItem"> | string
+  dayOffset?: Prisma.IntFilter<"PatternItem"> | number
+  shiftDefinitionId?: Prisma.StringFilter<"PatternItem"> | string
+}
+
 export type PatternItemCreateWithoutShiftDefinitionInput = {
   id?: string
   dayOffset: number
+  organization: Prisma.OrganizationCreateNestedOneWithoutPatternItemsInput
   pattern: Prisma.RosterPatternCreateNestedOneWithoutItemsInput
 }
 
 export type PatternItemUncheckedCreateWithoutShiftDefinitionInput = {
   id?: string
+  organizationId: string
   patternId: string
   dayOffset: number
 }
@@ -463,24 +582,16 @@ export type PatternItemUpdateManyWithWhereWithoutShiftDefinitionInput = {
   data: Prisma.XOR<Prisma.PatternItemUpdateManyMutationInput, Prisma.PatternItemUncheckedUpdateManyWithoutShiftDefinitionInput>
 }
 
-export type PatternItemScalarWhereInput = {
-  AND?: Prisma.PatternItemScalarWhereInput | Prisma.PatternItemScalarWhereInput[]
-  OR?: Prisma.PatternItemScalarWhereInput[]
-  NOT?: Prisma.PatternItemScalarWhereInput | Prisma.PatternItemScalarWhereInput[]
-  id?: Prisma.StringFilter<"PatternItem"> | string
-  patternId?: Prisma.StringFilter<"PatternItem"> | string
-  dayOffset?: Prisma.IntFilter<"PatternItem"> | number
-  shiftDefinitionId?: Prisma.StringFilter<"PatternItem"> | string
-}
-
 export type PatternItemCreateWithoutPatternInput = {
   id?: string
   dayOffset: number
+  organization: Prisma.OrganizationCreateNestedOneWithoutPatternItemsInput
   shiftDefinition: Prisma.ShiftDefinitionCreateNestedOneWithoutPatternItemsInput
 }
 
 export type PatternItemUncheckedCreateWithoutPatternInput = {
   id?: string
+  organizationId: string
   dayOffset: number
   shiftDefinitionId: string
 }
@@ -511,8 +622,37 @@ export type PatternItemUpdateManyWithWhereWithoutPatternInput = {
   data: Prisma.XOR<Prisma.PatternItemUpdateManyMutationInput, Prisma.PatternItemUncheckedUpdateManyWithoutPatternInput>
 }
 
+export type PatternItemCreateManyOrganizationInput = {
+  id?: string
+  patternId: string
+  dayOffset: number
+  shiftDefinitionId: string
+}
+
+export type PatternItemUpdateWithoutOrganizationInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  dayOffset?: Prisma.IntFieldUpdateOperationsInput | number
+  shiftDefinition?: Prisma.ShiftDefinitionUpdateOneRequiredWithoutPatternItemsNestedInput
+  pattern?: Prisma.RosterPatternUpdateOneRequiredWithoutItemsNestedInput
+}
+
+export type PatternItemUncheckedUpdateWithoutOrganizationInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  patternId?: Prisma.StringFieldUpdateOperationsInput | string
+  dayOffset?: Prisma.IntFieldUpdateOperationsInput | number
+  shiftDefinitionId?: Prisma.StringFieldUpdateOperationsInput | string
+}
+
+export type PatternItemUncheckedUpdateManyWithoutOrganizationInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  patternId?: Prisma.StringFieldUpdateOperationsInput | string
+  dayOffset?: Prisma.IntFieldUpdateOperationsInput | number
+  shiftDefinitionId?: Prisma.StringFieldUpdateOperationsInput | string
+}
+
 export type PatternItemCreateManyShiftDefinitionInput = {
   id?: string
+  organizationId: string
   patternId: string
   dayOffset: number
 }
@@ -520,23 +660,27 @@ export type PatternItemCreateManyShiftDefinitionInput = {
 export type PatternItemUpdateWithoutShiftDefinitionInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   dayOffset?: Prisma.IntFieldUpdateOperationsInput | number
+  organization?: Prisma.OrganizationUpdateOneRequiredWithoutPatternItemsNestedInput
   pattern?: Prisma.RosterPatternUpdateOneRequiredWithoutItemsNestedInput
 }
 
 export type PatternItemUncheckedUpdateWithoutShiftDefinitionInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  organizationId?: Prisma.StringFieldUpdateOperationsInput | string
   patternId?: Prisma.StringFieldUpdateOperationsInput | string
   dayOffset?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 export type PatternItemUncheckedUpdateManyWithoutShiftDefinitionInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  organizationId?: Prisma.StringFieldUpdateOperationsInput | string
   patternId?: Prisma.StringFieldUpdateOperationsInput | string
   dayOffset?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 export type PatternItemCreateManyPatternInput = {
   id?: string
+  organizationId: string
   dayOffset: number
   shiftDefinitionId: string
 }
@@ -544,17 +688,20 @@ export type PatternItemCreateManyPatternInput = {
 export type PatternItemUpdateWithoutPatternInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   dayOffset?: Prisma.IntFieldUpdateOperationsInput | number
+  organization?: Prisma.OrganizationUpdateOneRequiredWithoutPatternItemsNestedInput
   shiftDefinition?: Prisma.ShiftDefinitionUpdateOneRequiredWithoutPatternItemsNestedInput
 }
 
 export type PatternItemUncheckedUpdateWithoutPatternInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  organizationId?: Prisma.StringFieldUpdateOperationsInput | string
   dayOffset?: Prisma.IntFieldUpdateOperationsInput | number
   shiftDefinitionId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type PatternItemUncheckedUpdateManyWithoutPatternInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  organizationId?: Prisma.StringFieldUpdateOperationsInput | string
   dayOffset?: Prisma.IntFieldUpdateOperationsInput | number
   shiftDefinitionId?: Prisma.StringFieldUpdateOperationsInput | string
 }
@@ -563,48 +710,58 @@ export type PatternItemUncheckedUpdateManyWithoutPatternInput = {
 
 export type PatternItemSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
+  organizationId?: boolean
   patternId?: boolean
   dayOffset?: boolean
   shiftDefinitionId?: boolean
+  organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
   shiftDefinition?: boolean | Prisma.ShiftDefinitionDefaultArgs<ExtArgs>
   pattern?: boolean | Prisma.RosterPatternDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["patternItem"]>
 
 export type PatternItemSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
+  organizationId?: boolean
   patternId?: boolean
   dayOffset?: boolean
   shiftDefinitionId?: boolean
+  organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
   shiftDefinition?: boolean | Prisma.ShiftDefinitionDefaultArgs<ExtArgs>
   pattern?: boolean | Prisma.RosterPatternDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["patternItem"]>
 
 export type PatternItemSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
+  organizationId?: boolean
   patternId?: boolean
   dayOffset?: boolean
   shiftDefinitionId?: boolean
+  organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
   shiftDefinition?: boolean | Prisma.ShiftDefinitionDefaultArgs<ExtArgs>
   pattern?: boolean | Prisma.RosterPatternDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["patternItem"]>
 
 export type PatternItemSelectScalar = {
   id?: boolean
+  organizationId?: boolean
   patternId?: boolean
   dayOffset?: boolean
   shiftDefinitionId?: boolean
 }
 
-export type PatternItemOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "patternId" | "dayOffset" | "shiftDefinitionId", ExtArgs["result"]["patternItem"]>
+export type PatternItemOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "organizationId" | "patternId" | "dayOffset" | "shiftDefinitionId", ExtArgs["result"]["patternItem"]>
 export type PatternItemInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
   shiftDefinition?: boolean | Prisma.ShiftDefinitionDefaultArgs<ExtArgs>
   pattern?: boolean | Prisma.RosterPatternDefaultArgs<ExtArgs>
 }
 export type PatternItemIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
   shiftDefinition?: boolean | Prisma.ShiftDefinitionDefaultArgs<ExtArgs>
   pattern?: boolean | Prisma.RosterPatternDefaultArgs<ExtArgs>
 }
 export type PatternItemIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
   shiftDefinition?: boolean | Prisma.ShiftDefinitionDefaultArgs<ExtArgs>
   pattern?: boolean | Prisma.RosterPatternDefaultArgs<ExtArgs>
 }
@@ -612,11 +769,13 @@ export type PatternItemIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.
 export type $PatternItemPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "PatternItem"
   objects: {
+    organization: Prisma.$OrganizationPayload<ExtArgs>
     shiftDefinition: Prisma.$ShiftDefinitionPayload<ExtArgs>
     pattern: Prisma.$RosterPatternPayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
+    organizationId: string
     patternId: string
     dayOffset: number
     shiftDefinitionId: string
@@ -1014,6 +1173,7 @@ readonly fields: PatternItemFieldRefs;
  */
 export interface Prisma__PatternItemClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
+  organization<T extends Prisma.OrganizationDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.OrganizationDefaultArgs<ExtArgs>>): Prisma.Prisma__OrganizationClient<runtime.Types.Result.GetResult<Prisma.$OrganizationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   shiftDefinition<T extends Prisma.ShiftDefinitionDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ShiftDefinitionDefaultArgs<ExtArgs>>): Prisma.Prisma__ShiftDefinitionClient<runtime.Types.Result.GetResult<Prisma.$ShiftDefinitionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   pattern<T extends Prisma.RosterPatternDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.RosterPatternDefaultArgs<ExtArgs>>): Prisma.Prisma__RosterPatternClient<runtime.Types.Result.GetResult<Prisma.$RosterPatternPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
@@ -1046,6 +1206,7 @@ export interface Prisma__PatternItemClient<T, Null = never, ExtArgs extends runt
  */
 export interface PatternItemFieldRefs {
   readonly id: Prisma.FieldRef<"PatternItem", 'String'>
+  readonly organizationId: Prisma.FieldRef<"PatternItem", 'String'>
   readonly patternId: Prisma.FieldRef<"PatternItem", 'String'>
   readonly dayOffset: Prisma.FieldRef<"PatternItem", 'Int'>
   readonly shiftDefinitionId: Prisma.FieldRef<"PatternItem", 'String'>
