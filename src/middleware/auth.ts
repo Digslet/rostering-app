@@ -8,8 +8,7 @@ import { globalErrorHandler } from '../middleware/errorhandler';
 export const requireTenantAuth = createMiddleware()
   .middleware([globalErrorHandler])
   .server(async ({ next }) => {
-    
-    // TanStack Start specific auth call (no request object needed)
+
     const session = await auth(); 
 
     if (!session.userId) {
@@ -20,7 +19,6 @@ export const requireTenantAuth = createMiddleware()
       throw new AppError('Select an active workspace.', 'FORBIDDEN', 403);
     }
 
-    // Generate the highly secure, request-scoped client
     const secureDb = globalPrisma
       .$extends(withSoftDeletes)
       .$extends(withTenant(session.orgId))

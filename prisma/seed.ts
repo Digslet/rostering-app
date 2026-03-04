@@ -72,7 +72,7 @@ async function main() {
       const roleHCA = await globalPrisma.employeeRole.create({ data: { organizationId: org.id, name: 'Health Care Assistant' } })
 
       // Create Org Admin (Layer 0 User + Layer 2 Employee + ManagementRole)
-      const adminUserId = `clerk_admin_org${o}`
+      const adminUserId = o === 1 ? 'user_39BE7Xg96LRXjmmQnG9qvVjoAtJ' : `clerk_admin_org${o}`
       await globalPrisma.user.create({
         data: { id: adminUserId, email: `admin.org${o}@hospital.local`, firstName: 'System', lastName: 'Admin' }
       })
